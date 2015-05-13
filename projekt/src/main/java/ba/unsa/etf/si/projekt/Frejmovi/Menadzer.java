@@ -22,6 +22,7 @@ import javax.swing.UIManager;
 
 //import net.miginfocom.swing.MigLayout;
 
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -100,7 +101,7 @@ public class Menadzer {
 		frame = new JFrame("Menadžer");
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 713, 665);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -500,6 +501,19 @@ public class Menadzer {
 		frame.getContentPane().add(btnOdjava);
 		
 		JButton btnKorisnici = new JButton("Korisnici");
+		btnKorisnici.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Korisnik k = new Korisnik();
+				k.setVisible(true);
+				frame.setEnabled(false);
+				//frame.setVisible(false);
+				//frame.dispose();
+				
+				
+				
+			}
+		});
 		btnKorisnici.setBounds(453, 13, 97, 25);
 		frame.getContentPane().add(btnKorisnici);
 	}

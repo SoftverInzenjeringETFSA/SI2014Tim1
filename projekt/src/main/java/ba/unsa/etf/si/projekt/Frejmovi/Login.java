@@ -59,7 +59,8 @@ public class Login {
 	private void initialize() {
 		frame = new JFrame("Prijava");
 		frame.setBounds(100, 100, 450, 260);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		//EXIT_ON_CLOSE, DISPOSE_ON_CLOSE, HIDE_ON_CLOSE, DO_NOTHING_ON_CLOSE
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblKorisnikoIme = new JLabel("Korisni\u010Dko ime:");
@@ -93,12 +94,14 @@ public class Login {
 					Menadzer a = new Menadzer();
 					a.setVisible(true);
 					frame.setVisible(false);
+					frame.dispose();
 				}
 				else if(textFieldValue.equals("zaposlenik"))
 				{
 					Zaposlenik z = new Zaposlenik();
 					z.setVisible(true);
 					frame.setVisible(false);
+					frame.dispose();
 				}
 				
 			}

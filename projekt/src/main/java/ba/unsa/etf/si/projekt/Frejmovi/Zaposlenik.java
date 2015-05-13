@@ -46,7 +46,7 @@ import javax.swing.JToggleButton;
 
 public class Zaposlenik {
 
-	private JFrame frmZaposlenik;
+	private JFrame frame;
 	private JTable table_3;
 	private JTextField textField_1;
 	private JTextField textField_3;
@@ -69,7 +69,7 @@ public class Zaposlenik {
 				
 				try {
 					Zaposlenik window = new Zaposlenik();
-					window.frmZaposlenik.setVisible(true);
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -78,7 +78,7 @@ public class Zaposlenik {
 	}
 	public void setVisible(boolean visible)
 	{
-		frmZaposlenik.setVisible(visible);
+		frame.setVisible(visible);
 	}
 
 	/**
@@ -92,16 +92,16 @@ public class Zaposlenik {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmZaposlenik = new JFrame("Menadžer");
-		frmZaposlenik.setTitle("Zaposlenik");
-		frmZaposlenik.setResizable(false);
-		frmZaposlenik.setBounds(100, 100, 713, 665);
-		frmZaposlenik.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frmZaposlenik.getContentPane().setLayout(null);
+		frame = new JFrame("Menadžer");
+		frame.setTitle("Zaposlenik");
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 713, 665);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(12, 51, 683, 569);
-		frmZaposlenik.getContentPane().add(tabbedPane);
+		frame.getContentPane().add(tabbedPane);
 		
 		JPanel panel = new JPanel();
 		tabbedPane.addTab("Sastavnice", null, panel, null);
@@ -298,7 +298,7 @@ public class Zaposlenik {
 		
 		JButton btnOdjava = new JButton("Odjava");
 		btnOdjava.setBounds(598, 13, 97, 25);
-		frmZaposlenik.getContentPane().add(btnOdjava);
+		frame.getContentPane().add(btnOdjava);
 	}
 }
 
