@@ -506,7 +506,7 @@ public class Menadzer {
 				
 				Korisnik k = new Korisnik();
 				k.setVisible(true);
-				frame.setEnabled(false);
+				//frame.setEnabled(false);
 				//frame.setVisible(false);
 				//frame.dispose();
 				
