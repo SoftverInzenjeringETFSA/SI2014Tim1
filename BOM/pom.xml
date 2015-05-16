@@ -8,6 +8,7 @@
   <packaging>jar</packaging>
 
   <name>noviBOM</name>
+  <!--sdsdasds  -->
   <url>http://maven.apache.org</url>
 
   <properties>
