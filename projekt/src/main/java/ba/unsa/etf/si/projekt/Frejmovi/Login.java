@@ -60,6 +60,7 @@ public class Login {
 		frame = new JFrame("Prijava");
 		frame.setBounds(100, 100, 450, 260);
 		//EXIT_ON_CLOSE, DISPOSE_ON_CLOSE, HIDE_ON_CLOSE, DO_NOTHING_ON_CLOSE
+		//konstante koje postoje
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -93,15 +94,15 @@ public class Login {
 				{
 					Menadzer a = new Menadzer();
 					a.setVisible(true);
-					frame.setVisible(false);
-					frame.dispose();
+					frame.setVisible(false);//skrivanje frejma login
+					frame.dispose();//unistavanje frejma login
 				}
 				else if(textFieldValue.equals("zaposlenik"))
 				{
 					Zaposlenik z = new Zaposlenik();
 					z.setVisible(true);
-					frame.setVisible(false);
-					frame.dispose();
+					frame.setVisible(false);//skrivanje frejma login
+					frame.dispose();//unistavanje frejma login
 				}
 				
 			}

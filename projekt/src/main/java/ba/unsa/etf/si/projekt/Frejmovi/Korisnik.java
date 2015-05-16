@@ -1,8 +1,10 @@
 package ba.unsa.etf.si.projekt.Frejmovi;
 
 import java.awt.EventQueue;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,6 +19,7 @@ import javax.swing.UIManager;
 public class Korisnik {
 
 	private JFrame frame;
+	private JFrame parentFrame = null;
 	private JTextField textField;
 	private JTable table;
 
@@ -43,11 +46,46 @@ public class Korisnik {
 			}
 		});
 	}
+	public void setParent(JFrame parentF)
+	{
+		parentFrame = parentF;
+	}
+	public void setParentEnabled(boolean en)
+	{
+		parentFrame.setEnabled(en);
+	}
 	
 	public void setVisible(boolean visible)
 	{
 		frame.setVisible(visible);
+		
+		frame.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		       
+		    	
+		    	/*
+		    	if (JOptionPane.showConfirmDialog(frame, 
+		            "Are you sure to close this window?", "Really Closing?", 
+		            JOptionPane.YES_NO_OPTION,
+		            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+		            System.exit(0);
+		        }
+		        */
+		    	parentFrame.setEnabled(true);
+		        
+		        
+		        
+		    }
+		});
 	}
+	/*
+	public void windowClosing(WindowEvent e)//WindowEvent e
+	{
+		parentFrame.setEnabled(true);
+	}
+	*/
+	
 
 	/**
 	 * Create the application.

@@ -505,6 +505,8 @@ public class Menadzer {
 			public void actionPerformed(ActionEvent e) {
 				
 				Korisnik k = new Korisnik();
+				k.setParent(frame);
+				k.setParentEnabled(false);
 				k.setVisible(true);
 				//frame.setEnabled(false);
 				//frame.setVisible(false);
