@@ -30,7 +30,7 @@ public class Korisnik {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				
-				//ovaj try sluzi za postavljanje izgleda aplikacije prema platformi123
+				//ovaj try sluzi za postavljanje izgleda aplikacije prema platformi1233
 				try { 
 				    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
