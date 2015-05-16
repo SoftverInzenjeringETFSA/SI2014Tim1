@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ba.unsa.etf.si</groupId>
-  <artifactId>BOM</artifactId>
+  <artifactId>noviBOM</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>BOM</name>
+  <name>noviBOM</name>
   <url>http://maven.apache.org</url>
 
   <properties>
