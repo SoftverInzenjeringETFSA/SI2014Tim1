@@ -22,6 +22,10 @@ import javax.swing.UIManager;
 
 //import net.miginfocom.swing.MigLayout;
 
+
+
+
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -78,8 +82,9 @@ public class Zaposlenik {
 		});
 	}
 
-	public void setVisible(boolean visible) {
-		frame.setVisible(visible);
+	public void setFrame(JFrame parentF, String akcijaA, String klasa)
+	{
+		frame.setVisible(true);
 	}
 
 	/**
@@ -87,6 +92,26 @@ public class Zaposlenik {
 	 */
 	public Zaposlenik() {
 		initialize();
+		
+		//postavlanje akcije za izlaz iz frejma
+		frame.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		    	
+		    	CustomDialog d = new CustomDialog();
+		    	d.setFrame(frame, "Odjava", 
+		    			"Da li se želite odjaviti sa sistema?");
+		    }
+		});
+		
+		frame.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+		    	
+		    	//parentFrame.setEnabled(true);
+		    	//parentFrame.setVisible(true);
+		    }
+		});
 	}
 
 	/**
@@ -97,7 +122,7 @@ public class Zaposlenik {
 		frame.setTitle("Zaposlenik");
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 713, 665);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -151,6 +176,14 @@ public class Zaposlenik {
 		panel.add(panel_17);
 
 		JButton button_13 = new JButton("Kreiraj");
+		button_13.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				FSastavnicaDM s = new FSastavnicaDM();
+				s.setFrame(frame, "Kreiranje", null);
+				
+			}
+		});
 		button_13.setBounds(159, 45, 97, 25);
 		panel_17.add(button_13);
 
@@ -162,14 +195,38 @@ public class Zaposlenik {
 		panel.add(panel_18);
 
 		JButton button_14 = new JButton("Modifikuj");
+		button_14.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				FSastavnicaDM s = new FSastavnicaDM();
+				s.setFrame(frame, "Modifikovanje", null);
+				
+			}
+		});
 		button_14.setBounds(159, 69, 97, 25);
 		panel_18.add(button_14);
 
 		JButton button_15 = new JButton("Obri\u0161i");
+		button_15.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				FSastavnicaPB s = new FSastavnicaPB();
+				s.setFrame(frame, "Brisanje", null);
+				
+			}
+		});
 		button_15.setBounds(12, 69, 97, 25);
 		panel_18.add(button_15);
 
 		JButton button_16 = new JButton("Pregledaj");
+		button_16.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				FSastavnicaPB s = new FSastavnicaPB();
+				s.setFrame(frame, "Pregled", null);
+				
+			}
+		});
 		button_16.setBounds(159, 31, 97, 25);
 		panel_18.add(button_16);
 
@@ -284,6 +341,14 @@ public class Zaposlenik {
 		panel_1.add(panel_13);
 
 		JButton btnUnesi = new JButton("Unesi");
+		btnUnesi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				FMaterijalDMPB m = new FMaterijalDMPB();
+				m.setFrame(frame, "Kreiranje", null);
+				
+			}
+		});
 		btnUnesi.setBounds(159, 45, 97, 25);
 		panel_13.add(btnUnesi);
 
@@ -295,14 +360,38 @@ public class Zaposlenik {
 		panel_1.add(panel_14);
 
 		JButton button_3 = new JButton("Modifikuj");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				FMaterijalDMPB m = new FMaterijalDMPB();
+				m.setFrame(frame, "Modifikovanje", null);
+				
+			}
+		});
 		button_3.setBounds(159, 69, 97, 25);
 		panel_14.add(button_3);
 
 		JButton button_4 = new JButton("Obri\u0161i");
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				FMaterijalDMPB m = new FMaterijalDMPB();
+				m.setFrame(frame, "Brisanje", null);
+				
+			}
+		});
 		button_4.setBounds(12, 69, 97, 25);
 		panel_14.add(button_4);
 
 		JButton btnPregledaj = new JButton("Pregledaj");
+		btnPregledaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				FMaterijalDMPB m = new FMaterijalDMPB();
+				m.setFrame(frame, "Pregled", null);
+				
+			}
+		});
 		btnPregledaj.setBounds(159, 31, 97, 25);
 		panel_14.add(btnPregledaj);
 
@@ -310,6 +399,15 @@ public class Zaposlenik {
 		btnPretrai.setBounds(215, 165, 91, 25);
 
 		JButton btnOdjava = new JButton("Odjava");
+		btnOdjava.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				CustomDialog d = new CustomDialog();
+		    	d.setFrame(frame, "Odjava", 
+		    			"Da li se želite odjaviti sa sistema?");
+				
+			}
+		});
 		btnOdjava.setBounds(598, 13, 97, 25);
 		frame.getContentPane().add(btnOdjava);
 	}

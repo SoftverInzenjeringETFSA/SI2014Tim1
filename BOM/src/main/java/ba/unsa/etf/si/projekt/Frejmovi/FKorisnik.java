@@ -3,6 +3,7 @@ package ba.unsa.etf.si.projekt.Frejmovi;
 import java.awt.EventQueue;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -16,8 +17,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 
-public class Korisnik {
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
+public class FKorisnik {
+	
 	private JFrame frame;
 	private JFrame parentFrame = null;
 	private JTextField textField;
@@ -38,60 +42,48 @@ public class Korisnik {
 				}
 				
 				try {
-					Korisnik window = new Korisnik();
+					FKorisnik window = new FKorisnik();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+		
 	}
-	public void setParent(JFrame parentF)
+	public void setFrame(JFrame parentF, String nacinOtvaranja, String podaci)
 	{
 		parentFrame = parentF;
+		parentFrame.setEnabled(false);
+		frame.setVisible(true);
+		//ovdje nacin otvaranja i podaci nisu potrebni pa se
+		//moze proslijediti null
 	}
-	public void setParentEnabled(boolean en)
-	{
-		parentFrame.setEnabled(en);
-	}
-	
-	public void setVisible(boolean visible)
-	{
-		frame.setVisible(visible);
-		
-		frame.addWindowListener(new java.awt.event.WindowAdapter() {
-		    @Override
-		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-		       
-		    	
-		    	/*
-		    	if (JOptionPane.showConfirmDialog(frame, 
-		            "Are you sure to close this window?", "Really Closing?", 
-		            JOptionPane.YES_NO_OPTION,
-		            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-		            System.exit(0);
-		        }
-		        */
-		    	parentFrame.setEnabled(true);
-		        
-		        
-		        
-		    }
-		});
-	}
-	/*
-	public void windowClosing(WindowEvent e)//WindowEvent e
-	{
-		parentFrame.setEnabled(true);
-	}
-	*/
-	
 
 	/**
 	 * Create the application.
 	 */
-	public Korisnik() {
+	public FKorisnik() {
 		initialize();
+		
+		//postavlanje akcije za izlaz iz frejma
+		frame.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		    	
+		    	CustomDialog d = new CustomDialog();
+		    	d.setFrame(frame, null, null);
+		    }
+		});
+		
+		frame.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+		    	
+		    	parentFrame.setEnabled(true);
+		    	parentFrame.setVisible(true);
+		    }
+		});
 	}
 
 	/**
@@ -101,7 +93,7 @@ public class Korisnik {
 		frame = new JFrame();
 		frame.setTitle("Korisnici");
 		frame.setBounds(100, 100, 696, 562);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -147,6 +139,15 @@ public class Korisnik {
 		frame.getContentPane().add(panel_1);
 		
 		JButton button_2 = new JButton("Kreiraj");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				//otvaranje forme za kreiranje korisnika sistema
+				FKorisnikDMPB k = new FKorisnikDMPB();
+				k.setFrame(frame, "Kreiranje", null);
+				
+			}
+		});
 		button_2.setBounds(159, 45, 97, 25);
 		panel_1.add(button_2);
 		
@@ -157,14 +158,38 @@ public class Korisnik {
 		frame.getContentPane().add(panel_2);
 		
 		JButton button_3 = new JButton("Modifikuj");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				//otvaranje forme za modifikovanje korisnika sistema
+				FKorisnikDMPB k = new FKorisnikDMPB();
+				k.setFrame(frame, "Modifikovanje", null);//sada null treba biti klasa
+			}
+		});
 		button_3.setBounds(159, 69, 97, 25);
 		panel_2.add(button_3);
 		
 		JButton button_4 = new JButton("Obri\u0161i");
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//otvaranje forme za brisanje korisnika sistema
+				FKorisnikDMPB k = new FKorisnikDMPB();
+				k.setFrame(frame, "Brisanje", null);//sada null treba biti klasa
+			}
+		});
 		button_4.setBounds(12, 69, 97, 25);
 		panel_2.add(button_4);
 		
 		JButton button_5 = new JButton("Pregledaj");
+		button_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//otvaranje forme za pregled korisnika sistema
+				FKorisnikDMPB k = new FKorisnikDMPB();
+				k.setFrame(frame, "Pregled", null);//sada null treba biti klasa
+			}
+		});
 		button_5.setBounds(159, 31, 97, 25);
 		panel_2.add(button_5);
 		

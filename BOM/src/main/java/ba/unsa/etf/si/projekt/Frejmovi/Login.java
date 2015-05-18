@@ -92,15 +92,15 @@ public class Login {
 				
 				if(textFieldValue.equals("menadzer"))
 				{
-					Menadzer a = new Menadzer();
-					a.setVisible(true);
+					Menadzer m = new Menadzer();
+					m.setFrame(null, null, null);
 					frame.setVisible(false);//skrivanje frejma login
 					frame.dispose();//unistavanje frejma login
 				}
 				else if(textFieldValue.equals("zaposlenik"))
 				{
 					Zaposlenik z = new Zaposlenik();
-					z.setVisible(true);
+					z.setFrame(null, null, null);
 					frame.setVisible(false);//skrivanje frejma login
 					frame.dispose();//unistavanje frejma login
 				}
