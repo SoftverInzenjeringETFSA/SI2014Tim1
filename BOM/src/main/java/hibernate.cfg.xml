@@ -8,7 +8,18 @@
   <property name="hibernate.connection.url">jdbc:mysql://localhost/tim1baza</property>
   <property name="hibernate.connection.username">EtfSI2014</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-  <property name="hibernate.hbm2ddl.auto">update</property>
-  <mapping class="ba.unsa.etf.si.projekt.Klase.ProbnaKlasa"/>
+  <property name="hibernate.hbm2ddl.auto">create-drop</property>
+  <mapping class="ba.unsa.etf.si.projekt.Klase.Materijal"/>
+  <mapping class="ba.unsa.etf.si.projekt.Klase.Radnik"/>
+  <mapping class="ba.unsa.etf.si.projekt.Klase.Osoba"/>
+  <mapping class="ba.unsa.etf.si.projekt.Klase.Menadzer"/>
+  <mapping class="ba.unsa.etf.si.projekt.Klase.Sastavnica"/>
+  <mapping class="ba.unsa.etf.si.projekt.Klase.ObrisaniMaterijal"/>
+  <mapping class="ba.unsa.etf.si.projekt.Klase.Klijent"/>
+  <mapping class="ba.unsa.etf.si.projekt.Klase.Proizvod"/>
+  <mapping class="ba.unsa.etf.si.projekt.Klase.Narudzbenica"/>
+  <mapping class="ba.unsa.etf.si.projekt.Klase.ProizvodMaterijalPrelaz"/>
+  <mapping class="ba.unsa.etf.si.projekt.Klase.StavkaNarudzbenice"/>
+  <mapping class="ba.unsa.etf.si.projekt.Klase.StavkaSastavnice"/>
  </session-factory>
 </hibernate-configuration>

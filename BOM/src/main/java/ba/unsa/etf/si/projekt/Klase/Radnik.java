@@ -1,7 +1,21 @@
 package ba.unsa.etf.si.projekt.Klase;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+
+@Entity
 public class Radnik extends Osoba {
+	@Id
+	@GeneratedValue
+	@Column(name = "radnik_id")
+	private long id;
 	private String pozicija;
+	@Enumerated(EnumType.ORDINAL) 
 	private Ovlasti nivoOvlasti;
 	public String getPozicija() {
 		return pozicija;
@@ -14,5 +28,11 @@ public class Radnik extends Osoba {
 	}
 	public void setNivoOvlasti(Ovlasti nivoOvlasti) {
 		this.nivoOvlasti = nivoOvlasti;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 }

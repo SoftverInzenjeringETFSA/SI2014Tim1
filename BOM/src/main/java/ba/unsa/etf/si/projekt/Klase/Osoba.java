@@ -1,12 +1,15 @@
 package ba.unsa.etf.si.projekt.Klase;
 
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class Osoba {
 	private String ime;
 	private String prezime;
 	private String brojTelefona;
 	private String adresa;
 	private String email;
-	private String id;//u bazi ce biti integer??
+	//private String id;//u bazi ce biti integer??
 	private TipOsobe tipOsobe;
 	
 	public String getIme() {
@@ -39,12 +42,14 @@ public class Osoba {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	/*
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
+	*/
 	public TipOsobe getTipOsobe() {
 		return tipOsobe;
 	}

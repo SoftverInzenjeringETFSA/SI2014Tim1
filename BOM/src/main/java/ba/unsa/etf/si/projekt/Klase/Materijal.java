@@ -2,17 +2,35 @@ package ba.unsa.etf.si.projekt.Klase;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+
+@Entity
 public class Materijal {
+	@Id
+	@GeneratedValue
+	@Column(name = "materijal_id")
+	private long id;
 	private String serijskiBroj;
 	private String opis;
 	private double kolicina;
+	@Enumerated(EnumType.ORDINAL)
 	private TipMaterijala tip;
 	private double nabavnaCijena;
 	private Date datumNabavke;
+	@Enumerated(EnumType.ORDINAL)
 	private Kategorija kategorija;
 	private double prodajnaCijena;
 	private Date datumIstekaRoka;
-	private Osoba kreirao;
+	@ManyToOne(cascade=CascadeType.ALL)
+	private Radnik kreirao;
 	private String mjernaJedinica;
 	
 	public String getSerijskiBroj() {
@@ -69,10 +87,10 @@ public class Materijal {
 	public void setDatumIstekaRoka(Date datumIstekaRoka) {
 		this.datumIstekaRoka = datumIstekaRoka;
 	}
-	public Osoba getKreirao() {
+	public Radnik getKreirao() {
 		return kreirao;
 	}
-	public void setKreirao(Osoba kreirao) {
+	public void setKreirao(Radnik kreirao) {
 		this.kreirao = kreirao;
 	}
 	public String getMjernaJedinica() {

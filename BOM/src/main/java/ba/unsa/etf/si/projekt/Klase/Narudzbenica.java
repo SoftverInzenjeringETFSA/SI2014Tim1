@@ -1,20 +1,58 @@
 package ba.unsa.etf.si.projekt.Klase;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Narudzbenica {
-	private Proizvod proizvod;
+	@Id
+	@GeneratedValue
+	@Column(name = "narudzbenica_id")
+	private long id;
+	
+	
+	/*@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "StavkaNarudzbenice", joinColumns = { @JoinColumn(name = "narudzbenica_id") }
+	, inverseJoinColumns = { @JoinColumn(name = "proizvod_id") })*/
+	
+	//private List<Proizvod> proizvodi;
+	@OneToMany(mappedBy = "narudzbenica")
+	private List<StavkaNarudzbenice> stav_nar;
+	
+	public List<StavkaNarudzbenice> getStav_nar() {
+		return stav_nar;
+	}
+	public void setStav_nar(List<StavkaNarudzbenice> stav_nar) {
+		this.stav_nar = stav_nar;
+	}
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JoinColumn(name = "klijent")
 	private Klijent klijent;
+	
 	private Date datumKreiranja;
+	
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Menadzer odgovornoLice;
 	private String serijskiBroj;
 	
-	public Proizvod getProizvod() {
-		return proizvod;
+	/*public List<Proizvod> getProizvodi() {
+		return proizvodi;
 	}
-	public void setProizvod(Proizvod proizvod) {
-		this.proizvod = proizvod;
-	}
+	public void setProizvodi(List<Proizvod> proizvodi) {
+		this.proizvodi = proizvodi;
+	}*/
 	public Klijent getKlijent() {
 		return klijent;
 	}
@@ -38,5 +76,11 @@ public class Narudzbenica {
 	}
 	public void setSerijskiBroj(String serijskiBroj) {
 		this.serijskiBroj = serijskiBroj;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 }
