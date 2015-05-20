@@ -128,6 +128,7 @@ public class FKorisnikDMPB {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 455, 401);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -153,7 +154,7 @@ public class FKorisnikDMPB {
 		lblPrezime.setBounds(74, 67, 56, 16);
 		panel.add(lblPrezime);
 		
-		JLabel lblJmb = new JLabel("JMB:");
+		JLabel lblJmb = new JLabel("JMBG:");
 		lblJmb.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblJmb.setBounds(74, 96, 56, 16);
 		panel.add(lblJmb);

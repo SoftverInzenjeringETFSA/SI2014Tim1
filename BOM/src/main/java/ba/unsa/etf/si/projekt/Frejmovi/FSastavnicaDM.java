@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JTable;
+import com.toedter.calendar.JCalendar;
 
 public class FSastavnicaDM {
 
@@ -106,6 +107,7 @@ public class FSastavnicaDM {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 800, 629);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -262,5 +264,9 @@ public class FSastavnicaDM {
 		JLabel label = new JLabel("%");
 		label.setBounds(700, 441, 56, 16);
 		panel.add(label);
+		
+		JCalendar calendar = new JCalendar();
+		calendar.setBounds(137, -24, 188, 146);
+		panel.add(calendar);
 	}
 }

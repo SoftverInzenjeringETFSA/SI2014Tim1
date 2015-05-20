@@ -14,6 +14,7 @@ import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import com.toedter.calendar.JDateChooser;
 
 public class FMaterijalDMPB {
 
@@ -21,7 +22,6 @@ public class FMaterijalDMPB {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
 	private JTextField textField_4;
 	private JComboBox comboBox;
 	private JComboBox comboBox_1;
@@ -128,6 +128,7 @@ public class FMaterijalDMPB {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 439, 419);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -216,11 +217,6 @@ public class FMaterijalDMPB {
 		lblDatumNabavke.setBounds(23, 220, 109, 16);
 		panel.add(lblDatumNabavke);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(144, 217, 116, 22);
-		panel.add(textField_3);
-		textField_3.setColumns(10);
-		
 		JLabel lblGraninaKoliina = new JLabel("Grani\u010Dna koli\u010Dina:");
 		lblGraninaKoliina.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblGraninaKoliina.setBounds(29, 249, 103, 16);
@@ -264,6 +260,10 @@ public class FMaterijalDMPB {
 		});
 		btnUnesi.setBounds(263, 311, 97, 25);
 		panel.add(btnUnesi);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(144, 221, 116, 20);
+		panel.add(dateChooser);
 		
 		
 	}

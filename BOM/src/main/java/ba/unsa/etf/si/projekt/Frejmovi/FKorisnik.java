@@ -91,6 +91,7 @@ public class FKorisnik {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setTitle("Korisnici");
 		frame.setBounds(100, 100, 696, 562);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);

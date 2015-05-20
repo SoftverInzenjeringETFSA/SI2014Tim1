@@ -58,6 +58,7 @@ public class Login {
 	 */
 	private void initialize() {
 		frame = new JFrame("Prijava");
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 450, 260);
 		//EXIT_ON_CLOSE, DISPOSE_ON_CLOSE, HIDE_ON_CLOSE, DO_NOTHING_ON_CLOSE
 		//konstante koje postoje
