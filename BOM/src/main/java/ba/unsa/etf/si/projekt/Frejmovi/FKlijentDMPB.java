@@ -121,19 +121,19 @@ public class FKlijentDMPB {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 450, 311);
+		frame.setBounds(100, 100, 402, 311);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(12, 13, 408, 241);
+		panel.setBounds(12, 13, 372, 253);
 		panel.setBorder(BorderFactory.createTitledBorder("Brisanje klijenta"));
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblIme = new JLabel("Ime:");
 		lblIme.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblIme.setBounds(65, 50, 56, 16);
+		lblIme.setBounds(12, 50, 109, 16);
 		panel.add(lblIme);
 		
 		txtFdsfd = new JTextField();
@@ -143,7 +143,7 @@ public class FKlijentDMPB {
 		
 		JLabel lblPrezime = new JLabel("Prezime:");
 		lblPrezime.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPrezime.setBounds(65, 79, 56, 16);
+		lblPrezime.setBounds(12, 79, 109, 16);
 		panel.add(lblPrezime);
 		
 		textField_1 = new JTextField();
@@ -153,17 +153,17 @@ public class FKlijentDMPB {
 		
 		JLabel lblTelefon = new JLabel("Telefon:");
 		lblTelefon.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTelefon.setBounds(65, 108, 56, 16);
+		lblTelefon.setBounds(12, 108, 109, 16);
 		panel.add(lblTelefon);
 		
 		JLabel lblAdresa = new JLabel("Adresa:");
 		lblAdresa.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblAdresa.setBounds(65, 137, 56, 16);
+		lblAdresa.setBounds(12, 137, 109, 16);
 		panel.add(lblAdresa);
 		
 		JLabel lblEmail = new JLabel("E-mail:");
 		lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblEmail.setBounds(65, 166, 56, 16);
+		lblEmail.setBounds(12, 166, 109, 16);
 		panel.add(lblEmail);
 		
 		textField_3 = new JTextField();

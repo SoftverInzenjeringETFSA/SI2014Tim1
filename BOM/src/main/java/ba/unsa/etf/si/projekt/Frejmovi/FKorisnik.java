@@ -104,33 +104,34 @@ public class FKorisnik {
 		frame.getContentPane().add(panel);
 		
 		JButton button = new JButton("Pretra\u017Ei");
-		button.setBounds(215, 165, 91, 25);
+		button.setBounds(242, 165, 91, 25);
 		panel.add(button);
 		
 		JButton button_1 = new JButton("Prika\u017Ei sve");
-		button_1.setBounds(106, 165, 97, 25);
+		button_1.setBounds(133, 165, 97, 25);
 		panel.add(button_1);
 		
 		JLabel label = new JLabel("Pretra\u017Ei po:");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setBounds(26, 72, 74, 16);
+		label.setBounds(12, 72, 109, 16);
 		panel.add(label);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(106, 34, 200, 22);
+		comboBox.setBounds(133, 34, 200, 22);
 		panel.add(comboBox);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(106, 104, 200, 22);
+		textField.setBounds(133, 104, 200, 22);
 		panel.add(textField);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(106, 69, 200, 22);
+		comboBox_1.setBounds(133, 69, 200, 22);
 		panel.add(comboBox_1);
 		
 		JLabel label_1 = new JLabel("Sortiraj po:");
-		label_1.setBounds(34, 37, 66, 16);
+		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_1.setBounds(12, 37, 109, 16);
 		panel.add(label_1);
 		
 		JPanel panel_1 = new JPanel();

@@ -137,84 +137,84 @@ public class FKorisnikDMPB {
 		frame.getContentPane().setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(12, 13, 413, 331);
+		panel.setBounds(12, 13, 413, 343);
 		//panel.setBorder(BorderFactory.createTitledBorder("Pregled korisnika"));
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblIme = new JLabel("Ime:");
 		lblIme.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblIme.setBounds(74, 38, 56, 16);
+		lblIme.setBounds(12, 38, 145, 16);
 		panel.add(lblIme);
 		
 		textField = new JTextField();
-		textField.setBounds(142, 35, 201, 22);
+		textField.setBounds(169, 35, 201, 22);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblPrezime = new JLabel("Prezime:");
 		lblPrezime.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPrezime.setBounds(74, 67, 56, 16);
+		lblPrezime.setBounds(12, 67, 145, 16);
 		panel.add(lblPrezime);
 		
 		JLabel lblJmb = new JLabel("JMBG:");
 		lblJmb.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblJmb.setBounds(74, 96, 56, 16);
+		lblJmb.setBounds(12, 96, 145, 16);
 		panel.add(lblJmb);
 		
 		JLabel lblTelefon = new JLabel("Telefon:");
 		lblTelefon.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTelefon.setBounds(74, 125, 56, 16);
+		lblTelefon.setBounds(12, 125, 145, 16);
 		panel.add(lblTelefon);
 		
 		JLabel lblKorisnikoIme = new JLabel("Korisni\u010Dko ime:");
 		lblKorisnikoIme.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblKorisnikoIme.setBounds(43, 183, 87, 16);
+		lblKorisnikoIme.setBounds(12, 183, 145, 16);
 		panel.add(lblKorisnikoIme);
 		
 		JLabel lblifra = new JLabel("\u0160ifra:");
 		lblifra.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblifra.setBounds(74, 212, 56, 16);
+		lblifra.setBounds(12, 212, 145, 16);
 		panel.add(lblifra);
 		
 		JLabel lblAdresa = new JLabel("Adresa:");
 		lblAdresa.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblAdresa.setBounds(74, 154, 56, 16);
+		lblAdresa.setBounds(12, 154, 145, 16);
 		panel.add(lblAdresa);
 		
 		JLabel lblPozicija = new JLabel("Pozicija:");
 		lblPozicija.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPozicija.setBounds(74, 241, 56, 16);
+		lblPozicija.setBounds(12, 241, 145, 16);
 		panel.add(lblPozicija);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(142, 64, 201, 22);
+		textField_1.setBounds(169, 64, 201, 22);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(142, 93, 201, 22);
+		textField_2.setBounds(169, 93, 201, 22);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(142, 151, 201, 22);
+		textField_4.setBounds(169, 151, 201, 22);
 		panel.add(textField_4);
 		textField_4.setColumns(10);
 		
 		textField_5 = new JTextField();
-		textField_5.setBounds(142, 180, 201, 22);
+		textField_5.setBounds(169, 180, 201, 22);
 		panel.add(textField_5);
 		textField_5.setColumns(10);
 		
 		textField_6 = new JTextField();
-		textField_6.setBounds(142, 209, 201, 22);
+		textField_6.setBounds(169, 209, 201, 22);
 		panel.add(textField_6);
 		textField_6.setColumns(10);
 		
 		comboBox = new JComboBox();
 		comboBox.setEditable(true);
-		comboBox.setBounds(142, 238, 201, 22);
+		comboBox.setBounds(169, 238, 201, 22);
 		panel.add(comboBox);
 		
 		btnKreiraj = new JButton("Nazad");
@@ -244,7 +244,7 @@ public class FKorisnikDMPB {
 				
 			}
 		});
-		btnKreiraj.setBounds(246, 293, 97, 25);
+		btnKreiraj.setBounds(273, 293, 97, 25);
 		panel.add(btnKreiraj);
 		
 		MaskFormatter mf1 = new MaskFormatter();
@@ -257,7 +257,7 @@ public class FKorisnikDMPB {
 		}
 		mf1.setPlaceholderCharacter('_');
 		JFormattedTextField formattedTextField = new JFormattedTextField(mf1);
-		formattedTextField.setBounds(142, 123, 201, 20);
+		formattedTextField.setBounds(169, 123, 201, 20);
 		panel.add(formattedTextField);
 	}
 }

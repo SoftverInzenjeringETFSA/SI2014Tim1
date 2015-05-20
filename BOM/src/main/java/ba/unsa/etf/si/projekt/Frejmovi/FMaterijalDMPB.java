@@ -128,106 +128,106 @@ public class FMaterijalDMPB {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 439, 419);
+		frame.setBounds(100, 100, 512, 407);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(12, 13, 397, 349);
+		panel.setBounds(12, 13, 482, 349);
 		panel.setBorder(BorderFactory.createTitledBorder("Pregled materijala/poluproizvoda"));
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblSerijskiBroj = new JLabel("Serijski broj:");
 		lblSerijskiBroj.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblSerijskiBroj.setBounds(58, 46, 74, 16);
+		lblSerijskiBroj.setBounds(112, 46, 74, 16);
 		panel.add(lblSerijskiBroj);
 		
 		JLabel lblNaziv = new JLabel("Naziv:");
 		lblNaziv.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNaziv.setBounds(76, 75, 56, 16);
+		lblNaziv.setBounds(130, 75, 56, 16);
 		panel.add(lblNaziv);
 		
 		JLabel lblKoliina = new JLabel("Koli\u010Dina:");
 		lblKoliina.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblKoliina.setBounds(76, 104, 56, 16);
+		lblKoliina.setBounds(130, 104, 56, 16);
 		panel.add(lblKoliina);
 		
 		JLabel lblTip = new JLabel("Tip:");
 		lblTip.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTip.setBounds(76, 133, 56, 16);
+		lblTip.setBounds(130, 133, 56, 16);
 		panel.add(lblTip);
 		
 		JLabel lblNabavnaCijena = new JLabel("Nabavna cijena:");
 		lblNabavnaCijena.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNabavnaCijena.setBounds(35, 162, 97, 16);
+		lblNabavnaCijena.setBounds(89, 162, 97, 16);
 		panel.add(lblNabavnaCijena);
 		
 		JLabel lblProdajnaCijena = new JLabel("Prodajna cijena:");
 		lblProdajnaCijena.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblProdajnaCijena.setBounds(29, 191, 103, 16);
+		lblProdajnaCijena.setBounds(83, 191, 103, 16);
 		panel.add(lblProdajnaCijena);
 		
 		comboBox = new JComboBox();
 		comboBox.setEditable(true);
-		comboBox.setBounds(144, 43, 216, 22);
+		comboBox.setBounds(198, 43, 216, 22);
 		panel.add(comboBox);
 		
 		comboBox_1 = new JComboBox();
 		comboBox_1.setEditable(true);
-		comboBox_1.setBounds(144, 72, 216, 22);
+		comboBox_1.setBounds(198, 72, 216, 22);
 		panel.add(comboBox_1);
 		
 		textField = new JTextField();
-		textField.setBounds(144, 101, 116, 22);
+		textField.setBounds(198, 101, 116, 22);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		comboBox_2 = new JComboBox();
 		comboBox_2.setEditable(true);
-		comboBox_2.setBounds(272, 101, 88, 22);
+		comboBox_2.setBounds(326, 101, 88, 22);
 		panel.add(comboBox_2);
 		
 		comboBox_3 = new JComboBox();
 		comboBox_3.setEditable(true);
-		comboBox_3.setBounds(144, 130, 116, 22);
+		comboBox_3.setBounds(198, 130, 116, 22);
 		panel.add(comboBox_3);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(144, 159, 116, 22);
+		textField_1.setBounds(198, 159, 116, 22);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(144, 188, 116, 22);
+		textField_2.setBounds(198, 188, 116, 22);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
 		JLabel lblKmjedinica = new JLabel("KM/jedinica");
-		lblKmjedinica.setBounds(272, 162, 88, 16);
+		lblKmjedinica.setBounds(326, 162, 130, 16);
 		panel.add(lblKmjedinica);
 		
 		JLabel lblKmjedinica_1 = new JLabel("KM/jedinica");
-		lblKmjedinica_1.setBounds(272, 191, 88, 16);
+		lblKmjedinica_1.setBounds(326, 191, 130, 16);
 		panel.add(lblKmjedinica_1);
 		
 		JLabel lblDatumNabavke = new JLabel("Datum nabavke:");
 		lblDatumNabavke.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDatumNabavke.setBounds(23, 220, 109, 16);
+		lblDatumNabavke.setBounds(77, 220, 109, 16);
 		panel.add(lblDatumNabavke);
 		
 		JLabel lblGraninaKoliina = new JLabel("Grani\u010Dna koli\u010Dina:");
 		lblGraninaKoliina.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblGraninaKoliina.setBounds(29, 249, 103, 16);
+		lblGraninaKoliina.setBounds(12, 249, 174, 16);
 		panel.add(lblGraninaKoliina);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(144, 246, 116, 22);
+		textField_4.setBounds(198, 246, 116, 22);
 		panel.add(textField_4);
 		textField_4.setColumns(10);
 		
 		JLabel lblJedinica = new JLabel("jedinica");
-		lblJedinica.setBounds(272, 249, 56, 16);
+		lblJedinica.setBounds(326, 249, 130, 16);
 		panel.add(lblJedinica);
 		
 		btnUnesi = new JButton("Nazad");
@@ -257,11 +257,11 @@ public class FMaterijalDMPB {
 				
 			}
 		});
-		btnUnesi.setBounds(263, 311, 97, 25);
+		btnUnesi.setBounds(317, 311, 97, 25);
 		panel.add(btnUnesi);
 		
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(144, 221, 116, 20);
+		dateChooser.setBounds(198, 216, 116, 20);
 		panel.add(dateChooser);
 		
 		
