@@ -13,13 +13,15 @@ import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
+import javax.swing.text.MaskFormatter;
+import javax.swing.JFormattedTextField;
 
 public class FKlijentDMPB {
 
 	private JFrame frame;
 	private JTextField txtFdsfd;
 	private JTextField textField_1;
-	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private String akcija;
@@ -68,7 +70,6 @@ public class FKlijentDMPB {
 			{
 				txtFdsfd.setEditable(false);
 				textField_1.setEditable(false);
-				textField_2.setEditable(false);
 				textField_3.setEditable(false);
 				textField_4.setEditable(false);
 			}
@@ -119,19 +120,20 @@ public class FKlijentDMPB {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 311);
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 402, 311);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(12, 13, 408, 241);
+		panel.setBounds(12, 13, 372, 253);
 		panel.setBorder(BorderFactory.createTitledBorder("Brisanje klijenta"));
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblIme = new JLabel("Ime:");
 		lblIme.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblIme.setBounds(65, 50, 56, 16);
+		lblIme.setBounds(12, 50, 109, 16);
 		panel.add(lblIme);
 		
 		txtFdsfd = new JTextField();
@@ -141,7 +143,7 @@ public class FKlijentDMPB {
 		
 		JLabel lblPrezime = new JLabel("Prezime:");
 		lblPrezime.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPrezime.setBounds(65, 79, 56, 16);
+		lblPrezime.setBounds(12, 79, 109, 16);
 		panel.add(lblPrezime);
 		
 		textField_1 = new JTextField();
@@ -151,23 +153,18 @@ public class FKlijentDMPB {
 		
 		JLabel lblTelefon = new JLabel("Telefon:");
 		lblTelefon.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTelefon.setBounds(65, 108, 56, 16);
+		lblTelefon.setBounds(12, 108, 109, 16);
 		panel.add(lblTelefon);
 		
 		JLabel lblAdresa = new JLabel("Adresa:");
 		lblAdresa.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblAdresa.setBounds(65, 137, 56, 16);
+		lblAdresa.setBounds(12, 137, 109, 16);
 		panel.add(lblAdresa);
 		
 		JLabel lblEmail = new JLabel("E-mail:");
 		lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblEmail.setBounds(65, 166, 56, 16);
+		lblEmail.setBounds(12, 166, 109, 16);
 		panel.add(lblEmail);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(133, 105, 187, 22);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
 		textField_3.setBounds(133, 134, 187, 22);
@@ -208,5 +205,19 @@ public class FKlijentDMPB {
 		});
 		btnKreiraj.setBounds(223, 203, 97, 25);
 		panel.add(btnKreiraj);
+		MaskFormatter mf1 = new MaskFormatter();
+		try{
+			mf1 = new MaskFormatter("###-###-###");
+		}
+		catch( Exception e)
+		{
+			
+		}
+		mf1.setPlaceholderCharacter('_');
+		JFormattedTextField formattedTextField = new JFormattedTextField(mf1);
+		formattedTextField.setBounds(133, 106, 187, 20);
+		panel.add(formattedTextField);
+		
+		
 	}
 }

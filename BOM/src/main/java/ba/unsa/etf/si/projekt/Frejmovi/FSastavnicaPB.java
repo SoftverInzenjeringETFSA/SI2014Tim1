@@ -106,40 +106,41 @@ public class FSastavnicaPB {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 470);
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 919, 457);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(BorderFactory.createTitledBorder("Brisanje sastavnice"));
-		panel.setBounds(12, 13, 758, 402);
+		panel.setBounds(12, 13, 889, 399);
 		frame.getContentPane().add(panel);
 		
 		JLabel lblNazivProizvoda = new JLabel("Naziv proizvoda:");
 		lblNazivProizvoda.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNazivProizvoda.setBounds(38, 30, 96, 16);
+		lblNazivProizvoda.setBounds(12, 30, 173, 16);
 		panel.add(lblNazivProizvoda);
 		
 		textField = new JTextField();
 		textField.setEditable(false);
 		textField.setColumns(10);
-		textField.setBounds(146, 27, 291, 22);
+		textField.setBounds(197, 27, 291, 22);
 		panel.add(textField);
 		
 		JLabel lblOdgovornoLice = new JLabel("Odgovorno lice:");
 		lblOdgovornoLice.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblOdgovornoLice.setBounds(463, 30, 90, 16);
+		lblOdgovornoLice.setBounds(500, 30, 166, 16);
 		panel.add(lblOdgovornoLice);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBorder(BorderFactory.createTitledBorder("Materijali/poluproizvodi (stavke)"));
-		panel_1.setBounds(12, 76, 730, 160);
+		panel_1.setBounds(12, 76, 865, 160);
 		panel.add(panel_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 26, 706, 120);
+		scrollPane.setBounds(12, 26, 841, 120);
 		panel_1.add(scrollPane);
 		
 		//
@@ -153,86 +154,87 @@ public class FSastavnicaPB {
 		
 		JLabel label_4 = new JLabel("Ukupna cijena:");
 		label_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_4.setBounds(56, 323, 96, 16);
+		label_4.setBounds(12, 357, 215, 16);
 		panel.add(label_4);
 		
 		textField_1 = new JTextField();
 		textField_1.setEditable(false);
 		textField_1.setColumns(10);
-		textField_1.setBounds(164, 320, 130, 22);
+		textField_1.setBounds(239, 354, 130, 22);
 		panel.add(textField_1);
 		
 		JLabel label_5 = new JLabel("Trajanje proizvodnje:");
 		label_5.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_5.setBounds(22, 265, 130, 16);
+		label_5.setBounds(12, 265, 215, 16);
 		panel.add(label_5);
 		
 		textField_2 = new JTextField();
 		textField_2.setEditable(false);
 		textField_2.setColumns(10);
-		textField_2.setBounds(164, 262, 130, 22);
+		textField_2.setBounds(239, 262, 130, 22);
 		panel.add(textField_2);
 		
 		JLabel label_6 = new JLabel("h");
-		label_6.setBounds(306, 265, 19, 16);
+		label_6.setBounds(381, 265, 19, 16);
 		panel.add(label_6);
 		
 		JLabel label_7 = new JLabel("KM");
-		label_7.setBounds(306, 323, 56, 16);
+		label_7.setBounds(381, 357, 56, 16);
 		panel.add(label_7);
 		
 		btnObrisiSastavnicu = new JButton("Obriši");
-		btnObrisiSastavnicu.setBounds(555, 364, 173, 25);
+		btnObrisiSastavnicu.setBounds(692, 353, 173, 25);
 		panel.add(btnObrisiSastavnicu);
 		
 		textField_3 = new JTextField();
 		textField_3.setEditable(false);
-		textField_3.setBounds(565, 27, 177, 22);
+		textField_3.setBounds(678, 27, 187, 22);
 		panel.add(textField_3);
 		textField_3.setColumns(10);
 		
 		JLabel lblCijenaObavljenogRada = new JLabel("Cijena obavljenog rada:");
-		lblCijenaObavljenogRada.setBounds(409, 265, 137, 16);
+		lblCijenaObavljenogRada.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCijenaObavljenogRada.setBounds(12, 300, 215, 16);
 		panel.add(lblCijenaObavljenogRada);
 		
 		textField_4 = new JTextField();
 		textField_4.setEditable(false);
-		textField_4.setBounds(558, 262, 130, 22);
+		textField_4.setBounds(239, 297, 130, 22);
 		panel.add(textField_4);
 		textField_4.setColumns(10);
 		
 		JLabel lblKmh = new JLabel("KM/h");
-		lblKmh.setBounds(700, 265, 56, 16);
+		lblKmh.setBounds(381, 300, 56, 16);
 		panel.add(lblKmh);
 		
 		JLabel lblDodatniTrokovi = new JLabel("Dodatni tro\u0161kovi:");
 		lblDodatniTrokovi.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDodatniTrokovi.setBounds(56, 294, 96, 16);
+		lblDodatniTrokovi.setBounds(500, 265, 178, 16);
 		panel.add(lblDodatniTrokovi);
 		
 		textField_5 = new JTextField();
 		textField_5.setEditable(false);
-		textField_5.setBounds(164, 291, 130, 22);
+		textField_5.setBounds(690, 262, 130, 22);
 		panel.add(textField_5);
 		textField_5.setColumns(10);
 		
 		JLabel lblKm = new JLabel("KM");
-		lblKm.setBounds(306, 294, 56, 16);
+		lblKm.setBounds(832, 265, 45, 16);
 		panel.add(lblKm);
 		
 		JLabel lblOtpad = new JLabel("Otpad:");
 		lblOtpad.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblOtpad.setBounds(490, 294, 56, 16);
+		lblOtpad.setBounds(569, 300, 109, 16);
 		panel.add(lblOtpad);
 		
 		JLabel label = new JLabel("%");
-		label.setBounds(700, 294, 56, 16);
+		label.setBounds(832, 303, 31, 16);
 		panel.add(label);
 		
 		textField_6 = new JTextField();
 		textField_6.setEditable(false);
 		textField_6.setColumns(10);
-		textField_6.setBounds(558, 291, 130, 22);
+		textField_6.setBounds(692, 300, 130, 22);
 		panel.add(textField_6);
 	}
 }
