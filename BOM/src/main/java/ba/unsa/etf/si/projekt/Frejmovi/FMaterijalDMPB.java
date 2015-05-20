@@ -14,6 +14,9 @@ import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import Validacija.NotEmptyValidator;
+
 import com.toedter.calendar.JDateChooser;
 
 public class FMaterijalDMPB {
@@ -233,7 +236,8 @@ public class FMaterijalDMPB {
 		btnUnesi = new JButton("Nazad");
 		btnUnesi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				textField_4.setInputVerifier(new NotEmptyValidator(frame,textField_4,"Morate popuniti ovo polje"));
+				textField_1.setInputVerifier(new NotEmptyValidator(frame,textField_1,"BlaBla"));
 				//akcija za klik na dugme koje moze imati razlicite f-je
 				//brisanje, kreiranje, modifikovanje, pregled
 				if(akcija.equals("Kreiranje") || akcija.equals("Modifikovanje"))
