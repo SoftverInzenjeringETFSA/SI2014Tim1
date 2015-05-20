@@ -11,8 +11,12 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.JFormattedTextField;
+import javax.swing.text.MaskFormatter;
 
 public class FKorisnikDMPB {
 
@@ -20,7 +24,6 @@ public class FKorisnikDMPB {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
@@ -29,6 +32,7 @@ public class FKorisnikDMPB {
 	private JButton btnKreiraj;
 	private JFrame parentFrame;
 	private String akcija;
+	private JFormattedTextField formattedTextField;
 
 	/**
 	 * Launch the application.
@@ -73,7 +77,6 @@ public class FKorisnikDMPB {
 			textField.setEditable(false);
 			textField_1.setEditable(false);
 			textField_2.setEditable(false);
-			textField_3.setEditable(false);
 			textField_4.setEditable(false);
 			textField_5.setEditable(false);
 			textField_6.setEditable(false);
@@ -194,11 +197,6 @@ public class FKorisnikDMPB {
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(142, 122, 201, 22);
-		panel.add(textField_3);
-		textField_3.setColumns(10);
-		
 		textField_4 = new JTextField();
 		textField_4.setBounds(142, 151, 201, 22);
 		panel.add(textField_4);
@@ -248,5 +246,18 @@ public class FKorisnikDMPB {
 		});
 		btnKreiraj.setBounds(246, 293, 97, 25);
 		panel.add(btnKreiraj);
+		
+		MaskFormatter mf1 = new MaskFormatter();
+		try{
+			mf1 = new MaskFormatter("###-###-###");
+		}
+		catch( Exception e)
+		{
+			
+		}
+		mf1.setPlaceholderCharacter('_');
+		JFormattedTextField formattedTextField = new JFormattedTextField(mf1);
+		formattedTextField.setBounds(142, 123, 201, 20);
+		panel.add(formattedTextField);
 	}
 }

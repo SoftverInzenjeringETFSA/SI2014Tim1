@@ -13,13 +13,15 @@ import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
+import javax.swing.text.MaskFormatter;
+import javax.swing.JFormattedTextField;
 
 public class FKlijentDMPB {
 
 	private JFrame frame;
 	private JTextField txtFdsfd;
 	private JTextField textField_1;
-	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private String akcija;
@@ -68,7 +70,6 @@ public class FKlijentDMPB {
 			{
 				txtFdsfd.setEditable(false);
 				textField_1.setEditable(false);
-				textField_2.setEditable(false);
 				textField_3.setEditable(false);
 				textField_4.setEditable(false);
 			}
@@ -165,11 +166,6 @@ public class FKlijentDMPB {
 		lblEmail.setBounds(65, 166, 56, 16);
 		panel.add(lblEmail);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(133, 105, 187, 22);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
-		
 		textField_3 = new JTextField();
 		textField_3.setBounds(133, 134, 187, 22);
 		panel.add(textField_3);
@@ -209,5 +205,19 @@ public class FKlijentDMPB {
 		});
 		btnKreiraj.setBounds(223, 203, 97, 25);
 		panel.add(btnKreiraj);
+		MaskFormatter mf1 = new MaskFormatter();
+		try{
+			mf1 = new MaskFormatter("###-###-###");
+		}
+		catch( Exception e)
+		{
+			
+		}
+		mf1.setPlaceholderCharacter('_');
+		JFormattedTextField formattedTextField = new JFormattedTextField(mf1);
+		formattedTextField.setBounds(133, 106, 187, 20);
+		panel.add(formattedTextField);
+		
+		
 	}
 }
