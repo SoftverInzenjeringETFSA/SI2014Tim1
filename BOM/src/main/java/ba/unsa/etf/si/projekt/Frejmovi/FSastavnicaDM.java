@@ -264,9 +264,5 @@ public class FSastavnicaDM {
 		JLabel label = new JLabel("%");
 		label.setBounds(700, 441, 56, 16);
 		panel.add(label);
-		
-		JCalendar calendar = new JCalendar();
-		calendar.setBounds(137, -24, 188, 146);
-		panel.add(calendar);
 	}
 }

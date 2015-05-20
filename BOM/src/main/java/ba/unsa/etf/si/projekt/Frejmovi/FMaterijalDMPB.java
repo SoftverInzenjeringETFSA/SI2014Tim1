@@ -75,7 +75,7 @@ public class FMaterijalDMPB {
 			comboBox_3.setEditable(false);
 			textField.setEditable(false);
 			textField_1.setEditable(false);
-			textField_2.setEditable(false);
+			textField_2.setEditable(false); 
 			textField_4.setEditable(false);
 		}
 		//tekst button-a
