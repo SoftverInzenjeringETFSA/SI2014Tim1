@@ -173,33 +173,34 @@ public class Menadzer {
 		panel_3.add(panel_9);
 		
 		JButton button_5 = new JButton("Pretra\u017Ei");
-		button_5.setBounds(215, 165, 91, 25);
+		button_5.setBounds(242, 165, 91, 25);
 		panel_9.add(button_5);
 		
 		JButton button_6 = new JButton("Prika\u017Ei sve");
-		button_6.setBounds(106, 165, 97, 25);
+		button_6.setBounds(133, 165, 97, 25);
 		panel_9.add(button_6);
 		
 		JLabel label_2 = new JLabel("Pretra\u017Ei po:");
 		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_2.setBounds(26, 72, 74, 16);
+		label_2.setBounds(12, 72, 109, 16);
 		panel_9.add(label_2);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(106, 34, 200, 22);
+		comboBox.setBounds(133, 34, 200, 22);
 		panel_9.add(comboBox);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(106, 104, 200, 22);
+		textField_2.setBounds(133, 103, 200, 22);
 		panel_9.add(textField_2);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(106, 69, 200, 22);
+		comboBox_1.setBounds(133, 69, 200, 22);
 		panel_9.add(comboBox_1);
 		
 		JLabel label_3 = new JLabel("Sortiraj po:");
-		label_3.setBounds(34, 37, 66, 16);
+		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_3.setBounds(12, 37, 109, 16);
 		panel_9.add(label_3);
 		
 		JPanel panel_10 = new JPanel();
@@ -288,33 +289,34 @@ public class Menadzer {
 		//panel_6.add(btnPretrai);
 		
 		JButton btnPrikaiSve = new JButton("Prika\u017Ei sve");
-		btnPrikaiSve.setBounds(106, 165, 97, 25);
+		btnPrikaiSve.setBounds(133, 165, 97, 25);
 		panel_6.add(btnPrikaiSve);
 		
 		JLabel lblPretraiPo = new JLabel("Pretra\u017Ei po:");
 		lblPretraiPo.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPretraiPo.setBounds(26, 72, 74, 16);
+		lblPretraiPo.setBounds(12, 72, 109, 16);
 		panel_6.add(lblPretraiPo);
 		
 		JComboBox comboBox_8 = new JComboBox();
-		comboBox_8.setBounds(106, 34, 200, 22);
+		comboBox_8.setBounds(133, 34, 200, 22);
 		panel_6.add(comboBox_8);
 		
 		textField = new JTextField();
-		textField.setBounds(106, 104, 200, 22);
+		textField.setBounds(133, 104, 200, 22);
 		panel_6.add(textField);
 		textField.setColumns(10);
 		
 		JComboBox comboBox_9 = new JComboBox();
-		comboBox_9.setBounds(106, 69, 200, 22);
+		comboBox_9.setBounds(133, 69, 200, 22);
 		panel_6.add(comboBox_9);
 		
 		JLabel lblSortirajPo = new JLabel("Sortiraj po:");
-		lblSortirajPo.setBounds(34, 37, 66, 16);
+		lblSortirajPo.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblSortirajPo.setBounds(12, 37, 109, 16);
 		panel_6.add(lblSortirajPo);
 		
 		JButton button_2 = new JButton("Pretra\u017Ei");
-		button_2.setBounds(215, 165, 91, 25);
+		button_2.setBounds(242, 165, 91, 25);
 		panel_6.add(button_2);
 		
 		JPanel panel_7 = new JPanel();
@@ -395,33 +397,34 @@ public class Menadzer {
 		panel.add(panel_16);
 		
 		JButton button_11 = new JButton("Pretra\u017Ei");
-		button_11.setBounds(215, 165, 91, 25);
+		button_11.setBounds(242, 165, 91, 25);
 		panel_16.add(button_11);
 		
 		JButton button_12 = new JButton("Prika\u017Ei sve");
-		button_12.setBounds(106, 165, 97, 25);
+		button_12.setBounds(133, 165, 97, 25);
 		panel_16.add(button_12);
 		
 		JLabel label_4 = new JLabel("Pretra\u017Ei po:");
 		label_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_4.setBounds(26, 72, 74, 16);
+		label_4.setBounds(12, 72, 109, 16);
 		panel_16.add(label_4);
 		
 		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setBounds(106, 34, 200, 22);
+		comboBox_4.setBounds(133, 34, 200, 22);
 		panel_16.add(comboBox_4);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(106, 104, 200, 22);
+		textField_3.setBounds(133, 104, 200, 22);
 		panel_16.add(textField_3);
 		
 		JComboBox comboBox_5 = new JComboBox();
-		comboBox_5.setBounds(106, 69, 200, 22);
+		comboBox_5.setBounds(133, 69, 200, 22);
 		panel_16.add(comboBox_5);
 		
 		JLabel label_5 = new JLabel("Sortiraj po:");
-		label_5.setBounds(34, 37, 66, 16);
+		label_5.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_5.setBounds(12, 37, 109, 16);
 		panel_16.add(label_5);
 		
 		JPanel panel_18 = new JPanel();
@@ -522,33 +525,34 @@ public class Menadzer {
 		panel_1.add(panel_12);
 		
 		JButton button = new JButton("Pretra\u017Ei");
-		button.setBounds(215, 165, 91, 25);
+		button.setBounds(242, 165, 91, 25);
 		panel_12.add(button);
 		
 		JButton button_1 = new JButton("Prika\u017Ei sve");
-		button_1.setBounds(106, 165, 97, 25);
+		button_1.setBounds(133, 165, 97, 25);
 		panel_12.add(button_1);
 		
 		JLabel label = new JLabel("Pretra\u017Ei po:");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setBounds(26, 72, 74, 16);
+		label.setBounds(12, 72, 109, 16);
 		panel_12.add(label);
 		
 		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(106, 34, 200, 22);
+		comboBox_2.setBounds(133, 34, 200, 22);
 		panel_12.add(comboBox_2);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(106, 104, 200, 22);
+		textField_1.setBounds(133, 104, 200, 22);
 		panel_12.add(textField_1);
 		
 		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(106, 69, 200, 22);
+		comboBox_3.setBounds(133, 69, 200, 22);
 		panel_12.add(comboBox_3);
 		
 		JLabel label_1 = new JLabel("Sortiraj po:");
-		label_1.setBounds(34, 37, 66, 16);
+		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_1.setBounds(12, 37, 109, 16);
 		panel_12.add(label_1);
 		
 		JPanel panel_13 = new JPanel();

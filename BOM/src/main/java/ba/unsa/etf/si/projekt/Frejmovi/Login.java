@@ -67,21 +67,21 @@ public class Login {
 		
 		JLabel lblKorisnikoIme = new JLabel("Korisni\u010Dko ime:");
 		lblKorisnikoIme.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblKorisnikoIme.setBounds(50, 57, 95, 16);
+		lblKorisnikoIme.setBounds(12, 57, 149, 16);
 		frame.getContentPane().add(lblKorisnikoIme);
 		
 		tfKorisnickoIme = new JTextField();
-		tfKorisnickoIme.setBounds(157, 54, 195, 22);
+		tfKorisnickoIme.setBounds(173, 54, 195, 22);
 		frame.getContentPane().add(tfKorisnickoIme);
 		tfKorisnickoIme.setColumns(10);
 		
 		JLabel lblifra = new JLabel("\u0160ifra:");
 		lblifra.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblifra.setBounds(89, 108, 56, 16);
+		lblifra.setBounds(12, 108, 149, 16);
 		frame.getContentPane().add(lblifra);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(157, 105, 195, 22);
+		textField_1.setBounds(173, 105, 195, 22);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -108,7 +108,7 @@ public class Login {
 				
 			}
 		});
-		btnNewButton.setBounds(223, 164, 129, 22);
+		btnNewButton.setBounds(239, 164, 129, 22);
 		frame.getContentPane().add(btnNewButton);
 	}
 }
