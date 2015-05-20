@@ -10,13 +10,14 @@ import javax.swing.JButton;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class Login {
 
 	private JFrame frame;
 	private JTextField tfKorisnickoIme;
-	private JTextField textField_1;
 	private JButton btnNewButton;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -80,11 +81,6 @@ public class Login {
 		lblifra.setBounds(12, 108, 149, 16);
 		frame.getContentPane().add(lblifra);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(173, 105, 195, 22);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
-		
 		btnNewButton = new JButton("Prijava");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -110,5 +106,9 @@ public class Login {
 		});
 		btnNewButton.setBounds(239, 164, 129, 22);
 		frame.getContentPane().add(btnNewButton);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(173, 105, 195, 22);
+		frame.getContentPane().add(passwordField);
 	}
 }
