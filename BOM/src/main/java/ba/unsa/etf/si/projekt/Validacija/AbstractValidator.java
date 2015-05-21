@@ -14,6 +14,7 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
     private Point point;
     private Dimension cDim;
     private Color color;
+    protected String tip;
 	
     private AbstractValidator() {
         color = new Color(243, 255, 159);
@@ -39,6 +40,13 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
         popup = new JDialog(parent);
         initComponents();
     }
+    protected AbstractValidator (JFrame parent, JComponent c, String message,String tip) {
+        this(c, message);
+        this.parent = parent;
+        popup = new JDialog(parent);
+        this.tip=tip;
+        initComponents();
+    }
 	
    
      public AbstractValidator(JFrame frame, Component component, String message) {
@@ -57,14 +65,14 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
 		
 	}
 
-	protected abstract boolean validationCriteria(JComponent c);
+	protected abstract boolean validationCriteria(JComponent c, String tip2);
      protected abstract Boolean ValidirajJeLiPrazno(String kontrolaTekst);
      protected abstract Boolean ValidirajEmail(String mail);
      protected abstract Boolean ValidirajJMBG(String JMBG);
 	
   
     public boolean verify(JComponent c) {		
-        if (!validationCriteria(c)) {
+        if (!validationCriteria(c,tip)) {
 			
           // if(parent instanceof WantsValidationStatus)
           //     ((WantsValidationStatus)parent).validateFailed();
@@ -89,7 +97,8 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
         return true;
     }
 	
-    protected void setMessage(String message) {
+   
+	protected void setMessage(String message) {
        messageLabel.setText(message);
     }
 	

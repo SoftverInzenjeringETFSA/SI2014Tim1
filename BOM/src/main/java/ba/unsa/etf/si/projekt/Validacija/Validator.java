@@ -23,14 +23,19 @@ public class Validator extends AbstractValidator{
 		// TODO Auto-generated constructor stub
 		  super(frame, component, message);
 	}		
-		public boolean validationCriteria(JComponent c) {
-	        if (((JTextField)c).getText().isEmpty())
-	            return false;
-	        return true;
-	    }
+	  public Validator (JFrame parent, JComponent c, String message,String tip)
+	  {
+		  super(parent, c, message,tip);
+	  }
+	  public boolean validationCriteria(JComponent c, String tip) {
+			//if(tip.equals("email")) return ValidirajEmail( ((JTextField)c).getText());
+			if(tip.equals("JMBG")) return ValidirajJMBG( ((JTextField)c).getText());
+		    return ValidirajTekst( ((JTextField)c).getText());
+			
+		}
 	public  Boolean ValidirajJeLiPrazno(String kontrolaTekst)
 	{
-		return kontrolaTekst.isEmpty();
+		return !kontrolaTekst.isEmpty();
 	}	
 	
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -71,7 +76,7 @@ public class Validator extends AbstractValidator{
     //validacija jmbga
 	public Boolean ValidirajJMBG(String JMBG)
 	{
-		if(!ValidirajJeLiPrazno(JMBG)) return false;
+		//if(!ValidirajJeLiPrazno(JMBG)) return false;
 		List<Integer> l3 = new ArrayList<Integer>();
 		for(char ch : JMBG.toCharArray())
 		{
