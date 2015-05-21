@@ -3,17 +3,25 @@ package ba.unsa.etf.si.projekt.ServisnaImplementacija;
 import java.util.ArrayList;
 import java.util.List;
 
-import ba.unsa.etf.si.projekt.Klase.Narudzbenica;
-import ba.unsa.etf.si.projekt.Klase.Osoba;
-import ba.unsa.etf.si.projekt.Klase.Ovlasti;
-import ba.unsa.etf.si.projekt.Klase.TipOsobe;
+import org.hibernate.*;
+import ba.unsa.etf.si.projekt.Util.HibernateUtil;
+
+import ba.unsa.etf.si.projekt.Klase.*;
 import ba.unsa.etf.si.projekt.ServisniInterfejs.*;
 
 public class KompanijaFacade implements IKompanijaFacade {
 	
 		public List<Osoba> listaOsoba(TipOsobe tip)
 		{
-			return new ArrayList<Osoba>();
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t = session.beginTransaction();
+			List<Osoba> _osobe = null;
+			if(tip.equals(TipOsobe.menadzer)) {
+				_osobe = session.createCriteria(Menadzer.class).list();
+			}
+			t.commit();
+			session.close();
+			return _osobe;
 		}
 		
 		public Osoba returnById(String id) 
@@ -33,11 +41,33 @@ public class KompanijaFacade implements IKompanijaFacade {
 		
 		public Boolean dodajRadnika(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti)
 		{
-			return true;
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				Radnik m = new Radnik(ime, prezime, brojTelefona, adresa, email, pozicija, nivoOvlasti);
+				Long id = (Long) session.save(m);
+				m.setId(id);
+				t.commit();
+				//session.close();
+				return true;
+			}
+			catch(Exception e) {
+				return false;
+			}
+			finally {
+				session.close();
+			}
 		}
 		
 		public Boolean dodajMenadzera(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti)
 		{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t = session.beginTransaction();
+			Menadzer m = new Menadzer(ime, prezime, brojTelefona, adresa, email, pozicija, nivoOvlasti);
+			Long id = (Long) session.save(m);
+			m.setId(id);
+			t.commit();
+			session.close();
 			return true;
 		}
 		

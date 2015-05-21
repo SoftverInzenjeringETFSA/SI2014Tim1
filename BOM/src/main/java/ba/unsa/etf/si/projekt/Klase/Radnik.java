@@ -35,4 +35,16 @@ public class Radnik extends Osoba {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	public Radnik() {}
+	
+	public Radnik(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti) {
+		this.setIme(ime);
+		this.setPrezime(prezime);
+		this.setBrojTelefona(brojTelefona);
+		this.setAdresa(adresa);
+		this.setEmail(email);
+		this.setPozicija(pozicija);
+		this.setNivoOvlasti(nivoOvlasti);
+	}
 }

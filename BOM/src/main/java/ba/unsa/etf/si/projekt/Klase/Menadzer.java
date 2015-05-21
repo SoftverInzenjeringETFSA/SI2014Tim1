@@ -36,4 +36,16 @@ public class Menadzer extends Osoba {
 		this.ovlasti = ovlasti;
 	}
 	
+	public Menadzer() {}
+	
+	public Menadzer(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti) {
+		this.setIme(ime);
+		this.setPrezime(prezime);
+		this.setBrojTelefona(brojTelefona);
+		this.setAdresa(adresa);
+		this.setEmail(email);
+		this.setPozicija(pozicija);
+		this.setOvlasti(nivoOvlasti);
+	}
+	
 }
