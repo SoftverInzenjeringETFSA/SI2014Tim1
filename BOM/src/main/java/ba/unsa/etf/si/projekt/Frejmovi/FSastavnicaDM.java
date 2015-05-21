@@ -28,10 +28,11 @@ public class FSastavnicaDM {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_3;
-	private JTextField textField_5;
-	private JTextField txtRdads;
+	private JSpinner spinner;
 	private JSpinner spinner_1;
 	private JSpinner spinner_2;
+	private JSpinner spinner_3;
+	private JSpinner spinner_4;
 	private JTable table;
 	private JFrame parentFrame;
 	private String akcija;
@@ -156,7 +157,7 @@ public class FSastavnicaDM {
 		label_3.setBounds(557, 35, 111, 16);
 		panel_1.add(label_3);
 		
-		JSpinner spinner = new JSpinner();
+		spinner = new JSpinner();
 		spinner.setBounds(680, 32, 173, 22);
 		panel_1.add(spinner);
 		
@@ -235,11 +236,6 @@ public class FSastavnicaDM {
 		lblDodatniTrokovi.setBounds(493, 395, 184, 16);
 		panel.add(lblDodatniTrokovi);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(693, 392, 130, 22);
-		panel.add(textField_5);
-		textField_5.setColumns(10);
-		
 		JLabel lblKm = new JLabel("KM");
 		lblKm.setBounds(835, 395, 37, 16);
 		panel.add(lblKm);
@@ -249,28 +245,46 @@ public class FSastavnicaDM {
 		lblOtpad.setBounds(621, 441, 56, 16);
 		panel.add(lblOtpad);
 		
-		txtRdads = new JTextField();
-		txtRdads.setColumns(10);
-		txtRdads.setBounds(693, 438, 130, 22);
-		panel.add(txtRdads);
-		
 		JLabel label = new JLabel("%");
 		label.setBounds(835, 441, 37, 16);
 		panel.add(label);
 		
 		JButton btnPoniti = new JButton("Poništi");
+		btnPoniti.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				spinner.setValue(0);
+				spinner_1.setValue(0);
+				spinner_2.setValue(0);
+				spinner_3.setValue(0);
+				spinner_4.setValue(0);
+			}
+		});
 		btnPoniti.setBounds(598, 533, 124, 25);
 		panel.add(btnPoniti);
 		
 		SpinnerNumberModel m_numberSpinnerModel;
 		m_numberSpinnerModel = new SpinnerNumberModel(0.0, 0, 100000, 0.01);
 		
-		JSpinner spinner_1 = new JSpinner();
+		SpinnerNumberModel m_numberSpinnerModel_1;
+		m_numberSpinnerModel_1 = new SpinnerNumberModel(0.0, 0, 100000, 0.01);
+		
+		SpinnerNumberModel m_numberSpinnerModel_2;
+		m_numberSpinnerModel_2 = new SpinnerNumberModel(0.0, 0, 100000, 0.01);
+		
+		spinner_1 = new JSpinner();
 		spinner_1.setBounds(245, 393, 130, 20);
 		panel.add(spinner_1);
 		
-		JSpinner spinner_2 = new JSpinner(m_numberSpinnerModel);
+		spinner_2 = new JSpinner(m_numberSpinnerModel);
 		spinner_2.setBounds(245, 439, 130, 20);
 		panel.add(spinner_2);
+		
+		spinner_3 = new JSpinner(m_numberSpinnerModel_1);
+		spinner_3.setBounds(689, 393, 136, 20);
+		panel.add(spinner_3);
+		
+		spinner_4 = new JSpinner(m_numberSpinnerModel_2);
+		spinner_4.setBounds(689, 439, 136, 20);
+		panel.add(spinner_4);
 	}
 }
