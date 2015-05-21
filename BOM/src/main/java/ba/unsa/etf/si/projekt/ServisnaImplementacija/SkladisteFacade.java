@@ -1,8 +1,9 @@
 package ba.unsa.etf.si.projekt.ServisnaImplementacija;
-
+import org.hibernate.Transaction;
+import org.hibernate.Session;
 import java.util.ArrayList;
 import java.util.List;
-
+import ba.unsa.etf.si.projekt.Util.HibernateUtil;
 import ba.unsa.etf.si.projekt.Klase.Materijal;
 import ba.unsa.etf.si.projekt.Klase.Menadzer;
 import ba.unsa.etf.si.projekt.Klase.Narudzbenica;
@@ -16,22 +17,57 @@ public class SkladisteFacade implements ISkladisteFacade {
 	
 		public List<Materijal> returnListaMaterijala()
 		{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t = session.beginTransaction();
+			
 			return new ArrayList<Materijal>();
 		}
 		
 		public Boolean dodajMaterijal(Materijal materijal)
 		{
-			return true;
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				session.save(materijal);
+				t.commit();	
+				return true;
+			}
+			catch (Exception e) {
+				return false;
+			}
+			finally {
+				session.close();
+			}		
 		}
 		
 		public Boolean obrišiMaterijal(Materijal materijal)
 		{
+			//preskocio
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t = session.beginTransaction();
+			materijal=null;			
+			session.save(materijal);
+			t.commit();
+			session.close();
 			return true;
 		}
 		
 		public Boolean izmijeniMaterijal(Materijal materijal)
 		{
-			return true;
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				session.update(materijal);
+				t.commit();
+				return true;
+			}
+			catch (Exception e) {
+				return false;
+			}
+			finally {
+				session.close();
+			}		
+			
 		}
 		
 		public Materijal pretragaMaterijala(String serijskiBroj)
@@ -48,16 +84,37 @@ public class SkladisteFacade implements ISkladisteFacade {
 		
 		public Boolean dodajProizvod(Proizvod proizvod)
 		{
-			return true;
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				session.save(proizvod);
+				t.commit();
+				session.close();	
+				return true;
+			}
+			catch (Exception e) {
+				return false;
+			}
+			finally {
+				session.close();
+			}	
 		}
 		
 		public Boolean obrišiProizvod(Proizvod proizvod)
 		{
+			//preskocio
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t = session.beginTransaction();
+			proizvod=null;			
+			session.save(proizvod);
+			t.commit();
+			session.close();
 			return true;
 		}
 		
 		public Boolean izmijeniProizvod(Proizvod proizvod)
 		{
+			
 			return true;
 		}
 		
@@ -75,11 +132,30 @@ public class SkladisteFacade implements ISkladisteFacade {
 		
 		public Boolean dodajNarudzbenicu(Narudzbenica narudzbenica)
 		{
-			return true;
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				session.save(narudzbenica);
+				t.commit();
+				session.close();	
+				return true;
+			}
+			catch (Exception e) {
+				return false;
+			}
+			finally {
+				session.close();
+			}	
 		}
 		
 		public Boolean obrišiNarudzbenicu(Narudzbenica narudzbenica)
 		{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t = session.beginTransaction();
+						
+			session.save(narudzbenica);
+			t.commit();
+			session.close();
 			return true;
 		}
 		
@@ -102,11 +178,30 @@ public class SkladisteFacade implements ISkladisteFacade {
 		
 		public Boolean dodajSastavnicu(Sastavnica sastavnica)
 		{
-			return true;
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				session.save(sastavnica);
+				t.commit();
+				session.close();	
+				return true;
+			}
+			catch (Exception e) {
+				return false;
+			}
+			finally {
+				session.close();
+			}	
 		}
 		
 		public Boolean obrišiSastavnicu(Sastavnica sastavnica)
 		{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction t = session.beginTransaction();
+			sastavnica=null;			
+			session.save(sastavnica);
+			t.commit();
+			session.close();
 			return true;
 		}
 		

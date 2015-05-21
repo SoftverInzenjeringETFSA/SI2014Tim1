@@ -18,6 +18,12 @@ public class Materijal {
 	@GeneratedValue
 	@Column(name = "materijal_id")
 	private long id;
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	private String serijskiBroj;
 	private String opis;
 	private double kolicina;

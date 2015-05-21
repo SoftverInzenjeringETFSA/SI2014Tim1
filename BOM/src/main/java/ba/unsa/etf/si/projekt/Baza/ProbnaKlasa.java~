@@ -6,7 +6,28 @@ import ba.unsa.etf.si.projekt.Util.HibernateUtil;
 import ba.unsa.etf.si.projekt.Klase.*;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import org.hibernate.Transaction;
+import org.hibernate.Session;
+
+import ba.unsa.etf.si.projekt.Util.HibernateUtil;
+import ba.unsa.etf.si.projekt.Klase.*;
+import ba.unsa.etf.si.projekt.ServisnaImplementacija.*;
+
 public class ProbnaKlasa {
+<<<<<<< HEAD
+	
+	public static void main(String[] args) {
+		KompanijaFacade kf = new KompanijaFacade();
+		//kf.dodajMenadzera("Hamo2", "Hamic", "+36", "Dzinina", "a@a.a", "menadzer", Ovlasti.upravljanjeSastavnicama);
+		ArrayList<Osoba> _a = (ArrayList<Osoba>) kf.listaOsoba(TipOsobe.menadzer);
+		for(int i = 0; i < _a.size(); i++) {
+			System.out.println(((Menadzer)_a.get(i)).getId());
+		}
+=======
 	public static void main (String[] args) {
 		Materijal m1 = new Materijal();
 		Materijal m = new Materijal();
@@ -25,6 +46,7 @@ public class ProbnaKlasa {
 		//sf.dodajMaterijal(m);
 		m.setId(1);
 		sf.izmijeniMaterijal(m);
+>>>>>>> c8ca7601484a93c6f4703727abab538118a2f88c
 	}
 
 }
