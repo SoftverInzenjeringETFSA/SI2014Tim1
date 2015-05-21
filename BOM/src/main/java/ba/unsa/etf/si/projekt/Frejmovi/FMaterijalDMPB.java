@@ -30,6 +30,7 @@ public class FMaterijalDMPB {
 	private JComboBox comboBox_1;
 	private JComboBox comboBox_2;
 	private JComboBox comboBox_3;
+	private JDateChooser dateChooser;
 	private String akcija;
 	private JFrame parentFrame;
 	private JButton btnUnesi;
@@ -261,12 +262,29 @@ public class FMaterijalDMPB {
 				
 			}
 		});
-		btnUnesi.setBounds(317, 311, 97, 25);
+		btnUnesi.setBounds(326, 311, 88, 27);
 		panel.add(btnUnesi);
 		
-		JDateChooser dateChooser = new JDateChooser();
+		dateChooser = new JDateChooser();
 		dateChooser.setBounds(198, 216, 116, 20);
 		panel.add(dateChooser);
+		
+		JButton btnNewButton = new JButton("Poništi");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText("");
+				textField_1.setText("");
+				textField_2.setText("");
+				textField_4.setText("");
+				comboBox.setSelectedItem("");
+				comboBox_1.setSelectedItem("");
+				comboBox_2.setSelectedItem("");
+				comboBox_3.setSelectedItem("");
+				dateChooser.setCalendar(null);
+			}
+		});
+		btnNewButton.setBounds(217, 311, 89, 27);
+		panel.add(btnNewButton);
 		
 		
 	}

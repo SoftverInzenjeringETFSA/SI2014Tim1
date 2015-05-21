@@ -629,7 +629,7 @@ public class Menadzer {
 				
 			}
 		});
-		btnOdjava.setBounds(598, 13, 97, 25);
+		btnOdjava.setBounds(598, 15, 97, 25);
 		frame.getContentPane().add(btnOdjava);
 		
 		JButton btnKorisnici = new JButton("Korisnici");
@@ -642,7 +642,7 @@ public class Menadzer {
 				
 			}
 		});
-		btnKorisnici.setBounds(453, 13, 97, 25);
+		btnKorisnici.setBounds(463, 15, 97, 25);
 		frame.getContentPane().add(btnKorisnici);
 	}
 }

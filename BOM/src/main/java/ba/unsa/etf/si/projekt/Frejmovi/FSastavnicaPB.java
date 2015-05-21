@@ -114,7 +114,7 @@ public class FSastavnicaPB {
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(BorderFactory.createTitledBorder("Brisanje sastavnice"));
-		panel.setBounds(12, 13, 889, 399);
+		panel.setBounds(12, 13, 878, 415);
 		frame.getContentPane().add(panel);
 		
 		JLabel lblNazivProizvoda = new JLabel("Naziv proizvoda:");
@@ -183,7 +183,7 @@ public class FSastavnicaPB {
 		panel.add(label_7);
 		
 		btnObrisiSastavnicu = new JButton("Obriši");
-		btnObrisiSastavnicu.setBounds(692, 353, 173, 25);
+		btnObrisiSastavnicu.setBounds(735, 379, 130, 25);
 		panel.add(btnObrisiSastavnicu);
 		
 		textField_3 = new JTextField();

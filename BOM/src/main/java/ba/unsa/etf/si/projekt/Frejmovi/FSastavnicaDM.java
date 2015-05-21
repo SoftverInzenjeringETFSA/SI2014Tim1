@@ -115,7 +115,7 @@ public class FSastavnicaDM {
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(BorderFactory.createTitledBorder("Kreiranje sastavnice"));
-		panel.setBounds(12, 13, 889, 553);
+		panel.setBounds(12, 13, 891, 569);
 		frame.getContentPane().add(panel);
 		
 		JLabel lblNazivProizvoda = new JLabel("Naziv proizvoda:");
@@ -181,13 +181,13 @@ public class FSastavnicaDM {
 		
 		JLabel label_4 = new JLabel("Ukupna cijena:");
 		label_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_4.setBounds(137, 511, 96, 16);
+		label_4.setBounds(137, 495, 96, 16);
 		panel.add(label_4);
 		
 		textField_1 = new JTextField();
 		textField_1.setEditable(false);
 		textField_1.setColumns(10);
-		textField_1.setBounds(245, 508, 130, 22);
+		textField_1.setBounds(245, 492, 130, 22);
 		panel.add(textField_1);
 		
 		JLabel label_5 = new JLabel("Trajanje proizvodnje:");
@@ -205,7 +205,7 @@ public class FSastavnicaDM {
 		panel.add(label_6);
 		
 		JLabel label_7 = new JLabel("KM");
-		label_7.setBounds(387, 511, 56, 16);
+		label_7.setBounds(387, 495, 56, 16);
 		panel.add(label_7);
 		
 		btnKreirajSastavnicu = new JButton("Kreiraj");
@@ -216,7 +216,7 @@ public class FSastavnicaDM {
 				
 			}
 		});
-		btnKreirajSastavnicu.setBounds(689, 507, 173, 25);
+		btnKreirajSastavnicu.setBounds(745, 533, 117, 25);
 		panel.add(btnKreirajSastavnicu);
 		
 		textField_3 = new JTextField();
@@ -265,5 +265,9 @@ public class FSastavnicaDM {
 		JLabel label = new JLabel("%");
 		label.setBounds(835, 441, 37, 16);
 		panel.add(label);
+		
+		JButton btnPoniti = new JButton("Poništi");
+		btnPoniti.setBounds(598, 533, 124, 25);
+		panel.add(btnPoniti);
 	}
 }

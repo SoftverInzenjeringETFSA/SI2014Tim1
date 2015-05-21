@@ -410,7 +410,7 @@ public class Zaposlenik {
 				
 			}
 		});
-		btnOdjava.setBounds(598, 13, 97, 25);
+		btnOdjava.setBounds(598, 15, 97, 25);
 		frame.getContentPane().add(btnOdjava);
 	}
 }

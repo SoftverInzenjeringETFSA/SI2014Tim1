@@ -1,21 +1,23 @@
 package ba.unsa.etf.si.projekt.Frejmovi;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.UIManager;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
-import javax.swing.text.MaskFormatter;
 import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.text.MaskFormatter;
 
 public class FKlijentDMPB {
 
@@ -24,6 +26,7 @@ public class FKlijentDMPB {
 	private JTextField textField_1;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	private JFormattedTextField formattedTextField;
 	private String akcija;
 	private JButton btnKreiraj;
 	private JPanel panel;
@@ -203,7 +206,7 @@ public class FKlijentDMPB {
 				
 			}
 		});
-		btnKreiraj.setBounds(223, 203, 97, 25);
+		btnKreiraj.setBounds(244, 204, 76, 22);
 		panel.add(btnKreiraj);
 		MaskFormatter mf1 = new MaskFormatter();
 		try{
@@ -214,9 +217,22 @@ public class FKlijentDMPB {
 			
 		}
 		mf1.setPlaceholderCharacter('_');
-		JFormattedTextField formattedTextField = new JFormattedTextField(mf1);
+		formattedTextField = new JFormattedTextField(mf1);
 		formattedTextField.setBounds(133, 106, 187, 20);
 		panel.add(formattedTextField);
+		
+		JButton btnNewButton = new JButton("Poništi");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtFdsfd.setText("");
+				textField_1.setText("");
+				textField_3.setText("");
+				formattedTextField.setText("");
+				textField_4.setText("");
+			}
+		});
+		btnNewButton.setBounds(155, 204, 80, 22);
+		panel.add(btnNewButton);
 		
 		
 	}

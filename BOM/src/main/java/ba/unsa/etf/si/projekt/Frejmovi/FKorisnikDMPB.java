@@ -33,6 +33,7 @@ public class FKorisnikDMPB {
 	private JFrame parentFrame;
 	private String akcija;
 	private JFormattedTextField formattedTextField;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -244,7 +245,7 @@ public class FKorisnikDMPB {
 				
 			}
 		});
-		btnKreiraj.setBounds(273, 293, 97, 25);
+		btnKreiraj.setBounds(291, 282, 79, 22);
 		panel.add(btnKreiraj);
 		
 		MaskFormatter mf1 = new MaskFormatter();
@@ -256,8 +257,25 @@ public class FKorisnikDMPB {
 			
 		}
 		mf1.setPlaceholderCharacter('_');
-		JFormattedTextField formattedTextField = new JFormattedTextField(mf1);
+		formattedTextField = new JFormattedTextField(mf1);
 		formattedTextField.setBounds(169, 123, 201, 20);
 		panel.add(formattedTextField);
+		
+		btnNewButton = new JButton("Poništi");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText("");
+				textField_1.setText("");
+				textField_2.setText("");
+				textField_4.setText("");
+				textField_5.setText("");
+				textField_6.setText("");
+				comboBox.setSelectedItem("");
+				formattedTextField.setText("");
+				
+			}
+		});
+		btnNewButton.setBounds(192, 282, 79, 22);
+		panel.add(btnNewButton);
 	}
 }
