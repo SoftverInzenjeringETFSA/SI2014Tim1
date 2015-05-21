@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
+import javax.swing.JPasswordField;
 
 public class FKorisnikDMPB {
 
@@ -26,7 +27,6 @@ public class FKorisnikDMPB {
 	private JTextField textField_2;
 	private JTextField textField_4;
 	private JTextField textField_5;
-	private JTextField textField_6;
 	private JComboBox comboBox;
 	private JPanel panel;
 	private JButton btnKreiraj;
@@ -34,6 +34,7 @@ public class FKorisnikDMPB {
 	private String akcija;
 	private JFormattedTextField formattedTextField;
 	private JButton btnNewButton;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -80,7 +81,7 @@ public class FKorisnikDMPB {
 			textField_2.setEditable(false);
 			textField_4.setEditable(false);
 			textField_5.setEditable(false);
-			textField_6.setEditable(false);
+			passwordField.setEditable(false);
 			comboBox.setEditable(false);
 		}
 		//tekst button-a
@@ -208,11 +209,6 @@ public class FKorisnikDMPB {
 		panel.add(textField_5);
 		textField_5.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(169, 209, 201, 22);
-		panel.add(textField_6);
-		textField_6.setColumns(10);
-		
 		comboBox = new JComboBox();
 		comboBox.setEditable(true);
 		comboBox.setBounds(169, 238, 201, 22);
@@ -269,7 +265,7 @@ public class FKorisnikDMPB {
 				textField_2.setText("");
 				textField_4.setText("");
 				textField_5.setText("");
-				textField_6.setText("");
+				passwordField.setText("");
 				comboBox.setSelectedItem("");
 				formattedTextField.setText("");
 				
@@ -277,5 +273,9 @@ public class FKorisnikDMPB {
 		});
 		btnNewButton.setBounds(192, 282, 79, 22);
 		panel.add(btnNewButton);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(169, 209, 201, 22);
+		panel.add(passwordField);
 	}
 }
