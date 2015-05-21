@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -18,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JTable;
+
 import com.toedter.calendar.JCalendar;
 
 public class FSastavnicaDM {
@@ -25,11 +27,11 @@ public class FSastavnicaDM {
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
 	private JTextField textField_3;
-	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField txtRdads;
+	private JSpinner spinner_1;
+	private JSpinner spinner_2;
 	private JTable table;
 	private JFrame parentFrame;
 	private String akcija;
@@ -195,11 +197,6 @@ public class FSastavnicaDM {
 		label_5.setBounds(12, 395, 221, 16);
 		panel.add(label_5);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(245, 392, 130, 22);
-		panel.add(textField_2);
-		
 		JLabel label_6 = new JLabel("h");
 		label_6.setBounds(387, 395, 19, 16);
 		panel.add(label_6);
@@ -228,11 +225,6 @@ public class FSastavnicaDM {
 		lblCijenaObavljenogRada.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCijenaObavljenogRada.setBounds(12, 441, 221, 16);
 		panel.add(lblCijenaObavljenogRada);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(245, 438, 130, 22);
-		panel.add(textField_4);
-		textField_4.setColumns(10);
 		
 		JLabel lblKmh = new JLabel("KM/h");
 		lblKmh.setBounds(387, 441, 56, 16);
@@ -269,5 +261,16 @@ public class FSastavnicaDM {
 		JButton btnPoniti = new JButton("Poništi");
 		btnPoniti.setBounds(598, 533, 124, 25);
 		panel.add(btnPoniti);
+		
+		SpinnerNumberModel m_numberSpinnerModel;
+		m_numberSpinnerModel = new SpinnerNumberModel(0.0, 0, 100000, 0.01);
+		
+		JSpinner spinner_1 = new JSpinner();
+		spinner_1.setBounds(245, 393, 130, 20);
+		panel.add(spinner_1);
+		
+		JSpinner spinner_2 = new JSpinner(m_numberSpinnerModel);
+		spinner_2.setBounds(245, 439, 130, 20);
+		panel.add(spinner_2);
 	}
 }

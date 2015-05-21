@@ -9,9 +9,7 @@ public class Validator {
 	
 	public static Boolean ValidirajJeLiPrazno(String kontrolaTekst)
 	{
-		if(kontrolaTekst=="")
-			return false;
-		return true;
+		return kontrolaTekst.isEmpty();
 	}	
 	
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -23,8 +21,8 @@ public class Validator {
 	
 	public static Boolean ValidirajJMBG(String JMBG)
 	{
-		
-		List<Integer> l3 = new ArrayList<Integer>();
+		if(!JMBG.isEmpty())
+		{List<Integer> l3 = new ArrayList<Integer>();
 		for(char ch : JMBG.toCharArray())
 		{
 		    l3.add( Integer.valueOf(String.valueOf(ch)));
@@ -42,13 +40,47 @@ public class Validator {
             }
             return l3.get(12) == 11 - eval % 11;
         }
+		}
+		else return false;
 	}
 	
-	public static Boolean ValidirajBroj(Integer broj)
+	/*public static Boolean jeLiBroj(String broj)
 	{
-		if(broj<= 0)
-			return false;
+		if(broj.isEmpty()) return false;
+		for (char ch : broj.toCharArray())
+		{
+		    if (!Character.isDigit(ch))
+		    	return false;
+		}
 		return true;
 	}
 	
+	//<=0
+	
+	public static Boolean ValidirajBroj(String broj)
+	{
+		if(jeLiBroj(broj))
+		{
+			
+		}
+		return true;
+	}
+	
+	public static boolean JeLiCijeli(String s) {
+	    return JeLiCijeli(s,10);
+	}
+	
+	public static boolean JeLiCijeli(String s, int radix) {
+	    if(s.isEmpty()) return false;
+	    for(int i = 0; i < s.length(); i++) {
+	        if(i == 0 && s.charAt(i) == '-') {
+	            if(s.length() == 1) return false;
+	            else continue;
+	        }
+	        if(Character.digit(s.charAt(i),radix) < 0) return false;
+	    }
+	    return true;
+	}
+	
+	*/
 }

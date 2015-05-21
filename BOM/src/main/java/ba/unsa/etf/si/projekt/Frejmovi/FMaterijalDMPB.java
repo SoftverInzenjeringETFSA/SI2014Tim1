@@ -18,19 +18,21 @@ import java.awt.event.ActionEvent;
 import Validacija.NotEmptyValidator;
 
 import com.toedter.calendar.JDateChooser;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class FMaterijalDMPB {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_4;
 	private JComboBox comboBox;
 	private JComboBox comboBox_1;
 	private JComboBox comboBox_2;
 	private JComboBox comboBox_3;
 	private JDateChooser dateChooser;
+	private JSpinner spinner;
+	private JSpinner spinner_1;
+	private JSpinner spinner_2;
+	private JSpinner spinner_3;
 	private String akcija;
 	private JFrame parentFrame;
 	private JButton btnUnesi;
@@ -77,10 +79,6 @@ public class FMaterijalDMPB {
 			comboBox_1.setEditable(false);
 			comboBox_2.setEditable(false);
 			comboBox_3.setEditable(false);
-			textField.setEditable(false);
-			textField_1.setEditable(false);
-			textField_2.setEditable(false); 
-			textField_4.setEditable(false);
 		}
 		//tekst button-a
 		if(akcija.equals("Kreiranje"))
@@ -182,11 +180,6 @@ public class FMaterijalDMPB {
 		comboBox_1.setBounds(198, 72, 216, 22);
 		panel.add(comboBox_1);
 		
-		textField = new JTextField();
-		textField.setBounds(198, 101, 116, 22);
-		panel.add(textField);
-		textField.setColumns(10);
-		
 		comboBox_2 = new JComboBox();
 		comboBox_2.setEditable(true);
 		comboBox_2.setBounds(326, 101, 88, 22);
@@ -196,16 +189,6 @@ public class FMaterijalDMPB {
 		comboBox_3.setEditable(true);
 		comboBox_3.setBounds(198, 130, 116, 22);
 		panel.add(comboBox_3);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(198, 159, 116, 22);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(198, 188, 116, 22);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
 		
 		JLabel lblKmjedinica = new JLabel("KM/jedinica");
 		lblKmjedinica.setBounds(326, 162, 130, 16);
@@ -225,11 +208,6 @@ public class FMaterijalDMPB {
 		lblGraninaKoliina.setBounds(12, 249, 174, 16);
 		panel.add(lblGraninaKoliina);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(198, 246, 116, 22);
-		panel.add(textField_4);
-		textField_4.setColumns(10);
-		
 		JLabel lblJedinica = new JLabel("jedinica");
 		lblJedinica.setBounds(326, 249, 130, 16);
 		panel.add(lblJedinica);
@@ -237,8 +215,6 @@ public class FMaterijalDMPB {
 		btnUnesi = new JButton("Nazad");
 		btnUnesi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField_4.setInputVerifier(new NotEmptyValidator(frame,textField_4,"Morate popuniti ovo polje"));
-				textField_1.setInputVerifier(new NotEmptyValidator(frame,textField_1,"BlaBla"));
 				//akcija za klik na dugme koje moze imati razlicite f-je
 				//brisanje, kreiranje, modifikovanje, pregled
 				if(akcija.equals("Kreiranje") || akcija.equals("Modifikovanje"))
@@ -272,19 +248,44 @@ public class FMaterijalDMPB {
 		JButton btnNewButton = new JButton("Poništi");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText("");
-				textField_1.setText("");
-				textField_2.setText("");
-				textField_4.setText("");
 				comboBox.setSelectedItem("");
 				comboBox_1.setSelectedItem("");
 				comboBox_2.setSelectedItem("");
 				comboBox_3.setSelectedItem("");
 				dateChooser.setCalendar(null);
+				spinner.setValue(0);
+				spinner_1.setValue(0);
+				spinner_2.setValue(0);
+				spinner_3.setValue(0);
 			}
 		});
 		btnNewButton.setBounds(217, 311, 89, 27);
 		panel.add(btnNewButton);
+		
+		SpinnerNumberModel m_numberSpinnerModel;
+		m_numberSpinnerModel = new SpinnerNumberModel(0.0, 0, 100000, 0.01);
+		
+		SpinnerNumberModel m_numberSpinnerModel_1;
+		m_numberSpinnerModel_1 = new SpinnerNumberModel(0.0, 0, 100000, 0.01);
+		
+		SpinnerNumberModel m_numberSpinnerModel_2;
+		m_numberSpinnerModel_2 = new SpinnerNumberModel(0.0, 0, 100000, 0.1);
+		
+		spinner = new JSpinner();
+		spinner.setBounds(198, 247, 116, 20);
+		panel.add(spinner);
+		
+		spinner_1 = new JSpinner(m_numberSpinnerModel);
+		spinner_1.setBounds(196, 160, 118, 20);
+		panel.add(spinner_1);
+		
+		spinner_2 = new JSpinner(m_numberSpinnerModel_1);
+		spinner_2.setBounds(196, 189, 118, 20);
+		panel.add(spinner_2);
+		
+		spinner_3 = new JSpinner(m_numberSpinnerModel_2);
+		spinner_3.setBounds(196, 102, 120, 20);
+		panel.add(spinner_3);
 		
 		
 	}
