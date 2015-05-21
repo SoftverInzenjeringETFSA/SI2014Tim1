@@ -10,13 +10,13 @@ public interface IKompanijaFacade {
 	public List<Osoba> listaOsoba(TipOsobe tip);
 	
 	// vraća osobu po prosljeđenom parametru ID
-	public Osoba returnById(String id);
+	public Osoba returnById(long id, TipOsobe tip);
 	
 	// vraća osobu po prosljeđenom parametru ime
-	public Osoba returnByIme(String ime);
+	public Osoba returnByImePrezime(String ime, String Prezime);
 	
 	// kreira i dodaje novog klijenta
-	public Boolean dodajKlijenta(String ime, String prezime, String brojTelefona, String adresa, String email, Narudzbenica narudzba);
+	public Boolean dodajKlijenta(String ime, String prezime, String brojTelefona, String adresa, String email, List<Narudzbenica> narudzbe);
 	
 	// kreira i dodaje novog radnika
 	public Boolean dodajRadnika(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti);

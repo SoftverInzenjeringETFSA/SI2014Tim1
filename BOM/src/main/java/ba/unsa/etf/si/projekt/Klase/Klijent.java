@@ -33,4 +33,15 @@ public class Klijent extends Osoba{
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	public Klijent () {} 
+	
+	public Klijent(String ime, String prezime, String brojTelefona, String adresa, String email, List<Narudzbenica> narudzbe) {
+		this.setIme(ime);
+		this.setPrezime(prezime);
+		this.setBrojTelefona(brojTelefona);
+		this.setAdresa(adresa);
+		this.setEmail(email);
+		this.setNarudzbe(narudzbe);
+	}
 }

@@ -46,6 +46,7 @@ public class Menadzer extends Osoba {
 		this.setEmail(email);
 		this.setPozicija(pozicija);
 		this.setOvlasti(nivoOvlasti);
+		this.setTipOsobe(TipOsobe.menadzer);
 	}
 	
 }
