@@ -28,7 +28,6 @@ public class Validator extends AbstractValidator{
 	            return false;
 	        return true;
 	    }
-	
 	public  Boolean ValidirajJeLiPrazno(String kontrolaTekst)
 	{
 		return kontrolaTekst.isEmpty();
@@ -37,14 +36,43 @@ public class Validator extends AbstractValidator{
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 	public Boolean ValidirajEmail(String mail)
 	{
+		if(!ValidirajJeLiPrazno(mail)) return false;
 		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(mail);
         return matcher.find();
 	}
 	
+	//validira tekstualna polja
+		public static final Pattern VALID_TEKST_REGEX = Pattern.compile("/^[a-z ,.'-]+$/i", Pattern.CASE_INSENSITIVE);
+		public  Boolean ValidirajTekst(String kontrolaTekst)
+		{
+			if(!ValidirajJeLiPrazno(kontrolaTekst)) return false;
+			Matcher matcher = VALID_TEKST_REGEX .matcher(kontrolaTekst);
+	        return matcher.find();
+		}
+		
+	//validacija adrese	
+		public static final Pattern VALID_ADRESA_REGEX = Pattern.compile("[A-Za-z0-9'\\.\\-\\s\\,]", Pattern.CASE_INSENSITIVE);
+		public  Boolean ValidirajPrezime(String kontrolaTekst)
+		{
+			if(!ValidirajJeLiPrazno(kontrolaTekst)) return false;
+			Matcher matcher = VALID_ADRESA_REGEX .matcher(kontrolaTekst);
+	        return matcher.find();
+		}
+	
+	//validacija korisnickog imena u sufre	
+		public  Boolean ValidirajKorisnickoImeSifru(String kontrolaTekst)
+		{
+			if(!ValidirajJeLiPrazno(kontrolaTekst)) return false;
+			if(kontrolaTekst.length()<4)
+				return false;
+			return true;
+		}
+		
+    //validacija jmbga
 	public Boolean ValidirajJMBG(String JMBG)
 	{
-		if(!JMBG.isEmpty())
-		{List<Integer> l3 = new ArrayList<Integer>();
+		if(!ValidirajJeLiPrazno(JMBG)) return false;
+		List<Integer> l3 = new ArrayList<Integer>();
 		for(char ch : JMBG.toCharArray())
 		{
 		    l3.add( Integer.valueOf(String.valueOf(ch)));
@@ -62,8 +90,6 @@ public class Validator extends AbstractValidator{
             }
             return l3.get(12) == 11 - eval % 11;
         }
-		}
-		else return false;
 	}
 	
 	/*public static Boolean jeLiBroj(String broj)

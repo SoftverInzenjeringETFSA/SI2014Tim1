@@ -187,6 +187,8 @@ public class Menadzer {
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(133, 34, 200, 22);
+		comboBox.addItem("datumu kreiranja");
+		comboBox.addItem("odgovornom licu");
 		panel_9.add(comboBox);
 		
 		textField_2 = new JTextField();
@@ -196,6 +198,8 @@ public class Menadzer {
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(133, 69, 200, 22);
+		comboBox_1.addItem("datumu kreiranja");
+		comboBox_1.addItem("odgovornom licu");
 		panel_9.add(comboBox_1);
 		
 		JLabel label_3 = new JLabel("Sortiraj po:");
@@ -299,6 +303,7 @@ public class Menadzer {
 		
 		JComboBox comboBox_8 = new JComboBox();
 		comboBox_8.setBounds(133, 34, 200, 22);
+		comboBox_8.addItem("nazivu");
 		panel_6.add(comboBox_8);
 		
 		textField = new JTextField();
@@ -308,6 +313,7 @@ public class Menadzer {
 		
 		JComboBox comboBox_9 = new JComboBox();
 		comboBox_9.setBounds(133, 69, 200, 22);
+		comboBox_9.addItem("nazivu");
 		panel_6.add(comboBox_9);
 		
 		JLabel lblSortirajPo = new JLabel("Sortiraj po:");
@@ -411,6 +417,8 @@ public class Menadzer {
 		
 		JComboBox comboBox_4 = new JComboBox();
 		comboBox_4.setBounds(133, 34, 200, 22);
+		comboBox_4.addItem("nazivu");
+		comboBox_4.addItem("datumu kreiranja");
 		panel_16.add(comboBox_4);
 		
 		textField_3 = new JTextField();
@@ -420,6 +428,8 @@ public class Menadzer {
 		
 		JComboBox comboBox_5 = new JComboBox();
 		comboBox_5.setBounds(133, 69, 200, 22);
+		comboBox_5.addItem("nazivu");
+		comboBox_5.addItem("datumu kreiranja");
 		panel_16.add(comboBox_5);
 		
 		JLabel label_5 = new JLabel("Sortiraj po:");
@@ -539,6 +549,8 @@ public class Menadzer {
 		
 		JComboBox comboBox_2 = new JComboBox();
 		comboBox_2.setBounds(133, 34, 200, 22);
+		comboBox_2.addItem("nazivu");
+		comboBox_2.addItem("datumu kreiranja");
 		panel_12.add(comboBox_2);
 		
 		textField_1 = new JTextField();
@@ -548,6 +560,8 @@ public class Menadzer {
 		
 		JComboBox comboBox_3 = new JComboBox();
 		comboBox_3.setBounds(133, 69, 200, 22);
+		comboBox_3.addItem("nazivu");
+		comboBox_3.addItem("datumu kreiranja");
 		panel_12.add(comboBox_3);
 		
 		JLabel label_1 = new JLabel("Sortiraj po:");

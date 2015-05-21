@@ -118,6 +118,8 @@ public class FKorisnik {
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(133, 34, 200, 22);
+		comboBox.addItem("nazivu");
+		comboBox.addItem("datumu kreiranja");
 		panel.add(comboBox);
 		
 		textField = new JTextField();
@@ -127,6 +129,8 @@ public class FKorisnik {
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(133, 69, 200, 22);
+		comboBox_1.addItem("nazivu");
+		comboBox_1.addItem("datumu kreiranja");
 		panel.add(comboBox_1);
 		
 		JLabel label_1 = new JLabel("Sortiraj po:");
