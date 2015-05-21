@@ -1,4 +1,4 @@
-package Validacija;
+package ba.unsa.etf.si.projekt.Validacija;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -25,7 +25,7 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
         messageLabel = new JLabel(message + " ");
         image = new JLabel(new ImageIcon("exception_16x16.png"));
     }
-	
+    
     public AbstractValidator (JDialog parent, JComponent c, String message) {		
         this(c, message);
         this.parent = parent;
@@ -33,22 +33,41 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
         initComponents();
     }
 	
-    public AbstractValidator (JFrame parent, JComponent c, String message) {
+    protected AbstractValidator (JFrame parent, JComponent c, String message) {
         this(c, message);
         this.parent = parent;
         popup = new JDialog(parent);
         initComponents();
     }
 	
-	
-    protected abstract boolean validationCriteria(JComponent c);
+   
+     public AbstractValidator(JFrame frame, Component component, String message) {
+		// TODO Auto-generated constructor stub
+    	 this(component, message);
+         this.parent = frame;
+         popup = new JDialog(frame);
+         initComponents();
+	}
+
+	public AbstractValidator(Component component, String message) {
+		 this();
+	        component.addKeyListener(this);
+	        messageLabel = new JLabel(message + " ");
+	        image = new JLabel(new ImageIcon("exception_16x16.png"));
+		
+	}
+
+	protected abstract boolean validationCriteria(JComponent c);
+     protected abstract Boolean ValidirajJeLiPrazno(String kontrolaTekst);
+     protected abstract Boolean ValidirajEmail(String mail);
+     protected abstract Boolean ValidirajJMBG(String JMBG);
 	
   
     public boolean verify(JComponent c) {		
         if (!validationCriteria(c)) {
 			
-        //    if(parent instanceof WantsValidationStatus)
-        //        ((WantsValidationStatus)parent).validateFailed();
+          // if(parent instanceof WantsValidationStatus)
+          //     ((WantsValidationStatus)parent).validateFailed();
 			
             c.setBackground(Color.PINK);
             popup.setSize(0, 0);

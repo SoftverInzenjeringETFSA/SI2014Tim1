@@ -15,7 +15,7 @@ import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import Validacija.NotEmptyValidator;
+
 
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JSpinner;

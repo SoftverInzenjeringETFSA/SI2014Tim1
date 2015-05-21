@@ -1,25 +1,47 @@
 package ba.unsa.etf.si.projekt.Validacija;
 
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Validator {
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+public class Validator extends AbstractValidator{
+	  public Validator(JFrame parent, JTextField c, String message) {
+	        super(parent, c, message);
+	    }
+	  public Validator (JFrame parent, JComponent c, String message)
+	  {
+		  super(parent, c, message);
+	  }
+		
+	  public Validator(JFrame frame, Component component, String message) {
+		// TODO Auto-generated constructor stub
+		  super(frame, component, message);
+	}		
+		public boolean validationCriteria(JComponent c) {
+	        if (((JTextField)c).getText().isEmpty())
+	            return false;
+	        return true;
+	    }
 	
-	public static Boolean ValidirajJeLiPrazno(String kontrolaTekst)
+	public  Boolean ValidirajJeLiPrazno(String kontrolaTekst)
 	{
 		return kontrolaTekst.isEmpty();
 	}	
 	
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-	public static Boolean ValidirajEmail(String mail)
+	public Boolean ValidirajEmail(String mail)
 	{
 		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(mail);
         return matcher.find();
 	}
 	
-	public static Boolean ValidirajJMBG(String JMBG)
+	public Boolean ValidirajJMBG(String JMBG)
 	{
 		if(!JMBG.isEmpty())
 		{List<Integer> l3 = new ArrayList<Integer>();
