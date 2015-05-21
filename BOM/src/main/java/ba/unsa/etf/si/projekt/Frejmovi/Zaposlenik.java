@@ -154,6 +154,8 @@ public class Zaposlenik {
 
 		JComboBox comboBox_4 = new JComboBox();
 		comboBox_4.setBounds(133, 34, 200, 22);
+		comboBox_4.addItem("nazivu");
+		comboBox_4.addItem("datumu kreiranja");
 		panel_16.add(comboBox_4);
 
 		textField_3 = new JTextField();
@@ -163,6 +165,8 @@ public class Zaposlenik {
 
 		JComboBox comboBox_5 = new JComboBox();
 		comboBox_5.setBounds(133, 69, 200, 22);
+		comboBox_5.addItem("nazivu");
+		comboBox_5.addItem("datumu kreiranja");
 		panel_16.add(comboBox_5);
 
 		JLabel label_5 = new JLabel("Sortiraj po:");
@@ -319,6 +323,8 @@ public class Zaposlenik {
 
 		JComboBox comboBox_2 = new JComboBox();
 		comboBox_2.setBounds(133, 34, 200, 22);
+		comboBox_2.addItem("nazivu");
+		comboBox_2.addItem("datumu nabavke");
 		panel_12.add(comboBox_2);
 
 		textField_1 = new JTextField();
@@ -328,6 +334,8 @@ public class Zaposlenik {
 
 		JComboBox comboBox_3 = new JComboBox();
 		comboBox_3.setBounds(133, 69, 200, 22);
+		comboBox_3.addItem("nazivu");
+		comboBox_3.addItem("datumu nabavke");
 		panel_12.add(comboBox_3);
 
 		JLabel label_1 = new JLabel("Sortiraj po:");

@@ -126,12 +126,12 @@ public class FKorisnikDMPB {
 		    	
 		    }
 		});
-		textField.setInputVerifier(new Validator(frame,textField,"Morate popuniti ovo polje"));
-		textField_1.setInputVerifier(new Validator(frame,textField_1,"Morate popuniti ovo polje"));
-		textField_2.setInputVerifier(new Validator(frame,textField_2,"Morate popuniti ovo polje"));
-		textField_4.setInputVerifier(new Validator(frame,textField_4,"Morate popuniti ovo polje"));
-		textField_5.setInputVerifier(new Validator(frame,textField_5,"Morate popuniti ovo polje"));
-		textField_6.setInputVerifier(new Validator(frame,textField_6,"Morate popuniti ovo polje"));
+		textField.setInputVerifier(new Validator(frame,textField,"Morate popuniti ovo polje"," "));
+		textField_1.setInputVerifier(new Validator(frame,textField_1,"Morate popuniti ovo polje",""));
+		textField_2.setInputVerifier(new Validator(frame,textField_2,"Morate popuniti ovo polje","JMBG"));
+		textField_4.setInputVerifier(new Validator(frame,textField_4,"Morate popuniti ovo polje",""));
+		textField_5.setInputVerifier(new Validator(frame,textField_5,"Morate popuniti ovo polje",""));
+		textField_6.setInputVerifier(new Validator(frame,textField_6,"Morate popuniti ovo polje",""));
 	
 	}
 
