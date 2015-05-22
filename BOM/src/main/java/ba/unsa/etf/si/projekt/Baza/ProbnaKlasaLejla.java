@@ -50,7 +50,8 @@ public class ProbnaKlasaLejla {
 		else
 			System.out.println("ne valja");
 		//sf.dodajMaterijal(m2);
-		
+		Radnik r = new Radnik();
+		kf.dodajRadnika("radnik", "vatkić", "061/vato", "adresa", "email", "pozicija", null);
 		
 	}
 
