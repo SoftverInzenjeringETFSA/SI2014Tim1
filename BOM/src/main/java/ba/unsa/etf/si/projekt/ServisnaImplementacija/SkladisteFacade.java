@@ -1,14 +1,12 @@
 package ba.unsa.etf.si.projekt.ServisnaImplementacija;
 import org.hibernate.Transaction;
 import org.hibernate.Session;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import ba.unsa.etf.si.projekt.Util.HibernateUtil;
-import ba.unsa.etf.si.projekt.Klase.Materijal;
-import ba.unsa.etf.si.projekt.Klase.Menadzer;
-import ba.unsa.etf.si.projekt.Klase.Narudzbenica;
-import ba.unsa.etf.si.projekt.Klase.Proizvod;
-import ba.unsa.etf.si.projekt.Klase.Sastavnica;
+import ba.unsa.etf.si.projekt.Klase.*;
 import ba.unsa.etf.si.projekt.ServisniInterfejs.ISkladisteFacade;
 
 public class SkladisteFacade implements ISkladisteFacade {
@@ -18,9 +16,19 @@ public class SkladisteFacade implements ISkladisteFacade {
 		public List<Materijal> returnListaMaterijala()
 		{
 			Session session = HibernateUtil.getSessionFactory().openSession();
-			Transaction t = session.beginTransaction();
-			
-			return new ArrayList<Materijal>();
+			try {
+				Transaction t = session.beginTransaction();
+				List<Materijal> _materijali = null;
+				_materijali = session.createCriteria(Materijal.class).list();
+				t.commit();
+			return _materijali;
+			}
+			catch (Exception e) {
+				return (List<Materijal>) e;
+			}
+			finally {
+				session.close();
+			}	
 		}
 		
 		public Boolean dodajMaterijal(Materijal materijal)
@@ -42,14 +50,19 @@ public class SkladisteFacade implements ISkladisteFacade {
 		
 		public Boolean obrišiMaterijal(Materijal materijal)
 		{
-			//preskocio
 			Session session = HibernateUtil.getSessionFactory().openSession();
-			Transaction t = session.beginTransaction();
-			materijal=null;			
-			session.save(materijal);
-			t.commit();
-			session.close();
-			return true;
+			try {
+				Transaction t = session.beginTransaction();
+				session.delete(materijal);
+				t.commit();
+				return true;
+			}
+			catch (Exception e) {
+				return false;
+			}
+			finally {
+				session.close();
+			}
 		}
 		
 		public Boolean izmijeniMaterijal(Materijal materijal)
@@ -72,6 +85,22 @@ public class SkladisteFacade implements ISkladisteFacade {
 		
 		public Materijal pretragaMaterijala(String serijskiBroj)
 		{
+			//nije gotova
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+						
+				t.commit();
+				
+					
+		//		return true;
+			}
+			catch (Exception e) {
+		//		return false;
+			}
+			finally {
+				session.close();
+			}	
 			return new Materijal();
 		}
 		
@@ -79,7 +108,21 @@ public class SkladisteFacade implements ISkladisteFacade {
 		
 		public List<Proizvod> returnListaProizvoda()
 		{
-			return new ArrayList<Proizvod>();
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				List<Proizvod> _proizvodi = null;
+				_proizvodi = session.createCriteria(Proizvod.class).list();
+				t.commit();
+			return _proizvodi;
+			}
+			catch (Exception e) {
+				return (List<Proizvod>) e;
+			}
+			finally {
+				session.close();
+			}	
+			//return new ArrayList<Proizvod>();
 		}
 		
 		public Boolean dodajProizvod(Proizvod proizvod)
@@ -88,8 +131,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			try {
 				Transaction t = session.beginTransaction();
 				session.save(proizvod);
-				t.commit();
-				session.close();	
+				t.commit();	
 				return true;
 			}
 			catch (Exception e) {
@@ -102,20 +144,36 @@ public class SkladisteFacade implements ISkladisteFacade {
 		
 		public Boolean obrišiProizvod(Proizvod proizvod)
 		{
-			//preskocio
 			Session session = HibernateUtil.getSessionFactory().openSession();
-			Transaction t = session.beginTransaction();
-			proizvod=null;			
-			session.save(proizvod);
-			t.commit();
-			session.close();
-			return true;
+			try {
+				Transaction t = session.beginTransaction();
+				session.delete(proizvod);
+				t.commit();
+				return true;
+			}
+			catch (Exception e) {
+				return false;
+			}
+			finally {
+				session.close();
+			}
 		}
 		
 		public Boolean izmijeniProizvod(Proizvod proizvod)
 		{
-			
-			return true;
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				session.update(proizvod);
+				t.commit();
+				return true;
+			}
+			catch (Exception e) {
+				return false;
+			}
+			finally {
+				session.close();
+			}
 		}
 		
 		public Proizvod pretragaProizvoda(String id)
@@ -127,7 +185,20 @@ public class SkladisteFacade implements ISkladisteFacade {
 		
 		public List<Narudzbenica> returnListaNarudzbenica()
 		{
-			return new ArrayList<Narudzbenica>();
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				List<Narudzbenica> _narudzbenice = null;
+				_narudzbenice = session.createCriteria(Narudzbenica.class).list();
+				t.commit();
+			return _narudzbenice;
+			}
+			catch (Exception e) {
+				return (List<Narudzbenica>) e;
+			}
+			finally {
+				session.close();
+			}	
 		}
 		
 		public Boolean dodajNarudzbenicu(Narudzbenica narudzbenica)
@@ -136,8 +207,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			try {
 				Transaction t = session.beginTransaction();
 				session.save(narudzbenica);
-				t.commit();
-				session.close();	
+				t.commit();	
 				return true;
 			}
 			catch (Exception e) {
@@ -151,17 +221,35 @@ public class SkladisteFacade implements ISkladisteFacade {
 		public Boolean obrišiNarudzbenicu(Narudzbenica narudzbenica)
 		{
 			Session session = HibernateUtil.getSessionFactory().openSession();
-			Transaction t = session.beginTransaction();
-						
-			session.save(narudzbenica);
-			t.commit();
-			session.close();
-			return true;
+			try {
+				Transaction t = session.beginTransaction();
+				session.delete(narudzbenica);
+				t.commit();
+				return true;
+			}
+			catch (Exception e) {
+				return false;
+			}
+			finally {
+				session.close();
+			}
 		}
 		
 		public Boolean izmijeniNarudzbenicu(Narudzbenica narudzbenica)
 		{
-			return true;
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				session.update(narudzbenica);
+				t.commit();
+				return true;
+			}
+			catch (Exception e) {
+				return false;
+			}
+			finally {
+				session.close();
+			}
 		}
 		
 		public Narudzbenica pretragaNarudzbenica(String id)
@@ -173,7 +261,20 @@ public class SkladisteFacade implements ISkladisteFacade {
 		
 		public List<Sastavnica> returnListaSastavnica()
 		{
-			return new ArrayList<Sastavnica>();
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				List<Sastavnica> _sastavnice = null;
+				_sastavnice = session.createCriteria(Sastavnica.class).list();
+				t.commit();
+			return _sastavnice;
+			}
+			catch (Exception e) {
+				return (List<Sastavnica>) e;
+			}
+			finally {
+				session.close();
+			}	
 		}
 		
 		public Boolean dodajSastavnicu(Sastavnica sastavnica)
@@ -182,8 +283,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			try {
 				Transaction t = session.beginTransaction();
 				session.save(sastavnica);
-				t.commit();
-				session.close();	
+				t.commit();	
 				return true;
 			}
 			catch (Exception e) {
@@ -197,17 +297,35 @@ public class SkladisteFacade implements ISkladisteFacade {
 		public Boolean obrišiSastavnicu(Sastavnica sastavnica)
 		{
 			Session session = HibernateUtil.getSessionFactory().openSession();
-			Transaction t = session.beginTransaction();
-			sastavnica=null;			
-			session.save(sastavnica);
-			t.commit();
-			session.close();
-			return true;
+			try {
+				Transaction t = session.beginTransaction();
+				session.delete(sastavnica);
+				t.commit();
+				return true;
+			}
+			catch (Exception e) {
+				return false;
+			}
+			finally {
+				session.close();
+			}
 		}
 		
 		public Boolean izmijeniSastavnicu(Sastavnica sastavnica)
 		{
-			return true;
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				session.update(sastavnica);
+				t.commit();
+				return true;
+			}
+			catch (Exception e) {
+				return false;
+			}
+			finally {
+				session.close();
+			}
 		}
 		
 		public Sastavnica pretragaSastavnica(String id)
@@ -218,7 +336,20 @@ public class SkladisteFacade implements ISkladisteFacade {
 				
 		public List<Menadzer> returnListaMenadzera()
 		{
-			return new ArrayList<Menadzer>();
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				List<Menadzer> _menadzeri = null;
+				_menadzeri = session.createCriteria(Menadzer.class).list();
+				t.commit();
+			return _menadzeri;
+			}
+			catch (Exception e) {
+				return (List<Menadzer>) e;
+			}
+			finally {
+				session.close();
+			}	
 		}
 
 }

@@ -19,6 +19,8 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.text.MaskFormatter;
 
+import ba.unsa.etf.si.projekt.Validacija.Validator;
+
 public class FKlijentDMPB {
 
 	private JFrame frame;
@@ -116,6 +118,12 @@ public class FKlijentDMPB {
 		    	
 		    }
 		});
+		
+		txtFdsfd.setInputVerifier(new Validator(frame,txtFdsfd,"Molimo unesite ispravno ime",""));
+		textField_1.setInputVerifier(new Validator(frame,textField_1,"Molimo unesite ispravno prezime",""));
+		textField_3.setInputVerifier(new Validator(frame,textField_3,"Adresa koju ste unijeli nije ispravna","adresa"));
+		textField_4.setInputVerifier(new Validator(frame,textField_4,"Email adresa mora da sadrži @ te ispravnu domenu","email"));
+		
 	}
 
 	/**

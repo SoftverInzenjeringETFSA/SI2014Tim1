@@ -20,6 +20,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JTable;
 
+import ba.unsa.etf.si.projekt.Validacija.Validator;
+
 import com.toedter.calendar.JCalendar;
 
 public class FSastavnicaDM {
@@ -103,6 +105,7 @@ public class FSastavnicaDM {
 		    	
 		    }
 		});
+		textField.setInputVerifier(new Validator(frame,textField,"Molimo da popunite ovo polje",""));
 	}
 
 	/**
