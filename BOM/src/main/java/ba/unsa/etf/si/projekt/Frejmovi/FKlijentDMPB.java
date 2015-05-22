@@ -13,13 +13,18 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.text.MaskFormatter;
 
+import ba.unsa.etf.si.projekt.Klase.Narudzbenica;
+import ba.unsa.etf.si.projekt.Klase.Osoba;
 import ba.unsa.etf.si.projekt.Validacija.Validator;
+import ba.unsa.etf.si.projekt.ServisnaImplementacija.KompanijaFacade;
+import ba.unsa.etf.si.projekt.Klase.Klijent;
 
 public class FKlijentDMPB {
 
@@ -28,7 +33,7 @@ public class FKlijentDMPB {
 	private JTextField textField_1;
 	private JTextField textField_3;
 	private JTextField textField_4;
-	private JFormattedTextField formattedTextField;
+	private JFormattedTextField telefon;
 	private String akcija;
 	private JButton btnKreiraj;
 	private JPanel panel;
@@ -123,7 +128,8 @@ public class FKlijentDMPB {
 		textField_1.setInputVerifier(new Validator(frame,textField_1,"Molimo unesite ispravno prezime",""));
 		textField_3.setInputVerifier(new Validator(frame,textField_3,"Adresa koju ste unijeli nije ispravna","adresa"));
 		textField_4.setInputVerifier(new Validator(frame,textField_4,"Email adresa mora da sadrži @ te ispravnu domenu","email"));
-		
+        //telefon.setInputVerifier(new Validator(frame,telefon,"Molimo unesite telefon","telefon"));
+		// JOptionPane.showMessageDialog(null, "Uspješno kreiran klijent", "Info", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	/**
@@ -193,16 +199,37 @@ public class FKlijentDMPB {
 				
 				//akcija za klik na dugme koje moze imati razlicite f-je
 				//brisanje, kreiranje, modifikovanje, pregled
+				KompanijaFacade kf=new KompanijaFacade();
 				if(akcija.equals("Kreiranje") || akcija.equals("Modifikovanje"))
 				{
+					 if(akcija.equals("Kreiranje")){
+						String ime=((JTextField)txtFdsfd).getText();
+						String prezime=((JTextField)textField_1).getText();
+						String adresa=((JTextField)textField_3).getText();
+						String email=((JTextField)textField_4).getText();
+						String brojTelefona=((JFormattedTextField)telefon).getText();
+						List<Narudzbenica> narudzbe=new ArrayList<Narudzbenica>();
+				    kf.dodajKlijenta(ime,prezime,brojTelefona,adresa, email, narudzbe);
+				   MessageBox.infoBox(frame, "Klijent je uspješno kreiran", "Info");
+					}
+					if(akcija.equals("Modifikovanje")){
+					//	tabela
+				    //treba da iz tabela pokupi klijenta pa njega obrise
+					//	Klijent k=new Klijent(ime,prezime,brojTelefona,adresa, email, narudzbe);
+					 //  kf.mijenjajKlijenta(k);
+						  MessageBox.infoBox(frame, "Podaci o klijentu su uspješno izmijenjeni", "Info");
+						}
 					//ovdje treba procitati formu i
-					//uraditi validaciju
 					//azurirati bazu npr
 					//ispisati messageBox ?
 					//vratiti se nazad
 				}
 				if(akcija.equals("Brisanje"))
 				{
+					//treba da iz tabela pokupi klijenta pa njega obrise
+					//Klijent k=
+					//  kf.obrisiOsobu(k);
+					  MessageBox.infoBox(frame, "Klijent je uspješno obrisan", "Info");
 					//ispisati dialogBox ? (da zelite brisati)
 					//azurirati bazu
 					//vratiti se nazad
@@ -225,9 +252,9 @@ public class FKlijentDMPB {
 			
 		}
 		mf1.setPlaceholderCharacter('_');
-		formattedTextField = new JFormattedTextField(mf1);
-		formattedTextField.setBounds(133, 106, 187, 20);
-		panel.add(formattedTextField);
+		telefon = new JFormattedTextField(mf1);
+		telefon.setBounds(133, 106, 187, 20);
+		panel.add(telefon);
 		
 		JButton btnNewButton = new JButton("Poništi");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -235,7 +262,7 @@ public class FKlijentDMPB {
 				txtFdsfd.setText("");
 				textField_1.setText("");
 				textField_3.setText("");
-				formattedTextField.setText("");
+				telefon.setText("");
 				textField_4.setText("");
 			}
 		});

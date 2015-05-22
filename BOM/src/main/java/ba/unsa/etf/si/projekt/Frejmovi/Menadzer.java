@@ -26,6 +26,7 @@ import javax.swing.UIManager;
 
 
 
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -59,6 +60,7 @@ public class Menadzer {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTable table_2;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -83,6 +85,7 @@ public class Menadzer {
 				}
 			}
 		});
+		
 	}
 	
 	public void setFrame(JFrame parentF, String akcijaA, String klasa)
@@ -95,7 +98,7 @@ public class Menadzer {
 	 */
 	public Menadzer() {
 		initialize();
-		
+		popuniTabelu(null,null,null);
 		//postavlanje akcije za izlaz iz frejma
 				frame.addWindowListener(new java.awt.event.WindowAdapter() {
 				    @Override
@@ -115,6 +118,7 @@ public class Menadzer {
 				    	//parentFrame.setVisible(true);
 				    }
 				});
+				
 	}
 
 	/**
@@ -147,7 +151,6 @@ public class Menadzer {
 		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		
-		//mrsko mi bilo kucati petlju :D
 		Object rowDataN[][] = { { "", "", "", "", "", ""},{ "", "", "", "", "", ""},
 				{ "", "", "", "", "", ""},{ "", "", "", "", "", ""},
 				{ "", "", "", "", "", ""},{ "", "", "", "", "", ""},
@@ -260,23 +263,19 @@ public class Menadzer {
 		panel_2.add(panel_4);
 		panel_4.setLayout(null);
 		
-		//mrsko mi bilo kucati petlju :D
 				Object rowData[][] = { { "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""},
 						{ "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""},
 						{ "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""}};
 				Object columnNames[] = { "ID", "Ime i prezime", "Telefon", "Adresa", "E-mail"};
 		
 		table = new JTable(rowData, columnNames);
-		
-		//treba zabraniti editovanje tabele ali ostaviti mogucnost selektovanja redova
-		//ovaj kod moze biti na drugom mjestu
 		for (int c = 0; c < table.getColumnCount(); c++)
 		{
 		    Class<?> col_class = table.getColumnClass(c);
 		    table.setDefaultEditor(col_class, null);        // remove editor
 		}
 		
-		JScrollPane scrollPane = new JScrollPane();
+	    scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 28, 630, 227);
 		panel_4.add(scrollPane);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -658,5 +657,12 @@ public class Menadzer {
 		});
 		btnKorisnici.setBounds(463, 15, 97, 25);
 		frame.getContentPane().add(btnKorisnici);
+	}
+	public void popuniTabelu(String name, String value, String sort)
+	{
+
+		DataGrid dg=new DataGrid("Klijent");
+		dg.getTable(name, value, sort);
+		scrollPane.setViewportView(table);
 	}
 }

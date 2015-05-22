@@ -3,6 +3,7 @@ package ba.unsa.etf.si.projekt.Frejmovi;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
+import ba.unsa.etf.si.projekt.Klase.Klijent;
 import ba.unsa.etf.si.projekt.Klase.Osoba;
 import ba.unsa.etf.si.projekt.Klase.Ovlasti;
 import ba.unsa.etf.si.projekt.Klase.Radnik;
@@ -73,12 +74,44 @@ public class DataGrid {
 			
 			
 		}
-		/*
 		else if(tipTabele.equals("Klijent"))
 		{
-			List<Korisnik> ls = ....
-			moze se sada ova lista prebaciti u matricu stringova
+			List<Osoba> klijenti = new ArrayList<Osoba>();
+			List<Klijent> klijenti1 = new ArrayList<Klijent>();
+			if(name != null && value != null)
+			{
+				//sada pozivamo neku metodu za pretragu
+				//korisnici = getUsersFor(name, value);
+				//name je po cemu se vrsi pretraga
+				
+				
+			}
+			else
+			{
+				//ovdje ce se pozivati metoda koja uzima sve korisnike iz baze
+			KompanijaFacade kf=new KompanijaFacade();
+				klijenti = kf.listaOsoba(TipOsobe.klijent);
+				for(int i=0;i<klijenti.size();i++)
+					klijenti1.add((Klijent)klijenti.get(i));
+		
+			}
+			
+			Object columnsName[] = { "ID", "Ime i prezime", "Telefon", " Adresa","Email"};
+			Object rows[][] = new Object[klijenti1.size()][5];
+			
+			for(int i=0; i<klijenti1.size(); i++)
+			{
+				rows[i][0] = klijenti1.get(i).getId();
+				rows[i][1] = klijenti1.get(i).getIme()+ " "+klijenti1.get(i).getPrezime();
+				rows[i][2] =  klijenti1.get(i).getBrojTelefona();
+				rows[i][3] =  klijenti1.get(i).getAdresa();
+				rows[i][4] =  klijenti1.get(i).getEmail();
+			}
+			
+			table = new JTable(rows, columnsName);
 		}
+		/*
+		
 		else if(tipTabele.equals("Sastavnica"))
 		{
 			List<Korisnik> ls = ....
