@@ -26,6 +26,9 @@ public class FKorisnik {
 	private JFrame parentFrame = null;
 	private JTextField textField;
 	private JTable table;
+	private DataGrid dataGrid;
+	private JScrollPane scrollPane;
+	
 
 	/**
 	 * Launch the application.
@@ -65,6 +68,8 @@ public class FKorisnik {
 	 */
 	public FKorisnik() {
 		initialize();
+		popuniTabelu(null, null, null);
+		
 		
 		//postavlanje akcije za izlaz iz frejma
 		frame.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -205,7 +210,7 @@ public class FKorisnik {
 		frame.getContentPane().add(panel_3);
 		panel_3.setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 26, 630, 214);
 		panel_3.add(scrollPane);
 		
@@ -225,4 +230,12 @@ public class FKorisnik {
 		lblNisteOdabraliNiti.setBounds(22, 489, 644, 16);
 		frame.getContentPane().add(lblNisteOdabraliNiti);
 	}
+	public void popuniTabelu(String name, String value, String sort)
+	{
+		DataGrid g = new DataGrid("Korisnik");
+		table = g.getTable(name, value, sort);
+		scrollPane.setViewportView(table);
+	}
+	
+	
 }

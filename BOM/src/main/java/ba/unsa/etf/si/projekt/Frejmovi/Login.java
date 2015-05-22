@@ -8,9 +8,15 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.UIManager;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JPasswordField;
+
+import ba.unsa.etf.si.projekt.Klase.Osoba;
+import ba.unsa.etf.si.projekt.Klase.TipOsobe;
+import ba.unsa.etf.si.projekt.ServisnaImplementacija.KompanijaFacade;
 
 public class Login {
 
@@ -85,22 +91,34 @@ public class Login {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				String textFieldValue = tfKorisnickoIme.getText();
+				String user = tfKorisnickoIme.getText();
+				String pass = passwordField.getText();
 				
-				if(textFieldValue.equals("menadzer"))
+				KompanijaFacade f = new KompanijaFacade();
+				Osoba o = f.returnByUsernamePassword(user, pass);
+				
+				if(o != null)
 				{
-					Menadzer m = new Menadzer();
-					m.setFrame(null, null, null);
-					frame.setVisible(false);//skrivanje frejma login
-					frame.dispose();//unistavanje frejma login
+					if(o.getTipOsobe()  == TipOsobe.menadzer)
+					{
+						Menadzer m = new Menadzer();
+						m.setFrame(null, null, null);
+						frame.setVisible(false);//skrivanje frejma login
+						frame.dispose();//unistavanje frejma login
+					}
+					else if(o.getTipOsobe()  == TipOsobe.radnik)
+					{
+						Zaposlenik z = new Zaposlenik();
+						z.setFrame(null, null, null);
+						frame.setVisible(false);//skrivanje frejma login
+						frame.dispose();//unistavanje frejma login
+					}
 				}
-				else if(textFieldValue.equals("zaposlenik"))
+				else
 				{
-					Zaposlenik z = new Zaposlenik();
-					z.setFrame(null, null, null);
-					frame.setVisible(false);//skrivanje frejma login
-					frame.dispose();//unistavanje frejma login
+					MessageBox.infoBox(frame, "Pogrešni podaci za prijavu!", "Info");
 				}
+				
 				
 			}
 		});

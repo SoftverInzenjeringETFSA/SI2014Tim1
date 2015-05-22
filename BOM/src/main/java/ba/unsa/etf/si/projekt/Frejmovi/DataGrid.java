@@ -3,8 +3,11 @@ package ba.unsa.etf.si.projekt.Frejmovi;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
+import ba.unsa.etf.si.projekt.Klase.Osoba;
 import ba.unsa.etf.si.projekt.Klase.Ovlasti;
 import ba.unsa.etf.si.projekt.Klase.Radnik;
+import ba.unsa.etf.si.projekt.Klase.TipOsobe;
+import ba.unsa.etf.si.projekt.ServisnaImplementacija.KompanijaFacade;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,6 +33,7 @@ public class DataGrid {
 		if(tipTabele.equals("Korisnik"))
 		{
 			List<Radnik> korisnici = new ArrayList<Radnik>();
+			
 			if(name != null && value != null)
 			{
 				//sada pozivamo neku metodu za pretragu
@@ -42,33 +46,32 @@ public class DataGrid {
 			{
 				//ovdje ce se pozivati metoda koja uzima sve korisnike iz baze
 				
-				//korisnici = getAllUsers();
+				KompanijaFacade k = new KompanijaFacade();
+				List<Osoba> osobe = k.listaOsoba(TipOsobe.menadzer);
 				
-				//ovo je sada samo neki primjer bzze
-				
+				/*
 				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				Date d = new Date();
 				String datum = dateFormat.format(d);
+				*/
 				
+				Object columnsName[] = { "ID", "Ime i prezime", "Telefon", "Korisnicko ime", "Email"};
+				Object rows[][] = new Object[osobe.size()][5];
 				
-				korisnici.add(new Radnik("Ime", "Prezime", "123345678", "adresa", "mail", "poyicija", null));
-				korisnici.add(new Radnik("Ime", "Prezime", "123345678", "adresa", "mail", "poyicija", null));
-				korisnici.add(new Radnik("Ime", "Prezime", "123345678", "adresa", "mail", "poyicija", null));
+				for(int i=0; i<osobe.size(); i++)
+				{
+					rows[i][0] = i;
+					rows[i][1] = osobe.get(i).getIme() + ' ' + osobe.get(i).getPrezime();
+					rows[i][2] = osobe.get(i).getBrojTelefona();
+					rows[i][3] = "Korisnicko ime";
+					rows[i][4] = osobe.get(i).getEmail();
+				}
+				
+				table = new JTable(rows, columnsName);
+				
 			}
 			
-			Object columnsName[] = { "ID", "Ime i prezime", "Telefon", "Korisnièko ime", "Kreiran"};
-			Object rows[][] = new Object[korisnici.size()][5];
 			
-			for(int i=0; i<korisnici.size(); i++)
-			{
-				rows[i][0] = "1";
-				rows[i][1] = "ime";
-				rows[i][2] = "12323232";
-				rows[i][3] = "korIme";
-				rows[i][4] = "dssd";
-			}
-			
-			table = new JTable(rows, columnsName);
 		}
 		/*
 		else if(tipTabele.equals("Klijent"))
