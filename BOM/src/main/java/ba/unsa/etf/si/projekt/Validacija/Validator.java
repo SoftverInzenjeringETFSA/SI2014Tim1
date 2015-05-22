@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
@@ -31,6 +32,7 @@ public class Validator extends AbstractValidator{
 			if(tip.equals("email")) return ValidirajEmail( ((JTextField)c).getText());
 			else if(tip.equals("JMBG")) return ValidirajJMBG( ((JTextField)c).getText());
 			else if(tip.equals("adresa")) return ValidirajAdresu( ((JTextField)c).getText());
+			//else if(tip.equals("telefon")) return ValidirajJeLiPrazno(((JFormattedTextField)c).getText());
 			else if(tip.equals(""))return ValidirajTekst( ((JTextField)c).getText());
 			return true;
 		    
