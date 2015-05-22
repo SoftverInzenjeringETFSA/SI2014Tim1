@@ -1,8 +1,10 @@
 package ba.unsa.etf.si.projekt.ServisnaImplementacija;
+import org.hibernate.Query;
 import org.hibernate.Transaction;
 import org.hibernate.Session;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import ba.unsa.etf.si.projekt.Util.HibernateUtil;
@@ -85,23 +87,34 @@ public class SkladisteFacade implements ISkladisteFacade {
 		
 		public Materijal pretragaMaterijala(String serijskiBroj)
 		{
-			//nije gotova
 			Session session = HibernateUtil.getSessionFactory().openSession();
+			Materijal m = null;
 			try {
+			
 				Transaction t = session.beginTransaction();
-						
+				String hql = "FROM Materijal M WHERE M.serijskiBroj = '" + serijskiBroj+ "'";
+				Query query = session.createQuery(hql);
+				List rezultati = query.list();
+				ArrayList<Materijal> lista = new ArrayList<Materijal> ();
+				for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
+				{
+					Materijal m1 = (Materijal)iterator1.next(); 
+				    lista.add(m1);
+			    }
+				if(lista.size() == 1) {
+					m = lista.get(0);
+				}
 				t.commit();
-				
-					
-		//		return true;
+				return m;
+			
+			
 			}
-			catch (Exception e) {
-		//		return false;
+			catch(Exception e) {
+				return m;
 			}
 			finally {
 				session.close();
-			}	
-			return new Materijal();
+			}
 		}
 		
 		// proizvodi
@@ -176,9 +189,33 @@ public class SkladisteFacade implements ISkladisteFacade {
 			}
 		}
 		
-		public Proizvod pretragaProizvoda(String id)
+		public Proizvod pretragaProizvoda(String serijskiBroj)
 		{
-			return new Proizvod();
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Proizvod p = null;
+			try {
+				Transaction t = session.beginTransaction();
+				String hql = "FROM Proizvod P WHERE P.serijskiBroj = '" + serijskiBroj+ "'";
+				Query query = session.createQuery(hql);
+				List rezultati = query.list();
+				ArrayList<Proizvod> lista = new ArrayList<Proizvod> ();
+				for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
+				{
+					Proizvod p1 = (Proizvod)iterator1.next(); 
+				    lista.add(p1);
+			    }
+				if(lista.size() == 1) {
+					p = lista.get(0);
+				}
+				t.commit();
+				return p;
+			}
+			catch(Exception e) {
+				return p;
+			}
+			finally {
+				session.close();
+			}
 		}
 		
 		// narudzbenice
@@ -252,9 +289,33 @@ public class SkladisteFacade implements ISkladisteFacade {
 			}
 		}
 		
-		public Narudzbenica pretragaNarudzbenica(String id)
+		public Narudzbenica pretragaNarudzbenica(String serijskiBroj)
 		{
-			return new Narudzbenica();
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Narudzbenica n = null;
+			try {
+				Transaction t = session.beginTransaction();
+				String hql = "FROM Narudzbenica N WHERE N.serijskiBroj = '" + serijskiBroj+ "'";
+				Query query = session.createQuery(hql);
+				List rezultati = query.list();
+				ArrayList<Narudzbenica> lista = new ArrayList<Narudzbenica> ();
+				for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
+				{
+					Narudzbenica n1 = (Narudzbenica)iterator1.next(); 
+				    lista.add(n1);
+			    }
+				if(lista.size() == 1) {
+					n = lista.get(0);
+				}
+				t.commit();
+				return n;
+			}
+			catch(Exception e) {
+				return n;
+			}
+			finally {
+				session.close();
+			}
 		}
 		
 		// sastavnice
@@ -328,9 +389,33 @@ public class SkladisteFacade implements ISkladisteFacade {
 			}
 		}
 		
-		public Sastavnica pretragaSastavnica(String id)
+		public Sastavnica pretragaSastavnica(String serijskiBroj)
 		{
-			return new Sastavnica();
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Sastavnica s = null;
+			try {
+				Transaction t = session.beginTransaction();
+				String hql = "FROM Sastavnica S WHERE S.serijskiBroj = '" + serijskiBroj+ "'";
+				Query query = session.createQuery(hql);
+				List rezultati = query.list();
+				ArrayList<Sastavnica> lista = new ArrayList<Sastavnica> ();
+				for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
+				{
+					Sastavnica s1 = (Sastavnica)iterator1.next(); 
+				    lista.add(s1);
+			    }
+				if(lista.size() == 1) {
+					s = lista.get(0);
+				}
+				t.commit();
+				return s;
+			}
+			catch(Exception e) {
+				return s;
+			}
+			finally {
+				session.close();
+			}
 		}
 		
 				
