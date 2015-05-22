@@ -53,7 +53,7 @@ public class Menadzer extends Osoba {
 	
 	public Menadzer() {}
 	
-	public Menadzer(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti) {
+	public Menadzer(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti, String username, String password) {
 		this.setIme(ime);
 		this.setPrezime(prezime);
 		this.setBrojTelefona(brojTelefona);
@@ -62,6 +62,8 @@ public class Menadzer extends Osoba {
 		this.setPozicija(pozicija);
 		this.setOvlasti(nivoOvlasti);
 		this.setTipOsobe(TipOsobe.menadzer);
+		this.setUsername(username);
+		this.setPassword(password);
 	}
 	
 }

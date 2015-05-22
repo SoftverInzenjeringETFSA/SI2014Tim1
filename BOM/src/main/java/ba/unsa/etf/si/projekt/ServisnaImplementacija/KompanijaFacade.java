@@ -141,12 +141,12 @@ public class KompanijaFacade implements IKompanijaFacade {
 			}
 		}
 		
-		public Boolean dodajRadnika(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti)
+		public Boolean dodajRadnika(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti, String username, String password)
 		{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				Transaction t = session.beginTransaction();
-				Radnik m = new Radnik(ime, prezime, brojTelefona, adresa, email, pozicija, nivoOvlasti);
+				Radnik m = new Radnik(ime, prezime, brojTelefona, adresa, email, pozicija, nivoOvlasti, username, password);
 				Long id = (Long) session.save(m);
 				m.setId(id);
 				t.commit();
@@ -160,12 +160,12 @@ public class KompanijaFacade implements IKompanijaFacade {
 			}
 		}
 		
-		public Boolean dodajMenadzera(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti)
+		public Boolean dodajMenadzera(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti, String username, String password)
 		{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				Transaction t = session.beginTransaction();
-				Menadzer m = new Menadzer(ime, prezime, brojTelefona, adresa, email, pozicija, nivoOvlasti);
+				Menadzer m = new Menadzer(ime, prezime, brojTelefona, adresa, email, pozicija, nivoOvlasti, username, password);
 				Long id = (Long) session.save(m);
 				m.setId(id);
 				t.commit();
@@ -285,26 +285,6 @@ public class KompanijaFacade implements IKompanijaFacade {
 			else {
 				return m1;
 			}
-			/*if(rezultati.size() == 0) {
-			String hql1 = "FROM Radnik R WHERE R.username = '" + username + "' AND R.password = '" + password + "'";
-			Query query1 = session.createQuery(hql1);
-			List rezultati1 = query.list();
-			ArrayList<Radnik> lista1 = new ArrayList<Radnik> ();
-			for (Iterator iterator1 = rezultati1.iterator(); iterator1.hasNext();)
-			{
-				Radnik m1 = (Radnik)iterator1.next(); 
-			    lista1.add(m1);
-		    }
-			if(lista1.size() == 0) {
-				System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-			}
-			if(lista1.size() == 1) {
-				m = lista1.get(0);
-			}
-			t.commit();
-			return m;
-		}*/
-		//else {
 		}
 		
 		public Osoba dajMenadzeraUsernamePassword(String username, String password) {
