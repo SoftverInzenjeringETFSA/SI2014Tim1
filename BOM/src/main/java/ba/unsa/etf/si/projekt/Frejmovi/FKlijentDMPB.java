@@ -19,6 +19,8 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.text.MaskFormatter;
 
+import ba.unsa.etf.si.projekt.Validacija.Validator;
+
 public class FKlijentDMPB {
 
 	private JFrame frame;
@@ -116,6 +118,12 @@ public class FKlijentDMPB {
 		    	
 		    }
 		});
+		
+		txtFdsfd.setInputVerifier(new Validator(frame,txtFdsfd,"Morate popuniti ovo polje"," "));
+		textField_1.setInputVerifier(new Validator(frame,textField_1,"Morate popuniti ovo polje"," "));
+		textField_3.setInputVerifier(new Validator(frame,textField_3,"Morate popuniti ovo polje"," "));
+		textField_4.setInputVerifier(new Validator(frame,textField_4,"Morate popuniti ovo polje","email"));
+		
 	}
 
 	/**
