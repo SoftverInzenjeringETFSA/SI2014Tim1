@@ -1,6 +1,7 @@
 package ba.unsa.etf.si.projekt.ServisnaImplementacija;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.*;
@@ -53,9 +54,72 @@ public class KompanijaFacade implements IKompanijaFacade {
 			}
 		}
 		
-		public Osoba returnByImePrezime(String ime, String prezime)
+		public Osoba returnByImePrezime(String ime, String prezime, TipOsobe tip)
 		{
-			return new Osoba();
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Osoba m = null;
+			try {
+			if(TipOsobe.menadzer == tip) {
+				Transaction t = session.beginTransaction();
+				String hql = "FROM Menadzer M WHERE M.ime = '" + ime + "' AND M.prezime = '" + prezime + "'";
+				Query query = session.createQuery(hql);
+				List rezultati = query.list();
+				ArrayList<Menadzer> lista = new ArrayList<Menadzer> ();
+				for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
+				{
+					Menadzer m1 = (Menadzer)iterator1.next(); 
+				    lista.add(m1);
+			    }
+				if(lista.size() == 1) {
+					m = lista.get(0);
+				}
+				t.commit();
+				return m;
+			}
+			else if(TipOsobe.klijent == tip) {
+				Transaction t = session.beginTransaction();
+				String hql = "FROM Klijent K WHERE K.ime = '" + ime + "' AND K.prezime = '" + prezime + "'";
+				Query query = session.createQuery(hql);
+				List rezultati = query.list();
+				ArrayList<Klijent> lista = new ArrayList<Klijent> ();
+				for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
+				{
+					Klijent m1 = (Klijent)iterator1.next(); 
+				    lista.add(m1);
+			    }
+				if(lista.size() == 1) {
+					m = lista.get(0);
+				}
+				t.commit();
+				return m;
+			}
+			else if(TipOsobe.radnik == tip) {
+				Transaction t = session.beginTransaction();
+				String hql = "FROM Radnik R WHERE R.ime = '" + ime + "' AND R.prezime = '" + prezime + "'";
+				Query query = session.createQuery(hql);
+				List rezultati = query.list();
+				ArrayList<Radnik> lista = new ArrayList<Radnik> ();
+				for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
+				{
+					Radnik m1 = (Radnik)iterator1.next(); 
+				    lista.add(m1);
+			    }
+				if(lista.size() == 1) {
+					m = lista.get(0);
+				}
+				t.commit();
+				return m;
+			}
+			else {
+				return m;
+			}
+			}
+			catch(Exception e) {
+				return m;
+			}
+			finally {
+				session.close();
+			}
 		}
 		
 		public Boolean dodajKlijenta(String ime, String prezime, String brojTelefona, String adresa, String email, List<Narudzbenica> narudzbe)
@@ -114,6 +178,54 @@ public class KompanijaFacade implements IKompanijaFacade {
 				session.close();
 			}
 			
+		}
+		
+		public Boolean mijenjajKlijenta(Klijent k) {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				session.update(k);
+				t.commit();
+				return true;
+			}
+			catch (Exception e) {
+				return false;
+			}
+			finally {
+				session.close();
+			}	
+		}
+		
+		public Boolean mijenjajRadnika(Radnik r) {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				session.update(r);
+				t.commit();
+				return true;
+			}
+			catch (Exception e) {
+				return false;
+			}
+			finally {
+				session.close();
+			}	
+		}
+		
+		public Boolean mijenjajMenadzera(Menadzer m) {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				session.update(m);
+				t.commit();
+				return true;
+			}
+			catch (Exception e) {
+				return false;
+			}
+			finally {
+				session.close();
+			}	
 		}
 		
 		public Boolean obrisiOsobu(Osoba osoba)

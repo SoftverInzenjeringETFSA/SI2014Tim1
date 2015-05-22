@@ -13,7 +13,7 @@ public interface IKompanijaFacade {
 	public Osoba returnById(long id, TipOsobe tip);
 	
 	// vraća osobu po prosljeđenom parametru ime
-	public Osoba returnByImePrezime(String ime, String Prezime);
+	public Osoba returnByImePrezime(String ime, String Prezime, TipOsobe tip);
 	
 	// kreira i dodaje novog klijenta
 	public Boolean dodajKlijenta(String ime, String prezime, String brojTelefona, String adresa, String email, List<Narudzbenica> narudzbe);
@@ -23,6 +23,15 @@ public interface IKompanijaFacade {
 	
 	// kreira i dodaje novog menadzera
 	public Boolean dodajMenadzera(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti);
+	
+	//mijenja klijenta
+	public Boolean mijenjajKlijenta(Klijent k);
+	
+	//mijenja radnika
+	public Boolean mijenjajRadnika(Radnik r);
+	
+	//mijenja radnika
+	public Boolean mijenjajMenadzera(Menadzer m);
 	
 	// brise osobu prosljeđenu kao parametar
 	public Boolean obrisiOsobu(Osoba osoba);
