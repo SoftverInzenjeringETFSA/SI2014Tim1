@@ -3,9 +3,12 @@ package ba.unsa.etf.si.projekt.Validacija;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.*;
+import java.io.File;
+import java.io.InputStream;
 public abstract class AbstractValidator extends InputVerifier implements KeyListener {
     protected JDialog popup;
     protected Object parent;
@@ -17,14 +20,15 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
     protected String tip;
 	
     private AbstractValidator() {
-        color = new Color(243, 255, 159);
+        color = new Color(255, 250 ,250);
     }
 	
     private AbstractValidator(JComponent c, String message) {
         this();
         c.addKeyListener(this);
         messageLabel = new JLabel(message + " ");
-        image = new JLabel(new ImageIcon("exception_16x16.png"));
+        image = new JLabel(new ImageIcon(this.getClass().getResource("/ikonica.png")));
+       
     }
     
     public AbstractValidator (JDialog parent, JComponent c, String message) {		
@@ -61,7 +65,8 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
 		 this();
 	        component.addKeyListener(this);
 	        messageLabel = new JLabel(message + " ");
-	        image = new JLabel(new ImageIcon("exception_16x16.png"));
+	        image = new JLabel(new ImageIcon(this.getClass().getResource("/ikonica.png")));
+	
 		
 	}
 
@@ -76,8 +81,8 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
 			
           // if(parent instanceof WantsValidationStatus)
           //     ((WantsValidationStatus)parent).validateFailed();
-			
-            c.setBackground(Color.PINK);
+        	  Color color1=new Color(255,228,225);
+            c.setBackground(color1);
             popup.setSize(0, 0);
             popup.setLocationRelativeTo(c);
             point = popup.getLocation();
@@ -85,6 +90,7 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
             popup.setLocation(point.x-(int)cDim.getWidth()/2,
                 point.y+(int)cDim.getHeight()/2);
             popup.pack();
+            
             popup.setVisible(true);
             return false;
         }

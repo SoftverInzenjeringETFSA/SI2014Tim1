@@ -105,7 +105,7 @@ public class FSastavnicaDM {
 		    	
 		    }
 		});
-		textField.setInputVerifier(new Validator(frame,textField,"Morate popuniti ovo polje"," "));
+		textField.setInputVerifier(new Validator(frame,textField,"Molimo da popunite ovo polje",""));
 	}
 
 	/**
