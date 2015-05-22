@@ -18,6 +18,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
 
+import ba.unsa.etf.si.projekt.Klase.Ovlasti;
+import ba.unsa.etf.si.projekt.ServisnaImplementacija.KompanijaFacade;
 import ba.unsa.etf.si.projekt.Validacija.Validator;
 
 public class FKorisnikDMPB {
@@ -244,6 +246,9 @@ public class FKorisnikDMPB {
 					//azurirati bazu npr
 					//ispisati messageBox ?
 					//vratiti se nazad
+					
+					KompanijaFacade f = new KompanijaFacade();
+					f.dodajMenadzera("das", "23434", "sds", "dasds", "dsad", "dasd", Ovlasti.kreiranjeIzvjestaja, "", "sd");
 				}
 				if(akcija.equals("Brisanje"))
 				{
