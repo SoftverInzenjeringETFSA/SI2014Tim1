@@ -80,22 +80,17 @@ public class DataGrid {
 			List<Klijent> klijenti1 = new ArrayList<Klijent>();
 			if(name != null && value != null)
 			{
-				//sada pozivamo neku metodu za pretragu
-				//korisnici = getUsersFor(name, value);
-				//name je po cemu se vrsi pretraga
-				
 				
 			}
 			else
 			{
-				//ovdje ce se pozivati metoda koja uzima sve korisnike iz baze
+		
 			KompanijaFacade kf=new KompanijaFacade();
 				klijenti = kf.listaOsoba(TipOsobe.klijent);
 				for(int i=0;i<klijenti.size();i++)
 					klijenti1.add((Klijent)klijenti.get(i));
 		
 			}
-			
 			Object columnsName[] = { "ID", "Ime i prezime", "Telefon", " Adresa","Email"};
 			Object rows[][] = new Object[klijenti1.size()][5];
 			
