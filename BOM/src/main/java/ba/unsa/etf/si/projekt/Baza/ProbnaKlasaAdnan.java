@@ -9,7 +9,7 @@ import ba.unsa.etf.si.projekt.Util.HibernateUtil;
 import ba.unsa.etf.si.projekt.Klase.*;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.*;
 
-public class ProbnaKlasa {
+public class ProbnaKlasaAdnan {
 	public static void main (String[] args) {
 		KompanijaFacade kf = new KompanijaFacade();
 		//System.out.println((String)kf.returnById((long)7, TipOsobe.menadzer).getIme());
