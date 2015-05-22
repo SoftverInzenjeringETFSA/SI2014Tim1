@@ -19,9 +19,6 @@ public class ProbnaKlasaZlatan {
 		else {
 			System.out.println("null je");
 		}
-		
-		
-		
 	}
 
 }

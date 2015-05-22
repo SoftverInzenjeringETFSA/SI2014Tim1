@@ -51,7 +51,7 @@ public class Radnik extends Osoba {
 	}
 	public Radnik() {}
 	
-	public Radnik(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti) {
+	public Radnik(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti, String username, String password) {
 		this.setIme(ime);
 		this.setPrezime(prezime);
 		this.setBrojTelefona(brojTelefona);
@@ -59,5 +59,7 @@ public class Radnik extends Osoba {
 		this.setEmail(email);
 		this.setPozicija(pozicija);
 		this.setNivoOvlasti(nivoOvlasti);
+		this.setUsername(username);
+		this.setPassword(password);
 	}
 }
