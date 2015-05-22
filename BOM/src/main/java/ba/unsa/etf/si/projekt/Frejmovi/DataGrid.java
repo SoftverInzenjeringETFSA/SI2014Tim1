@@ -44,17 +44,8 @@ public class DataGrid {
 			}
 			else
 			{
-				//ovdje ce se pozivati metoda koja uzima sve korisnike iz baze
-				
 				KompanijaFacade k = new KompanijaFacade();
 				List<Osoba> osobe = k.listaOsoba(TipOsobe.menadzer);
-				
-				/*
-				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-				Date d = new Date();
-				String datum = dateFormat.format(d);
-				*/
-				
 				Object columnsName[] = { "ID", "Ime i prezime", "Telefon", "Korisnicko ime", "Email"};
 				Object rows[][] = new Object[osobe.size()][5];
 				
