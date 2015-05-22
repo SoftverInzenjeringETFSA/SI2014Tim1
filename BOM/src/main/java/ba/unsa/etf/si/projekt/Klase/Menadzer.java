@@ -17,6 +17,8 @@ public class Menadzer extends Osoba {
 	private String pozicija;
 	@Enumerated(EnumType.ORDINAL)
 	private Ovlasti ovlasti;
+	private String username;
+	private String password;
 	public long getId() {
 		return id;
 	}
@@ -34,6 +36,19 @@ public class Menadzer extends Osoba {
 	}
 	public void setOvlasti(Ovlasti ovlasti) {
 		this.ovlasti = ovlasti;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	public Menadzer() {}

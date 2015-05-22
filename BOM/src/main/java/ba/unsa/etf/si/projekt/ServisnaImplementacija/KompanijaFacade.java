@@ -251,5 +251,87 @@ public class KompanijaFacade implements IKompanijaFacade {
 				session.close();
 			}
 		}
-
+		
+		
+		public Osoba returnByUsernamePassword(String username, String password) {
+			Menadzer m1 = (Menadzer) dajMenadzeraUsernamePassword(username, password);
+			if(m1 == null) {
+				Session session = HibernateUtil.getSessionFactory().openSession();
+				Osoba m = null;
+				try {
+					Transaction t = session.beginTransaction();
+					String hql = "FROM Radnik R WHERE R.username = '" + username + "' AND R.password = '" + password + "'";
+					Query query = session.createQuery(hql);
+					List rezultati = query.list();
+					ArrayList<Radnik> lista = new ArrayList<Radnik> ();
+					for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
+					{
+						Radnik m2 = (Radnik)iterator1.next(); 
+					    lista.add(m2);
+					   }
+					if(lista.size() == 1) {
+					m = lista.get(0);
+					}
+					t.commit();
+					return m;
+				}
+				catch(Exception e) {
+					return m;
+				}
+				finally {
+					session.close();
+				}
+			}
+			else {
+				return m1;
+			}
+			/*if(rezultati.size() == 0) {
+			String hql1 = "FROM Radnik R WHERE R.username = '" + username + "' AND R.password = '" + password + "'";
+			Query query1 = session.createQuery(hql1);
+			List rezultati1 = query.list();
+			ArrayList<Radnik> lista1 = new ArrayList<Radnik> ();
+			for (Iterator iterator1 = rezultati1.iterator(); iterator1.hasNext();)
+			{
+				Radnik m1 = (Radnik)iterator1.next(); 
+			    lista1.add(m1);
+		    }
+			if(lista1.size() == 0) {
+				System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+			}
+			if(lista1.size() == 1) {
+				m = lista1.get(0);
+			}
+			t.commit();
+			return m;
+		}*/
+		//else {
+		}
+		
+		public Osoba dajMenadzeraUsernamePassword(String username, String password) {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Osoba m = null;
+			try {
+				Transaction t = session.beginTransaction();
+				String hql = "FROM Menadzer M WHERE M.username = '" + username + "' AND M.password = '" + password + "'";
+				Query query = session.createQuery(hql);
+				List rezultati = query.list();
+				ArrayList<Menadzer> lista = new ArrayList<Menadzer> ();
+				for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
+				{
+					Menadzer m1 = (Menadzer)iterator1.next(); 
+				    lista.add(m1);
+				   }
+				if(lista.size() == 1) {
+				m = lista.get(0);
+				}
+				t.commit();
+				return m;
+			}
+			catch(Exception e) {
+				return m;
+			}
+			finally {
+				session.close();
+			}
+		}
 }

@@ -17,6 +17,8 @@ public class Radnik extends Osoba {
 	private String pozicija;
 	@Enumerated(EnumType.ORDINAL) 
 	private Ovlasti nivoOvlasti;
+	private String username;
+	private String password;
 	public String getPozicija() {
 		return pozicija;
 	}
@@ -35,7 +37,18 @@ public class Radnik extends Osoba {
 	public void setId(long id) {
 		this.id = id;
 	}
-	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public Radnik() {}
 	
 	public Radnik(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti) {
