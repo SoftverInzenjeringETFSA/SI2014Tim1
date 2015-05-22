@@ -418,7 +418,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			}
 		}
 		
-				
+		// lista menadzera		
 		public List<Menadzer> returnListaMenadzera()
 		{
 			Session session = HibernateUtil.getSessionFactory().openSession();
