@@ -43,7 +43,13 @@ public class ProbnaKlasaLejla {
 			System.out.println(_materijali.get(i).getSerijskiBroj());
 		}
 	*/
-		
+		Sastavnica p2=new Sastavnica();
+		p2 = sf.pretragaSastavnica("00S1");
+		if(p2 != null)
+			System.out.println(p2.getDatumKreiranja());
+		else
+			System.out.println("ne valja");
+		//sf.dodajMaterijal(m2);
 		
 		
 	}
