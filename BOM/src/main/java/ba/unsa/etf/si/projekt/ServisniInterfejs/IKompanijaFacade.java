@@ -35,4 +35,9 @@ public interface IKompanijaFacade {
 	
 	// brise osobu prosljeđenu kao parametar
 	public Boolean obrisiOsobu(Osoba osoba);
+	
+	//vraca osobu za login
+	public Osoba returnByUsernamePassword(String username, String password);
+	
+	public Osoba dajMenadzeraUsernamePassword(String username, String password);
 }
