@@ -131,6 +131,7 @@ public class Menadzer {
 				    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
 				    	
 				    	//parentFrame.setEnabled(true);
+				    	
 				    	//parentFrame.setVisible(true);
 				    }
 				});
