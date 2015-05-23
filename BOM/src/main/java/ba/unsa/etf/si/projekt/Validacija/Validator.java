@@ -35,7 +35,7 @@ public class Validator extends AbstractValidator{
 			else if(tip.equals("adresa")) return ValidirajAdresu( ((JTextField)c).getText());
 			else if(tip.equals("korIme")) return ValidirajKorisnickoIme( ((JTextField)c).getText());
 			else if(tip.equals("pass")) return ValidirajSifru( ((JPasswordField)c).getText());
-			//else if(tip.equals("telefon")) return ValidirajJeLiPrazno(((JFormattedTextField)c).getText());
+			else if(tip.equals("telefon")) return ValidirajTelefon(((JFormattedTextField)c).getText());
 			else if(tip.equals(""))return ValidirajTekst( ((JTextField)c).getText());
 			return true;
 		    
@@ -43,6 +43,13 @@ public class Validator extends AbstractValidator{
 	public  Boolean ValidirajJeLiPrazno(String kontrolaTekst)
 	{
 		if(kontrolaTekst.equals(""))
+			return false;
+		return true;
+	}	
+	//validirajTelefon
+	public  Boolean ValidirajTelefon(String kontrolaTekst)
+	{
+		if(kontrolaTekst.equals("___-___-___"))
 			return false;
 		return true;
 	}	
@@ -123,6 +130,7 @@ public class Validator extends AbstractValidator{
 		}
 		else return false;
 	}
+	
 	/*public static Boolean jeLiBroj(String broj)
 	{
 		if(broj.isEmpty()) return false;
