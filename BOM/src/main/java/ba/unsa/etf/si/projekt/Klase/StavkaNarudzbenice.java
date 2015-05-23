@@ -16,6 +16,18 @@ public class StavkaNarudzbenice {
 	private Sastavnica proizvod;
 	private double kolicina;
 	
+	public StavkaNarudzbenice()
+	{
+		
+	}
+	
+	public StavkaNarudzbenice(Sastavnica s, Narudzbenica n, double k)
+	{
+		this.proizvod = s;
+		this.narudzbenica = n;
+		this.kolicina = k;
+	}
+	
 	public long getId() {
 		return id;
 	}
