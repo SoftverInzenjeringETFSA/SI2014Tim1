@@ -8,10 +8,10 @@ public class StavkaNarudzbenice {
 	@GeneratedValue
 	@Column(name = "stavka_nar_id")
 	private long id;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "narudzbenica_id") 
 	private Narudzbenica narudzbenica;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "sastavnica_id") 
 	private Sastavnica proizvod;
 	private double kolicina;

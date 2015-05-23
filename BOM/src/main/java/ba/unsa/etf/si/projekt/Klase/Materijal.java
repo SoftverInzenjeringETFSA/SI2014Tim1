@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -36,7 +37,7 @@ public class Materijal {
 	private Kategorija kategorija;
 	private double prodajnaCijena;
 	private Date datumIstekaRoka;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	private Radnik kreirao;
 	private String mjernaJedinica;
 	
