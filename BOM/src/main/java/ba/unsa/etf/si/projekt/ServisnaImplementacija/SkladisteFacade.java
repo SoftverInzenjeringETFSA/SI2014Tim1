@@ -26,7 +26,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			return _materijali;
 			}
 			catch (Exception e) {
-				return (List<Materijal>) e;
+				return new ArrayList<Materijal>();
 			}
 			finally {
 				session.close();
@@ -92,8 +92,8 @@ public class SkladisteFacade implements ISkladisteFacade {
 			try {
 			
 				Transaction t = session.beginTransaction();
-				String hql = "FROM Materijal M WHERE M.serijskiBroj = '" + serijskiBroj+ "'";
-				Query query = session.createQuery(hql);
+				String hql = "FROM Materijal M WHERE M.serijskiBroj = :serijskiBroj";
+				Query query = session.createQuery(hql).setParameter("serijskiBroj", serijskiBroj);
 				List rezultati = query.list();
 				ArrayList<Materijal> lista = new ArrayList<Materijal> ();
 				for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
@@ -130,7 +130,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			return _proizvodi;
 			}
 			catch (Exception e) {
-				return (List<Proizvod>) e;
+				return new ArrayList<Proizvod>();
 			}
 			finally {
 				session.close();
@@ -231,7 +231,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			return _narudzbenice;
 			}
 			catch (Exception e) {
-				return (List<Narudzbenica>) e;
+				return new ArrayList<Narudzbenica>();
 			}
 			finally {
 				session.close();
@@ -430,7 +430,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			return _menadzeri;
 			}
 			catch (Exception e) {
-				return (List<Menadzer>) e;
+				return new ArrayList<Menadzer>();
 			}
 			finally {
 				session.close();
