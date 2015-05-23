@@ -54,21 +54,27 @@ public class ProbnaKlasaLejla {
 		kf.dodajRadnika("radnik", "vatkić", "061/vato", "adresa", "email", "pozicija", null, "user", "sifra");
 		
 		*/
-		/*List<Materijal> _materijali = sf.sortirajMaterijale(null, " ", " ");
+		/*List<Materijal> _materijali = sf.sortirajMaterijale(" ", " ", "kolicina");
 		for(int i=0; i<_materijali.size(); i++) {
-			System.out.println(_materijali.get(i).getId());
-		}
-		*/
-		
-		Klijent klijent = new Klijent();
-		//kf.dodajKlijenta("vato", "vatkic", "0661/vato", null, null, null);
-		
+			System.out.println(_materijali.get(i).getKolicina());
+		}*/
 		
 		 
-		List<Klijent> _k = sf.sortirajKlijenta("klijent_id", "2", " ");
+		/*List<Menadzer> _k = kf.sortirajMenadzera(" ", " ", "brojTelefona ");
 		for(int i=0; i<_k.size(); i++) {
-			System.out.println(_k.get(i).getId());
-		}
+			System.out.println(_k.get(i).getPrezime()+ " " + _k.get(i).getIme());
+		}*/
+		/*
+		List<Narudzbenica> _n = sf.sortirajNarudzbenice(" ", " ", " serijskiBroj");
+		for(int i=0; i<_n.size(); i++) {
+			System.out.println(_n.get(i).getId() + " " +_n.get(i).getSerijskiBroj() + " " + _n.get(i).getDatumKreiranja());
+		}		
+		*/
+		/*
+		List<Sastavnica> _s = sf.sortirajSastavnice("serijskiBroj ", "0S112", " datumKreiranja");
+		for(int i=0; i<_s.size(); i++) {
+			System.out.println(_s.get(i).getId() + " " +_s.get(i).getSerijskiBroj() + " " + _s.get(i).getDatumKreiranja());
+		}*/
 	}
 	
 

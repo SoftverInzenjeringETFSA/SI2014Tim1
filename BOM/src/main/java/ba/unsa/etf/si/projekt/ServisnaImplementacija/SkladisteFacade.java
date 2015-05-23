@@ -528,11 +528,11 @@ public class SkladisteFacade implements ISkladisteFacade {
 					t.commit();
 					return listaMaterijala;
 				}
-				//sort null
-				if(name != null && value != null && (sort == null || sort.equals(" ")))
+				//sort null, ostali razliciti od null
+				else if(name != null && name != " " && value != null && value != " " && (sort == null || sort.equals(" ")))
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Materijal  WHERE " + name + " LIKE '" + value + "' ";
+					String hql = "FROM Materijal  WHERE " + name + " LIKE '" + value + "' ORDER BY "+ name;
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Materijal> listaMaterijala = new ArrayList<Materijal> ();
@@ -546,28 +546,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 					return listaMaterijala;	
 				}
 				//svi razliciti od null
-				if(name != null && value != null && sort != null)
+				else if(name != null && name != " " && value != null && value != " " && sort != null && sort != " ")
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Materijal  WHERE " +name + " LIKE '" + value + "' ORDER BY " + sort + " ASC";
-					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
-					List rezultati = query.list();
-					ArrayList<Materijal> listaMaterijala = new ArrayList<Materijal> ();
-					for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
-					{
-						Materijal m1 = (Materijal)iterator1.next(); 
-					    listaMaterijala.add(m1);
-				    }			
-					
-					t.commit();
-					return listaMaterijala;					
-					
-				}
-				//sort razlicit od null
-				if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort != null))
-				{
-					Transaction t = session.beginTransaction();
-					String hql = "FROM Materijal ORDER BY " + sort + " ";
+					String hql = "FROM Materijal  WHERE " +name + " LIKE '" + value + "' ORDER BY " + sort;
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Materijal> listaMaterijala = new ArrayList<Materijal> ();
@@ -578,9 +560,26 @@ public class SkladisteFacade implements ISkladisteFacade {
 				    }			
 					t.commit();
 					return listaMaterijala;					
+					
 				}
-				
-				return new ArrayList<Materijal>();
+				//sort razlicit od null, ostali null
+				else if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort != null))
+				{
+					Transaction t = session.beginTransaction();
+					String hql = "FROM Materijal ORDER BY " + sort;
+					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
+					List rezultati = query.list();
+					ArrayList<Materijal> listaMaterijala = new ArrayList<Materijal> ();
+					for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
+					{
+						Materijal m1 = (Materijal)iterator1.next(); 
+					    listaMaterijala.add(m1);
+				    }			
+					t.commit();
+					return listaMaterijala;					
+				}
+				else
+					return new ArrayList<Materijal>();
 			
 			}
 			catch (Exception e) {
@@ -613,11 +612,11 @@ public class SkladisteFacade implements ISkladisteFacade {
 					t.commit();
 					return listaNarudzbenica;
 				}
-				
-				if(name != null && value != null && (sort == null || sort.equals(" ")))
+				//sort null, ostali razliciti od null
+				else if(name != null && name != " " && value != null && value != " " && (sort == null || sort.equals(" ")))
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Narudzbenica  WHERE " +name + " LIKE '" + value + "' ";
+					String hql = "FROM Narudzbenica  WHERE " + name + " LIKE '" + value + "' ORDER BY " + name;
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Narudzbenica> listaNarudzbenica = new ArrayList<Narudzbenica> ();
@@ -629,11 +628,11 @@ public class SkladisteFacade implements ISkladisteFacade {
 					t.commit();
 					return listaNarudzbenica;	
 				}
-				
-				if(name != null && value != null && sort != null)
+				//svi razliciti od null
+				else if(name != null && name != " " && value != null && value != " " && sort != null && sort != " ")
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Narudzbenica WHERE " + name + " LIKE '" + value + "' ORDER BY " + sort + " ASC";
+					String hql = "FROM Narudzbenica WHERE " + name + " LIKE '" + value + "' ORDER BY " + sort;
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Narudzbenica> listaNarudzbenica = new ArrayList<Narudzbenica> ();
@@ -646,10 +645,11 @@ public class SkladisteFacade implements ISkladisteFacade {
 					return listaNarudzbenica;					
 					
 				}
+				//sort razlicit od null, ostali null
 				if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort != null))
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Narudzbenica ORDER BY " + sort + "  ";
+					String hql = "FROM Narudzbenica ORDER BY " + sort;
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Narudzbenica> listaNarudzbenica = new ArrayList<Narudzbenica> ();
@@ -662,8 +662,8 @@ public class SkladisteFacade implements ISkladisteFacade {
 					t.commit();
 					return listaNarudzbenica;					
 				}
-				
-				return new ArrayList<Narudzbenica>();
+				else 
+					return new ArrayList<Narudzbenica>();
 			
 			}
 			catch (Exception e) {
@@ -697,11 +697,11 @@ public class SkladisteFacade implements ISkladisteFacade {
 					t.commit();
 					return listaSastavnica;
 				}
-				
-				if(name != null && value != null && (sort == null || sort.equals(" ")))
+				//sort null, ostali razliciti od null
+				else if(name != null && name != " " && value != null && value != " " && (sort == null || sort.equals(" ")))
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Sastavnica  WHERE " +name + " LIKE '" + value + "' ";
+					String hql = "FROM Sastavnica  WHERE " +name + " LIKE '" + value + "' ORDER BY " + name;
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Sastavnica> listaSastavnica = new ArrayList<Sastavnica> ();
@@ -713,11 +713,11 @@ public class SkladisteFacade implements ISkladisteFacade {
 					t.commit();
 					return listaSastavnica;	
 				}
-				
-				if(name != null && value != null && sort != null)
+				//svi razliciti od null
+				else if(name != null && name != " " && value != null && value != " " && sort != null && sort != " ")
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Sastavnica WHERE " + name + " LIKE '" + value + "' ORDER BY " + sort + " ASC";
+					String hql = "FROM Sastavnica WHERE " + name + " LIKE '" + value + "' ORDER BY " + sort;
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Sastavnica> listaSastavnica = new ArrayList<Sastavnica> ();
@@ -730,10 +730,11 @@ public class SkladisteFacade implements ISkladisteFacade {
 					return listaSastavnica;					
 					
 				}
-				if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort != null))
+				//sort razlicit od null, ostali null
+				else if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort != null))
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Sastavnica ORDER BY " + sort + " ";
+					String hql = "FROM Sastavnica ORDER BY " + sort;
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Sastavnica> listaSastavnica = new ArrayList<Sastavnica> ();
@@ -742,11 +743,11 @@ public class SkladisteFacade implements ISkladisteFacade {
 						Sastavnica s1 = (Sastavnica)iterator1.next(); 
 					    listaSastavnica.add(s1);
 				    }			
-					
 					t.commit();
 					return listaSastavnica;					
 				}
-				return new ArrayList<Sastavnica>();
+				else 
+					return new ArrayList<Sastavnica>();
 			}
 			catch (Exception e) {
 				
@@ -755,89 +756,6 @@ public class SkladisteFacade implements ISkladisteFacade {
 			finally {
 				session.close();
 			}
-		}
-		
-		//sortiranje klijenata
-		public List<Klijent> sortirajKlijenta(String name, String value, String sort) 
-		{
-			Session session = HibernateUtil.getSessionFactory().openSession();
-			try {
-				//svi parametri null
-				if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort == null || sort.equals(" ")))
-				{	
-					Transaction t = session.beginTransaction();
-					String hql = "FROM Klijent ORDER BY klijent_id";
-					Query query = session.createQuery(hql);
-					List rezultati = query.list();
-					ArrayList<Klijent> listaKlijenata = new ArrayList<Klijent> ();
-					for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
-					{
-						Klijent k1 = (Klijent)iterator1.next(); 
-					    listaKlijenata.add(k1);
-				    }			
-					t.commit();
-					return listaKlijenata;
-				}
-				
-				if(name != null && value != null && (sort == null || sort.equals(" ")))
-				{
-					Transaction t = session.beginTransaction();
-					String hql = "FROM Klijent  WHERE " + name + " LIKE '" + value + "' ORDER BY " + value + " ASC";
-					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
-					List rezultati = query.list();					
-					ArrayList<Klijent> listaKlijenata = new ArrayList<Klijent>();
-					for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
-					{
-						Klijent k1 = (Klijent)iterator1.next(); 
-					    listaKlijenata.add(k1);
-				    }			
-					t.commit();
-					return listaKlijenata;	
-				}
-				
-				if(name != null && value != null && sort != null)
-				{
-					Transaction t = session.beginTransaction();
-					String hql = "FROM Klijent WHERE " + name + " LIKE '" + value + "' ORDER BY " + sort + " ASC";
-					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
-					List rezultati = query.list();
-					ArrayList<Klijent> listaKlijenata = new ArrayList<Klijent> ();
-					for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
-					{
-						Klijent k1 = (Klijent)iterator1.next(); 
-					    listaKlijenata.add(k1);
-				    }			
-					t.commit();
-					return listaKlijenata;					
-					
-				}
-				if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort != null))
-				{
-					Transaction t = session.beginTransaction();
-					String hql = "FROM Klijent ORDER BY " + sort + " ";
-					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
-					List rezultati = query.list();
-					ArrayList<Klijent> listaKlijenata = new ArrayList<Klijent> ();
-					for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
-					{
-						Klijent k1 = (Klijent)iterator1.next(); 
-					    listaKlijenata.add(k1);
-				    }			
-					
-					t.commit();
-					return listaKlijenata;					
-				}
-				return new ArrayList<Klijent>();
-			}
-			catch (Exception e) {
-				
-				return new ArrayList<Klijent>();
-			}
-			finally {
-				session.close();
-			}
-		}
-		
-		
+		}		
 		
 }
