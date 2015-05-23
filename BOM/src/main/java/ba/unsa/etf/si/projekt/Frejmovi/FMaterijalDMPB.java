@@ -17,7 +17,18 @@ import java.awt.event.ActionEvent;
 
 
 
+
+
+import java.util.Date;
+
+import ba.unsa.etf.si.projekt.Klase.Kategorija;
+import ba.unsa.etf.si.projekt.Klase.Materijal;
+import ba.unsa.etf.si.projekt.Klase.Radnik;
+import ba.unsa.etf.si.projekt.Klase.TipMaterijala;
+import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
+
 import com.toedter.calendar.JDateChooser;
+
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
@@ -217,13 +228,19 @@ public class FMaterijalDMPB {
 			public void actionPerformed(ActionEvent e) {
 				//akcija za klik na dugme koje moze imati razlicite f-je
 				//brisanje, kreiranje, modifikovanje, pregled
+				
 				if(akcija.equals("Kreiranje"))
 				{
-					//ovdje treba procitati formu i
-					//uraditi validaciju
-					//azurirati bazu npr
-					//ispisati messageBox ?
-					//vratiti se nazad
+					SkladisteFacade sf= new SkladisteFacade();
+					//(String serijskiBroj, String opis, double kolicina, double granicnaKolicina, TipMaterijala tip, double nabavnaCijena, Date datumNabavke, Kategorija kategorija, double prodajnaCijena, Date datumIstekaRoka, Radnik kreirao, String mjernaJedinica)
+					Double kolicina=(Double)spinner_3.getValue();
+					Double granKolicina=(Double)spinner.getValue();
+					Double nabCijena = (Double)spinner_1.getValue();
+					Double prodCijena = (Double)spinner_2.getValue();
+					Date datum = (Date)dateChooser.getDate();
+					Materijal m = new Materijal(comboBox.getSelectedItem().toString(), comboBox_1.getSelectedItem().toString(), kolicina, granKolicina, TipMaterijala.poluproizvod, nabCijena, datum,Kategorija.drvo,prodCijena,null, null, comboBox_2.getSelectedItem().toString());
+					if(sf.dodajMaterijal(m))
+						MessageBox.infoBox(frame, "Uspoješno ste dodali materijal", "Info");
 				}
 				if( akcija.equals("Modifikovanje"))
 				{

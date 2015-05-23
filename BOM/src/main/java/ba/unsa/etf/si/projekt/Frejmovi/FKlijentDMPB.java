@@ -128,8 +128,7 @@ public class FKlijentDMPB {
 		textField_1.setInputVerifier(new Validator(frame,textField_1,"Molimo unesite ispravno prezime",""));
 		textField_3.setInputVerifier(new Validator(frame,textField_3,"Adresa koju ste unijeli nije ispravna","adresa"));
 		textField_4.setInputVerifier(new Validator(frame,textField_4,"Email adresa mora da sadrži @ te ispravnu domenu","email"));
-        //telefon.setInputVerifier(new Validator(frame,telefon,"Molimo unesite telefon","telefon"));
-		// JOptionPane.showMessageDialog(null, "Uspješno kreiran klijent", "Info", JOptionPane.INFORMATION_MESSAGE);
+		telefon.setInputVerifier(new Validator(frame, telefon, "Molimo unesite telefon","telefon"));
 	}
 
 	/**
@@ -200,7 +199,10 @@ public class FKlijentDMPB {
 				//akcija za klik na dugme koje moze imati razlicite f-je
 				//brisanje, kreiranje, modifikovanje, pregled
 				KompanijaFacade kf=new KompanijaFacade();
-				if(akcija.equals("Kreiranje") || akcija.equals("Modifikovanje"))
+				Boolean da=true;
+				if(txtFdsfd.getInputVerifier()!=null || textField_1.getInputVerifier()!=null || telefon.getInputVerifier()!=null || textField_4.getInputVerifier()!=null || textField_3.getInputVerifier()!=null || textField_4.getInputVerifier()!=null)
+					da=false;
+				if(akcija.equals("Kreiranje"))
 				{
 					 if(akcija.equals("Kreiranje")){
 						String ime=((JTextField)txtFdsfd).getText();
@@ -209,8 +211,12 @@ public class FKlijentDMPB {
 						String email=((JTextField)textField_4).getText();
 						String brojTelefona=((JFormattedTextField)telefon).getText();
 						List<Narudzbenica> narudzbe=new ArrayList<Narudzbenica>();
-				    kf.dodajKlijenta(ime,prezime,brojTelefona,adresa, email, narudzbe);
-				   MessageBox.infoBox(frame, "Klijent je uspješno kreiran", "Info");
+						if(da)
+						{
+							if(kf.dodajKlijenta(ime,prezime,brojTelefona,adresa, email, narudzbe))
+								MessageBox.infoBox(frame, "Klijent je uspješno kreiran", "Info");
+				       }
+						else MessageBox.infoBox(frame, "Molimo unesite sve podatke.", "Greska");
 					}
 					if(akcija.equals("Modifikovanje")){
 					//	tabela
