@@ -19,6 +19,13 @@ public class Radnik extends Osoba {
 	private Ovlasti nivoOvlasti;
 	private String username;
 	private String password;
+	private String JMBG;
+	public String getJMBG() {
+		return JMBG;
+	}
+	public void setJMBG(String jMBG) {
+		JMBG = jMBG;
+	}
 	public String getPozicija() {
 		return pozicija;
 	}
@@ -51,7 +58,7 @@ public class Radnik extends Osoba {
 	}
 	public Radnik() {}
 	
-	public Radnik(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti, String username, String password) {
+	public Radnik(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti, String username, String password, String JMBG) {
 		this.setIme(ime);
 		this.setPrezime(prezime);
 		this.setBrojTelefona(brojTelefona);
@@ -61,5 +68,6 @@ public class Radnik extends Osoba {
 		this.setNivoOvlasti(nivoOvlasti);
 		this.setUsername(username);
 		this.setPassword(password);
+		this.setJMBG(JMBG);
 	}
 }
