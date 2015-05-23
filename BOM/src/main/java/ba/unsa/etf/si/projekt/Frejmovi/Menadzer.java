@@ -139,7 +139,7 @@ public class Menadzer {
 				    public void windowActivated(java.awt.event.WindowEvent windowEvent) {
 				    	
 				    	popuniTabeluKlijent(null,null,null);
-						//popuniTabeluNarudzbenica(null,null,null);
+						popuniTabeluNarudzbenica(null,null,null);
 						popuniTabeluSkladiste(null,null,null);
 						popuniTabeluSastavnica(null,null,null);
 				    }
