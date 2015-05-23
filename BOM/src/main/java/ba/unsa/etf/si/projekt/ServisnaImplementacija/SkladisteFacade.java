@@ -251,6 +251,30 @@ public class SkladisteFacade implements ISkladisteFacade {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				Transaction t = session.beginTransaction();
+				
+				HashMap<Long, Double> listaMaterijala = new HashMap<Long, Double>();
+				
+				for(StavkaNarudzbenice stavkaN : narudzbenica.getStav_nar())
+				{
+					
+					for (StavkaSastavnice stavkaS : stavkaN.getProizvod().getStavke_sas())
+					{
+						Long id = stavkaS.getMaterijal().getId();
+						listaMaterijala.put(id, listaMaterijala.getOrDefault(id, 0.0) + (stavkaN.getKolicina() * stavkaS.getKolicina()));
+					}
+				}
+				
+				List<Materijal> bazaMaterijala = session.createCriteria(Materijal.class).list();				
+				
+				for (Materijal m : bazaMaterijala)
+				{
+					if (listaMaterijala.containsKey(m.getId()))
+					{
+							m.setKolicina(m.getKolicina() - listaMaterijala.get(m.getId()));
+							session.update(m);
+					}
+				}
+				
 				session.save(narudzbenica);
 				t.commit();	
 				return true;
@@ -458,7 +482,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 					for (StavkaSastavnice stavkaS : stavkaN.getProizvod().getStavke_sas())
 					{
 						Long id = stavkaS.getMaterijal().getId();
-						listaMaterijala.put(id, listaMaterijala.getOrDefault(id, 0.0) + (stavkaN.getKolicina() *stavkaS.getKolicina()));
+						listaMaterijala.put(id, listaMaterijala.getOrDefault(id, 0.0) + (stavkaN.getKolicina() * stavkaS.getKolicina()));
 					}
 				}
 				
@@ -487,4 +511,5 @@ public class SkladisteFacade implements ISkladisteFacade {
 			}
 
 		}
+		
 }
