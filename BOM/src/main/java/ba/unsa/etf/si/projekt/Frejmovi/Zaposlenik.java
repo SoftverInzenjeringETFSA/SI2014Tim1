@@ -26,6 +26,8 @@ import javax.swing.UIManager;
 
 
 
+
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -53,8 +55,13 @@ public class Zaposlenik {
 	private JFrame frame;
 	private JTable table_3;
 	private JTextField textField_1;
-	private JTextField textField_3;
+	private JTextField textField_3;	
 	private JTable table_2;
+	private JScrollPane scrollPane_2;
+	private DataGrid dataGSastavnica;
+	private JScrollPane scrollPane_3;
+	private DataGrid dataGSkladiste;
+
 
 	/**
 	 * Launch the application.
@@ -92,7 +99,8 @@ public class Zaposlenik {
 	 */
 	public Zaposlenik() {
 		initialize();
-		
+		popuniTabeluSastavnice(null,null,null);
+		popuniTabeluSkladiste(null,null,null);
 		//postavlanje akcije za izlaz iz frejma
 		frame.addWindowListener(new java.awt.event.WindowAdapter() {
 		    @Override
@@ -241,41 +249,16 @@ public class Zaposlenik {
 				.createTitledBorder("Pregled/odabir sastavnice"));
 		panel.add(panel_19);
 		panel_19.setLayout(null);
-
-		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2
-				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane_2
-				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_2 = new JScrollPane();
+		scrollPane_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane_2.setBounds(12, 26, 630, 229);
 		panel_19.add(scrollPane_2);
 
-		Object rowDataSastavnice[][] = { { "", "", "", "", "" },
-				{ "", "", "", "", "" }, { "", "", "", "", "" },
-				{ "", "", "", "", "" }, { "", "", "", "", "" },
-				{ "", "", "", "", "" }, { "", "", "", "", "" },
-				{ "", "", "", "", "" }, { "", "", "", "", "" },
-				{ "", "", "", "", "" }, { "", "", "", "", "" },
-				{ "", "", "", "", "" } };
-		Object columnNamesSastavnice[] = { "ID", "Naziv", "Cijena", "Trajanje",
-				"Kreirana" };
-
-		table_2 = new JTable(rowDataSastavnice, columnNamesSastavnice);// sastavnice
-		scrollPane_2.setViewportView(table_2);
-
-		JLabel lblNisteOdabraliNiti_3 = new JLabel(
-				"Niste odabrali niti jednu sastavnicu.");
+		JLabel lblNisteOdabraliNiti_3 = new JLabel("Niste odabrali niti jednu sastavnicu.");
 		lblNisteOdabraliNiti_3.setBounds(22, 510, 644, 16);
 		panel.add(lblNisteOdabraliNiti_3);
-
-		// __
-		Object rowDataProizvodi[][] = { { "", "", "", "", "" },
-				{ "", "", "", "", "" }, { "", "", "", "", "" },
-				{ "", "", "", "", "" }, { "", "", "", "", "" },
-				{ "", "", "", "", "" }, { "", "", "", "", "" } };
-		Object columnNamesProizvodi[] = { "ID", "Serijski broj", "Naziv",
-				"Količina", "Datum nabavke" };
-
+		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Skladište", null, panel_1, null);
 		panel_1.setLayout(null);
@@ -287,16 +270,14 @@ public class Zaposlenik {
 		panel_1.add(panel_11);
 		panel_11.setLayout(null);
 
-		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3 = new JScrollPane();
 		scrollPane_3
 				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane_3
 				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_3.setBounds(12, 26, 630, 229);
 		panel_11.add(scrollPane_3);
-		table_3 = new JTable(rowDataProizvodi, columnNamesProizvodi);
-		scrollPane_3.setViewportView(table_3);
-
+		
 		JLabel lblNisteOdabraliNiti_1 = new JLabel(
 				"Niste odabrali niti jedan materijal/poluproizvod");
 		lblNisteOdabraliNiti_1.setBounds(22, 510, 644, 16);
@@ -420,5 +401,18 @@ public class Zaposlenik {
 		});
 		btnOdjava.setBounds(598, 15, 97, 25);
 		frame.getContentPane().add(btnOdjava);
+	}
+	
+	public void popuniTabeluSastavnice(String name, String value, String sort)
+	{
+		dataGSastavnica = new DataGrid("Sastavnica");
+		table_2 = dataGSastavnica.getTable(name, value, sort);
+		scrollPane_2.setViewportView(table_2);
+	}
+	public void popuniTabeluSkladiste(String name, String value, String sort)
+	{
+		dataGSkladiste = new DataGrid("Materijal");
+		table_3 = dataGSkladiste.getTable(name, value, sort);
+		scrollPane_3.setViewportView(table_3);
 	}
 }
