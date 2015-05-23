@@ -79,14 +79,18 @@ public class FKorisnik {
 		    	CustomDialog d = new CustomDialog();
 		    	d.setFrame(frame, null, null);
 		    }
-		});
-		
-		frame.addWindowListener(new java.awt.event.WindowAdapter() {
+		    
 		    @Override
 		    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
 		    	
 		    	parentFrame.setEnabled(true);
 		    	parentFrame.setVisible(true);
+		    }
+		    
+		    @Override
+		    public void windowActivated(java.awt.event.WindowEvent windowEvent) {
+		    	
+		    	popuniTabelu(null,null,null);
 		    }
 		});
 	}
@@ -236,6 +240,4 @@ public class FKorisnik {
 		table = g.getTable(name, value, sort);
 		scrollPane.setViewportView(table);
 	}
-	
-	
 }
