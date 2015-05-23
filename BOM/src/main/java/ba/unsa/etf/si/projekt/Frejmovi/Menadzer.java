@@ -111,9 +111,11 @@ public class Menadzer {
 		initialize();
 		
 		popuniTabeluKlijent(null,null,null);
-		//popuniTabeluNarudzbenica(null,null,null);
+		popuniTabeluNarudzbenica(null,null,null);
 		popuniTabeluSkladiste(null,null,null);
 		popuniTabeluSastavnica(null,null,null);
+		
+		
 		
 		//postavlanje akcije za izlaz iz frejma
 				frame.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -137,7 +139,7 @@ public class Menadzer {
 				    public void windowActivated(java.awt.event.WindowEvent windowEvent) {
 				    	
 				    	popuniTabeluKlijent(null,null,null);
-						//popuniTabeluNarudzbenica(null,null,null);
+						popuniTabeluNarudzbenica(null,null,null);
 						popuniTabeluSkladiste(null,null,null);
 						popuniTabeluSastavnica(null,null,null);
 				    }

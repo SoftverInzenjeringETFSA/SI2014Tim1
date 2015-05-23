@@ -9,13 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import ba.unsa.etf.si.projekt.Klase.Materijal;
-import ba.unsa.etf.si.projekt.Klase.Menadzer;
-import ba.unsa.etf.si.projekt.Klase.Narudzbenica;
-import ba.unsa.etf.si.projekt.Klase.Proizvod;
-import ba.unsa.etf.si.projekt.Klase.Sastavnica;
-import ba.unsa.etf.si.projekt.Klase.StavkaNarudzbenice;
-import ba.unsa.etf.si.projekt.Klase.StavkaSastavnice;
+import ba.unsa.etf.si.projekt.Klase.*;
 import ba.unsa.etf.si.projekt.ServisniInterfejs.ISkladisteFacade;
 import ba.unsa.etf.si.projekt.Util.HibernateUtil;
 
@@ -519,10 +513,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				//svi parametri null
-				if((name == null || name.equals("")) && (value == null || value.equals("")) && (sort == null || sort.equals("")))
+				if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort == null || sort.equals(" ")))
 				{	
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Materijal ORDER BY materijal_id ASC";
+					String hql = "FROM Materijal ORDER BY materijal_id ";
 					Query query = session.createQuery(hql);
 					List rezultati = query.list();
 					ArrayList<Materijal> listaMaterijala = new ArrayList<Materijal> ();
@@ -535,10 +529,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 					return listaMaterijala;
 				}
 				//sort null
-				if(name != null && value != null && (sort == null || sort.equals("")))
+				if(name != null && value != null && (sort == null || sort.equals(" ")))
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Materijal  WHERE " +name + " = " + value;
+					String hql = "FROM Materijal  WHERE " + name + " LIKE '" + value + "' ";
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Materijal> listaMaterijala = new ArrayList<Materijal> ();
@@ -555,7 +549,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				if(name != null && value != null && sort != null)
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Materijal  WHERE " +name + " = " + value + " ORDER BY " + sort + " ASC";
+					String hql = "FROM Materijal  WHERE " +name + " LIKE '" + value + "' ORDER BY " + sort + " ASC";
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Materijal> listaMaterijala = new ArrayList<Materijal> ();
@@ -570,10 +564,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 					
 				}
 				//sort razlicit od null
-				if((name == null || name.equals("")) && (value == null || value.equals("")) && (sort != null))
+				if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort != null))
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Materijal ORDER BY " + sort + " ASC";
+					String hql = "FROM Materijal ORDER BY " + sort + " ";
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Materijal> listaMaterijala = new ArrayList<Materijal> ();
@@ -604,10 +598,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				//svi parametri null
-				if((name == null || name.equals("")) && (value == null || value.equals("")) && (sort == null || sort.equals("")))
+				if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort == null || sort.equals(" ")))
 				{	
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Narudzbenica ORDER BY narudzbenica_id ASC";
+					String hql = "FROM Narudzbenica ORDER BY narudzbenica_id";
 					Query query = session.createQuery(hql);
 					List rezultati = query.list();
 					ArrayList<Narudzbenica> listaNarudzbenica = new ArrayList<Narudzbenica> ();
@@ -620,10 +614,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 					return listaNarudzbenica;
 				}
 				
-				if(name != null && value != null && (sort == null || sort.equals("")))
+				if(name != null && value != null && (sort == null || sort.equals(" ")))
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Narudzbenica  WHERE " +name + " = " + value;
+					String hql = "FROM Narudzbenica  WHERE " +name + " LIKE '" + value + "' ";
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Narudzbenica> listaNarudzbenica = new ArrayList<Narudzbenica> ();
@@ -639,7 +633,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				if(name != null && value != null && sort != null)
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Narudzbenica WHERE " + name + " = " + value + " ORDER BY " + sort + " ASC";
+					String hql = "FROM Narudzbenica WHERE " + name + " LIKE '" + value + "' ORDER BY " + sort + " ASC";
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Narudzbenica> listaNarudzbenica = new ArrayList<Narudzbenica> ();
@@ -652,10 +646,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 					return listaNarudzbenica;					
 					
 				}
-				if((name == null || name.equals("")) && (value == null || value.equals("")) && (sort != null))
+				if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort != null))
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Narudzbenica ORDER BY " + sort + " DESC";
+					String hql = "FROM Narudzbenica ORDER BY " + sort + "  ";
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Narudzbenica> listaNarudzbenica = new ArrayList<Narudzbenica> ();
@@ -688,10 +682,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				//svi parametri null
-				if((name == null || name.equals("")) && (value == null || value.equals("")) && (sort == null || sort.equals("")))
+				if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort == null || sort.equals(" ")))
 				{	
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Sastavnica ORDER BY sastavnica_id ASC";
+					String hql = "FROM Sastavnica ORDER BY sastavnica_id";
 					Query query = session.createQuery(hql);
 					List rezultati = query.list();
 					ArrayList<Sastavnica> listaSastavnica = new ArrayList<Sastavnica> ();
@@ -704,13 +698,12 @@ public class SkladisteFacade implements ISkladisteFacade {
 					return listaSastavnica;
 				}
 				
-				if(name != null && value != null && (sort == null || sort.equals("")))
+				if(name != null && value != null && (sort == null || sort.equals(" ")))
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Sastavnica  WHERE " +name + " = " + value;
+					String hql = "FROM Sastavnica  WHERE " +name + " LIKE '" + value + "' ";
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
-					System.out.println(rezultati.size());
 					ArrayList<Sastavnica> listaSastavnica = new ArrayList<Sastavnica> ();
 					for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
 					{
@@ -724,7 +717,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				if(name != null && value != null && sort != null)
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Sastavnica WHERE " + name + " = " + value + " ORDER BY " + sort + " ASC";
+					String hql = "FROM Sastavnica WHERE " + name + " LIKE '" + value + "' ORDER BY " + sort + " ASC";
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Sastavnica> listaSastavnica = new ArrayList<Sastavnica> ();
@@ -737,10 +730,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 					return listaSastavnica;					
 					
 				}
-				if((name == null || name.equals("")) && (value == null || value.equals("")) && (sort != null))
+				if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort != null))
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Sastavnica ORDER BY " + sort + " DESC";
+					String hql = "FROM Sastavnica ORDER BY " + sort + " ";
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Sastavnica> listaSastavnica = new ArrayList<Sastavnica> ();
@@ -763,6 +756,88 @@ public class SkladisteFacade implements ISkladisteFacade {
 				session.close();
 			}
 		}
+		
+		//sortiranje klijenata
+		public List<Klijent> sortirajKlijenta(String name, String value, String sort) 
+		{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				//svi parametri null
+				if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort == null || sort.equals(" ")))
+				{	
+					Transaction t = session.beginTransaction();
+					String hql = "FROM Klijent ORDER BY klijent_id";
+					Query query = session.createQuery(hql);
+					List rezultati = query.list();
+					ArrayList<Klijent> listaKlijenata = new ArrayList<Klijent> ();
+					for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
+					{
+						Klijent k1 = (Klijent)iterator1.next(); 
+					    listaKlijenata.add(k1);
+				    }			
+					t.commit();
+					return listaKlijenata;
+				}
+				
+				if(name != null && value != null && (sort == null || sort.equals(" ")))
+				{
+					Transaction t = session.beginTransaction();
+					String hql = "FROM Klijent  WHERE " + name + " LIKE '" + value + "' ORDER BY " + value + " ASC";
+					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
+					List rezultati = query.list();					
+					ArrayList<Klijent> listaKlijenata = new ArrayList<Klijent>();
+					for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
+					{
+						Klijent k1 = (Klijent)iterator1.next(); 
+					    listaKlijenata.add(k1);
+				    }			
+					t.commit();
+					return listaKlijenata;	
+				}
+				
+				if(name != null && value != null && sort != null)
+				{
+					Transaction t = session.beginTransaction();
+					String hql = "FROM Klijent WHERE " + name + " LIKE '" + value + "' ORDER BY " + sort + " ASC";
+					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
+					List rezultati = query.list();
+					ArrayList<Klijent> listaKlijenata = new ArrayList<Klijent> ();
+					for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
+					{
+						Klijent k1 = (Klijent)iterator1.next(); 
+					    listaKlijenata.add(k1);
+				    }			
+					t.commit();
+					return listaKlijenata;					
+					
+				}
+				if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort != null))
+				{
+					Transaction t = session.beginTransaction();
+					String hql = "FROM Klijent ORDER BY " + sort + " ";
+					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
+					List rezultati = query.list();
+					ArrayList<Klijent> listaKlijenata = new ArrayList<Klijent> ();
+					for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
+					{
+						Klijent k1 = (Klijent)iterator1.next(); 
+					    listaKlijenata.add(k1);
+				    }			
+					
+					t.commit();
+					return listaKlijenata;					
+				}
+				return new ArrayList<Klijent>();
+			}
+			catch (Exception e) {
+				
+				return new ArrayList<Klijent>();
+			}
+			finally {
+				session.close();
+			}
+		}
+		
 		
 		
 }
