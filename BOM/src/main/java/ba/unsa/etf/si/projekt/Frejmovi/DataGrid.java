@@ -30,7 +30,6 @@ public class DataGrid {
 	public List<Osoba> osobe;
 
 	
-	
 	public DataGrid(String t)
 	{
 		tipTabele = t;//tip tabele
