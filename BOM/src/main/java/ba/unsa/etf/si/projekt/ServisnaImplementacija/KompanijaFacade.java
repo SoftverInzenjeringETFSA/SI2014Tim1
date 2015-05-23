@@ -340,11 +340,11 @@ public class KompanijaFacade implements IKompanijaFacade {
 							t.commit();
 							return listaKlijenata;
 						}
-						
-						if(name != null && value != null && (sort == null || sort.equals(" ")))
+						//sort null, ostali razliciti
+						else if(name != null && name != " " && value != null && value != " " && (sort == null || sort.equals(" ")))
 						{
 							Transaction t = session.beginTransaction();
-							String hql = "FROM Klijent  WHERE " + name + " LIKE '" + value + "' ORDER BY " + value + " ASC";
+							String hql = "FROM Klijent  WHERE " + name + " LIKE '" + value + "' ORDER BY " + name;
 							Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 							List rezultati = query.list();					
 							ArrayList<Klijent> listaKlijenata = new ArrayList<Klijent>();
@@ -356,8 +356,8 @@ public class KompanijaFacade implements IKompanijaFacade {
 							t.commit();
 							return listaKlijenata;	
 						}
-						
-						if(name != null && value != null && sort != null)
+						//svi razliciti od null
+						else if(name != null && name != " " && value != null && value != " " && sort != null && sort != " ")
 						{
 							Transaction t = session.beginTransaction();
 							String hql = "FROM Klijent WHERE " + name + " LIKE '" + value + "' ORDER BY " + sort;
@@ -373,7 +373,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 							return listaKlijenata;					
 							
 						}
-						if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort != null))
+						else if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort != null))
 						{
 							Transaction t = session.beginTransaction();
 							String hql = "FROM Klijent ORDER BY " + sort;

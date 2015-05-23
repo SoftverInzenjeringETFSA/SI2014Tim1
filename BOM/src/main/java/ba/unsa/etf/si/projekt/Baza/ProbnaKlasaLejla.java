@@ -75,6 +75,12 @@ public class ProbnaKlasaLejla {
 		for(int i=0; i<_s.size(); i++) {
 			System.out.println(_s.get(i).getId() + " " +_s.get(i).getSerijskiBroj() + " " + _s.get(i).getDatumKreiranja());
 		}*/
+		/*
+		List<Klijent> _k = kf.sortirajKlijenta(" ", " ", " ");
+		for(int i=0; i<_k.size(); i++) {
+			System.out.println(_k.get(i).getPrezime()+ " " + _k.get(i).getIme());
+		}*/
+		
 	}
 	
 
