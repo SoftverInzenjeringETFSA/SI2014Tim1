@@ -240,7 +240,7 @@ public class FMaterijalDMPB {
 					Date datum = (Date)dateChooser.getDate();
 					Materijal m = new Materijal(comboBox.getSelectedItem().toString(), comboBox_1.getSelectedItem().toString(), kolicina, granKolicina, TipMaterijala.poluproizvod, nabCijena, datum,Kategorija.drvo,prodCijena,null, null, comboBox_2.getSelectedItem().toString());
 					if(sf.dodajMaterijal(m))
-						MessageBox.infoBox(frame, "Uspoješno ste dodali materijal", "Info");
+						MessageBox.infoBox(frame, "Uspješno ste dodali materijal", "Info");
 				}
 				if( akcija.equals("Modifikovanje"))
 				{
