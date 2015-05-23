@@ -251,13 +251,13 @@ public class FKorisnikDMPB {
 					if(comboBox.getSelectedItem().toString().equals("menadžer"))
 					{
 						KompanijaFacade kf = new KompanijaFacade();
-						if(kf.dodajMenadzera(textField.getText(), textField_1.getText(), formattedTextField.getText(), textField_4.getText(), textField_2.getText(), comboBox.getSelectedItem().toString(), Ovlasti.kreiranjeIzvjestaja, textField_5.getText(), passwordField.getText()));
+						if(kf.dodajMenadzera(textField.getText(), textField_1.getText(), formattedTextField.getText(), textField_4.getText(), textField_2.getText(), comboBox.getSelectedItem().toString(), Ovlasti.kreiranjeIzvjestaja, textField_5.getText(), passwordField.getText(), ""));
 							MessageBox.infoBox(frame, "Korisnik je uspješno kreiran", "Info");
 					}
 					else if(comboBox.getSelectedItem().toString().equals("radnik"))
 					{
 						KompanijaFacade kf1 = new KompanijaFacade();
-						if(kf1.dodajRadnika(textField.getText(), textField_1.getText(), formattedTextField.getText(), textField_4.getText(), textField_2.getText(), comboBox.getSelectedItem().toString(), Ovlasti.pretragaMaterijala, textField_5.getText(), passwordField.getText()));
+						if(kf1.dodajRadnika(textField.getText(), textField_1.getText(), formattedTextField.getText(), textField_4.getText(), textField_2.getText(), comboBox.getSelectedItem().toString(), Ovlasti.pretragaMaterijala, textField_5.getText(), passwordField.getText(), ""));
 							MessageBox.infoBox(frame, "Korisnik je uspješno kreiran", "Info");
 					}
 					
