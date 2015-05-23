@@ -145,12 +145,12 @@ public class KompanijaFacade implements IKompanijaFacade {
 			}
 		}
 		
-		public Boolean dodajRadnika(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti, String username, String password)
+		public Boolean dodajRadnika(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti, String username, String password, String JMBG)
 		{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				Transaction t = session.beginTransaction();
-				Radnik m = new Radnik(ime, prezime, brojTelefona, adresa, email, pozicija, nivoOvlasti, username, password);
+				Radnik m = new Radnik(ime, prezime, brojTelefona, adresa, email, pozicija, nivoOvlasti, username, password, JMBG);
 				Long id = (Long) session.save(m);
 				m.setId(id);
 				t.commit();
@@ -164,12 +164,12 @@ public class KompanijaFacade implements IKompanijaFacade {
 			}
 		}
 		
-		public Boolean dodajMenadzera(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti, String username, String password)
+		public Boolean dodajMenadzera(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti, String username, String password, String JMBG)
 		{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				Transaction t = session.beginTransaction();
-				Menadzer m = new Menadzer(ime, prezime, brojTelefona, adresa, email, pozicija, nivoOvlasti, username, password);
+				Menadzer m = new Menadzer(ime, prezime, brojTelefona, adresa, email, pozicija, nivoOvlasti, username, password, JMBG);
 				Long id = (Long) session.save(m);
 				m.setId(id);
 				t.commit();

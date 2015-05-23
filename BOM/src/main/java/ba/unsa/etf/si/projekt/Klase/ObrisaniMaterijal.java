@@ -26,6 +26,19 @@ public class ObrisaniMaterijal {
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Menadzer obrisao;
 	
+	public ObrisaniMaterijal()
+	{
+		
+	}
+	
+	public ObrisaniMaterijal(Materijal m, Date datumBrisanja, String razlogBrisanja, Menadzer menadzer)
+	{
+		this.materijal = m;
+		this.datumBrisanja = datumBrisanja;
+		this.razlogBrisanja = razlogBrisanja;
+		this.obrisao = menadzer;
+	}
+	
 	public Date getDatumBrisanja() {
 		return datumBrisanja;
 	}

@@ -27,6 +27,7 @@ public class Materijal {
 	private String serijskiBroj;
 	private String opis;
 	private double kolicina;
+	private double granicnaKolicina;
 	@Enumerated(EnumType.ORDINAL)
 	private TipMaterijala tip;
 	private double nabavnaCijena;
@@ -104,5 +105,28 @@ public class Materijal {
 	}
 	public void setMjernaJedinica(String mjernaJedinica) {
 		this.mjernaJedinica = mjernaJedinica;
+	}
+	public double getGranicnaKolicina() {
+		return granicnaKolicina;
+	}
+	public void setGranicnaKolicina(double granicnaKolicina) {
+		this.granicnaKolicina = granicnaKolicina;
+	}
+	
+	public Materijal () {}
+	
+	public Materijal (String serijskiBroj, String opis, double kolicina, double granicnaKolicina, TipMaterijala tip, double nabavnaCijena, Date datumNabavke, Kategorija kategorija, double prodajnaCijena, Date datumIstekaRoka, Radnik kreirao, String mjernaJedinica) {
+		this.setSerijskiBroj(serijskiBroj);
+		this.setOpis(opis);
+		this.setKolicina(kolicina);
+		this.setGranicnaKolicina(granicnaKolicina);
+		this.setTip(tip);
+		this.setNabavnaCijena(nabavnaCijena);
+		this.setDatumNabavke(datumNabavke);
+		this.setKategorija(kategorija);
+		this.setProdajnaCijena(prodajnaCijena);
+		this.setDatumIstekaRoka(datumIstekaRoka);
+		this.setKreirao(kreirao);
+		this.setMjernaJedinica(mjernaJedinica);
 	}
 }

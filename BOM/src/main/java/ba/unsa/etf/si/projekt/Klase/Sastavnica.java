@@ -1,5 +1,6 @@
 package ba.unsa.etf.si.projekt.Klase;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,9 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -42,6 +40,42 @@ public class Sastavnica {
 	private double trajanjeProizvodnje;
 	private double cijenaObavljenogRada;
 	private double dodatniTroskovi;
+	private double ukupnaCijena;
+	private String naziv;
+	
+	
+	//c
+	public Sastavnica()
+	{
+		this.stavke_sas = new ArrayList<StavkaSastavnice>();
+	}
+	
+	public Sastavnica(List<StavkaSastavnice> stavke, Menadzer m, String sb, Date dk, double tp, double co, double dt, double uc, String naziv)
+	{
+		this.stavke_sas = stavke;
+		this.izdao = m;
+		this.serijskiBroj = sb;
+		this.datumKreiranja = dk;
+		this.trajanjeProizvodnje = tp;
+		this.cijenaObavljenogRada = co;
+		this.dodatniTroskovi = dt;
+		this.ukupnaCijena = uc;
+		this.naziv = naziv;		
+	}
+	
+	
+	public double getUkupnaCijena() {
+		return ukupnaCijena;
+	}
+	public void setUkupnaCijena(double ukupnaCijena) {
+		this.ukupnaCijena = ukupnaCijena;
+	}
+	public String getNaziv() {
+		return naziv;
+	}
+	public void setNaziv(String naziv) {
+		this.naziv = naziv;
+	}
 	/*
 	public List<Materijal> getMaterijali() {
 		return materijali;

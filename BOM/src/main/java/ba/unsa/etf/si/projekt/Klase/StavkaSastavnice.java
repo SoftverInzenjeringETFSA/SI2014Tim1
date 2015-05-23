@@ -16,6 +16,19 @@ public class StavkaSastavnice {
 	private Materijal materijal;
 	private double kolicina;
 	
+	public StavkaSastavnice()
+	{
+		
+	}
+	
+	// c
+	public StavkaSastavnice(Materijal m, Sastavnica s, double k)
+	{
+		this.materijal = m;
+		this.sastavnica = s;
+		this.kolicina = k;
+	}
+	
 	public long getId() {
 		return id;
 	}
