@@ -10,6 +10,7 @@ import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
 public class Validator extends AbstractValidator{
 	  public Validator(JFrame parent, JTextField c, String message) {
@@ -32,6 +33,8 @@ public class Validator extends AbstractValidator{
 			if(tip.equals("email")) return ValidirajEmail( ((JTextField)c).getText());
 			else if(tip.equals("JMBG")) return ValidirajJMBG( ((JTextField)c).getText());
 			else if(tip.equals("adresa")) return ValidirajAdresu( ((JTextField)c).getText());
+			else if(tip.equals("korIme")) return ValidirajKorisnickoIme( ((JTextField)c).getText());
+			else if(tip.equals("pass")) return ValidirajSifru( ((JPasswordField)c).getText());
 			//else if(tip.equals("telefon")) return ValidirajJeLiPrazno(((JFormattedTextField)c).getText());
 			else if(tip.equals(""))return ValidirajTekst( ((JTextField)c).getText());
 			return true;
@@ -39,7 +42,9 @@ public class Validator extends AbstractValidator{
 		}
 	public  Boolean ValidirajJeLiPrazno(String kontrolaTekst)
 	{
-		return kontrolaTekst.isEmpty();
+		if(kontrolaTekst.equals(""))
+			return false;
+		return true;
 	}	
 	
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -65,14 +70,20 @@ public class Validator extends AbstractValidator{
 	        return matcher.find();
 		}
 	
-	//validacija korisnickog imena u sufre	
-		public  Boolean ValidirajKorisnickoImeSifru(String kontrolaTekst)
+	//validacija korisnickog imena i sifre	
+		public  Boolean ValidirajKorisnickoIme(String kontrolaTekst)
 		{
 			if(kontrolaTekst.length()<4)
 				return false;
 			return true;
 		}
 		
+		public  Boolean ValidirajSifru(String kontrolaTekst)
+		{
+			if(kontrolaTekst.length()<4)
+				return false;
+			return true;
+		}
 		 public static Boolean IsCharDigit(String c)
 	        {
 	            Boolean da=false;

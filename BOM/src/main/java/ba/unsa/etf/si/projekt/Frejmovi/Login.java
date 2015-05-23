@@ -24,6 +24,7 @@ public class Login {
 	private JTextField tfKorisnickoIme;
 	private JButton btnNewButton;
 	private JPasswordField passwordField;
+	private String username;
 
 	/**
 	 * Launch the application.
@@ -119,7 +120,7 @@ public class Login {
 					MessageBox.infoBox(frame, "Pogrešni podaci za prijavu!", "Info");
 				}
 				
-				
+				username=user;
 			}
 		});
 		btnNewButton.setBounds(239, 164, 129, 22);
