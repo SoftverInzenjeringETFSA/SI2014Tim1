@@ -112,4 +112,21 @@ public class Materijal {
 	public void setGranicnaKolicina(double granicnaKolicina) {
 		this.granicnaKolicina = granicnaKolicina;
 	}
+	
+	public Materijal () {}
+	
+	public Materijal (String serijskiBroj, String opis, double kolicina, double granicnaKolicina, TipMaterijala tip, double nabavnaCijena, Date datumNabavke, Kategorija kategorija, double prodajnaCijena, Date datumIstekaRoka, Radnik kreirao, String mjernaJedinica) {
+		this.setSerijskiBroj(serijskiBroj);
+		this.setOpis(opis);
+		this.setKolicina(kolicina);
+		this.setGranicnaKolicina(granicnaKolicina);
+		this.setTip(tip);
+		this.setNabavnaCijena(nabavnaCijena);
+		this.setDatumNabavke(datumNabavke);
+		this.setKategorija(kategorija);
+		this.setProdajnaCijena(prodajnaCijena);
+		this.setDatumIstekaRoka(datumIstekaRoka);
+		this.setKreirao(kreirao);
+		this.setMjernaJedinica(mjernaJedinica);
+	}
 }

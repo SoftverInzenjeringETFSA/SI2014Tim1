@@ -6,6 +6,10 @@ import java.util.List;
 
 import org.hibernate.*;
 
+import java.sql.ResultSet;
+
+import com.mysql.jdbc.ResultSetMetaData;
+
 import ba.unsa.etf.si.projekt.Util.HibernateUtil;
 import ba.unsa.etf.si.projekt.Klase.*;
 import ba.unsa.etf.si.projekt.ServisniInterfejs.*;
@@ -314,4 +318,59 @@ public class KompanijaFacade implements IKompanijaFacade {
 				session.close();
 			}
 		}
+		
+		//
+		public List<Materijal> sortirajMaterijale(String name, String value, String sort) 
+		{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				//svi parametri null
+				if(name == null && value == null && sort == null)
+				{	Transaction t = session.beginTransaction();
+					String hql = "FROM Materijal ORDER BY materijal_id ASC";
+					Query query = session.createQuery(hql);
+					List rezultati = query.list();
+					ArrayList<Materijal> listaMaterijala = new ArrayList<Materijal> ();
+					for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
+					{
+						Materijal m1 = (Materijal)iterator1.next(); 
+					    listaMaterijala.add(m1);
+				    }			
+					t.commit();
+					return listaMaterijala;
+				}
+				
+				if(name != null && value != null && sort == null)
+				{
+					
+					Transaction t = session.beginTransaction();
+					String hql = "FROM Materijal  WHERE " +name + " = " + value;
+					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
+					List rezultati = query.list();
+					System.out.println(rezultati.size());
+					ArrayList<Materijal> listaMaterijala = new ArrayList<Materijal> ();
+					for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
+					{
+						Materijal m1 = (Materijal)iterator1.next(); 
+					    listaMaterijala.add(m1);
+					    System.out.println("aaa");
+				    }			
+					
+					t.commit();
+					return listaMaterijala;					
+					
+				}
+				
+				return new ArrayList<Materijal>();
+			
+			}
+			catch (Exception e) {
+				
+				return new ArrayList<Materijal>();
+			}
+			finally {
+				session.close();
+			}
+		}
+			
 }
