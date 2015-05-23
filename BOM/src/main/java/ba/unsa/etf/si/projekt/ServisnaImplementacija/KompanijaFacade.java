@@ -6,10 +6,6 @@ import java.util.List;
 
 import org.hibernate.*;
 
-import java.sql.ResultSet;
-
-import com.mysql.jdbc.ResultSetMetaData;
-
 import ba.unsa.etf.si.projekt.Util.HibernateUtil;
 import ba.unsa.etf.si.projekt.Klase.*;
 import ba.unsa.etf.si.projekt.ServisniInterfejs.*;
@@ -20,19 +16,19 @@ public class KompanijaFacade implements IKompanijaFacade {
 		{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			Transaction t = session.beginTransaction();
-			List<Osoba> _osobe = null;
+			List<Osoba> osobe = null;
 			if(tip.equals(TipOsobe.menadzer)) {
-				_osobe = session.createCriteria(Menadzer.class).list();
+				osobe = session.createCriteria(Menadzer.class).list();
 			}
 			else if(tip.equals(TipOsobe.klijent)) {
-				_osobe = session.createCriteria(Klijent.class).list();
+				osobe = session.createCriteria(Klijent.class).list();
 			}
 			else if(tip.equals(TipOsobe.radnik)) {
-				_osobe = session.createCriteria(Radnik.class).list();
+				osobe = session.createCriteria(Radnik.class).list();
 			}
 			t.commit();
 			session.close();
-			return _osobe;
+			return osobe;
 		}
 		
 		public Osoba returnById(long id, TipOsobe tip) 
@@ -51,7 +47,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 				return osoba;
 			}
 			catch(Exception e) {
-				return osoba;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -119,7 +115,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 			}
 			}
 			catch(Exception e) {
-				return m;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -138,7 +134,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 				return true;
 			}
 			catch(Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -157,7 +153,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 				return true;
 			}
 			catch(Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -176,7 +172,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 				return true;
 			}
 			catch(Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -193,7 +189,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 				return true;
 			}
 			catch (Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -209,7 +205,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 				return true;
 			}
 			catch (Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -225,7 +221,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 				return true;
 			}
 			catch (Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -249,7 +245,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 				return true;
 			}
 			catch (Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -280,7 +276,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 					return m;
 				}
 				catch(Exception e) {
-					return m;
+					throw new RuntimeException(e);
 				}
 				finally {
 					session.close();
@@ -312,7 +308,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 				return m;
 			}
 			catch(Exception e) {
-				return m;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -392,8 +388,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 						return new ArrayList<Klijent>();
 					}
 					catch (Exception e) {
-						
-						return new ArrayList<Klijent>();
+						throw new RuntimeException(e);
 					}
 					finally {
 						session.close();
@@ -477,8 +472,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 						}
 					}
 					catch (Exception e) {
-						
-						return new ArrayList<Radnik>();
+						throw new RuntimeException(e);
 					}
 					finally {
 						session.close();
@@ -562,8 +556,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 						}
 					}
 					catch (Exception e) {
-						
-						return new ArrayList<Menadzer>();
+						throw new RuntimeException(e);
 					}
 					finally {
 						session.close();

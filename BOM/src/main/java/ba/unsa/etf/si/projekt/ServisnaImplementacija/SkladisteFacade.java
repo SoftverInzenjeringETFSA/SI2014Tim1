@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map.Entry;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -22,10 +21,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				Transaction t = session.beginTransaction();
-				List<Materijal> _materijali = null;
-				_materijali = session.createCriteria(Materijal.class).list();
+				List<Materijal> materijali = null;
+				materijali = session.createCriteria(Materijal.class).list();
 				t.commit();
-			return _materijali;
+			return materijali;
 			}
 			catch (Exception e) {
 				
@@ -127,10 +126,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				Transaction t = session.beginTransaction();
-				List<Proizvod> _proizvodi = null;
-				_proizvodi = session.createCriteria(Proizvod.class).list();
+				List<Proizvod> proizvodi = null;
+				proizvodi = session.createCriteria(Proizvod.class).list();
 				t.commit();
-			return _proizvodi;
+			return proizvodi;
 			}
 			catch (Exception e) {
 				throw new RuntimeException(e);				
@@ -228,10 +227,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				Transaction t = session.beginTransaction();
-				List<Narudzbenica> _narudzbenice = null;
-				_narudzbenice = session.createCriteria(Narudzbenica.class).list();
+				List<Narudzbenica> narudzbenice = null;
+				narudzbenice = session.createCriteria(Narudzbenica.class).list();
 				t.commit();
-			return _narudzbenice;
+			return narudzbenice;
 			}
 			catch (Exception e) {
 				throw new RuntimeException(e);
@@ -352,10 +351,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				Transaction t = session.beginTransaction();
-				List<Sastavnica> _sastavnice = null;
-				_sastavnice = session.createCriteria(Sastavnica.class).list();
+				List<Sastavnica> sastavnice = null;
+				sastavnice = session.createCriteria(Sastavnica.class).list();
 				t.commit();
-			return _sastavnice;
+			return sastavnice;
 			}
 			catch (Exception e) {
 				throw new RuntimeException(e);
@@ -451,10 +450,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				Transaction t = session.beginTransaction();
-				List<Menadzer> _menadzeri = null;
-				_menadzeri = session.createCriteria(Menadzer.class).list();
+				List<Menadzer> menadzeri = null;
+				menadzeri = session.createCriteria(Menadzer.class).list();
 				t.commit();
-			return _menadzeri;
+			return menadzeri;
 			}
 			catch (Exception e) {
 				throw new RuntimeException(e);
