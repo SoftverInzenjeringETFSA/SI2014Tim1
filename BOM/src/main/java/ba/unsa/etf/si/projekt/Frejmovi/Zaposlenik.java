@@ -111,16 +111,22 @@ public class Zaposlenik {
 		    	d.setFrame(frame, "Odjava", 
 		    			"Da li se želite odjaviti sa sistema?");
 		    }
-		});
-		
-		frame.addWindowListener(new java.awt.event.WindowAdapter() {
 		    @Override
 		    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
 		    	
 		    	//parentFrame.setEnabled(true);
 		    	//parentFrame.setVisible(true);
 		    }
+		    @Override
+		    public void windowActivated(java.awt.event.WindowEvent windowEvent) {
+		    	
+
+				popuniTabeluSastavnice(null,null,null);
+				popuniTabeluSkladiste(null,null,null);
+		    }
 		});
+		
+		
 	}
 
 	/**

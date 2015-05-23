@@ -115,6 +115,8 @@ public class Menadzer {
 		popuniTabeluSkladiste(null,null,null);
 		popuniTabeluSastavnica(null,null,null);
 		
+		
+		
 		//postavlanje akcije za izlaz iz frejma
 				frame.addWindowListener(new java.awt.event.WindowAdapter() {
 				    @Override
@@ -124,9 +126,7 @@ public class Menadzer {
 				    	d.setFrame(frame, "Odjava", 
 				    			"Da li se želite odjaviti sa sistema?");
 				    }
-				});
-				
-				frame.addWindowListener(new java.awt.event.WindowAdapter() {
+				    
 				    @Override
 				    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
 				    	
@@ -134,7 +134,17 @@ public class Menadzer {
 				    	
 				    	//parentFrame.setVisible(true);
 				    }
+				    
+				    @Override
+				    public void windowActivated(java.awt.event.WindowEvent windowEvent) {
+				    	
+				    	popuniTabeluKlijent(null,null,null);
+						popuniTabeluNarudzbenica(null,null,null);
+						popuniTabeluSkladiste(null,null,null);
+						popuniTabeluSastavnica(null,null,null);
+				    }
 				});
+				
 				
 	}
 
