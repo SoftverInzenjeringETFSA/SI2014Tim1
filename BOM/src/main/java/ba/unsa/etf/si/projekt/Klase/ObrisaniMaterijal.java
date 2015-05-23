@@ -18,12 +18,12 @@ public class ObrisaniMaterijal {
 	@GeneratedValue
 	@Column(name = "obrisaniMaterijal_id")
 	private long id;
-	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="materijal_id")
 	private Materijal materijal;
 	private Date datumBrisanja;
 	private String razlogBrisanja;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	private Menadzer obrisao;
 	
 	public ObrisaniMaterijal()

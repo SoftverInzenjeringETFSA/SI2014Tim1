@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -23,7 +24,7 @@ public class Sastavnica {
 	@JoinTable(name = "StavkaSastavnice", joinColumns = { @JoinColumn(name = "sastavnica_id") }
 	, inverseJoinColumns = { @JoinColumn(name = "materijal_id") })*/
 	//private List<Materijal> materijali;
-	@OneToMany(mappedBy = "sastavnica")
+	@OneToMany(mappedBy = "sastavnica", fetch = FetchType.EAGER)
 	private List<StavkaSastavnice> stavke_sas;
 	
 	public List<StavkaSastavnice> getStavke_sas() {
@@ -32,7 +33,7 @@ public class Sastavnica {
 	public void setStavke_sas(List<StavkaSastavnice> stavke_sas) {
 		this.stavke_sas = stavke_sas;
 	}
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	private Menadzer izdao;
 	private String serijskiBroj;
 	private double otpad;
