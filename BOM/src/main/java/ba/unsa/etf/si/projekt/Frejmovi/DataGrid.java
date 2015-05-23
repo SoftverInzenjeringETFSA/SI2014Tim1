@@ -111,8 +111,8 @@ public class DataGrid {
 			
 			if(name != null && value != null)
 			{
-				KompanijaFacade kf=new KompanijaFacade();
-				sastavnice=kf.sortirajSastavnice(name,value,sort);
+				
+				sastavnice=sf.sortirajSastavnice(name,value,sort);
 				
 			}
 			else
@@ -146,7 +146,7 @@ public class DataGrid {
 			 narudzbenice = new ArrayList<Narudzbenica>();
 			if(name != null && value != null)
 			{
-				
+				narudzbenice=sf.sortirajNarudzbenice(name, value, sort);
 			}
 			else
 			{
@@ -176,7 +176,7 @@ public class DataGrid {
 			if(name != null && value != null)
 			{
 				
-				
+				materijali=sf.sortirajMaterijale(name, value, sort);
 			}
 			else
 			{
