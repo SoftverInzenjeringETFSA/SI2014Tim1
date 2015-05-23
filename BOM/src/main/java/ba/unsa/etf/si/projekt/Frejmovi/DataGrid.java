@@ -28,6 +28,8 @@ public class DataGrid {
 	public 	 List<Materijal> materijali;
 	public List<Sastavnica> sastavnice;
 	public List<Osoba> osobe;
+	public List<Radnik> korisnici;
+	public  List<Narudzbenica> narudzbenice;
 
 	
 	public DataGrid(String t)
@@ -40,20 +42,17 @@ public class DataGrid {
 		
 		if(tipTabele.equals("Korisnik"))
 		{
-			List<Radnik> korisnici = new ArrayList<Radnik>();
-			
+			korisnici = new ArrayList<Radnik>();
+			KompanijaFacade k = new KompanijaFacade();
 			if(name != null && value != null)
 			{
-				//sada pozivamo neku metodu za pretragu
-				//korisnici = getUsersFor(name, value);
-				//name je po cemu se vrsi pretraga
-				
 				
 			}
 			else
 			{
-				KompanijaFacade k = new KompanijaFacade();
+				
 			      osobe = k.listaOsoba(TipOsobe.menadzer);
+			}
 				Object columnsName[] = { "ID", "Ime i prezime", "Telefon", "Korisnicko ime", "Email"};
 				Object rows[][] = new Object[osobe.size()][5];
 				
@@ -68,7 +67,7 @@ public class DataGrid {
 				
 				table = new JTable(rows, columnsName);
 				
-			}
+			
 			
 			
 		}
@@ -84,7 +83,6 @@ public class DataGrid {
 			else
 			{
 		
-			//KompanijaFacade kf=new KompanijaFacade();
 				klijenti = kf.listaOsoba(TipOsobe.klijent);
 				for(int i=0;i<klijenti.size();i++)
 					klijenti1.add((Klijent)klijenti.get(i));
@@ -108,21 +106,20 @@ public class DataGrid {
 		
 		else if(tipTabele.equals("Sastavnica"))
 		{
-        
+			SkladisteFacade sf = new SkladisteFacade();
+		       sastavnice = new ArrayList<Sastavnica>();
 			
 			if(name != null && value != null)
 			{
-				//sada pozivamo neku metodu za pretragu
-				//korisnici = getUsersFor(name, value);
-				//name je po cemu se vrsi pretraga
-				
+				KompanijaFacade kf=new KompanijaFacade();
+				sastavnice=kf.sortirajSastavnice(name,value,sort);
 				
 			}
 			else
 			{
-				SkladisteFacade sf = new SkladisteFacade();
-		       sastavnice = new ArrayList<Sastavnica>();
+				
 				 sastavnice=sf.returnListaSastavnica();
+			}
 				Object columnsName[] = { "Serijski broj", "Izdao", "Cijena", "Trajanje", "Kreirana"};
 				Object rows[][] = new Object[sastavnice.size()][5];
 				
@@ -137,80 +134,39 @@ public class DataGrid {
 				
 				table = new JTable(rows, columnsName);
 				
-			}
+			
 			
 			
 		}
 		
 		else if(tipTabele.equals("Narudzbenica"))
 		{
-			/*
+			
 			SkladisteFacade sf = new SkladisteFacade();
-			 List<Sastavnica> sastavnice = new ArrayList<Sastavnica>();
-			 sastavnice=sf.returnListaSastavnica();
-			Object columnsName[] = { "Serijski broj", "Izdao", "Cijena", "Trajanje", "Kreirana"};
-			Object rows[][] = new Object[sastavnice.size()][5];
-			
-			for(int i=0; i<sastavnice.size(); i++)
-			{
-				rows[i][0] = sastavnice.get(i).getSerijskiBroj();
-				rows[i][1] = sastavnice.get(i).getIzdao();
-				rows[i][2] =sastavnice.get(i).getCijenaObavljenogRada();
-			    rows[i][3] = sastavnice.get(i).getTrajanjeProizvodnje();
-				rows[i][4] = sastavnice.get(i).getDatumKreiranja();
-			}
-			
-			table = new JTable(rows, columnsName);
-			*/
-			
-			
+			 narudzbenice = new ArrayList<Narudzbenica>();
 			if(name != null && value != null)
 			{
-				//sada pozivamo neku metodu za pretragu
-				//korisnici = getUsersFor(name, value);
-				//name je po cemu se vrsi pretraga
-				
 				
 			}
 			else
 			{
-				SkladisteFacade sf = new SkladisteFacade();
-				 List<Narudzbenica> narudzbenice = new ArrayList<Narudzbenica>();
 				 narudzbenice=sf.returnListaNarudzbenica();
+			}
 				
 				 Object columnsName[] = { "Serijski broj", "Klijent", "Odgovorno lice", "Datum kreiranje"};
 				Object rows[][] = new Object[narudzbenice.size()][4];
 				
 				for(int i=0; i<narudzbenice.size(); i++)
 				{
-					/*
+				
 					rows[i][0] = narudzbenice.get(i).getSerijskiBroj();
-					rows[i][1] = narudzbenice.get(i).getKlijent().getIme(); //+ " "+narudzbenice.get(i).getKlijent().getPrezime();
-				    rows[i][2] =narudzbenice.get(i).getOdgovornoLice().getIme(); //+ " "+ narudzbenice.get(i).getOdgovornoLice().getPrezime();
-					rows[i][3] = narudzbenice.get(i).getDatumKreiranja();
-					*/
-					
-					rows[i][0] = narudzbenice.get(i).getSerijskiBroj();
-					
-					String s = "789";
-					try{
-						//greska-----------------------------
-						s = narudzbenice.get(i).getKlijent().getIme();
-					}catch(Exception e)
-					{
-						s = "error";
-					}
-					rows[i][1] = s;
-				    rows[i][2] = "";
-					rows[i][3] = "sd";
-					
+					rows[i][1] = narudzbenice.get(i).getKlijent().getIme() + " "+narudzbenice.get(i).getKlijent().getPrezime();
+				    rows[i][2] =narudzbenice.get(i).getOdgovornoLice().getIme() + " "+ narudzbenice.get(i).getOdgovornoLice().getPrezime();
+					rows[i][3] = narudzbenice.get(i).getDatumKreiranja();	
 				}
 				
 				table = new JTable(rows, columnsName);
 				
-				
-				
-			}
 			
 		}
 		else if(tipTabele.equals("Materijal"))
@@ -219,18 +175,13 @@ public class DataGrid {
 			 materijali = new ArrayList<Materijal>();
 			if(name != null && value != null)
 			{
-				//sada pozivamo neku metodu za pretragu
-				//korisnici = getUsersFor(name, value);
-				//name je po cemu se vrsi pretraga
-				//materijali=sf.
 				
 				
 			}
 			else
 			{
-				//SkladisteFacade sf = new SkladisteFacade();
-				// List<Materijal> materijali = new ArrayList<Materijal>();
 				 materijali=sf.returnListaMaterijala();
+			}
 				
 				 Object columnsName[] = { "ID", "Opis", "Količina", "Prodajna cijena"};
 				 Object rows[][] = new Object[materijali.size()][4];
@@ -246,7 +197,6 @@ public class DataGrid {
 				
 				table = new JTable(rows, columnsName);
 				
-			}
 		}
 		
 		
