@@ -24,7 +24,7 @@ public class Sastavnica {
 	@JoinTable(name = "StavkaSastavnice", joinColumns = { @JoinColumn(name = "sastavnica_id") }
 	, inverseJoinColumns = { @JoinColumn(name = "materijal_id") })*/
 	//private List<Materijal> materijali;
-	@OneToMany(mappedBy = "sastavnica", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "sastavnica", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<StavkaSastavnice> stavke_sas;
 	
 	public List<StavkaSastavnice> getStavke_sas() {
