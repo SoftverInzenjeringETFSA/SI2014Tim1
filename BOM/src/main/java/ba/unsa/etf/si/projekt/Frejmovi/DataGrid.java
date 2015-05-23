@@ -191,7 +191,7 @@ public class DataGrid {
 					
 					String s = "789";
 					try{
-						//greska----------------------------
+						//greska-----------------------------
 						s = narudzbenice.get(i).getKlijent().getIme();
 					}catch(Exception e)
 					{
