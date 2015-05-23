@@ -61,8 +61,8 @@ public class KompanijaFacade implements IKompanijaFacade {
 			try {
 			if(TipOsobe.menadzer == tip) {
 				Transaction t = session.beginTransaction();
-				String hql = "FROM Menadzer M WHERE M.ime = '" + ime + "' AND M.prezime = '" + prezime + "'";
-				Query query = session.createQuery(hql);
+				String hql = "FROM Menadzer M WHERE M.ime = :ime_p AND M.prezime = :prezime_p";
+				Query query = session.createQuery(hql).setParameter("ime_p", ime).setParameter("prezime_p", prezime);
 				List rezultati = query.list();
 				ArrayList<Menadzer> lista = new ArrayList<Menadzer> ();
 				for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
@@ -78,8 +78,8 @@ public class KompanijaFacade implements IKompanijaFacade {
 			}
 			else if(TipOsobe.klijent == tip) {
 				Transaction t = session.beginTransaction();
-				String hql = "FROM Klijent K WHERE K.ime = '" + ime + "' AND K.prezime = '" + prezime + "'";
-				Query query = session.createQuery(hql);
+				String hql = "FROM Klijent K WHERE K.ime = :ime_p AND K.prezime = :prezime_p";
+				Query query = session.createQuery(hql).setParameter("ime_p", ime).setParameter("prezime_p", prezime);
 				List rezultati = query.list();
 				ArrayList<Klijent> lista = new ArrayList<Klijent> ();
 				for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
@@ -95,8 +95,8 @@ public class KompanijaFacade implements IKompanijaFacade {
 			}
 			else if(TipOsobe.radnik == tip) {
 				Transaction t = session.beginTransaction();
-				String hql = "FROM Radnik R WHERE R.ime = '" + ime + "' AND R.prezime = '" + prezime + "'";
-				Query query = session.createQuery(hql);
+				String hql = "FROM Radnik R WHERE R.ime = :ime_p AND R.prezime = :prezime_p";
+				Query query = session.createQuery(hql).setParameter("ime_p", ime).setParameter("prezime_p", prezime);
 				List rezultati = query.list();
 				ArrayList<Radnik> lista = new ArrayList<Radnik> ();
 				for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
@@ -260,8 +260,8 @@ public class KompanijaFacade implements IKompanijaFacade {
 				Osoba m = null;
 				try {
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Radnik R WHERE R.username = '" + username + "' AND R.password = '" + password + "'";
-					Query query = session.createQuery(hql);
+					String hql = "FROM Radnik R WHERE R.username = :user_p AND R.password = :pass_p";
+					Query query = session.createQuery(hql).setParameter("user_p", username).setParameter("pass_p", password);
 					List rezultati = query.list();
 					ArrayList<Radnik> lista = new ArrayList<Radnik> ();
 					for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
@@ -292,8 +292,8 @@ public class KompanijaFacade implements IKompanijaFacade {
 			Osoba m = null;
 			try {
 				Transaction t = session.beginTransaction();
-				String hql = "FROM Menadzer M WHERE M.username = '" + username + "' AND M.password = '" + password + "'";
-				Query query = session.createQuery(hql);
+				String hql = "FROM Menadzer M WHERE M.username = :user_p AND M.password = :pass_p";
+				Query query = session.createQuery(hql).setParameter("user_p", username).setParameter("pass_p", password);
 				List rezultati = query.list();
 				ArrayList<Menadzer> lista = new ArrayList<Menadzer> ();
 				for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
