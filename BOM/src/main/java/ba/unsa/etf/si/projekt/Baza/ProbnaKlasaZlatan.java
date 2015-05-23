@@ -12,15 +12,15 @@ import ba.unsa.etf.si.projekt.ServisnaImplementacija.*;
 public class ProbnaKlasaZlatan {
 	public static void main (String[] args) {
 		KompanijaFacade kf = new KompanijaFacade();
-		kf.dodajMenadzera("Acdfč", "fdsfĆĆĆ", "rf", "fsdf", "dsf", "menadzer", Ovlasti.brisanjeMaterijala, "primjer", "primjer");
+		//kf.dodajMenadzera("Acdf", "fdsf", "rf", "fsdf", "dsf", "menadzer", Ovlasti.brisanjeMaterijala, "primjer", "primjer");
 		
-		/*Osoba a = kf.returnByUsernamePassword("prviradnik", "prviradnik");
+		Osoba a = kf.returnByUsernamePassword("prviradnik", "prviradnik");
 		if(a != null) {
 			System.out.println(a.getIme());
 		}
 		else {
 			System.out.println("null je");
-		}*/
+		}
 	}
 
 }

@@ -14,8 +14,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.UIManager;
+
+import ba.unsa.etf.si.projekt.Klase.Materijal;
+import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 public class FNarudzbenicaD {
 
@@ -105,6 +110,8 @@ public class FNarudzbenicaD {
 		lblKlijent.setBounds(400, 47, 68, 16);
 		panel.add(lblKlijent);
 		
+		SkladisteFacade sf = new SkladisteFacade();
+		List<Materijal> materijali = sf.returnListaMaterijala();
 		JComboBox comboBox = new JComboBox();
 		comboBox.setEditable(true);
 		comboBox.setBounds(480, 44, 283, 22);

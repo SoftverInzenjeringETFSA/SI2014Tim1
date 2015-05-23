@@ -217,13 +217,17 @@ public class FMaterijalDMPB {
 			public void actionPerformed(ActionEvent e) {
 				//akcija za klik na dugme koje moze imati razlicite f-je
 				//brisanje, kreiranje, modifikovanje, pregled
-				if(akcija.equals("Kreiranje") || akcija.equals("Modifikovanje"))
+				if(akcija.equals("Kreiranje"))
 				{
 					//ovdje treba procitati formu i
 					//uraditi validaciju
 					//azurirati bazu npr
 					//ispisati messageBox ?
 					//vratiti se nazad
+				}
+				if( akcija.equals("Modifikovanje"))
+				{
+					
 				}
 				if(akcija.equals("Brisanje"))
 				{
