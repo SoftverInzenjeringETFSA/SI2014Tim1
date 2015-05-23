@@ -52,15 +52,25 @@ import javax.swing.JToggleButton;
 public class Menadzer {
 
 	private JFrame frame;
+	
 	private JTable table;
 	private JTable table_1;
+	private JTable table_2;
 	private JTable table_3;
+
+	private JScrollPane scrollPane;
+	private JScrollPane scrollPane_1;
+	private JScrollPane scrollPane_2;
+	private JScrollPane scrollPane_3;
+	private DataGrid dataGNarudzbenica;
+	private DataGrid dataGMaterijal;
+	private DataGrid dataGSastavnica;
+	private DataGrid dataGKlijent;
+	
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private JTable table_2;
-	private JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -97,8 +107,14 @@ public class Menadzer {
 	 * Create the application.
 	 */
 	public Menadzer() {
+		
 		initialize();
-		popuniTabelu(null,null,null);
+		
+		popuniTabeluKlijent(null,null,null);
+		popuniTabeluNarudzbenica(null,null,null);
+		popuniTabeluSkladiste(null,null,null);
+		popuniTabeluSastavnica(null,null,null);
+		
 		//postavlanje akcije za izlaz iz frejma
 				frame.addWindowListener(new java.awt.event.WindowAdapter() {
 				    @Override
@@ -115,6 +131,7 @@ public class Menadzer {
 				    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
 				    	
 				    	//parentFrame.setEnabled(true);
+				    	
 				    	//parentFrame.setVisible(true);
 				    }
 				});
@@ -145,29 +162,11 @@ public class Menadzer {
 		panel_3.add(panel_8);
 		panel_8.setLayout(null);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(12, 28, 630, 227);
 		panel_8.add(scrollPane_1);
 		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		
-		Object rowDataN[][] = { { "", "", "", "", "", ""},{ "", "", "", "", "", ""},
-				{ "", "", "", "", "", ""},{ "", "", "", "", "", ""},
-				{ "", "", "", "", "", ""},{ "", "", "", "", "", ""},
-				{ "", "", "", "", "", ""},{ "", "", "", "", "", ""},
-				{ "", "", "", "", "", ""},{ "", "", "", "", "", ""},
-				{ "", "", "", "", "", ""},{ "", "", "", "", "", ""}};
-		Object columnNamesN[] = { "ID", "Odgovorno lice", "Klijent", "Cijena", "Trajanje", "Kreirana"};
-		
-		table_1 = new JTable(rowDataN, columnNamesN);
-		//treba zabraniti editovanje tabele ali ostaviti mogucnost selektovanja redova
-				//ovaj kod moze biti na drugom mjestu
-				for (int c = 0; c < table_1.getColumnCount(); c++)
-				{
-					Class<?> col_class = table_1.getColumnClass(c);
-					table_1.setDefaultEditor(col_class, null);        // remove editor
-				}
-		scrollPane_1.setViewportView(table_1);
 		
 		JPanel panel_9 = new JPanel();
 		panel_9.setLayout(null);
@@ -262,27 +261,11 @@ public class Menadzer {
 		panel_4.setBorder(BorderFactory.createTitledBorder("Pregled/odabir klijenta"));
 		panel_2.add(panel_4);
 		panel_4.setLayout(null);
-		
-				Object rowData[][] = { { "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""},
-						{ "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""},
-						{ "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""}};
-				Object columnNames[] = { "ID", "Ime i prezime", "Telefon", "Adresa", "E-mail"};
-		
-		table = new JTable(rowData, columnNames);
-		for (int c = 0; c < table.getColumnCount(); c++)
-		{
-		    Class<?> col_class = table.getColumnClass(c);
-		    table.setDefaultEditor(col_class, null);        // remove editor
-		}
-		
 	    scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 28, 630, 227);
 		panel_4.add(scrollPane);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		
-		
-		scrollPane.setViewportView(table);
 		
 		JPanel panel_6 = new JPanel();
 		panel_6.setBounds(12, 13, 374, 203);
@@ -472,36 +455,15 @@ public class Menadzer {
 		panel.add(panel_19);
 		panel_19.setLayout(null);
 		
-		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2 = new JScrollPane();
 		scrollPane_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane_2.setBounds(12, 26, 630, 229);
 		panel_19.add(scrollPane_2);
 		
-		
-		
-		Object rowDataSastavnice[][] = { { "", "", "", "", ""},
-                { "", "", "", "", ""},{ "", "", "", "", ""},
-                { "", "", "", "", ""},{ "", "", "", "", ""},
-                { "", "", "", "", ""},{ "", "", "", "", ""},
-                { "", "", "", "", ""},{ "", "", "", "", ""},
-                { "", "", "", "", ""},{ "", "", "", "", ""},
-                { "", "", "", "", ""} };
-		Object columnNamesSastavnice[] = { "ID", "Naziv", "Cijena", "Trajanje", "Kreirana"};
-		
-		table_2 = new JTable(rowDataSastavnice, columnNamesSastavnice);//sastavnice
-		scrollPane_2.setViewportView(table_2);
-		
 		JLabel lblNisteOdabraliNiti_3 = new JLabel("Niste odabrali niti jednu sastavnicu.");
 		lblNisteOdabraliNiti_3.setBounds(22, 510, 644, 16);
 		panel.add(lblNisteOdabraliNiti_3);
-		
-		
-		//__
-		Object rowDataProizvodi[][] = { { "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""},
-				{ "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""}};
-		Object columnNamesProizvodi[] = { "ID", "Serijski broj", "Naziv", "Količina", "Datum nabavke"};
-		
 		JButton btnPretrai = new JButton("Pretra\u017Ei");
 		btnPretrai.setBounds(215, 165, 91, 25);
 		
@@ -515,13 +477,11 @@ public class Menadzer {
 		panel_1.add(panel_11);
 		panel_11.setLayout(null);
 		
-		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3 = new JScrollPane();
 		scrollPane_3.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane_3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_3.setBounds(12, 26, 630, 229);
 		panel_11.add(scrollPane_3);
-		table_3 = new JTable(rowDataProizvodi, columnNamesProizvodi);
-		scrollPane_3.setViewportView(table_3);
 		
 		JLabel lblNisteOdabraliNiti_1 = new JLabel("Niste odabrali niti jedan materijal/poluproizvod");
 		lblNisteOdabraliNiti_1.setBounds(22, 510, 644, 16);
@@ -658,11 +618,31 @@ public class Menadzer {
 		btnKorisnici.setBounds(463, 15, 97, 25);
 		frame.getContentPane().add(btnKorisnici);
 	}
-	public void popuniTabelu(String name, String value, String sort)
+	
+	
+	
+	public void popuniTabeluKlijent(String name, String value, String sort)
 	{
-
-		DataGrid dg=new DataGrid("Klijent");
-		dg.getTable(name, value, sort);
+		dataGKlijent=new DataGrid("Klijent");
+		table = dataGKlijent.getTable(name, value, sort);
 		scrollPane.setViewportView(table);
+	}
+	public void popuniTabeluNarudzbenica(String name, String value, String sort)
+	{
+		dataGNarudzbenica=new DataGrid("Narudzbenica");
+		table_1 = dataGNarudzbenica.getTable(name, value, sort);
+		scrollPane_1.setViewportView(table_1);
+	}
+	public void popuniTabeluSastavnica(String name, String value, String sort)
+	{
+		dataGSastavnica=new DataGrid("Sastavnica");
+		table_2 = dataGSastavnica.getTable(name, value, sort);
+		scrollPane_2.setViewportView(table_2);
+	}
+	public void popuniTabeluSkladiste(String name, String value, String sort)
+	{
+		dataGMaterijal=new DataGrid("Materijal");
+		table_3 = dataGMaterijal.getTable(name, value, sort);
+		scrollPane_3.setViewportView(table_3);
 	}
 }
