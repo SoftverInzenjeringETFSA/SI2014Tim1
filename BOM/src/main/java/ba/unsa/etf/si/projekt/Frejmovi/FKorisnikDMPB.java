@@ -37,7 +37,6 @@ public class FKorisnikDMPB {
 	private JFrame parentFrame;
 	private String akcija;
 	private JFormattedTextField formattedTextField;
-	private JButton btnNewButton;
 	private JPasswordField passwordField;
 
 	/**
@@ -85,6 +84,7 @@ public class FKorisnikDMPB {
 			textField_2.setEditable(false);
 			textField_4.setEditable(false);
 			textField_5.setEditable(false);
+			formattedTextField.setEditable(false);
 			passwordField.setEditable(false);
 			comboBox.setEditable(false);
 		}
@@ -134,7 +134,7 @@ public class FKorisnikDMPB {
 		textField_2.setInputVerifier(new Validator(frame,textField_2,"Molimo unesite ispravan JMBG","JMBG"));
 		textField_4.setInputVerifier(new Validator(frame,textField_4,"Adresa koju ste unijeli nije ispravna","adresa"));
 		textField_5.setInputVerifier(new Validator(frame,textField_5,"Molimo unesite ispravno korisničko ime","korIme"));
-		//formattedTextField.setInputVerifier(new Validator(frame,formattedTextField,"Molimo unesite telefon","telefon"));
+		formattedTextField.setInputVerifier(new Validator(frame,formattedTextField,"Molimo unesite telefon","telefon"));
 		
 		
 		passwordField = new JPasswordField();
@@ -244,22 +244,27 @@ public class FKorisnikDMPB {
 				
 				//akcija za klik na dugme koje moze imati razlicite f-je
 				//brisanje, kreiranje, modifikovanje, pregled
+				Boolean da=true;
+				if(textField.getText().equals("")  || textField_1.getText().equals("") || formattedTextField.getText().equals("___-___-___") || textField_4.getText().equals("") || textField_2.getText().equals("") ||  textField_5.getText().equals("") || passwordField.getText().equals(""))
+					da=false;
 				if(akcija.equals("Kreiranje"))
 				{
-					//(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti, String username, String password)
-					
-					if(comboBox.getSelectedItem().toString().equals("menadžer"))
+					if(da)
 					{
-						KompanijaFacade kf = new KompanijaFacade();
-						if(kf.dodajMenadzera(textField.getText(), textField_1.getText(), formattedTextField.getText(), textField_4.getText(), textField_2.getText(), comboBox.getSelectedItem().toString(), Ovlasti.kreiranjeIzvjestaja, textField_5.getText(), passwordField.getText(), ""));
-							MessageBox.infoBox(frame, "Korisnik je uspješno kreiran", "Info");
+						if(comboBox.getSelectedItem().toString().equals("menadžer"))
+						{
+							KompanijaFacade kf = new KompanijaFacade();
+							if(kf.dodajMenadzera(textField.getText(), textField_1.getText(), formattedTextField.getText(), textField_4.getText(), textField_2.getText(), comboBox.getSelectedItem().toString(), Ovlasti.kreiranjeIzvjestaja, textField_5.getText(), passwordField.getText(),textField_2.getText()));
+								MessageBox.infoBox(frame, "Korisnik je uspješno kreiran", "Info");
+						}
+						else if(comboBox.getSelectedItem().toString().equals("radnik"))
+						{
+							KompanijaFacade kf1 = new KompanijaFacade();
+							if(kf1.dodajRadnika(textField.getText(), textField_1.getText(), formattedTextField.getText(), textField_4.getText(), textField_2.getText(), comboBox.getSelectedItem().toString(), Ovlasti.pretragaMaterijala, textField_5.getText(), passwordField.getText(),textField_2.getText()));
+								MessageBox.infoBox(frame, "Korisnik je uspješno kreiran", "Info");
+						}
 					}
-					else if(comboBox.getSelectedItem().toString().equals("radnik"))
-					{
-						KompanijaFacade kf1 = new KompanijaFacade();
-						if(kf1.dodajRadnika(textField.getText(), textField_1.getText(), formattedTextField.getText(), textField_4.getText(), textField_2.getText(), comboBox.getSelectedItem().toString(), Ovlasti.pretragaMaterijala, textField_5.getText(), passwordField.getText(), ""));
-							MessageBox.infoBox(frame, "Korisnik je uspješno kreiran", "Info");
-					}
+					else MessageBox.infoBox(frame, "Molimo unesite sve podatke.", "Greska");
 					
 				}
 				if(akcija.equals("Modifikovanje"))
@@ -294,22 +299,5 @@ public class FKorisnikDMPB {
 		formattedTextField = new JFormattedTextField(mf1);
 		formattedTextField.setBounds(169, 123, 201, 20);
 		panel.add(formattedTextField);
-		
-		btnNewButton = new JButton("Poništi");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textField.setText("");
-				textField_1.setText("");
-				textField_2.setText("");
-				textField_4.setText("");
-				textField_5.setText("");
-				passwordField.setText("");
-				comboBox.setSelectedItem("");
-				formattedTextField.setText("");
-				
-			}
-		});
-		btnNewButton.setBounds(192, 282, 79, 22);
-		panel.add(btnNewButton);
 	}
 }

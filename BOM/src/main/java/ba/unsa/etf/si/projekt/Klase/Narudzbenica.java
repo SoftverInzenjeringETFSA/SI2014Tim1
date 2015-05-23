@@ -28,7 +28,7 @@ public class Narudzbenica {
 	, inverseJoinColumns = { @JoinColumn(name = "proizvod_id") })*/
 	
 	//private List<Proizvod> proizvodi;
-	@OneToMany(mappedBy = "narudzbenica")
+	@OneToMany(mappedBy = "narudzbenica", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<StavkaNarudzbenice> stav_nar;
 	
 	public List<StavkaNarudzbenice> getStav_nar() {
@@ -37,13 +37,13 @@ public class Narudzbenica {
 	public void setStav_nar(List<StavkaNarudzbenice> stav_nar) {
 		this.stav_nar = stav_nar;
 	}
-	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "klijent")
 	private Klijent klijent;
 	
 	private Date datumKreiranja;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	private Menadzer odgovornoLice;
 	private String serijskiBroj;
 	
