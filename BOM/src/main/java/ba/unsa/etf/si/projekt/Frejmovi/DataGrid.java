@@ -176,6 +176,7 @@ public class DataGrid {
 			if(name != null && value != null)
 			{
 				
+				
 				materijali=sf.sortirajMaterijale(name, value, sort);
 			}
 			else
