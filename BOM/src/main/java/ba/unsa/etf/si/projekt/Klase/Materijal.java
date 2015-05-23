@@ -27,6 +27,7 @@ public class Materijal {
 	private String serijskiBroj;
 	private String opis;
 	private double kolicina;
+	private double granicnaKolicina;
 	@Enumerated(EnumType.ORDINAL)
 	private TipMaterijala tip;
 	private double nabavnaCijena;
@@ -104,5 +105,11 @@ public class Materijal {
 	}
 	public void setMjernaJedinica(String mjernaJedinica) {
 		this.mjernaJedinica = mjernaJedinica;
+	}
+	public double getGranicnaKolicina() {
+		return granicnaKolicina;
+	}
+	public void setGranicnaKolicina(double granicnaKolicina) {
+		this.granicnaKolicina = granicnaKolicina;
 	}
 }

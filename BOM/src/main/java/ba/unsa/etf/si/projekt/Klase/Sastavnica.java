@@ -42,6 +42,20 @@ public class Sastavnica {
 	private double trajanjeProizvodnje;
 	private double cijenaObavljenogRada;
 	private double dodatniTroskovi;
+	private double ukupnaCijena;
+	private String naziv;
+	public double getUkupnaCijena() {
+		return ukupnaCijena;
+	}
+	public void setUkupnaCijena(double ukupnaCijena) {
+		this.ukupnaCijena = ukupnaCijena;
+	}
+	public String getNaziv() {
+		return naziv;
+	}
+	public void setNaziv(String naziv) {
+		this.naziv = naziv;
+	}
 	/*
 	public List<Materijal> getMaterijali() {
 		return materijali;

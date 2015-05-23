@@ -19,6 +19,13 @@ public class Menadzer extends Osoba {
 	private Ovlasti ovlasti;
 	private String username;
 	private String password;
+	private String JMBG;
+	public String getJMBG() {
+		return JMBG;
+	}
+	public void setJMBG(String jMBG) {
+		JMBG = jMBG;
+	}
 	public long getId() {
 		return id;
 	}
@@ -53,7 +60,7 @@ public class Menadzer extends Osoba {
 	
 	public Menadzer() {}
 	
-	public Menadzer(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti, String username, String password) {
+	public Menadzer(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti, String username, String password, String JMBG) {
 		this.setIme(ime);
 		this.setPrezime(prezime);
 		this.setBrojTelefona(brojTelefona);
@@ -64,6 +71,7 @@ public class Menadzer extends Osoba {
 		this.setTipOsobe(TipOsobe.menadzer);
 		this.setUsername(username);
 		this.setPassword(password);
+		this.setJMBG(JMBG);
 	}
 	
 }
