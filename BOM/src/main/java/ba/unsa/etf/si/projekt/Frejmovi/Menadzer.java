@@ -115,6 +115,8 @@ public class Menadzer {
 		popuniTabeluSkladiste(null,null,null);
 		popuniTabeluSastavnica(null,null,null);
 		
+		
+		
 		//postavlanje akcije za izlaz iz frejma
 				frame.addWindowListener(new java.awt.event.WindowAdapter() {
 				    @Override
