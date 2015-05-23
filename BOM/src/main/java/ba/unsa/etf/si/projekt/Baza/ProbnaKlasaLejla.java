@@ -54,12 +54,12 @@ public class ProbnaKlasaLejla {
 		kf.dodajRadnika("radnik", "vatkić", "061/vato", "adresa", "email", "pozicija", null, "user", "sifra");
 		
 		*/
-		List<Materijal> _materijali = kf.sortirajMaterijale(null, "", "materijal_id");
+		List<Materijal> _materijali = sf.sortirajMaterijale(null, "", "materijal_id");
 		for(int i=0; i<_materijali.size(); i++) {
 			System.out.println(_materijali.get(i).getId());
 		}
 		
-		List<Materijal> _mat = kf.sortirajMaterijale("serijskiBroj ", "005", "materijal_id");
+		List<Materijal> _mat = sf.sortirajMaterijale("serijskiBroj ", "005", "materijal_id");
 		for(int i=0; i<_mat.size(); i++) {
 			System.out.println(_mat.get(i).getId());
 		}
