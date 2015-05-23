@@ -28,7 +28,8 @@ public class SkladisteFacade implements ISkladisteFacade {
 			return _materijali;
 			}
 			catch (Exception e) {
-				return new ArrayList<Materijal>();
+				
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -45,7 +46,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				return true;
 			}
 			catch (Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -62,7 +63,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				return true;
 			}
 			catch (Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -79,7 +80,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				return true;
 			}
 			catch (Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -112,7 +113,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			
 			}
 			catch(Exception e) {
-				return m;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -132,7 +133,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			return _proizvodi;
 			}
 			catch (Exception e) {
-				return new ArrayList<Proizvod>();
+				throw new RuntimeException(e);				
 			}
 			finally {
 				session.close();
@@ -150,7 +151,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				return true;
 			}
 			catch (Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -167,7 +168,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				return true;
 			}
 			catch (Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -184,7 +185,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				return true;
 			}
 			catch (Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -213,7 +214,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				return p;
 			}
 			catch(Exception e) {
-				return p;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -233,7 +234,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			return _narudzbenice;
 			}
 			catch (Exception e) {
-				return new ArrayList<Narudzbenica>();
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -274,7 +275,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				return true;
 			}
 			catch (Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -291,7 +292,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				return true;
 			}
 			catch (Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -308,7 +309,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				return true;
 			}
 			catch (Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -337,7 +338,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				return n;
 			}
 			catch(Exception e) {
-				return n;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -357,7 +358,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			return _sastavnice;
 			}
 			catch (Exception e) {
-				return (List<Sastavnica>) e;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -374,7 +375,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				return true;
 			}
 			catch (Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -391,7 +392,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				return true;
 			}
 			catch (Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -408,7 +409,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				return true;
 			}
 			catch (Exception e) {
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -437,7 +438,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 				return s;
 			}
 			catch(Exception e) {
-				return s;
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -456,7 +457,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			return _menadzeri;
 			}
 			catch (Exception e) {
-				return new ArrayList<Menadzer>();
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -497,7 +498,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			}
 			catch(Exception e)
 			{
-				return false;
+				throw new RuntimeException(e);
 			}
 			finally
 			{
@@ -584,7 +585,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			}
 			catch (Exception e) {
 				
-				return new ArrayList<Materijal>();
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -668,7 +669,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			}
 			catch (Exception e) {
 				
-				return new ArrayList<Narudzbenica>();
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
@@ -750,8 +751,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 					return new ArrayList<Sastavnica>();
 			}
 			catch (Exception e) {
-				
-				return new ArrayList<Sastavnica>();
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();

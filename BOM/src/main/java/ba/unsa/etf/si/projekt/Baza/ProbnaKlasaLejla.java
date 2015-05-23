@@ -79,8 +79,8 @@ public class ProbnaKlasaLejla {
 		List<Klijent> _k = kf.sortirajKlijenta(" ", " ", " ");
 		for(int i=0; i<_k.size(); i++) {
 			System.out.println(_k.get(i).getPrezime()+ " " + _k.get(i).getIme());
-		}*/
-		
+		}
+		*/
 	}
 	
 
