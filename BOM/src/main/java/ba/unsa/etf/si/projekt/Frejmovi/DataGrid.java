@@ -24,6 +24,7 @@ public class DataGrid {
 	
 	private final String tipTabele;
 	private JTable table;
+	public List<Klijent> klijenti1;
 
 	
 	
@@ -72,7 +73,7 @@ public class DataGrid {
 		else if(tipTabele.equals("Klijent"))
 		{
 			List<Osoba> klijenti = new ArrayList<Osoba>();
-			List<Klijent> klijenti1 = new ArrayList<Klijent>();
+			klijenti1 = new ArrayList<Klijent>();
 			if(name != null && value != null)
 			{
 				
@@ -138,9 +139,27 @@ public class DataGrid {
 			
 		}
 		
-		else if(tipTabele.equals("Narudbenica"))
+		else if(tipTabele.equals("Narudzbenica"))
 		{
-
+			/*
+			SkladisteFacade sf = new SkladisteFacade();
+			 List<Sastavnica> sastavnice = new ArrayList<Sastavnica>();
+			 sastavnice=sf.returnListaSastavnica();
+			Object columnsName[] = { "Serijski broj", "Izdao", "Cijena", "Trajanje", "Kreirana"};
+			Object rows[][] = new Object[sastavnice.size()][5];
+			
+			for(int i=0; i<sastavnice.size(); i++)
+			{
+				rows[i][0] = sastavnice.get(i).getSerijskiBroj();
+				rows[i][1] = sastavnice.get(i).getIzdao();
+				rows[i][2] =sastavnice.get(i).getCijenaObavljenogRada();
+			    rows[i][3] = sastavnice.get(i).getTrajanjeProizvodnje();
+				rows[i][4] = sastavnice.get(i).getDatumKreiranja();
+			}
+			
+			table = new JTable(rows, columnsName);
+			*/
+			
 			
 			if(name != null && value != null)
 			{
@@ -161,16 +180,35 @@ public class DataGrid {
 				
 				for(int i=0; i<narudzbenice.size(); i++)
 				{
+					/*
 					rows[i][0] = narudzbenice.get(i).getSerijskiBroj();
-					rows[i][1] = narudzbenice.get(i).getKlijent().getIme()+ " "+narudzbenice.get(i).getKlijent().getPrezime();
-				    rows[i][2] =narudzbenice.get(i).getOdgovornoLice().getIme()+ " "+ narudzbenice.get(i).getOdgovornoLice().getPrezime();
+					rows[i][1] = narudzbenice.get(i).getKlijent().getIme(); //+ " "+narudzbenice.get(i).getKlijent().getPrezime();
+				    rows[i][2] =narudzbenice.get(i).getOdgovornoLice().getIme(); //+ " "+ narudzbenice.get(i).getOdgovornoLice().getPrezime();
 					rows[i][3] = narudzbenice.get(i).getDatumKreiranja();
+					*/
+					
+					rows[i][0] = narudzbenice.get(i).getSerijskiBroj();
+					
+					String s = "789";
+					try{
+						//greska---------------------------
+						s = narudzbenice.get(i).getKlijent().getIme();
+					}catch(Exception e)
+					{
+						s = "error";
+					}
+					rows[i][1] = s;
+				    rows[i][2] = "";
+					rows[i][3] = "sd";
 					
 				}
 				
 				table = new JTable(rows, columnsName);
 				
+				
+				
 			}
+			
 		}
 		else if(tipTabele.equals("Materijal"))
 		{
