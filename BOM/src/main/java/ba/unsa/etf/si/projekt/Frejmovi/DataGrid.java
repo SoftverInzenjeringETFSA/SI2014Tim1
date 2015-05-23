@@ -58,6 +58,7 @@ public class DataGrid {
 			      for(int i=0; i<osobeRdnici.size(); i++)
 			    	  osobe.add(osobeRdnici.get(i));
 			      
+			      
 			}
 				Object columnsName[] = { "ID", "Ime i prezime", "Telefon", "Korisnicko ime", "Email"};
 				Object rows[][] = new Object[osobe.size()][5];
