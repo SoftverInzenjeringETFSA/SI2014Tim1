@@ -56,5 +56,9 @@ public interface ISkladisteFacade {
 	
 	
 	public List<Menadzer> returnListaMenadzera();
+	
+	
+	public Boolean validirajNarudzbenicu(Narudzbenica narudzbenica);
+	
 
 }
