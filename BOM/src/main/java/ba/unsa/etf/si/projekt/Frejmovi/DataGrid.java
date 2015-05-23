@@ -4,11 +4,15 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 import ba.unsa.etf.si.projekt.Klase.Klijent;
+import ba.unsa.etf.si.projekt.Klase.Materijal;
+import ba.unsa.etf.si.projekt.Klase.Narudzbenica;
 import ba.unsa.etf.si.projekt.Klase.Osoba;
 import ba.unsa.etf.si.projekt.Klase.Ovlasti;
 import ba.unsa.etf.si.projekt.Klase.Radnik;
+import ba.unsa.etf.si.projekt.Klase.Sastavnica;
 import ba.unsa.etf.si.projekt.Klase.TipOsobe;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.KompanijaFacade;
+import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -96,24 +100,111 @@ public class DataGrid {
 			
 			table = new JTable(rows, columnsName);
 		}
-		/*
+		
 		
 		else if(tipTabele.equals("Sastavnica"))
 		{
-			List<Korisnik> ls = ....
-			moze se sada ova lista prebaciti u matricu stringova
+        
+			
+			if(name != null && value != null)
+			{
+				//sada pozivamo neku metodu za pretragu
+				//korisnici = getUsersFor(name, value);
+				//name je po cemu se vrsi pretraga
+				
+				
+			}
+			else
+			{
+				SkladisteFacade sf = new SkladisteFacade();
+				 List<Sastavnica> sastavnice = new ArrayList<Sastavnica>();
+				 sastavnice=sf.returnListaSastavnica();
+				Object columnsName[] = { "Serijski broj", "Izdao", "Cijena", "Trajanje", "Kreirana"};
+				Object rows[][] = new Object[sastavnice.size()][5];
+				
+				for(int i=0; i<sastavnice.size(); i++)
+				{
+					rows[i][0] = sastavnice.get(i).getSerijskiBroj();
+					rows[i][1] = sastavnice.get(i).getIzdao();
+					rows[i][2] =sastavnice.get(i).getCijenaObavljenogRada();
+				    rows[i][3] = sastavnice.get(i).getTrajanjeProizvodnje();
+					rows[i][4] = sastavnice.get(i).getDatumKreiranja();
+				}
+				
+				table = new JTable(rows, columnsName);
+				
+			}
+			
+			
 		}
-		if(tipTabele.equals("Narudbenica"))
+		
+		else if(tipTabele.equals("Narudbenica"))
 		{
-			List<Korisnik> ls = ....
-			moze se sada ova lista prebaciti u matricu stringova
+
+			
+			if(name != null && value != null)
+			{
+				//sada pozivamo neku metodu za pretragu
+				//korisnici = getUsersFor(name, value);
+				//name je po cemu se vrsi pretraga
+				
+				
+			}
+			else
+			{
+				SkladisteFacade sf = new SkladisteFacade();
+				 List<Narudzbenica> narudzbenice = new ArrayList<Narudzbenica>();
+				 narudzbenice=sf.returnListaNarudzbenica();
+				
+				 Object columnsName[] = { "Serijski broj", "Klijent", "Odgovorno lice", "Datum kreiranje"};
+				Object rows[][] = new Object[narudzbenice.size()][4];
+				
+				for(int i=0; i<narudzbenice.size(); i++)
+				{
+					rows[i][0] = narudzbenice.get(i).getSerijskiBroj();
+					rows[i][1] = narudzbenice.get(i).getKlijent().getIme()+ " "+narudzbenice.get(i).getKlijent().getPrezime();
+				    rows[i][2] =narudzbenice.get(i).getOdgovornoLice().getIme()+ " "+ narudzbenice.get(i).getOdgovornoLice().getPrezime();
+					rows[i][3] = narudzbenice.get(i).getDatumKreiranja();
+					
+				}
+				
+				table = new JTable(rows, columnsName);
+				
+			}
 		}
-		if(tipTabele.equals("Materijal"))
+		else if(tipTabele.equals("Materijal"))
 		{
-			List<Korisnik> ls = ....
-			moze se sada ova lista prebaciti u matricu stringova
+			if(name != null && value != null)
+			{
+				//sada pozivamo neku metodu za pretragu
+				//korisnici = getUsersFor(name, value);
+				//name je po cemu se vrsi pretraga
+				
+				
+			}
+			else
+			{
+				SkladisteFacade sf = new SkladisteFacade();
+				 List<Materijal> materijali = new ArrayList<Materijal>();
+				 materijali=sf.returnListaMaterijala();
+				
+				 Object columnsName[] = { "ID", "Opis", "Količina", "Prodajna cijena"};
+				 Object rows[][] = new Object[materijali.size()][4];
+				
+				for(int i=0; i<materijali.size(); i++)
+				{
+					rows[i][0] = materijali.get(i).getId();
+			        rows[i][1] = materijali.get(i).getOpis();
+				    rows[i][2] =materijali.get(i).getKolicina();
+					rows[i][3] = materijali.get(i).getProdajnaCijena();
+					
+				}
+				
+				table = new JTable(rows, columnsName);
+				
+			}
 		}
-		*/
+		
 		
 		
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
