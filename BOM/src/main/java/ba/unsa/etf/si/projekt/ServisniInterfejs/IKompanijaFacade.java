@@ -40,4 +40,5 @@ public interface IKompanijaFacade {
 	public Osoba returnByUsernamePassword(String username, String password);
 	
 	public Osoba dajMenadzeraUsernamePassword(String username, String password);
+
 }

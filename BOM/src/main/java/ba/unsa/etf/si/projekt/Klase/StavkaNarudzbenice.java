@@ -12,8 +12,8 @@ public class StavkaNarudzbenice {
     @JoinColumn(name = "narudzbenica_id") 
 	private Narudzbenica narudzbenica;
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "proizvod_id") 
-	private Proizvod proizvod;
+    @JoinColumn(name = "sastavnica_id") 
+	private Sastavnica proizvod;
 	private double kolicina;
 	
 	public long getId() {
@@ -28,10 +28,10 @@ public class StavkaNarudzbenice {
 	public void setNarudzbenica(Narudzbenica narudzbenica) {
 		this.narudzbenica = narudzbenica;
 	}
-	public Proizvod getProizvod() {
+	public Sastavnica getProizvod() {
 		return proizvod;
 	}
-	public void setProizvod(Proizvod proizvod) {
+	public void setProizvod(Sastavnica proizvod) {
 		this.proizvod = proizvod;
 	}
 	public double getKolicina() {
