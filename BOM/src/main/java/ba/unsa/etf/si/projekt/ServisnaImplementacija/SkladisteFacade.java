@@ -195,8 +195,8 @@ public class SkladisteFacade implements ISkladisteFacade {
 			Proizvod p = null;
 			try {
 				Transaction t = session.beginTransaction();
-				String hql = "FROM Proizvod P WHERE P.serijskiBroj = '" + serijskiBroj+ "'";
-				Query query = session.createQuery(hql);
+				String hql = "FROM Proizvod P WHERE P.serijskiBroj = :serijskiBroj";
+				Query query = session.createQuery(hql).setParameter("serijskiBroj", serijskiBroj);
 				List rezultati = query.list();
 				ArrayList<Proizvod> lista = new ArrayList<Proizvod> ();
 				for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
@@ -295,8 +295,8 @@ public class SkladisteFacade implements ISkladisteFacade {
 			Narudzbenica n = null;
 			try {
 				Transaction t = session.beginTransaction();
-				String hql = "FROM Narudzbenica N WHERE N.serijskiBroj = '" + serijskiBroj+ "'";
-				Query query = session.createQuery(hql);
+				String hql = "FROM Narudzbenica N WHERE N.serijskiBroj = :serijskiBroj";
+				Query query = session.createQuery(hql).setParameter("serijskiBroj", serijskiBroj);
 				List rezultati = query.list();
 				ArrayList<Narudzbenica> lista = new ArrayList<Narudzbenica> ();
 				for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
@@ -395,8 +395,8 @@ public class SkladisteFacade implements ISkladisteFacade {
 			Sastavnica s = null;
 			try {
 				Transaction t = session.beginTransaction();
-				String hql = "FROM Sastavnica S WHERE S.serijskiBroj = '" + serijskiBroj+ "'";
-				Query query = session.createQuery(hql);
+				String hql = "FROM Sastavnica S WHERE S.serijskiBroj = :serijskiBroj";
+				Query query = session.createQuery(hql).setParameter("serijskiBroj", serijskiBroj);
 				List rezultati = query.list();
 				ArrayList<Sastavnica> lista = new ArrayList<Sastavnica> ();
 				for (Iterator iterator1 = rezultati.iterator(); iterator1.hasNext();)
