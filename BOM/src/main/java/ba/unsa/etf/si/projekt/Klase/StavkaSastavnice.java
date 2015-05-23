@@ -21,6 +21,7 @@ public class StavkaSastavnice {
 		
 	}
 	
+	// c
 	public StavkaSastavnice(Materijal m, Sastavnica s, double k)
 	{
 		this.materijal = m;

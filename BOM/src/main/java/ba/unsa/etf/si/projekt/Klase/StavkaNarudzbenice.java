@@ -16,6 +16,8 @@ public class StavkaNarudzbenice {
 	private Sastavnica proizvod;
 	private double kolicina;
 	
+	
+	// c
 	public StavkaNarudzbenice()
 	{
 		

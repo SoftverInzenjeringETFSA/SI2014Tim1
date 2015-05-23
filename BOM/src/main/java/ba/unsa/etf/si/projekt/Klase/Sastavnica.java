@@ -43,6 +43,8 @@ public class Sastavnica {
 	private double ukupnaCijena;
 	private String naziv;
 	
+	
+	//c
 	public Sastavnica()
 	{
 		this.stavke_sas = new ArrayList<StavkaSastavnice>();
