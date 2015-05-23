@@ -83,4 +83,14 @@ public class Narudzbenica {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	public Narudzbenica () {}
+	
+	public Narudzbenica(List<StavkaNarudzbenice> stav_nar, Klijent klijent, Date datumKreiranja, Menadzer menadzer, String serijskiBroj) {
+		this.setStav_nar(stav_nar);
+		this.setKlijent(klijent);
+		this.setDatumKreiranja(datumKreiranja);
+		this.setOdgovornoLice(menadzer);
+		this.setSerijskiBroj(serijskiBroj);
+	}
 }
