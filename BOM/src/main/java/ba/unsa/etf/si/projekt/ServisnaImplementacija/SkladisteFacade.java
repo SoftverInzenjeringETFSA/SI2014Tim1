@@ -1,15 +1,23 @@
 package ba.unsa.etf.si.projekt.ServisnaImplementacija;
-import org.hibernate.Query;
-import org.hibernate.Transaction;
-import org.hibernate.Session;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 
-import ba.unsa.etf.si.projekt.Util.HibernateUtil;
-import ba.unsa.etf.si.projekt.Klase.*;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import ba.unsa.etf.si.projekt.Klase.Materijal;
+import ba.unsa.etf.si.projekt.Klase.Menadzer;
+import ba.unsa.etf.si.projekt.Klase.Narudzbenica;
+import ba.unsa.etf.si.projekt.Klase.Proizvod;
+import ba.unsa.etf.si.projekt.Klase.Sastavnica;
+import ba.unsa.etf.si.projekt.Klase.StavkaNarudzbenice;
+import ba.unsa.etf.si.projekt.Klase.StavkaSastavnice;
 import ba.unsa.etf.si.projekt.ServisniInterfejs.ISkladisteFacade;
+import ba.unsa.etf.si.projekt.Util.HibernateUtil;
 
 public class SkladisteFacade implements ISkladisteFacade {
 	
@@ -243,6 +251,30 @@ public class SkladisteFacade implements ISkladisteFacade {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				Transaction t = session.beginTransaction();
+				
+				HashMap<Long, Double> listaMaterijala = new HashMap<Long, Double>();
+				
+				for(StavkaNarudzbenice stavkaN : narudzbenica.getStav_nar())
+				{
+					
+					for (StavkaSastavnice stavkaS : stavkaN.getProizvod().getStavke_sas())
+					{
+						Long id = stavkaS.getMaterijal().getId();
+						listaMaterijala.put(id, listaMaterijala.getOrDefault(id, 0.0) + (stavkaN.getKolicina() * stavkaS.getKolicina()));
+					}
+				}
+				
+				List<Materijal> bazaMaterijala = session.createCriteria(Materijal.class).list();				
+				
+				for (Materijal m : bazaMaterijala)
+				{
+					if (listaMaterijala.containsKey(m.getId()))
+					{
+							m.setKolicina(m.getKolicina() - listaMaterijala.get(m.getId()));
+							session.update(m);
+					}
+				}
+				
 				session.save(narudzbenica);
 				t.commit();	
 				return true;
@@ -436,5 +468,48 @@ public class SkladisteFacade implements ISkladisteFacade {
 				session.close();
 			}	
 		}
+		
+		// validiraj narudzbenicu
+		public Boolean validirajNarudzbenicu(Narudzbenica narudzbenica) 
+		{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				HashMap<Long, Double> listaMaterijala = new HashMap<Long, Double>();
+				
+				for(StavkaNarudzbenice stavkaN : narudzbenica.getStav_nar())
+				{
+					
+					for (StavkaSastavnice stavkaS : stavkaN.getProizvod().getStavke_sas())
+					{
+						Long id = stavkaS.getMaterijal().getId();
+						listaMaterijala.put(id, listaMaterijala.getOrDefault(id, 0.0) + (stavkaN.getKolicina() * stavkaS.getKolicina()));
+					}
+				}
+				
+				Transaction t = session.beginTransaction();
+				List<Materijal> bazaMaterijala = session.createCriteria(Materijal.class).list();				
+				t.commit();
+				
+				for (Materijal m : bazaMaterijala)
+				{
+					if (listaMaterijala.containsKey(m.getId()))
+					{
+						if (listaMaterijala.get(m.getId()) > m.getKolicina())
+							return false;
+					}
+				}
+				
+				return true;
+			}
+			catch(Exception e)
+			{
+				return false;
+			}
+			finally
+			{
+				session.close();
+			}
 
+		}
+		
 }
