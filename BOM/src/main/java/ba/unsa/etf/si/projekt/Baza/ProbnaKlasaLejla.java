@@ -43,7 +43,7 @@ public class ProbnaKlasaLejla {
 			System.out.println(_materijali.get(i).getSerijskiBroj());
 		}
 	*/
-		Sastavnica p2=new Sastavnica();
+		/*Sastavnica p2=new Sastavnica();
 		p2 = sf.pretragaSastavnica("00S1");
 		if(p2 != null)
 			System.out.println(p2.getDatumKreiranja());
@@ -53,6 +53,11 @@ public class ProbnaKlasaLejla {
 		Radnik r = new Radnik();
 		kf.dodajRadnika("radnik", "vatkić", "061/vato", "adresa", "email", "pozicija", null, "user", "sifra");
 		
+		*/
+		List<Materijal> _materijali = kf.sortirajMaterijale("serijskiBroj", "000", "materijal_id");
+		for(int i=0; i<_materijali.size(); i++) {
+			System.out.println(_materijali.get(i).getId());
+		}
 	}
 
 }
