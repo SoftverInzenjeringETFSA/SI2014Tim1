@@ -97,6 +97,7 @@ public class Zaposlenik {
 	/**
 	 * Create the application.
 	 */
+	
 	public Zaposlenik() {
 		initialize();
 		popuniTabeluSastavnice(null,null,null);
