@@ -139,17 +139,17 @@ public class FNarudzbenicaD {
 
 		JLabel lblOdgovornoLice = new JLabel("Odgovorno lice:");
 		lblOdgovornoLice.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblOdgovornoLice.setBounds(12, 47, 169, 16);
+		lblOdgovornoLice.setBounds(12, 28, 169, 16);
 		panel.add(lblOdgovornoLice);
 
 		textField = new JTextField();
-		textField.setBounds(193, 44, 195, 22);
+		textField.setBounds(191, 25, 195, 22);
 		panel.add(textField);
 		textField.setColumns(10);
 
 		JLabel lblKlijent = new JLabel("Klijent:");
 		lblKlijent.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblKlijent.setBounds(400, 47, 68, 16);
+		lblKlijent.setBounds(396, 28, 68, 16);
 		panel.add(lblKlijent);
 
 		// SkladisteFacade sf = new SkladisteFacade();
@@ -157,7 +157,7 @@ public class FNarudzbenicaD {
 
 		comboBox = new JComboBox();
 		comboBox.setEditable(true);
-		comboBox.setBounds(480, 44, 283, 22);
+		comboBox.setBounds(474, 25, 283, 22);
 		panel.add(comboBox);
 
 		JPanel panel_1 = new JPanel();
@@ -208,7 +208,17 @@ public class FNarudzbenicaD {
 						+ listaSastavnica.get(i).getTrajanjeProizvodnje() * y;
 				textField_1.setText(Double.toString(ukupnaCijena));
 				textField_2.setText(Double.toString(ukupnoTrajanje));
-
+				Integer ind=-1;
+				for(int j=0;j<table.getRowCount();j++)
+				{
+					if(table.getValueAt(j, 1).equals(listaSastavnica.get(i).getSerijskiBroj()))
+					{  
+						Double h = Double.parseDouble(table.getValueAt(j, 4).toString()) +Double.parseDouble(spinner.getValue().toString())	;					
+					    ind=j;
+					    table.setValueAt(h, ind, 4);
+					}
+				}
+				if(ind==-1){
 				model.addRow(new Object[] { listaSastavnica.get(i).getNaziv(),
 						listaSastavnica.get(i).getSerijskiBroj(),
 						listaSastavnica.get(i).getUkupnaCijena(),
@@ -216,7 +226,8 @@ public class FNarudzbenicaD {
 						spinner.getValue() });
 				table = new JTable(model);
 				scrollPane.setViewportView(table);
-
+				
+			}
 			}
 		});
 		btnDodajProizvod.setBounds(599, 67, 151, 25);
@@ -251,37 +262,42 @@ public class FNarudzbenicaD {
 
 		JLabel lblUkupnaCijena = new JLabel("Ukupna cijena:");
 		lblUkupnaCijena.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblUkupnaCijena.setBounds(12, 401, 102, 16);
+		lblUkupnaCijena.setBounds(30, 401, 151, 16);
 		panel.add(lblUkupnaCijena);
 
 		textField_1 = new JTextField();
 		textField_1.setEditable(false);
-		textField_1.setBounds(124, 398, 118, 22);
+		textField_1.setBounds(191, 398, 153, 22);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 
 		JLabel lblTrajanjeProizvodnje = new JLabel("Trajanje proizvodnje:");
 		lblTrajanjeProizvodnje.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTrajanjeProizvodnje.setBounds(294, 401, 118, 16);
+		lblTrajanjeProizvodnje.setBounds(407, 401, 151, 16);
 		panel.add(lblTrajanjeProizvodnje);
 
 		textField_2 = new JTextField();
 		textField_2.setEditable(false);
-		textField_2.setBounds(422, 398, 86, 22);
+		textField_2.setBounds(567, 398, 133, 22);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 
 		JLabel lblH = new JLabel("h");
-		lblH.setBounds(518, 401, 20, 16);
+		lblH.setBounds(700, 401, 20, 16);
 		panel.add(lblH);
 
 		JLabel lblKm = new JLabel("KM");
-		lblKm.setBounds(252, 401, 32, 16);
+		lblKm.setBounds(354, 401, 32, 16);
 		panel.add(lblKm);
 
 		JButton button = new JButton("Kreiraj");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(serijskiBroj.getText().isEmpty() || serijskiBroj.getText().contains(" "))
+				{
+					MessageBox.infoBox(frame, "Unesite serijski broj.", "Info");
+				}
+				else{
 				List<StavkaNarudzbenice> stav_nar=new ArrayList<StavkaNarudzbenice>();
 				StavkaNarudzbenice sn;
 				SkladisteFacade kf=new SkladisteFacade();
@@ -289,7 +305,6 @@ public class FNarudzbenicaD {
 				for(int i=0;i<table.getRowCount();i++)
 				{
 			sn=new StavkaNarudzbenice(kf.pretragaSastavnica(table.getValueAt(i, 1).toString()), Double.parseDouble(table.getValueAt(i, 4).toString()));
-	//	MessageBox.infoBox(frame, kf.pretragaSastavnica(table.getValueAt(i, 1).toString()).getNaziv(), "title");
 			stav_nar.add(sn);
 				}
 				   Date date = new Date();
@@ -314,17 +329,19 @@ public class FNarudzbenicaD {
 			   parentFrame.setVisible(true);
 		}
 			}
+			}
 		});
 		button.setBounds(612, 444, 151, 25);
 		panel.add(button);
 		
 		serijskiBroj = new JTextField();
-		serijskiBroj.setBounds(631, 399, 118, 20);
+		serijskiBroj.setBounds(191, 68, 195, 20);
 		panel.add(serijskiBroj);
 		serijskiBroj.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Serijski broj");
-		lblNewLabel.setBounds(572, 401, 86, 19);
+		JLabel lblNewLabel = new JLabel("Serijski broj:");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel.setBounds(30, 69, 151, 19);
 		panel.add(lblNewLabel);
 
 	}
