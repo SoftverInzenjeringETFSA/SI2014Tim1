@@ -1,5 +1,6 @@
 package ba.unsa.etf.si.projekt.ServisnaImplementacija;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -8,7 +9,14 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import ba.unsa.etf.si.projekt.Klase.*;
+import ba.unsa.etf.si.projekt.Klase.Materijal;
+import ba.unsa.etf.si.projekt.Klase.Menadzer;
+import ba.unsa.etf.si.projekt.Klase.Narudzbenica;
+import ba.unsa.etf.si.projekt.Klase.ObrisaniMaterijal;
+import ba.unsa.etf.si.projekt.Klase.Proizvod;
+import ba.unsa.etf.si.projekt.Klase.Sastavnica;
+import ba.unsa.etf.si.projekt.Klase.StavkaNarudzbenice;
+import ba.unsa.etf.si.projekt.Klase.StavkaSastavnice;
 import ba.unsa.etf.si.projekt.ServisniInterfejs.ISkladisteFacade;
 import ba.unsa.etf.si.projekt.Util.HibernateUtil;
 
@@ -23,6 +31,8 @@ public class SkladisteFacade implements ISkladisteFacade {
 				Transaction t = session.beginTransaction();
 				List<Materijal> materijali = null;
 				materijali = session.createCriteria(Materijal.class).list();
+				List<ObrisaniMaterijal> obrisani_materijali = session.createCriteria(ObrisaniMaterijal.class).list();
+				
 				t.commit();
 			return materijali;
 			}
@@ -52,12 +62,17 @@ public class SkladisteFacade implements ISkladisteFacade {
 			}		
 		}
 		
-		public Boolean obrišiMaterijal(Materijal materijal)
+		public Boolean obrišiMaterijal(Materijal materijal, Menadzer menadzer)
 		{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				Transaction t = session.beginTransaction();
-				session.delete(materijal);
+				ObrisaniMaterijal m = new ObrisaniMaterijal();
+				m.setMaterijal(materijal);
+				m.setRazlogBrisanja("Zato jer treba");
+				m.setObrisao(menadzer);
+				m.setDatumBrisanja(new Date());
+				session.save(m);
 				t.commit();
 				return true;
 			}

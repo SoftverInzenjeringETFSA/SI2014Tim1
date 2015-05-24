@@ -37,13 +37,13 @@ public class Narudzbenica {
 	public void setStav_nar(List<StavkaNarudzbenice> stav_nar) {
 		this.stav_nar = stav_nar;
 	}
-	@ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "klijent")
 	private Klijent klijent;
 	
 	private Date datumKreiranja;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
 	private Menadzer odgovornoLice;
 	private String serijskiBroj;
 	

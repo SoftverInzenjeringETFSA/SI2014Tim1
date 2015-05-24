@@ -11,7 +11,7 @@ public interface ISkladisteFacade {
 	
 	public Boolean dodajMaterijal(Materijal materijal);
 	
-	public Boolean obrišiMaterijal(Materijal materijal);
+	public Boolean obrišiMaterijal(Materijal materijal, Menadzer menadzer);
 	
 	public Boolean izmijeniMaterijal(Materijal materijal);
 	

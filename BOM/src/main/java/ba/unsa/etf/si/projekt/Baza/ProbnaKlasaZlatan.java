@@ -1,28 +1,37 @@
 package ba.unsa.etf.si.projekt.Baza;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-import org.hibernate.Transaction;
-import org.hibernate.Session;
-
-import ba.unsa.etf.si.projekt.Util.HibernateUtil;
-import ba.unsa.etf.si.projekt.Klase.*;
-import ba.unsa.etf.si.projekt.ServisnaImplementacija.*;
+import ba.unsa.etf.si.projekt.Klase.Menadzer;
+import ba.unsa.etf.si.projekt.Klase.Sastavnica;
+import ba.unsa.etf.si.projekt.Klase.StavkaSastavnice;
+import ba.unsa.etf.si.projekt.Klase.TipOsobe;
+import ba.unsa.etf.si.projekt.ServisnaImplementacija.KompanijaFacade;
+import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
 
 public class ProbnaKlasaZlatan {
 	public static void main (String[] args) {
 		KompanijaFacade kf = new KompanijaFacade();
 		SkladisteFacade sf = new SkladisteFacade();
 		//ArrayList<Narudzbenica>
-		//kf.dodajMenadzera("Acdf", "fdsf", "rf", "fsdf", "dsf", "menadzer", Ovlasti.brisanjeMaterijala, "primjer", "primjer");
-		
-		/*Osoba a = kf.returnByUsernamePassword("prviradnik", "prviradnik");
-		if(a != null) {
-			System.out.println(a.getIme());
+		Menadzer m = (Menadzer) kf.returnById(2, TipOsobe.menadzer);
+		if(m != null) {
+			Sastavnica s = sf.pretragaSastavnica("SAS003");
+			if(s != null) {
+
+				List<StavkaSastavnice> _ss = s.getStavke_sas();
+				if(_ss != null) {
+					//System.out.println(_ss.get(0).getId());
+					System.out.println(s.getStavke_sas().size());
+					s.getStavke_sas().remove(0);
+					sf.izmijeniSastavnicu(s);
+					Sastavnica s1 = sf.pretragaSastavnica("SAS003");
+					if(s1 != null) {
+						System.out.println(s1.getStavke_sas().size());
+					}
+				}
+			}
 		}
-		else {
-			System.out.println("null je");
-		}*/
 	}
 
 }
