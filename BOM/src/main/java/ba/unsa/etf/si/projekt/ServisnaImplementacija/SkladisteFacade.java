@@ -31,6 +31,8 @@ public class SkladisteFacade implements ISkladisteFacade {
 				Transaction t = session.beginTransaction();
 				List<Materijal> materijali = null;
 				materijali = session.createCriteria(Materijal.class).list();
+				List<ObrisaniMaterijal> obrisani_materijali = session.createCriteria(ObrisaniMaterijal.class).list();
+				
 				t.commit();
 			return materijali;
 			}
