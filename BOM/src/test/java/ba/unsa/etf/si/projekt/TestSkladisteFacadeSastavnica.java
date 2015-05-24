@@ -1,8 +1,7 @@
 package ba.unsa.etf.si.projekt;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
+import java.util.List;
 
 import junit.framework.TestCase;
 
@@ -134,5 +133,66 @@ public class TestSkladisteFacadeSastavnica extends TestCase{
 			System.out.println(e.getMessage());
 		}
 	} 
+	@Test
+	public void testSortiranjeSastavnica() {
+		try {
+			Sastavnica s = new Sastavnica();
+			Sastavnica s1 = new Sastavnica();
+			s.setSerijskiBroj("S11");
+			s1.setSerijskiBroj("S11");
+			sf.dodajSastavnicu(s);
+			sf.dodajSastavnicu(s1);
+			sf.sortirajSastavnice("serijskiBroj", "S11", "sastavnica_id");
+			long id1 = s.getId();
+			long id2 = s1.getId();
+			assertTrue(id1<id2);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	//(expected=Exception.class)
+	public void testSortSastavnicaParametri() {
+		try {
+			List<Sastavnica> l = sf.sortirajSastavnice(null, "nesto", null);		
+			assertNull(l);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	//(expected=Exception.class)
+	public void testSortSastavnicaParametri2() {
+		try {
+			List<Sastavnica> l = sf.sortirajSastavnice("nesto", null, null);		
+			assertNull(l);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	//(expected=Exception.class)
+	public void testSortSastavnicaParametri3() {
+		try {
+			List<Sastavnica> l, l1, l2, l3;
+			l = sf.sortirajSastavnice("nesto", "nesto", null);		
+			assertNotNull(l);
+			l1 = sf.sortirajSastavnice("nesto", "nesto", "nesto");
+			assertNotNull(l1);
+			l2 = sf.sortirajSastavnice(null, null, null);
+			assertNotNull(l2);
+			l3 = sf.sortirajSastavnice(null, null, "nesto");
+			assertNotNull(l3);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
 }
