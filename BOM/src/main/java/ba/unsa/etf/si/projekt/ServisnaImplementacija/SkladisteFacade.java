@@ -634,8 +634,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 					t.commit();
 					return listaMaterijala;					
 				}
-				else
-					return new ArrayList<Materijal>();
+				else {
+					List<Materijal> l =null;
+					return l;
+				}
 			
 			}
 			catch (Exception e) {

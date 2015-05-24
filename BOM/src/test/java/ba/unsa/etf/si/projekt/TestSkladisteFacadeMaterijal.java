@@ -148,11 +148,42 @@ public class TestSkladisteFacadeMaterijal extends TestCase {
 	}
 	
 	@Test
-	(expected=Exception.class)
+	//(expected=Exception.class)
 	public void testSortMaterijalaParametri() {
 		try {
-			sf.sortirajMaterijale(null, "nesto", null);		
-			sf.sortirajMaterijale("nesto", null , null);	
+			List<Materijal> l = sf.sortirajMaterijale(null, "nesto", null);		
+			assertNull(l);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	//(expected=Exception.class)
+	public void testSortMaterijalaParametri2() {
+		try {
+			List<Materijal> l = sf.sortirajMaterijale("nesto", null, null);		
+			assertNull(l);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	//(expected=Exception.class)
+	public void testSortMaterijalaParametri3() {
+		try {
+			List<Materijal> l, l1, l2, l3;
+			l = sf.sortirajMaterijale("nesto", "nesto", null);		
+			assertNotNull(l);
+			l1 = sf.sortirajMaterijale("nesto", "nesto", "nesto");
+			assertNotNull(l1);
+			l2 = sf.sortirajMaterijale(null, null, null);
+			assertNotNull(l2);
+			l3 = sf.sortirajMaterijale(null, null, "nesto");
+			assertNotNull(l3);
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
