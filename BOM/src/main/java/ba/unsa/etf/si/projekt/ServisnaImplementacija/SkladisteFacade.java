@@ -387,7 +387,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 					Narudzbenica n1 = (Narudzbenica)iterator1.next(); 
 				    lista.add(n1);
 			    }
-				if(lista.size() == 1) {
+				if(lista.size() > 0) {
 					n = lista.get(0);
 				}
 				t.commit();

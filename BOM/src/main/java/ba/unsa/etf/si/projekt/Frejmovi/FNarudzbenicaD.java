@@ -286,10 +286,10 @@ public class FNarudzbenicaD {
 				StavkaNarudzbenice sn;
 				SkladisteFacade kf=new SkladisteFacade();
 				KompanijaFacade f=new KompanijaFacade();
-				for(int i=0;i<table.getSelectedRowCount();i++)
+				for(int i=0;i<table.getRowCount();i++)
 				{
-					
 			sn=new StavkaNarudzbenice(kf.pretragaSastavnica(table.getValueAt(i, 1).toString()), Double.parseDouble(table.getValueAt(i, 4).toString()));
+	//	MessageBox.infoBox(frame, kf.pretragaSastavnica(table.getValueAt(i, 1).toString()).getNaziv(), "title");
 			stav_nar.add(sn);
 				}
 				   Date date = new Date();
