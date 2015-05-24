@@ -373,5 +373,6 @@ public class FNarudzbenicaD {
 	{ 
 		trenutniKorisnik=os;
 		textField.setText(trenutniKorisnik.getIme()+" "+ trenutniKorisnik.getPrezime());
+		textField.setEditable(false);
 	}
 }

@@ -368,14 +368,15 @@ public class FKorisnikDMPB {
 						}
 					}
 					if(obrisano)
-						MessageBox.infoBox(frame, "Korisnik je obrisan.", "Info");
+						MessageBox.infoBox(null, "Korisnik je obrisan.", "Info");
 					else
-						MessageBox.infoBox(frame, "Korisnik ne moze biti obrisan!", "Info");
+						MessageBox.infoBox(null, "Ovog korisnika nije moguce obrisati!", "Info");
 					
 					frame.setVisible(false);
-			    	parentFrame.setVisible(true);
+					frame.dispose();
+			    	//parentFrame.setVisible(true);
 			    	parentFrame.setEnabled(true);
-			    	frame.dispose();
+			    	
 				}
 				if(akcija.equals("Pregled"))
 				{
