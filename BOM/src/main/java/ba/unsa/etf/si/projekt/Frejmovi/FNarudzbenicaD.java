@@ -30,7 +30,10 @@ import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -56,6 +59,7 @@ public class FNarudzbenicaD {
 	public Double ukupnaCijena = (double) 0;;
 	public Double ukupnoTrajanje = (double) 0;
 	private JTextField serijskiBroj;;
+	public Osoba trenutniKorisnik;
 
 	/**
 	 * Launch the application.
@@ -87,6 +91,7 @@ public class FNarudzbenicaD {
 		parentFrame = parentF;
 		parentFrame.setEnabled(false);
 		frame.setVisible(true);
+		
 	}
 
 	/**
@@ -275,16 +280,25 @@ public class FNarudzbenicaD {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				List<StavkaNarudzbenice> stav_nar=new ArrayList<StavkaNarudzbenice>();
+				StavkaNarudzbenice sn;
+				SkladisteFacade kf=new SkladisteFacade();
+				KompanijaFacade f=new KompanijaFacade();
 				for(int i=0;i<table.getSelectedRowCount();i++)
 				{
-				//	StavkaNarudzbe n=new StavkaNarudzbe();
+					
+			sn=new StavkaNarudzbenice(kf.pretragaSastavnica(table.getValueAt(i, 1).toString()), Double.parseDouble(table.getValueAt(i, 4).toString()));
+			stav_nar.add(sn);
 				}
-			//	(List<StavkaNarudzbenice> stav_nar, Klijent klijent, Date datumKreiranja, Menadzer menadzer, String serijskiBroj)
-			//	StavkaNarudzbenice(Sastavnica s, Narudzbenica n, double k)
-				Narudzbenica narudzbenica=new Narudzbenica();
-				SkladisteFacade kf=new SkladisteFacade();
-				if(kf.validirajNarudzbenicu(narudzbenica)){
-				   kf.dodajNarudzbenicu(narudzbenica);				  
+				   Date date = new Date();
+				   Calendar cal = Calendar.getInstance();
+				   Narudzbenica narudzbenica=new Narudzbenica();
+				   narudzbenica.setStav_nar(stav_nar);
+				   narudzbenica.setKlijent(listaKlijenata.get(comboBox.getSelectedIndex()));
+				   narudzbenica.setDatumKreiranja(cal.getTime());
+				   narudzbenica.setOdgovornoLice((Menadzer)trenutniKorisnik);
+				   narudzbenica.setSerijskiBroj(serijskiBroj.getText());
+			      	if(kf.validirajNarudzbenicu(narudzbenica)){
+			            kf.dodajNarudzbenicu(narudzbenica);				  
 				   MessageBox.infoBox(frame, "Narudžbenica je uspješno kreirana","Info");			   
 				}
 				   else MessageBox.infoBox(frame, "Narudžbenica ne može biti kreirana zbog nedostatka materjala","Info");
@@ -343,5 +357,9 @@ public class FNarudzbenicaD {
 		table = new JTable(model);
 		scrollPane.setViewportView(table);
 
+	}
+	public void postaviKorisnika(Osoba os)
+	{trenutniKorisnik=os;
+	
 	}
 }
