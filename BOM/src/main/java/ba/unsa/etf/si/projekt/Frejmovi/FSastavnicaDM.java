@@ -94,7 +94,7 @@ public class FSastavnicaDM {
 		
 		akcija = akcijaA;
 		sast=s;
-		popuniPodatke();
+		
 		if(akcija.equals("Kreiranje"))
 		{
 			
@@ -103,6 +103,7 @@ public class FSastavnicaDM {
 		}
 		else if(akcija.equals("Modifikovanje"))
 		{
+			popuniPodatke();
 			textField_2.setText(sast.getSerijskiBroj());
 			textField.setText(sast.getNaziv());
 		    spinner_1.setValue(sast.getTrajanjeProizvodnje());
