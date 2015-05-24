@@ -1,6 +1,8 @@
 package ba.unsa.etf.si.projekt.Frejmovi;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -19,6 +21,7 @@ import java.awt.event.ActionEvent;
 
 
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import ba.unsa.etf.si.projekt.Klase.Kategorija;
@@ -31,6 +34,8 @@ import com.toedter.calendar.JDateChooser;
 
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+
+import java.util.List;
 
 public class FMaterijalDMPB {
 
@@ -48,7 +53,6 @@ public class FMaterijalDMPB {
 	private JFrame parentFrame;
 	private JButton btnUnesi;
 	private JPanel panel;
-
 	/**
 	 * Launch the application.
 	 */
@@ -73,23 +77,62 @@ public class FMaterijalDMPB {
 		});
 	}
 	
-	public void setFrame(JFrame parentF, String akcijaA, String klasa)
+	public void OnemoguciKontrole()
 	{
-		//mozda neka provjera da li je akcija validna (moze i enumeracija)
-		//ali i ne mora :D
+		comboBox.setEditable(false);
+		comboBox_1.setEditable(false);
+		comboBox_2.setEditable(false);
+		comboBox_3.setEditable(false);
+		((JSpinner.DefaultEditor)spinner.getEditor()).getTextField().setEditable(false);
+		((JSpinner.DefaultEditor)spinner_1.getEditor()).getTextField().setEditable(false);
+		((JSpinner.DefaultEditor)spinner_2.getEditor()).getTextField().setEditable(false);
+		((JSpinner.DefaultEditor)spinner_3.getEditor()).getTextField().setEditable(false);
+		
+		comboBox.setEnabled(false);
+		comboBox_1.setEnabled(false);
+		comboBox_2.setEnabled(false);
+		comboBox_3.setEnabled(false);
+		spinner.setEnabled(false);
+		spinner_3.setEnabled(false);
+		spinner_1.setEnabled(false);
+		spinner_2.setEnabled(false);
+		dateChooser.setEnabled(false);
+	}
+	
+	public void IspisiVrijednosti(Materijal m)
+	{
+		comboBox.setSelectedItem(m.getSerijskiBroj());
+		comboBox_1.setSelectedItem(m.getOpis());
+		comboBox_2.setSelectedItem(m.getMjernaJedinica());
+		comboBox_3.setSelectedItem(m.getTip());
+		spinner.setValue(m.getGranicnaKolicina());
+		spinner_3.setValue(m.getKolicina());
+		spinner_1.setValue(m.getNabavnaCijena());
+		spinner_2.setValue(m.getProdajnaCijena());
+		dateChooser.setDate(m.getDatumNabavke());
+	}
+	
+	//public void 
+	public void setFrame(JFrame parentF, String akcijaA, Materijal mat)
+	{
 		akcija = akcijaA;
 		
-		
-		//kreiranje, modifikovanje, brisanje, pregled
+		 SkladisteFacade sf = new SkladisteFacade();
+		 List<Materijal> materijali = new ArrayList<Materijal>();
+		 Materijal m = new Materijal();
+		 materijali=sf.returnListaMaterijala();
+		 m=materijali.get(0);
+		 //kreiranje, modifikovanje, brisanje, pregled
 		//po defaultu je sve editabilno
 		
 		//za brisanje i pregleda ne trebaju biti editabilini!
-		if(akcija.equals("Brisanje") || akcija.equals("Pregled"))
+		if(akcija.equals("Brisanje") )
 		{
-			comboBox.setEditable(false);
-			comboBox_1.setEditable(false);
-			comboBox_2.setEditable(false);
-			comboBox_3.setEditable(false);
+			IspisiVrijednosti(m);
+			OnemoguciKontrole();
+			
+			btnUnesi.setText("Obriši");
+		
 		}
 		//tekst button-a
 		if(akcija.equals("Kreiranje"))
@@ -98,15 +141,16 @@ public class FMaterijalDMPB {
 		}
 		else if(akcija.equals("Modifikovanje"))
 		{
+			IspisiVrijednosti(m);
 			btnUnesi.setText("Modifikuj");
 		}
-		else if(akcija.equals("Brisanje"))
-		{
-			btnUnesi.setText("Obriši");
-		}
+		
 		else if(akcija.equals("Pregled"))
 		{
-			btnUnesi.setText("Nazad");
+			
+			IspisiVrijednosti(m);
+			OnemoguciKontrole();
+			btnUnesi.hide();
 		}
 			
 		String pom = akcija;
@@ -214,16 +258,13 @@ public class FMaterijalDMPB {
 		lblDatumNabavke.setBounds(77, 220, 109, 16);
 		panel.add(lblDatumNabavke);
 		
-		JLabel lblGraninaKoliina = new JLabel("Grani\u010Dna koli\u010Dina:");
-		lblGraninaKoliina.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblGraninaKoliina.setBounds(12, 249, 174, 16);
-		panel.add(lblGraninaKoliina);
-		
 		JLabel lblJedinica = new JLabel("jedinica");
 		lblJedinica.setBounds(326, 249, 130, 16);
 		panel.add(lblJedinica);
 		
 		btnUnesi = new JButton("Nazad");
+		
+		
 		btnUnesi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//akcija za klik na dugme koje moze imati razlicite f-je
@@ -232,25 +273,53 @@ public class FMaterijalDMPB {
 				if(akcija.equals("Kreiranje"))
 				{
 					SkladisteFacade sf= new SkladisteFacade();
-					//(String serijskiBroj, String opis, double kolicina, double granicnaKolicina, TipMaterijala tip, double nabavnaCijena, Date datumNabavke, Kategorija kategorija, double prodajnaCijena, Date datumIstekaRoka, Radnik kreirao, String mjernaJedinica)
-					Double kolicina=(Double)spinner_3.getValue();
-					Double granKolicina=(Double)spinner.getValue();
-					Double nabCijena = (Double)spinner_1.getValue();
-					Double prodCijena = (Double)spinner_2.getValue();
+					double kolicina=(Double)spinner_3.getValue();
+					double granKolicina=(Double)spinner.getValue();
+					double nabCijena = (Double)spinner_1.getValue();
+					double prodCijena = (Double)spinner_2.getValue();
 					Date datum = (Date)dateChooser.getDate();
-					Materijal m = new Materijal(comboBox.getSelectedItem().toString(), comboBox_1.getSelectedItem().toString(), kolicina, granKolicina, TipMaterijala.poluproizvod, nabCijena, datum,Kategorija.drvo,prodCijena,null, null, comboBox_2.getSelectedItem().toString());
+					String serBroj= (String)comboBox.getSelectedItem();
+					String opis= (String)comboBox_1.getSelectedItem();
+					String mjed=(String)comboBox_2.getSelectedItem();
+					Materijal m = new Materijal(serBroj, opis, kolicina, granKolicina, TipMaterijala.proizvod, nabCijena, null,null,prodCijena,null, null, mjed);
 					if(sf.dodajMaterijal(m))
-						MessageBox.infoBox(frame, "Uspješno ste dodali materijal", "Info");
+						MessageBox.infoBox(frame, "Uspješno ste dodali materijal.", "Info");
+					
 				}
 				if( akcija.equals("Modifikovanje"))
 				{
-					
+					SkladisteFacade sf= new SkladisteFacade();
+					double kolicina=(Double)spinner_3.getValue();
+					double granKolicina=(Double)spinner.getValue();
+					double nabCijena = (Double)spinner_1.getValue();
+					double prodCijena = (Double)spinner_2.getValue();
+					Date datum = (Date)dateChooser.getDate();
+					String serBroj= (String)comboBox.getSelectedItem();
+					String opis= (String)comboBox_1.getSelectedItem();
+					String mjed=(String)comboBox_2.getSelectedItem();
+					Materijal m = new Materijal(serBroj, opis, kolicina, granKolicina, TipMaterijala.proizvod, nabCijena, datum,null,prodCijena,null, null, mjed);
+					if(sf.izmijeniMaterijal(m))
+						MessageBox.infoBox(frame, "Uspješno ste modifikovali materijal.", "Info");
+				
 				}
 				if(akcija.equals("Brisanje"))
 				{
 					//ispisati dialogBox ? (da zelite brisati)
 					//azurirati bazu
 					//vratiti se nazad
+					SkladisteFacade sf= new SkladisteFacade();
+					double kolicina=(Double)spinner_3.getValue();
+					double granKolicina=(Double)spinner.getValue();
+					double nabCijena = (Double)spinner_1.getValue();
+					double prodCijena = (Double)spinner_2.getValue();
+					Date datum = (Date)dateChooser.getDate();
+					String serBroj= String.valueOf(comboBox.getSelectedItem());
+					String opis= (String)comboBox_1.getSelectedItem();
+					String mjed=(String)comboBox_2.getSelectedItem();
+					Materijal m = new Materijal(serBroj, opis, kolicina, granKolicina, TipMaterijala.proizvod, nabCijena, datum,null,prodCijena,null, null, mjed);
+					if(sf.obrišiMaterijal(m))
+						MessageBox.infoBox(frame, "Uspješno ste obrisali materijal.", "Info");
+					
 				}
 				if(akcija.equals("Pregled"))
 				{
@@ -266,23 +335,6 @@ public class FMaterijalDMPB {
 		dateChooser.setBounds(198, 216, 116, 20);
 		panel.add(dateChooser);
 		
-		JButton btnNewButton = new JButton("Poništi");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				comboBox.setSelectedItem("");
-				comboBox_1.setSelectedItem("");
-				comboBox_2.setSelectedItem("");
-				comboBox_3.setSelectedItem("");
-				dateChooser.setCalendar(null);
-				spinner.setValue(0);
-				spinner_1.setValue(0);
-				spinner_2.setValue(0);
-				spinner_3.setValue(0);
-			}
-		});
-		btnNewButton.setBounds(217, 311, 89, 27);
-		panel.add(btnNewButton);
-		
 		SpinnerNumberModel m_numberSpinnerModel;
 		m_numberSpinnerModel = new SpinnerNumberModel(0.0, 0, 100000, 0.01);
 		
@@ -292,22 +344,43 @@ public class FMaterijalDMPB {
 		SpinnerNumberModel m_numberSpinnerModel_2;
 		m_numberSpinnerModel_2 = new SpinnerNumberModel(0.0, 0, 100000, 0.1);
 		
-		spinner = new JSpinner();
-		spinner.setBounds(198, 247, 116, 20);
-		panel.add(spinner);
+		SpinnerNumberModel m_numberSpinnerModel_3;
+		m_numberSpinnerModel_3 = new SpinnerNumberModel(0.0, 0, 100000, 0.1);
 		
 		spinner_1 = new JSpinner(m_numberSpinnerModel);
 		spinner_1.setBounds(196, 160, 118, 20);
 		panel.add(spinner_1);
 		
+		if ( spinner_1.getEditor() instanceof JSpinner.DefaultEditor ) {
+			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner_1.getEditor();
+			   editor.getTextField().setEditable( false );
+			   editor.getTextField().setBackground(Color.white);
+			}
+		
 		spinner_2 = new JSpinner(m_numberSpinnerModel_1);
 		spinner_2.setBounds(196, 189, 118, 20);
 		panel.add(spinner_2);
 		
+		if ( spinner_2.getEditor() instanceof JSpinner.DefaultEditor ) {
+			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner_2.getEditor();
+			   editor.getTextField().setEditable( false );
+			   editor.getTextField().setBackground(Color.white);
+			}
 		spinner_3 = new JSpinner(m_numberSpinnerModel_2);
 		spinner_3.setBounds(196, 102, 120, 20);
 		panel.add(spinner_3);
-		
-		
+		if ( spinner_3.getEditor() instanceof JSpinner.DefaultEditor ) {
+			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner_3.getEditor();
+			   editor.getTextField().setEditable( false );
+			   editor.getTextField().setBackground(Color.white);
+			}
+		spinner = new JSpinner(m_numberSpinnerModel_3);
+		spinner.setBounds(198, 247, 116, 20);
+		panel.add(spinner);
+		if ( spinner.getEditor() instanceof JSpinner.DefaultEditor ) {
+			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner.getEditor();
+			   editor.getTextField().setEditable( false );
+			   editor.getTextField().setBackground(Color.white);
+			}
 	}
 }

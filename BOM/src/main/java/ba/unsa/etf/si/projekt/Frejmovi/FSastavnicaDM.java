@@ -17,9 +17,13 @@ import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Date;
+import java.util.List;
 
 import javax.swing.JTable;
 
+import ba.unsa.etf.si.projekt.Klase.Menadzer;
+import ba.unsa.etf.si.projekt.Klase.StavkaSastavnice;
 import ba.unsa.etf.si.projekt.Validacija.Validator;
 
 import com.toedter.calendar.JCalendar;
@@ -178,6 +182,10 @@ public class FSastavnicaDM {
 		scrollPane.setViewportView(table);
 		
 		JButton btnDodajStavku = new JButton("Dodaj stavku");
+		btnDodajStavku.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnDodajStavku.setBounds(680, 67, 173, 25);
 		panel_1.add(btnDodajStavku);
 		
@@ -214,6 +222,8 @@ public class FSastavnicaDM {
 			public void actionPerformed(ActionEvent e) {
 				
 				//kreiranje sastavnice....
+				//public Sastavnica(List<StavkaSastavnice> stavke, Menadzer m, String sb, Date dk, double tp, double co, double dt, double uc, String naziv)
+				//Sastavnica s = new Sastavnica ();
 				
 			}
 		});
