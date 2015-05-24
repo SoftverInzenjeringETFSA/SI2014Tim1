@@ -223,7 +223,17 @@ public class FSastavnicaDM {
 				Double y = Double.parseDouble(spinner.getValue().toString());
 				ukupnaCijena = ukupnaCijena + (x * y) + (Double)spinner_2.getValue()*(Double)spinner_1.getValue()+(Double)spinner_3.getValue();
 				textField_1.setText(Double.toString(ukupnaCijena));
-
+				Integer ind=-1;
+				for(int j=0;j<table.getRowCount();j++)
+				{
+					if(table.getValueAt(j, 0).equals(listaMaterijala.get(i).getSerijskiBroj()))
+					{  
+						Double h = Double.parseDouble(table.getValueAt(j, 3).toString()) +Double.parseDouble(spinner.getValue().toString())	;					
+					    ind=j;
+					    table.setValueAt(h, ind, 3);
+					}
+				}
+				if(ind==-1){		
 				model.addRow(new Object[] { 
 						listaMaterijala.get(i).getSerijskiBroj(),
 						listaMaterijala.get(i).getOpis(),
@@ -233,6 +243,7 @@ public class FSastavnicaDM {
 						 });
 				table = new JTable(model);
 				scrollPane.setViewportView(table);
+			}
 			}
 		});
 		btnDodajStavku.setBounds(680, 67, 173, 25);
