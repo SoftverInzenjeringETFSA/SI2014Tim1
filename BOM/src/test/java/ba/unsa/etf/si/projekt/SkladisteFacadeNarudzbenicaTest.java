@@ -1,8 +1,6 @@
 package ba.unsa.etf.si.projekt;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -131,5 +129,66 @@ public class SkladisteFacadeNarudzbenicaTest {
 		
 		assertNotNull(n);
 	}
-
+	
+	@Test
+	public void testSortiranjeNarudzbenica() {
+		try {
+			Narudzbenica n = new Narudzbenica();
+			Narudzbenica n1 = new Narudzbenica();
+			n.setSerijskiBroj("N11");
+			n1.setSerijskiBroj("N11");
+			sf.dodajNarudzbenicu(n);
+			sf.dodajNarudzbenicu(n1);
+			sf.sortirajNarudzbenice("serijskiBroj", "N11", "narudzbenica_id");
+			long id1 = n.getId();
+			long id2 = n1.getId();
+			assertTrue(id1<id2);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	//(expected=Exception.class)
+	public void testSortNarudzbenicaParametri() {
+		try {
+			List<Narudzbenica> l = sf.sortirajNarudzbenice(null, "nesto", null);		
+			assertNull(l);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	//(expected=Exception.class)
+	public void testSortNarudzbenicaParametri2() {
+		try {
+			List<Narudzbenica> l = sf.sortirajNarudzbenice("nesto", null, null);		
+			assertNull(l);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	//(expected=Exception.class)
+	public void testSortNarudzbenicaParametri3() {
+		try {
+			List<Narudzbenica> l, l1, l2, l3;
+			l = sf.sortirajNarudzbenice("nesto", "nesto", null);		
+			assertNotNull(l);
+			l1 = sf.sortirajNarudzbenice("nesto", "nesto", "nesto");
+			assertNotNull(l1);
+			l2 = sf.sortirajNarudzbenice(null, null, null);
+			assertNotNull(l2);
+			l3 = sf.sortirajNarudzbenice(null, null, "nesto");
+			assertNotNull(l3);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 }
