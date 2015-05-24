@@ -199,6 +199,10 @@ public class FMenadzer {
 		panel_3.add(panel_9);
 		
 		JButton button_5 = new JButton("Pretra\u017Ei");
+		button_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		button_5.setBounds(242, 165, 91, 25);
 		panel_9.add(button_5);
 		

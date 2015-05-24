@@ -112,6 +112,7 @@ public class Login {
 					{
 						FZaposlenik z = new FZaposlenik();
 						z.setFrame(null, null, null);
+						z.postaviKorisnika(o);
 						frame.setVisible(false);//skrivanje frejma login
 						frame.dispose();//unistavanje frejma login
 					}
