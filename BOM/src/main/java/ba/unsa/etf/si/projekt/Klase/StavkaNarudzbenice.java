@@ -30,6 +30,12 @@ public class StavkaNarudzbenice {
 		this.kolicina = k;
 	}
 	
+	public StavkaNarudzbenice(Sastavnica s, double k)
+	{
+		this.proizvod = s;
+		this.kolicina = k;
+	}
+	
 	public long getId() {
 		return id;
 	}
