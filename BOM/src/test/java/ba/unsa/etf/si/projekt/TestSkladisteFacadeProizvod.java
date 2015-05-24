@@ -1,14 +1,20 @@
 package ba.unsa.etf.si.projekt;
 
 import static org.junit.Assert.*;
+
 import java.util.ArrayList;
+
 import junit.framework.TestCase;
+
 import org.junit.Test;
+
+import ba.unsa.etf.si.projekt.Klase.Materijal;
 import ba.unsa.etf.si.projekt.Klase.Proizvod;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
 
 public class TestSkladisteFacadeProizvod extends TestCase {
 	SkladisteFacade sf = new SkladisteFacade();
+	
 	@Test	
 	public void testReturnListaProizvoda () {
 		try {
@@ -31,6 +37,20 @@ public class TestSkladisteFacadeProizvod extends TestCase {
 		}
 	}
 	
+	@Test
+	public void testListaProizvodaNijePrazna() {
+		try {
+			Proizvod p = new Proizvod();
+			sf.dodajProizvod(p);
+			int size = sf.returnListaProizvoda().size();
+			assertTrue(size > 0);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
 	public void testDodavanjeProizvoda() {
 		try {
 			int size=sf.returnListaProizvoda().size();
@@ -46,6 +66,20 @@ public class TestSkladisteFacadeProizvod extends TestCase {
 		}
 	}
 	
+	@Test
+	public void testDodavanjeProizvoda2() {
+		try {
+			Proizvod p = new Proizvod();
+			p.setSerijskiBroj("P55");
+			Boolean r = sf.dodajProizvod(p);
+			assertTrue(r);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
 	public void testBrisanjeProizvoda() {
 		try {
 			Proizvod p = new Proizvod();
@@ -55,6 +89,19 @@ public class TestSkladisteFacadeProizvod extends TestCase {
 			int size = sf.returnListaProizvoda().size();
 			sf.obrišiProizvod(p1);
 			assertEquals((size-1), sf.returnListaProizvoda().size());
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testBrisanjeProizvoda2() {
+		try {
+			Proizvod p = new Proizvod();
+			sf.dodajProizvod(p);
+			Boolean r = sf.obrišiProizvod(p);
+			assertTrue(r);
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -74,6 +121,19 @@ public class TestSkladisteFacadeProizvod extends TestCase {
 			System.out.println(e.getMessage());
 		}
 	}
-
+	
+	@Test
+	public void testPretragaProizvodaPoSerijskomBroju() {
+		try {
+			Proizvod p = new Proizvod();
+			p.setSerijskiBroj("P1132");
+			sf.dodajProizvod(p);
+			Proizvod p1 = sf.pretragaProizvoda("P1132");
+			assertEquals("P1132", p1.getSerijskiBroj());		
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
 }

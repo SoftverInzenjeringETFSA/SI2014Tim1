@@ -14,6 +14,7 @@ import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
 public class TestSkladisteFacadeSastavnica extends TestCase{
 
 	SkladisteFacade sf = new SkladisteFacade();
+	
 	@Test	
 	public void testReturnListaSastavnica () {
 		try {
@@ -35,6 +36,20 @@ public class TestSkladisteFacadeSastavnica extends TestCase{
 		}
 	}
 	
+	@Test
+	public void testListaSastavnicaNijePrazna() {
+		try {
+			Sastavnica s = new Sastavnica();
+			sf.dodajSastavnicu(s);
+			int size = sf.returnListaSastavnica().size();
+			assertTrue(size > 0);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
 	public void testDodavanjeSastavnica() {
 		try {
 			int size=sf.returnListaSastavnica().size();
@@ -49,6 +64,20 @@ public class TestSkladisteFacadeSastavnica extends TestCase{
 		}
 	}
 	
+	@Test
+	public void testDodavanjeSastavnica2() {
+		try {
+			Sastavnica s = new Sastavnica();
+			s.setSerijskiBroj("S55");
+			Boolean r = sf.dodajSastavnicu(s);
+			assertTrue(r);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
 	public void testBrisanjeSastavnica() {
 		try {
 			Sastavnica s = new Sastavnica();
@@ -64,6 +93,20 @@ public class TestSkladisteFacadeSastavnica extends TestCase{
 		}
 	}
 	
+	@Test
+	public void testBrisanjeSastavnica2() {
+		try {
+			Sastavnica s = new Sastavnica();
+			sf.dodajSastavnicu(s);
+			Boolean r = sf.obrišiSastavnicu(s);
+			assertTrue(r);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
 	public void testIzmjenaSastavnica() {
 		try {
 			Sastavnica s = new Sastavnica();
@@ -77,5 +120,19 @@ public class TestSkladisteFacadeSastavnica extends TestCase{
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	@Test
+	public void testPretragaSastavnicaPoSerijskomBroju() {
+		try {
+			Sastavnica s = new Sastavnica();
+			s.setSerijskiBroj("S1132");
+			sf.dodajSastavnicu(s);
+			Sastavnica s1 = sf.pretragaSastavnica("S1132");
+			assertEquals("S1132", s1.getSerijskiBroj());		
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	} 
 
 }
