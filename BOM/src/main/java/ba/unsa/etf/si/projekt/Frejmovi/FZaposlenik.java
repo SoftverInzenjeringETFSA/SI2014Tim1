@@ -215,7 +215,7 @@ public class FZaposlenik {
 				
 				FSastavnicaDM s = new FSastavnicaDM();
 				s.setFrame(frame, "Kreiranje", null);
-				//s.postaviKorisnika(trenutniKorisnik);
+				s.postaviKorisnika(trenutniKorisnik);
 			}
 		});
 		button_13.setBounds(159, 45, 97, 25);
@@ -238,7 +238,7 @@ public class FZaposlenik {
 					//otvaranje forme za pregled korisnika sistema
 					FSastavnicaDM s = new FSastavnicaDM();
 					s.setFrame(frame, "Modifikovanje", sastavnica);
-					//s.postaviKorisnika(trenutniKorisnik);
+					s.postaviKorisnika(trenutniKorisnik);
 				}
 				
 			}
@@ -256,7 +256,7 @@ public class FZaposlenik {
 					//otvaranje forme za pregled korisnika sistema
 					FSastavnicaDM s = new FSastavnicaDM();
 					s.setFrame(frame, "Brisanje", sastavnica);
-					//s.postaviKorisnika(trenutniKorisnik);
+					s.postaviKorisnika(trenutniKorisnik);
 				}
 				
 			}
@@ -374,7 +374,7 @@ public class FZaposlenik {
 				
 				FMaterijalDMPB m = new FMaterijalDMPB();
 				m.setFrame(frame, "Kreiranje", null);
-				//postaviKorisnika(trenutniKorisnik);
+				m.postaviKorisnika(trenutniKorisnik);
 				
 			}
 		});
@@ -398,7 +398,7 @@ public class FZaposlenik {
 					//otvaranje forme za pregled korisnika sistema
 					FMaterijalDMPB s = new FMaterijalDMPB();
 					s.setFrame(frame, "Modifikuj", materijal);
-					//s.postaviKorisnika(trenutniKorisnik);
+					s.postaviKorisnika(trenutniKorisnik);
 				}
 				
 			}

@@ -595,7 +595,7 @@ public class FMenadzer {
 				//otvaranje forme za unos, pregled, modif. i brisnaje korisnika sis.
 				FMaterijalDMPB m = new FMaterijalDMPB();
 				m.setFrame(frame, "Kreiranje", null);
-				//m.postaviKorisnika(trenutniKorisnik);
+				m.postaviKorisnika(trenutniKorisnik);
 				
 				
 				
