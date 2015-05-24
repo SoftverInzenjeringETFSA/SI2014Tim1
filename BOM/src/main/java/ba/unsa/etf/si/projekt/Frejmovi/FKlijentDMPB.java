@@ -41,6 +41,7 @@ public class FKlijentDMPB {
 	private JPanel panel;
 	private JFrame parentFrame;
 	public Klijent klijent;
+	public Osoba trenutniKorisnik;
 
 	/**
 	 * Launch the application.
@@ -69,7 +70,7 @@ public class FKlijentDMPB {
 	}
 
 	public void setFrame(JFrame parentF, String akcijaA, Klijent k) {
-
+		klijent = k;
 		akcija = akcijaA;
 		if (akcija.equals("Brisanje") || akcija.equals("Pregled")) {
 			txtFdsfd.setEditable(false);
@@ -108,11 +109,6 @@ public class FKlijentDMPB {
 
 	public FKlijentDMPB() {
 		initialize();
-		klijent = new Klijent();
-		KompanijaFacade kf = new KompanijaFacade();
-		klijent = (Klijent) kf.returnByImePrezime("klijentt", "klijent",
-				TipOsobe.klijent);
-
 		frame.addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -221,6 +217,9 @@ public class FKlijentDMPB {
 								adresa, email, narudzbe))
 							MessageBox.infoBox(frame,
 									"Klijent je uspješno kreiran.", "Info");
+						frame.dispose();
+						parentFrame.setEnabled(true);
+						parentFrame.setVisible(true);
 					} else
 						MessageBox.infoBox(frame,
 								"Molimo unesite sve podatke.", "Greska");
@@ -238,23 +237,22 @@ public class FKlijentDMPB {
 						MessageBox.infoBox(frame,
 								"Podaci o klijentu su uspješno izmijenjeni",
 								"Info");
+						frame.dispose();
+						parentFrame.setEnabled(true);
+						parentFrame.setVisible(true);
 					} else
 						MessageBox.infoBox(frame,
 								"Molimo unesite sve podatke.", "Greska");
 				}
 
-				if (akcija.equals("Brisanje")) {
-					int dialogButton = JOptionPane.YES_NO_OPTION;
-					int dialogResult = JOptionPane
-							.showConfirmDialog(
-									null,
-									"Da li ste sigurni da želite obrisati ovog klijenat?",
-									"Warning", dialogButton);
-					if (dialogResult == JOptionPane.YES_OPTION) {
+				if (akcija.equals("Brisanje")) {				
 						kf.obrisiOsobu(klijent);
 						MessageBox.infoBox(frame,
 								"Klijent je uspješno obrisan", "Info");
-					}
+						frame.dispose();
+						parentFrame.setEnabled(true);
+						parentFrame.setVisible(true);
+					
 				}
 				if (akcija.equals("Pregled")) {
 					frame.dispose();
@@ -289,12 +287,17 @@ public class FKlijentDMPB {
 
 	public boolean validacijaOnClick() {
 
-		if(!imeVal.verify(txtFdsfd)) return false;
-		if(!prezimeVal.verify(textField_1)) return false;
-		if(!adresaVal.verify(textField_3)) return false;
-		if(!emailVal.verify(textField_4)) return false;
-		if(!telefonVal.verify(telefon)) return false;
-		
+		if (!imeVal.verify(txtFdsfd))
+			return false;
+		if (!prezimeVal.verify(textField_1))
+			return false;
+		if (!adresaVal.verify(textField_3))
+			return false;
+		if (!emailVal.verify(textField_4))
+			return false;
+		if (!telefonVal.verify(telefon))
+			return false;
+
 		Boolean da = true;
 		if (txtFdsfd.getText().equals("") || textField_1.getText().equals("")
 				|| telefon.getText().equals("")
@@ -302,5 +305,9 @@ public class FKlijentDMPB {
 				|| textField_3.getText().equals(""))
 			da = false;
 		return da;
+	}
+
+	public void postaviKorisnika(Osoba os) {
+		trenutniKorisnik = os;
 	}
 }
