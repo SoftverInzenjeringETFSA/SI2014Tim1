@@ -304,7 +304,8 @@ public class FNarudzbenicaD {
 			            kf.dodajNarudzbenicu(narudzbenica);				  
 				   MessageBox.infoBox(frame, "Narudžbenica je uspješno kreirana","Info");	
 				   frame.dispose();
-				   parentFrame.setVisible(true);
+					parentFrame.setEnabled(true);
+					parentFrame.setVisible(true);
 				   
 				}
 		else {
