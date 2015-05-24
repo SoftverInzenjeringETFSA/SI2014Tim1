@@ -198,15 +198,27 @@ public class FMenadzer {
 		panel_9.setBounds(12, 13, 374, 203);
 		panel_3.add(panel_9);
 		
-		JButton button_5 = new JButton("Pretra\u017Ei");
-		button_5.addActionListener(new ActionListener() {
+		JButton btnPrikai_3 = new JButton("Prikaži");
+		btnPrikai_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				//pretraga narudzbenica
+				String name;
+				String value;
+				String sort;
+				popuniTabeluNarudzbenica(null, null, null);
+				
 			}
 		});
-		button_5.setBounds(242, 165, 91, 25);
-		panel_9.add(button_5);
+		btnPrikai_3.setBounds(242, 165, 91, 25);
+		panel_9.add(btnPrikai_3);
 		
 		JButton button_6 = new JButton("Prika\u017Ei sve");
+		button_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				popuniTabeluNarudzbenica(null, null, null);
+			}
+		});
 		button_6.setBounds(133, 165, 97, 25);
 		panel_9.add(button_6);
 		
@@ -218,7 +230,8 @@ public class FMenadzer {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(133, 34, 200, 22);
 		comboBox.addItem("datumu kreiranja");
-		comboBox.addItem("odgovornom licu");
+		comboBox.addItem("imenu");
+		comboBox.addItem("prezimenu");
 		panel_9.add(comboBox);
 		
 		textField_2 = new JTextField();
@@ -229,7 +242,8 @@ public class FMenadzer {
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(133, 69, 200, 22);
 		comboBox_1.addItem("datumu kreiranja");
-		comboBox_1.addItem("odgovornom licu");
+		comboBox_1.addItem("imenu");
+		comboBox_1.addItem("prezimenu");
 		panel_9.add(comboBox_1);
 		
 		JLabel label_3 = new JLabel("Sortiraj po:");
@@ -308,6 +322,11 @@ public class FMenadzer {
 		//panel_6.add(btnPretrai);
 		
 		JButton btnPrikaiSve = new JButton("Prika\u017Ei sve");
+		btnPrikaiSve.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				popuniTabeluKlijent(null, null, null);
+			}
+		});
 		btnPrikaiSve.setBounds(133, 165, 97, 25);
 		panel_6.add(btnPrikaiSve);
 		
@@ -318,7 +337,8 @@ public class FMenadzer {
 		
 		JComboBox comboBox_8 = new JComboBox();
 		comboBox_8.setBounds(133, 34, 200, 22);
-		comboBox_8.addItem("nazivu");
+		comboBox_8.addItem("imenu");
+		comboBox_8.addItem("prezimenu");
 		panel_6.add(comboBox_8);
 		
 		textField = new JTextField();
@@ -328,7 +348,8 @@ public class FMenadzer {
 		
 		JComboBox comboBox_9 = new JComboBox();
 		comboBox_9.setBounds(133, 69, 200, 22);
-		comboBox_9.addItem("nazivu");
+		comboBox_9.addItem("imenu");
+		comboBox_9.addItem("prezimenu");
 		panel_6.add(comboBox_9);
 		
 		JLabel lblSortirajPo = new JLabel("Sortiraj po:");
@@ -336,9 +357,13 @@ public class FMenadzer {
 		lblSortirajPo.setBounds(12, 37, 109, 16);
 		panel_6.add(lblSortirajPo);
 		
-		JButton button_2 = new JButton("Pretra\u017Ei");
-		button_2.setBounds(242, 165, 91, 25);
-		panel_6.add(button_2);
+		JButton btnPrikai_2 = new JButton("Prikaži");
+		btnPrikai_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnPrikai_2.setBounds(242, 165, 91, 25);
+		panel_6.add(btnPrikai_2);
 		
 		JPanel panel_7 = new JPanel();
 		panel_7.setBounds(398, 13, 268, 83);
@@ -428,15 +453,20 @@ public class FMenadzer {
 		panel_16.setBounds(12, 13, 374, 203);
 		panel.add(panel_16);
 		
-		JButton button_11 = new JButton("Pretra\u017Ei");
-		button_11.addActionListener(new ActionListener() {
+		JButton btnPrikai_1 = new JButton("Prikaži");
+		btnPrikai_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button_11.setBounds(242, 165, 91, 25);
-		panel_16.add(button_11);
+		btnPrikai_1.setBounds(242, 165, 91, 25);
+		panel_16.add(btnPrikai_1);
 		
 		JButton button_12 = new JButton("Prika\u017Ei sve");
+		button_12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				popuniTabeluSastavnica(null, null, null);
+			}
+		});
 		button_12.setBounds(133, 165, 97, 25);
 		panel_16.add(button_12);
 		
@@ -448,7 +478,7 @@ public class FMenadzer {
 		JComboBox comboBox_4 = new JComboBox();
 		comboBox_4.setBounds(133, 34, 200, 22);
 		comboBox_4.addItem("nazivu");
-		comboBox_4.addItem("datumu kreiranja");
+		comboBox_4.addItem("cijeni");
 		panel_16.add(comboBox_4);
 		
 		textField_3 = new JTextField();
@@ -459,7 +489,6 @@ public class FMenadzer {
 		JComboBox comboBox_5 = new JComboBox();
 		comboBox_5.setBounds(133, 69, 200, 22);
 		comboBox_5.addItem("nazivu");
-		comboBox_5.addItem("datumu kreiranja");
 		panel_16.add(comboBox_5);
 		
 		JLabel label_5 = new JLabel("Sortiraj po:");
@@ -551,11 +580,20 @@ public class FMenadzer {
 		panel_12.setBounds(12, 13, 374, 203);
 		panel_1.add(panel_12);
 		
-		JButton button = new JButton("Pretra\u017Ei");
-		button.setBounds(242, 165, 91, 25);
-		panel_12.add(button);
+		JButton btnPrikai = new JButton("Prikaži");
+		btnPrikai.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnPrikai.setBounds(242, 165, 91, 25);
+		panel_12.add(btnPrikai);
 		
 		JButton button_1 = new JButton("Prika\u017Ei sve");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				popuniTabeluSkladiste(null,null,null);
+			}
+		});
 		button_1.setBounds(133, 165, 97, 25);
 		panel_12.add(button_1);
 		
@@ -566,8 +604,8 @@ public class FMenadzer {
 		
 		JComboBox comboBox_2 = new JComboBox();
 		comboBox_2.setBounds(133, 34, 200, 22);
-		comboBox_2.addItem("nazivu");
-		comboBox_2.addItem("datumu kreiranja");
+		comboBox_2.addItem("ime");
+		comboBox_2.addItem("prezime");
 		panel_12.add(comboBox_2);
 		
 		textField_1 = new JTextField();
@@ -577,8 +615,8 @@ public class FMenadzer {
 		
 		JComboBox comboBox_3 = new JComboBox();
 		comboBox_3.setBounds(133, 69, 200, 22);
-		comboBox_3.addItem("nazivu");
-		comboBox_3.addItem("datumu kreiranja");
+		comboBox_3.addItem("ime");
+		comboBox_3.addItem("prezime");
 		panel_12.add(comboBox_3);
 		
 		JLabel label_1 = new JLabel("Sortiraj po:");
