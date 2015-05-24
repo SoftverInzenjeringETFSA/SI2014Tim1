@@ -25,12 +25,12 @@ public class DataGrid {
 	
 	private final String tipTabele;
 	private JTable table;
-	public List<Klijent> klijenti;
-	public 	 List<Materijal> materijali;
-	public List<Sastavnica> sastavnice;
+	public static List<Klijent> klijenti;
+	public 	 static List<Materijal> materijali;
+	public static List<Sastavnica> sastavnice;
 	public static List<Radnik> radnici;
 	public static List<Menadzer> menadzeri;
-	public  List<Narudzbenica> narudzbenice;
+	public  static List<Narudzbenica> narudzbenice;
 
 	
 	public DataGrid(String t)

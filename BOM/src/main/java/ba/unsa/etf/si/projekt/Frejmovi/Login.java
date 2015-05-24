@@ -104,6 +104,7 @@ public class Login {
 					{
 						FMenadzer m = new FMenadzer();
 						m.setFrame(null, null, null);
+						m.postaviKorisnika(o);
 						frame.setVisible(false);//skrivanje frejma login
 						frame.dispose();//unistavanje frejma login
 					}
