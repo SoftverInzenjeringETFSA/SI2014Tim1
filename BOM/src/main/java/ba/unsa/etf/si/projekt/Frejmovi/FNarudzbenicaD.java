@@ -290,6 +290,7 @@ public class FNarudzbenicaD {
 		lblKm.setBounds(354, 401, 32, 16);
 		panel.add(lblKm);
 
+		
 		JButton button = new JButton("Kreiraj");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
