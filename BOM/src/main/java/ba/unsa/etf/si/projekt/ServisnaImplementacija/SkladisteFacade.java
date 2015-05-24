@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -408,7 +409,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			try {
 				Transaction t = session.beginTransaction();
 				List<Sastavnica> sastavnice = null;
-				sastavnice = session.createCriteria(Sastavnica.class).list();
+				sastavnice = session.createCriteria(Sastavnica.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 				t.commit();
 			return sastavnice;
 			}
