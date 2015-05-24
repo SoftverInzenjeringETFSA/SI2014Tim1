@@ -20,7 +20,7 @@ public class CijenaKalkulator {
 		return cijena + cijenaRada + cijenaDodatnihTroskova;
 	}
 	
-	public static double RekalkulisiCijenuSastavnice(Narudzbenica narudzbenica, Boolean rekalkulisiSastavnice)
+	public static double RekalkulisiCijenuNarudzbenice(Narudzbenica narudzbenica, Boolean rekalkulisiSastavnice)
 	{
 		double cijena = 0;
 		double cijenaStavke = 0;

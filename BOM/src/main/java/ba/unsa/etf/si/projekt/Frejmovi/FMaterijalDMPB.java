@@ -25,6 +25,8 @@ import java.util.Date;
 
 import ba.unsa.etf.si.projekt.Klase.Kategorija;
 import ba.unsa.etf.si.projekt.Klase.Materijal;
+import ba.unsa.etf.si.projekt.Klase.Menadzer;
+import ba.unsa.etf.si.projekt.Klase.Osoba;
 import ba.unsa.etf.si.projekt.Klase.Radnik;
 import ba.unsa.etf.si.projekt.Klase.TipMaterijala;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
@@ -58,6 +60,7 @@ public class FMaterijalDMPB {
 	List <String> listaNaziv;
 	List <String> listaMJ;
 	List <String> listaTip;
+	public Osoba trenutniKorisnik;
 	
 	/**
 	 * Launch the application.
@@ -300,7 +303,8 @@ public class FMaterijalDMPB {
 					String serBroj= (String)comboBox.getSelectedItem();
 					String opis= (String)comboBox_1.getSelectedItem();
 					String mjed=(String)comboBox_2.getSelectedItem();
-					Materijal m = new Materijal(serBroj, opis, kolicina, granKolicina, TipMaterijala.proizvod, nabCijena, null,null,prodCijena,null, null, mjed);
+					Radnik kreirao = (Radnik)trenutniKorisnik;
+					Materijal m = new Materijal(serBroj, opis, kolicina, granKolicina, TipMaterijala.proizvod, nabCijena, null,null,prodCijena,null, kreirao, mjed);
 					if(sf.dodajMaterijal(m))
 						MessageBox.infoBox(frame, "Uspješno ste dodali materijal.", "Info");
 					
@@ -315,6 +319,7 @@ public class FMaterijalDMPB {
 					materijal.setNabavnaCijena((Double)spinner_1.getValue());
 					materijal.setProdajnaCijena((Double)spinner_2.getValue());
 					materijal.setMjernaJedinica((String)comboBox_2.getSelectedItem());
+					materijal.setKreirao((Radnik)trenutniKorisnik);
 					if(sf.izmijeniMaterijal(materijal))
 						MessageBox.infoBox(frame, "Uspješno ste modifikovali materijal.", "Info");
 				
@@ -332,7 +337,7 @@ public class FMaterijalDMPB {
 					materijal.setNabavnaCijena((Double)spinner_1.getValue());
 					materijal.setProdajnaCijena((Double)spinner_2.getValue());
 					materijal.setMjernaJedinica((String)comboBox_2.getSelectedItem());
-					if(sf.obrišiMaterijal(materijal))
+					if(sf.obrišiMaterijal(materijal,(Menadzer)trenutniKorisnik))
 						MessageBox.infoBox(frame, "Uspješno ste obrisali materijal.", "Info");
 					
 				}
@@ -397,5 +402,10 @@ public class FMaterijalDMPB {
 			   editor.getTextField().setEditable( false );
 			   editor.getTextField().setBackground(Color.white);
 			}
+	}
+	
+	public void postaviKorisnika(Osoba os)
+	{ 
+		trenutniKorisnik=os;
 	}
 }

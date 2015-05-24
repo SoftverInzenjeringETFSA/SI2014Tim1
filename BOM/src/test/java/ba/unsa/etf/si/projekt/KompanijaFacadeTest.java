@@ -107,7 +107,8 @@ public class KompanijaFacadeTest {
 
 	@Test
 	public final void testObrisiOsobu() {
-		Osoba o = kf.returnById(2, TipOsobe.menadzer);
+		kf.dodajMenadzera("novi", "novi", "broj", "adresa", "email", "poz", Ovlasti.brisanjeMaterijala, "men", "password", "jmbg");
+		Osoba o = kf.returnByImePrezime("novi", "novi", TipOsobe.menadzer);
 		Boolean result = kf.obrisiOsobu(o);
 	}
 

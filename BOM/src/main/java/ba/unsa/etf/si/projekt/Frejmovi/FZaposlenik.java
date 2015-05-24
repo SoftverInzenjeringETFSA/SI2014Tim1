@@ -28,6 +28,10 @@ import javax.swing.UIManager;
 
 
 
+
+
+
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -50,6 +54,10 @@ import java.awt.ComponentOrientation;
 import javax.swing.JFormattedTextField;
 import javax.swing.JToggleButton;
 
+import ba.unsa.etf.si.projekt.Klase.Materijal;
+import ba.unsa.etf.si.projekt.Klase.Osoba;
+import ba.unsa.etf.si.projekt.Klase.Sastavnica;
+
 public class FZaposlenik {
 
 	private JFrame frame;
@@ -61,6 +69,12 @@ public class FZaposlenik {
 	private DataGrid dataGSastavnica;
 	private JScrollPane scrollPane_3;
 	private DataGrid dataGSkladiste;
+	private Sastavnica sastavnica;
+	private Materijal materijal;
+	private JLabel lblNisteOdabraliNiti_3;
+	private JLabel lblNisteOdabraliNiti_1;
+	private Osoba trenutniKorisnik;
+	
 
 
 	/**
@@ -201,7 +215,7 @@ public class FZaposlenik {
 				
 				FSastavnicaDM s = new FSastavnicaDM();
 				s.setFrame(frame, "Kreiranje", null);
-				
+				s.postaviKorisnika(trenutniKorisnik);
 			}
 		});
 		button_13.setBounds(159, 45, 97, 25);
@@ -218,8 +232,14 @@ public class FZaposlenik {
 		button_14.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				FSastavnicaDM s = new FSastavnicaDM();
-				s.setFrame(frame, "Modifikovanje", null);
+				dajSelektovanuSastavnicu();
+				if(sastavnica != null)
+				{
+					//otvaranje forme za pregled korisnika sistema
+					FSastavnicaDM s = new FSastavnicaDM();
+					s.setFrame(frame, "Modifikovanje", sastavnica);
+					s.postaviKorisnika(trenutniKorisnik);
+				}
 				
 			}
 		});
@@ -230,8 +250,14 @@ public class FZaposlenik {
 		button_15.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				FSastavnicaPB s = new FSastavnicaPB();
-				s.setFrame(frame, "Brisanje", null);
+				dajSelektovanuSastavnicu();
+				if(sastavnica != null)
+				{
+					//otvaranje forme za pregled korisnika sistema
+					FSastavnicaDM s = new FSastavnicaDM();
+					s.setFrame(frame, "Brisanje", sastavnica);
+					s.postaviKorisnika(trenutniKorisnik);
+				}
 				
 			}
 		});
@@ -242,8 +268,13 @@ public class FZaposlenik {
 		button_16.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				FSastavnicaPB s = new FSastavnicaPB();
-				s.setFrame(frame, "Pregled", null);
+				dajSelektovanuSastavnicu();
+				if(sastavnica != null)
+				{
+					//otvaranje forme za pregled korisnika sistema
+					FSastavnicaPB s = new FSastavnicaPB();
+					s.setFrame(frame, "Pregled", sastavnica);
+				}
 				
 			}
 		});
@@ -262,7 +293,7 @@ public class FZaposlenik {
 		scrollPane_2.setBounds(12, 26, 630, 229);
 		panel_19.add(scrollPane_2);
 
-		JLabel lblNisteOdabraliNiti_3 = new JLabel("Niste odabrali niti jednu sastavnicu.");
+		lblNisteOdabraliNiti_3 = new JLabel("Niste odabrali niti jednu sastavnicu.");
 		lblNisteOdabraliNiti_3.setBounds(22, 510, 644, 16);
 		panel.add(lblNisteOdabraliNiti_3);
 		
@@ -285,8 +316,7 @@ public class FZaposlenik {
 		scrollPane_3.setBounds(12, 26, 630, 229);
 		panel_11.add(scrollPane_3);
 		
-		JLabel lblNisteOdabraliNiti_1 = new JLabel(
-				"Niste odabrali niti jedan materijal/poluproizvod");
+		lblNisteOdabraliNiti_1 = new JLabel("");
 		lblNisteOdabraliNiti_1.setBounds(22, 510, 644, 16);
 		panel_1.add(lblNisteOdabraliNiti_1);
 
@@ -344,6 +374,7 @@ public class FZaposlenik {
 				
 				FMaterijalDMPB m = new FMaterijalDMPB();
 				m.setFrame(frame, "Kreiranje", null);
+				m.postaviKorisnika(trenutniKorisnik);
 				
 			}
 		});
@@ -361,8 +392,14 @@ public class FZaposlenik {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				FMaterijalDMPB m = new FMaterijalDMPB();
-				m.setFrame(frame, "Modifikovanje", null);
+				dajSelektovaniMaterijal();
+				if(materijal != null)
+				{
+					//otvaranje forme za pregled korisnika sistema
+					FMaterijalDMPB s = new FMaterijalDMPB();
+					s.setFrame(frame, "Modifikuj", materijal);
+					s.postaviKorisnika(trenutniKorisnik);
+				}
 				
 			}
 		});
@@ -373,8 +410,13 @@ public class FZaposlenik {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				FMaterijalDMPB m = new FMaterijalDMPB();
-				m.setFrame(frame, "Brisanje", null);
+				dajSelektovaniMaterijal();
+				if(materijal != null)
+				{
+					//otvaranje forme za pregled korisnika sistema
+					FMaterijalDMPB s = new FMaterijalDMPB();
+					s.setFrame(frame, "Brisanje", materijal);
+				}
 				
 			}
 		});
@@ -385,8 +427,13 @@ public class FZaposlenik {
 		btnPregledaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				FMaterijalDMPB m = new FMaterijalDMPB();
-				m.setFrame(frame, "Pregled", null);
+				dajSelektovaniMaterijal();
+				if(materijal != null)
+				{
+					//otvaranje forme za pregled korisnika sistema
+					FMaterijalDMPB s = new FMaterijalDMPB();
+					s.setFrame(frame, "Pregled", materijal);
+				}
 				
 			}
 		});
@@ -421,5 +468,41 @@ public class FZaposlenik {
 		dataGSkladiste = new DataGrid("Materijal");
 		table_3 = dataGSkladiste.getTable(name, value, sort);
 		scrollPane_3.setViewportView(table_3);
+	}
+	public void dajSelektovanuSastavnicu()
+	{
+		sastavnica = null;
+		int sel = table_2.getSelectedRow();
+		if(sel < 0)
+		{
+			lblNisteOdabraliNiti_3.setText("Niste odabrali niti jednu sastavnicu.");
+		}
+		else
+		{
+			table_2.getSelectionModel().clearSelection();
+			lblNisteOdabraliNiti_3.setText("");
+			if(dataGSastavnica.sastavnice.size()>0)
+				sastavnica = dataGSastavnica.sastavnice.get(sel);
+		}
+	}
+	public void dajSelektovaniMaterijal()
+	{
+		materijal = null;
+		int sel = table_3.getSelectedRow();
+		if(sel < 0)
+		{
+			lblNisteOdabraliNiti_1.setText("Niste odabrali niti jedan materijal/poluproizvod.");
+		}
+		else
+		{
+			table_3.getSelectionModel().clearSelection();
+			lblNisteOdabraliNiti_1.setText("");
+			if(dataGSkladiste.materijali.size()>0)
+				materijal = dataGSkladiste.materijali.get(sel);
+		}
+	}
+	public void postaviKorisnika(Osoba os)
+	{
+		trenutniKorisnik = os;
 	}
 }

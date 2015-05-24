@@ -185,6 +185,10 @@ public class FSastavnicaPB {
 		panel.add(label_7);
 		
 		btnObrisiSastavnicu = new JButton("Obriši");
+		btnObrisiSastavnicu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnObrisiSastavnicu.setBounds(735, 379, 130, 25);
 		panel.add(btnObrisiSastavnicu);
 		

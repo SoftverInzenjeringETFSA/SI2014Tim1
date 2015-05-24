@@ -425,6 +425,10 @@ public class FMenadzer {
 		panel.add(panel_16);
 		
 		JButton button_11 = new JButton("Pretra\u017Ei");
+		button_11.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		button_11.setBounds(242, 165, 91, 25);
 		panel_16.add(button_11);
 		
@@ -469,8 +473,13 @@ public class FMenadzer {
 		button_15.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				FSastavnicaPB s = new FSastavnicaPB();
-				s.setFrame(frame, "Brisanje", null);
+				dajSelektovanuSastavnicu();
+				if(sastavnica != null)
+				{
+					//otvaranje forme za pregled korisnika sistema
+					FSastavnicaPB s = new FSastavnicaPB();
+					s.setFrame(frame, "Brisanje", sastavnica);
+				}
 				
 			}
 		});
@@ -481,8 +490,13 @@ public class FMenadzer {
 		button_16.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				FSastavnicaPB s = new FSastavnicaPB();
-				s.setFrame(frame, "Pregled", null);
+				dajSelektovanuSastavnicu();
+				if(sastavnica != null)
+				{
+					//otvaranje forme za pregled korisnika sistema
+					FSastavnicaPB s = new FSastavnicaPB();
+					s.setFrame(frame, "Pregled", sastavnica);
+				}
 				
 			}
 		});
@@ -581,6 +595,9 @@ public class FMenadzer {
 				//otvaranje forme za unos, pregled, modif. i brisnaje korisnika sis.
 				FMaterijalDMPB m = new FMaterijalDMPB();
 				m.setFrame(frame, "Kreiranje", null);
+				m.postaviKorisnika(trenutniKorisnik);
+				
+				
 				
 			}
 		});
@@ -597,9 +614,13 @@ public class FMenadzer {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//otvaranje forme za unos, pregled, modif. i brisnaje korisnika sis.
-				FMaterijalDMPB m = new FMaterijalDMPB();
-				m.setFrame(frame, "Modifikovanje", null);
+				dajSelektovaniMaterijal();
+				if(materijal != null)
+				{
+					//otvaranje forme za pregled korisnika sistema
+					FMaterijalDMPB m = new FMaterijalDMPB();
+					m.setFrame(frame, "Modifikovanje", materijal);
+				}
 				
 			}
 		});
@@ -610,9 +631,13 @@ public class FMenadzer {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//otvaranje forme za unos, pregled, modif. i brisnaje korisnika sis.
-				FMaterijalDMPB m = new FMaterijalDMPB();
-				m.setFrame(frame, "Brisanje", null);
+				dajSelektovaniMaterijal();
+				if(materijal != null)
+				{
+					//otvaranje forme za pregled korisnika sistema
+					FMaterijalDMPB m = new FMaterijalDMPB();
+					m.setFrame(frame, "Brisanje", materijal);
+				}
 				
 			}
 		});
@@ -623,9 +648,13 @@ public class FMenadzer {
 		btnPregledaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//otvaranje forme za unos, pregled, modif. i brisnaje korisnika sis.
-				FMaterijalDMPB m = new FMaterijalDMPB();
-				m.setFrame(frame, "Pregled", null);
+				dajSelektovaniMaterijal();
+				if(materijal != null)
+				{
+					//otvaranje forme za pregled korisnika sistema
+					FMaterijalDMPB m = new FMaterijalDMPB();
+					m.setFrame(frame, "Pregled", materijal);
+				}
 				
 			}
 		});
