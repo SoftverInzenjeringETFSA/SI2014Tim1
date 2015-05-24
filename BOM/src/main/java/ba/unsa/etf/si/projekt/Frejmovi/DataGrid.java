@@ -131,7 +131,7 @@ public class DataGrid {
 				for(int i=0; i<sastavnice.size(); i++)
 				{
 					rows[i][0] = sastavnice.get(i).getSerijskiBroj();
-					rows[i][1] = sastavnice.get(i).getIzdao().getIme()+" "+sastavnice.get(i).getIzdao().getPrezime();
+					rows[i][1] = sastavnice.get(i).getIzdao();
 					rows[i][2] =sastavnice.get(i).getCijenaObavljenogRada();
 				    rows[i][3] = sastavnice.get(i).getTrajanjeProizvodnje();
 					rows[i][4] = sastavnice.get(i).getDatumKreiranja();
