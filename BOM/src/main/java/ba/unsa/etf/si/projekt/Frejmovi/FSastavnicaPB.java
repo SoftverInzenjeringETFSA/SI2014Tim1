@@ -19,6 +19,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JTable;
 
+import ba.unsa.etf.si.projekt.Klase.Sastavnica;
+
 public class FSastavnicaPB {
 
 	private JFrame frame;
@@ -59,7 +61,7 @@ public class FSastavnicaPB {
 		});
 	}
 	
-	public void setFrame(JFrame parentF, String akcijaA, String klasa)
+	public void setFrame(JFrame parentF, String akcijaA, Sastavnica s)
 	{
 		//mozda neka provjera da li je akcija validna (moze i enumeracija)
 		//ali i ne mora :D

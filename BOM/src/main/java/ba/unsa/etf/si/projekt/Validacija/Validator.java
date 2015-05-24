@@ -62,7 +62,7 @@ public class Validator extends AbstractValidator{
 	}
 	
 	//validira tekstualna polja
-	public static final Pattern VALID_TEKST_REGEX = Pattern.compile("^[a-zA-Z\\s]+$",  Pattern.CASE_INSENSITIVE);
+	public static final Pattern VALID_TEKST_REGEX = Pattern.compile("^[a-zA-Z\\s\u0161\u0111\u010D\u0107\u017E ]+$",  Pattern.CASE_INSENSITIVE);
 		public  Boolean ValidirajTekst(String kontrolaTekst)
 		{
 			Matcher matcher = VALID_TEKST_REGEX .matcher(kontrolaTekst);

@@ -1,5 +1,6 @@
 package ba.unsa.etf.si.projekt.Frejmovi;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.math.*;
 
@@ -177,6 +178,11 @@ public class FNarudzbenicaD {
 				null, new Integer(1)));
 		spinner.setBounds(577, 32, 173, 22);
 		panel_1.add(spinner);
+		if ( spinner.getEditor() instanceof JSpinner.DefaultEditor ) {
+			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner.getEditor();
+			   editor.getTextField().setEditable( false );
+			   editor.getTextField().setBackground(Color.white);
+			}
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 105, 738, 120);

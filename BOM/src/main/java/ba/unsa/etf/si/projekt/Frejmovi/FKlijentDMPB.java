@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
+import javax.swing.InputVerifier;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -111,6 +112,11 @@ public class FKlijentDMPB {
 	/**
 	 * Create the application.
 	 */
+		InputVerifier imeVal;
+		InputVerifier prezimeVal;
+		InputVerifier adresaVal;
+		InputVerifier emailVal;
+		InputVerifier telefonVal;
 	public FKlijentDMPB() {
 		initialize();
 		
@@ -124,11 +130,16 @@ public class FKlijentDMPB {
 		    }
 		});
 		
-		txtFdsfd.setInputVerifier(new Validator(frame,txtFdsfd,"Molimo unesite ispravno ime",""));
-		textField_1.setInputVerifier(new Validator(frame,textField_1,"Molimo unesite ispravno prezime",""));
-		textField_3.setInputVerifier(new Validator(frame,textField_3,"Adresa koju ste unijeli nije ispravna","adresa"));
-		textField_4.setInputVerifier(new Validator(frame,textField_4,"Email adresa mora da sadrži @ te ispravnu domenu","email"));
-		telefon.setInputVerifier(new Validator(frame, telefon, "Molimo unesite telefon","telefon"));
+		imeVal = new Validator(frame,txtFdsfd,"Molimo unesite ispravno ime","");
+		prezimeVal=new Validator(frame,textField_1,"Molimo unesite ispravno prezime","");
+		adresaVal=new Validator(frame,textField_3,"Adresa koju ste unijeli nije ispravna","adresa");
+		emailVal=new Validator(frame,textField_4,"Email adresa mora da sadrži @ te ispravnu domenu","email");
+		telefonVal=new Validator(frame, telefon, "Molimo unesite telefon","telefon");
+		txtFdsfd.setInputVerifier(imeVal);
+		textField_1.setInputVerifier(prezimeVal);
+		textField_3.setInputVerifier(adresaVal);
+		textField_4.setInputVerifier(emailVal);
+		telefon.setInputVerifier(telefonVal);
 	}
 
 	/**
@@ -199,12 +210,13 @@ public class FKlijentDMPB {
 				//akcija za klik na dugme koje moze imati razlicite f-je
 				//brisanje, kreiranje, modifikovanje, pregled
 				KompanijaFacade kf=new KompanijaFacade();
+					
 				Boolean da=true;
-				if(txtFdsfd.getInputVerifier()!=null || textField_1.getInputVerifier()!=null || telefon.getInputVerifier()!=null || textField_4.getInputVerifier()!=null || textField_3.getInputVerifier()!=null || textField_4.getInputVerifier()!=null)
+				if(txtFdsfd.getText().equals("")|| textField_1.getText().equals("") || telefon.getText().equals("") || textField_4.getText().equals("") || textField_3.getText().equals(""))
 					da=false;
 				if(akcija.equals("Kreiranje"))
 				{
-					 if(akcija.equals("Kreiranje")){
+						
 						String ime=((JTextField)txtFdsfd).getText();
 						String prezime=((JTextField)textField_1).getText();
 						String adresa=((JTextField)textField_3).getText();
@@ -214,10 +226,10 @@ public class FKlijentDMPB {
 						if(da)
 						{
 							if(kf.dodajKlijenta(ime,prezime,brojTelefona,adresa, email, narudzbe))
-								MessageBox.infoBox(frame, "Klijent je uspješno kreiran", "Info");
+								MessageBox.infoBox(frame, "Klijent je uspješno kreiran.", "Info");
 				       }
 						else MessageBox.infoBox(frame, "Molimo unesite sve podatke.", "Greska");
-					}
+				}
 					if(akcija.equals("Modifikovanje")){
 					//	tabela
 				    //treba da iz tabela pokupi klijenta pa njega obrise
@@ -229,7 +241,7 @@ public class FKlijentDMPB {
 					//azurirati bazu npr
 					//ispisati messageBox ?
 					//vratiti se nazad
-				}
+				
 				if(akcija.equals("Brisanje"))
 				{
 					//treba da iz tabela pokupi klijenta pa njega obrise

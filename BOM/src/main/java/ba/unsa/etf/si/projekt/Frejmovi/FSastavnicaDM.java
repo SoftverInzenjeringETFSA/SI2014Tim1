@@ -1,5 +1,6 @@
 package ba.unsa.etf.si.projekt.Frejmovi;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -23,6 +24,7 @@ import java.util.List;
 import javax.swing.JTable;
 
 import ba.unsa.etf.si.projekt.Klase.Menadzer;
+import ba.unsa.etf.si.projekt.Klase.Sastavnica;
 import ba.unsa.etf.si.projekt.Klase.StavkaSastavnice;
 import ba.unsa.etf.si.projekt.Validacija.Validator;
 
@@ -69,7 +71,7 @@ public class FSastavnicaDM {
 		});
 	}
 	
-	public void setFrame(JFrame parentF, String akcijaA, String klasa)
+	public void setFrame(JFrame parentF, String akcijaA, Sastavnica s)
 	{
 		//mozda neka provjera da li je akcija validna (moze i enumeracija)
 		//ali i ne mora :D
@@ -167,7 +169,11 @@ public class FSastavnicaDM {
 		spinner = new JSpinner();
 		spinner.setBounds(680, 32, 173, 22);
 		panel_1.add(spinner);
-		
+		if ( spinner.getEditor() instanceof JSpinner.DefaultEditor ) {
+			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner.getEditor();
+			   editor.getTextField().setEditable( false );
+			   editor.getTextField().setBackground(Color.white);
+			}
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 105, 841, 120);
 		panel_1.add(scrollPane);
@@ -288,16 +294,34 @@ public class FSastavnicaDM {
 		spinner_1.setBounds(245, 393, 130, 20);
 		panel.add(spinner_1);
 		
+		if ( spinner_1.getEditor() instanceof JSpinner.DefaultEditor ) {
+			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner_1.getEditor();
+			   editor.getTextField().setEditable( false );
+			   editor.getTextField().setBackground(Color.white);
+			}
 		spinner_2 = new JSpinner(m_numberSpinnerModel);
 		spinner_2.setBounds(245, 439, 130, 20);
 		panel.add(spinner_2);
-		
+		if ( spinner_2.getEditor() instanceof JSpinner.DefaultEditor ) {
+			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner_2.getEditor();
+			   editor.getTextField().setEditable( false );
+			   editor.getTextField().setBackground(Color.white);
+			}
 		spinner_3 = new JSpinner(m_numberSpinnerModel_1);
 		spinner_3.setBounds(689, 393, 136, 20);
 		panel.add(spinner_3);
-		
+		if ( spinner_3.getEditor() instanceof JSpinner.DefaultEditor ) {
+			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner_3.getEditor();
+			   editor.getTextField().setEditable( false );
+			   editor.getTextField().setBackground(Color.white);
+			}
 		spinner_4 = new JSpinner(m_numberSpinnerModel_2);
 		spinner_4.setBounds(689, 439, 136, 20);
 		panel.add(spinner_4);
+		if ( spinner_4.getEditor() instanceof JSpinner.DefaultEditor ) {
+			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner_4.getEditor();
+			   editor.getTextField().setEditable( false );
+			   editor.getTextField().setBackground(Color.white);
+			}
 	}
 }
