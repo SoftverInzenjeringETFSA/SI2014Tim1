@@ -289,10 +289,12 @@ public class FKlijentDMPB {
 
 	public boolean validacijaOnClick() {
 
-		textField_1.setInputVerifier(prezimeVal);
-		textField_3.setInputVerifier(adresaVal);
-		textField_4.setInputVerifier(emailVal);
-		telefon.setInputVerifier(telefonVal);
+		if(!imeVal.verify(txtFdsfd)) return false;
+		if(!prezimeVal.verify(textField_1)) return false;
+		if(!adresaVal.verify(textField_3)) return false;
+		if(!emailVal.verify(textField_4)) return false;
+		if(!telefonVal.verify(telefon)) return false;
+		
 		Boolean da = true;
 		if (txtFdsfd.getText().equals("") || textField_1.getText().equals("")
 				|| telefon.getText().equals("")

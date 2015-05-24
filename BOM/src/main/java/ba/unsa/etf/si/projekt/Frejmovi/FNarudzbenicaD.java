@@ -283,7 +283,11 @@ public class FNarudzbenicaD {
 			//	StavkaNarudzbenice(Sastavnica s, Narudzbenica n, double k)
 				Narudzbenica narudzbenica=new Narudzbenica();
 				SkladisteFacade kf=new SkladisteFacade();
-				kf.dodajNarudzbenicu(narudzbenica);
+				if(kf.validirajNarudzbenicu(narudzbenica)){
+				   kf.dodajNarudzbenicu(narudzbenica);				  
+				   MessageBox.infoBox(frame, "Narudžbenica je uspješno kreirana","Info");			   
+				}
+				   else MessageBox.infoBox(frame, "Narudžbenica ne može biti kreirana zbog nedostatka materjala","Info");
 			}
 		});
 		button.setBounds(612, 444, 151, 25);
