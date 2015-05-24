@@ -127,5 +127,127 @@ public class KompanijaFacadeTest {
 		
 		assertNotNull(o);
 	}
-
+	
+	@Test
+	public final void testSortirajKlijentaParametri() {
+		try {
+			List<Klijent> l = kf.sortirajKlijenta(null, "nesto", null);
+			assertNull(l);
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	public final void testSortirajKlijentaParametri2() {
+		try {
+			List<Klijent> l = kf.sortirajKlijenta("nesto", null, null);
+			assertNull(l);
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	//(expected=Exception.class)
+	public void testSortirajKlijentaParametri3() {
+		try {
+			List<Klijent> l, l1, l2, l3;
+			l = kf.sortirajKlijenta("nesto", "nesto", null);		
+			assertNotNull(l);
+			l1 = kf.sortirajKlijenta("nesto", "nesto", "nesto");
+			assertNotNull(l1);
+			l2 = kf.sortirajKlijenta(null, null, null);
+			assertNotNull(l2);
+			l3 = kf.sortirajKlijenta(null, null, "nesto");
+			assertNotNull(l3);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	public final void testSortirajRadnikaParametri() {
+		try {
+			List<Radnik> l = kf.sortirajRadnika(null, "nesto", null);
+			assertNull(l);
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	public final void testSortirajRadnikaParametri2() {
+		try {
+			List<Radnik> l = kf.sortirajRadnika("nesto", null, null);
+			assertNull(l);
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	//(expected=Exception.class)
+	public void testSortirajRadnikaParametri3() {
+		try {
+			List<Radnik> l, l1, l2, l3;
+			l = kf.sortirajRadnika("nesto", "nesto", null);		
+			assertNotNull(l);
+			l1 = kf.sortirajRadnika("nesto", "nesto", "nesto");
+			assertNotNull(l1);
+			l2 = kf.sortirajRadnika(null, null, null);
+			assertNotNull(l2);
+			l3 = kf.sortirajRadnika(null, null, "nesto");
+			assertNotNull(l3);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	public final void testSortirajRadnikaParametri() {
+		try {
+			List<Radnik> l = kf.sortirajRadnika(null, "nesto", null);
+			assertNull(l);
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	public final void testSortirajMenadzeraParametri2() {
+		try {
+			List<Menadzer> l = kf.sortirajMenadzera("nesto", null, null);
+			assertNull(l);
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	//(expected=Exception.class)
+	public void testSortirajMenadzeraParametri3() {
+		try {
+			List<Menadzer> l, l1, l2, l3;
+			l = kf.sortirajMenadzera("nesto", "nesto", null);		
+			assertNotNull(l);
+			l1 = kf.sortirajMenadzera("nesto", "nesto", "nesto");
+			assertNotNull(l1);
+			l2 = kf.sortirajMenadzera(null, null, null);
+			assertNotNull(l2);
+			l3 = kf.sortirajMenadzera(null, null, "nesto");
+			assertNotNull(l3);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 }

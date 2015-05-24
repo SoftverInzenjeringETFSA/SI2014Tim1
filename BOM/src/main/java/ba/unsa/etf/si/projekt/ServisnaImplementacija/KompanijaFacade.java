@@ -385,7 +385,10 @@ public class KompanijaFacade implements IKompanijaFacade {
 							t.commit();
 							return listaKlijenata;					
 						}
-						return new ArrayList<Klijent>();
+						else {
+							List<Klijent> l = null;
+							return l;
+						}
 					}
 					catch (Exception e) {
 						throw new RuntimeException(e);
@@ -467,8 +470,8 @@ public class KompanijaFacade implements IKompanijaFacade {
 							return listaRadnika;					
 						}
 						else {
-							//System.out.println("vrijednosti nisu validne");
-							return new ArrayList<Radnik>();
+							List<Radnik> l = null;
+							return l;
 						}
 					}
 					catch (Exception e) {
@@ -551,8 +554,8 @@ public class KompanijaFacade implements IKompanijaFacade {
 							return listaMenadzera;					
 						}
 						else {
-							//System.out.println("vrijednosti nisu validne");
-							return new ArrayList<Menadzer>();
+							List<Menadzer> l = null;
+							return l;
 						}
 					}
 					catch (Exception e) {
