@@ -1,11 +1,8 @@
 package ba.unsa.etf.si.projekt.Baza;
-import java.util.ArrayList;
 import java.util.List;
 
+import ba.unsa.etf.si.projekt.Klase.Materijal;
 import ba.unsa.etf.si.projekt.Klase.Menadzer;
-import ba.unsa.etf.si.projekt.Klase.Sastavnica;
-import ba.unsa.etf.si.projekt.Klase.StavkaSastavnice;
-import ba.unsa.etf.si.projekt.Klase.TipOsobe;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.KompanijaFacade;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
 
@@ -13,8 +10,21 @@ public class ProbnaKlasaZlatan {
 	public static void main (String[] args) {
 		KompanijaFacade kf = new KompanijaFacade();
 		SkladisteFacade sf = new SkladisteFacade();
+		List<Materijal> lm = sf.returnListaMaterijala();
+		if(lm != null) {
+			Materijal m = lm.get(0);
+			if(m != null) {
+				System.out.println(sf.obrišiMaterijal(m, new Menadzer()));
+			}
+		}
+		/*List<Materijal> lm = sf.returnListaMaterijala();
+		if(lm != null){
+			for(Materijal m: lm) {
+				System.out.println(m.getId());
+			}
+		}*/
 		//ArrayList<Narudzbenica>
-		Menadzer m = (Menadzer) kf.returnById(2, TipOsobe.menadzer);
+		/*Menadzer m = (Menadzer) kf.returnById(2, TipOsobe.menadzer);
 		if(m != null) {
 			Sastavnica s = sf.pretragaSastavnica("SAS003");
 			if(s != null) {
@@ -31,7 +41,7 @@ public class ProbnaKlasaZlatan {
 					}
 				}
 			}
-		}
+		}*/
 	}
 
 }
