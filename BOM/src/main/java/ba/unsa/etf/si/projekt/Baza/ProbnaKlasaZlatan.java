@@ -13,6 +13,7 @@ public class ProbnaKlasaZlatan {
 		if(ls != null) {
 			System.out.println(ls.size());
 		}
+		//kggh
 		/*List<Materijal> lm = sf.returnListaMaterijala();
 		if(lm != null) {
 			Materijal m = lm.get(0);
