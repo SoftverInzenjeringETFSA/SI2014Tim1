@@ -20,27 +20,31 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import ba.unsa.etf.si.projekt.Klase.Materijal;
 import ba.unsa.etf.si.projekt.Klase.Sastavnica;
+
+import javax.swing.SpinnerModel;
 
 public class FSastavnicaPB {
 
 	private JFrame frame;
 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
 	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
 	private JTable table;
-	private JTextField textField_6;
 	private String akcija;
 	private JFrame parentFrame;
 	private JPanel panel;
 	private JButton btnObrisiSastavnicu;
 	private JScrollPane scrollPane;
-
+	private Sastavnica sast;
 	public DefaultTableModel model;
-	
+	private JTextField textField_7;
+	private JTextField textField_1;
+	private JSpinner spinner;
+	private JSpinner spinner_1;
+	private JSpinner spinner_2;
+	private JSpinner spinner_3;
+	public Double ukupnaCijena = (double) 0;
 	/**
 	 * Launch the application.
 	 */
@@ -71,15 +75,35 @@ public class FSastavnicaPB {
 		//ali i ne mora :D
 		akcija = akcijaA;
 		
-		
+		sast=s;
 		//pregled, brisanje
 		//tekst button-a
 		if(akcija.equals("Pregled"))
-		{
+		{	popuniPodatke();
+			textField_7.setText(sast.getSerijskiBroj());
+			textField.setText(sast.getNaziv());
+			textField_3.setText(sast.getIzdao().getIme()+" "+sast.getIzdao().getPrezime());
+		    //textField.setText((String)sast.getUkupnaCijena());
+			spinner.setValue(sast.getTrajanjeProizvodnje());
+		    spinner_1.setValue(sast.getCijenaObavljenogRada());
+		    spinner_2.setValue(sast.getDodatniTroskovi());
+		    spinner_3.setValue(sast.getOtpad());
+			
+		    
 			btnObrisiSastavnicu.setText("Nazad");
 		}
 		else if(akcija.equals("Brisanje"))
 		{
+			popuniPodatke();
+			textField_7.setText(sast.getSerijskiBroj());
+			textField.setText(sast.getNaziv());
+			textField_3.setText(sast.getIzdao().getIme()+" "+sast.getIzdao().getPrezime());
+		    //textField.setText((String)sast.getUkupnaCijena());
+			spinner.setValue(sast.getTrajanjeProizvodnje());
+		    spinner_1.setValue(sast.getCijenaObavljenogRada());
+		    spinner_2.setValue(sast.getDodatniTroskovi());
+		    spinner_3.setValue(sast.getOtpad());
+			
 			btnObrisiSastavnicu.setText("Obriši");
 		}
 			
@@ -95,7 +119,7 @@ public class FSastavnicaPB {
 	 */
 	public FSastavnicaPB() {
 		initialize();
-		
+		kreirajTabelu();
 		frame.addWindowListener(new java.awt.event.WindowAdapter() {
 		    @Override
 		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -125,13 +149,13 @@ public class FSastavnicaPB {
 		
 		JLabel lblNazivProizvoda = new JLabel("Naziv proizvoda:");
 		lblNazivProizvoda.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNazivProizvoda.setBounds(12, 30, 173, 16);
+		lblNazivProizvoda.setBounds(12, 46, 173, 16);
 		panel.add(lblNazivProizvoda);
 		
 		textField = new JTextField();
 		textField.setEditable(false);
 		textField.setColumns(10);
-		textField.setBounds(197, 27, 291, 22);
+		textField.setBounds(195, 43, 291, 22);
 		panel.add(textField);
 		
 		JLabel lblOdgovornoLice = new JLabel("Odgovorno lice:");
@@ -145,40 +169,20 @@ public class FSastavnicaPB {
 		panel_1.setBounds(12, 76, 865, 160);
 		panel.add(panel_1);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 26, 841, 120);
 		panel_1.add(scrollPane);
 		
-		//
-		Object rowDataP[][] = { { "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""},
-		{ "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""},
-		{ "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""}};
-		Object columnNamesP[] = { "Serijski broj", "Naziv", "Tip", "Količina", "Cijena"};
-		
-		table = new JTable(rowDataP, columnNamesP);
-		scrollPane.setViewportView(table);
 		
 		JLabel label_4 = new JLabel("Ukupna cijena:");
 		label_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_4.setBounds(12, 357, 215, 16);
 		panel.add(label_4);
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(239, 354, 130, 22);
-		panel.add(textField_1);
-		
 		JLabel label_5 = new JLabel("Trajanje proizvodnje:");
 		label_5.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_5.setBounds(12, 265, 215, 16);
 		panel.add(label_5);
-		
-		textField_2 = new JTextField();
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		textField_2.setBounds(239, 262, 130, 22);
-		panel.add(textField_2);
 		
 		JLabel label_6 = new JLabel("h");
 		label_6.setBounds(381, 265, 19, 16);
@@ -207,12 +211,6 @@ public class FSastavnicaPB {
 		lblCijenaObavljenogRada.setBounds(12, 300, 215, 16);
 		panel.add(lblCijenaObavljenogRada);
 		
-		textField_4 = new JTextField();
-		textField_4.setEditable(false);
-		textField_4.setBounds(239, 297, 130, 22);
-		panel.add(textField_4);
-		textField_4.setColumns(10);
-		
 		JLabel lblKmh = new JLabel("KM/h");
 		lblKmh.setBounds(381, 300, 56, 16);
 		panel.add(lblKmh);
@@ -221,12 +219,6 @@ public class FSastavnicaPB {
 		lblDodatniTrokovi.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDodatniTrokovi.setBounds(500, 265, 178, 16);
 		panel.add(lblDodatniTrokovi);
-		
-		textField_5 = new JTextField();
-		textField_5.setEditable(false);
-		textField_5.setBounds(690, 262, 130, 22);
-		panel.add(textField_5);
-		textField_5.setColumns(10);
 		
 		JLabel lblKm = new JLabel("KM");
 		lblKm.setBounds(832, 265, 45, 16);
@@ -241,11 +233,42 @@ public class FSastavnicaPB {
 		label.setBounds(832, 303, 31, 16);
 		panel.add(label);
 		
-		textField_6 = new JTextField();
-		textField_6.setEditable(false);
-		textField_6.setColumns(10);
-		textField_6.setBounds(692, 300, 130, 22);
-		panel.add(textField_6);
+		JLabel label_1 = new JLabel("Serijski broj:");
+		label_1.setBounds(65, 21, 71, 14);
+		panel.add(label_1);
+		
+		textField_7 = new JTextField();
+		textField_7.setEnabled(false);
+		textField_7.setColumns(10);
+		textField_7.setBounds(132, 15, 86, 20);
+		panel.add(textField_7);
+		
+		spinner = new JSpinner();
+		spinner.setEnabled(false);
+		spinner.setBounds(237, 263, 130, 20);
+		panel.add(spinner);
+		
+		spinner_1 = new JSpinner();
+		spinner_1.setEnabled(false);
+		spinner_1.setBounds(239, 301, 130, 20);
+		panel.add(spinner_1);
+		
+		textField_1 = new JTextField();
+		textField_1.setEnabled(false);
+		textField_1.setEditable(false);
+		textField_1.setColumns(10);
+		textField_1.setBounds(237, 355, 130, 22);
+		panel.add(textField_1);
+		
+		spinner_2 = new JSpinner();
+		spinner_2.setEnabled(false);
+		spinner_2.setBounds(688, 263, 136, 20);
+		panel.add(spinner_2);
+		
+		spinner_3 = new JSpinner();
+		spinner_3.setEnabled(false);
+		spinner_3.setBounds(686, 298, 136, 20);
+		panel.add(spinner_3);
 	}
 public void kreirajTabelu() {
 		
@@ -260,5 +283,24 @@ public void kreirajTabelu() {
 		scrollPane.setViewportView(table);
 
 	}
+public void popuniPodatke() {
 	
+	for (int i = 0; i < sast.getStavke_sas().size(); i++)
+	{
+		model.addRow(new Object[] 
+				{
+				
+				sast.getStavke_sas().get(i).getMaterijal()
+						.getSerijskiBroj(),
+				sast.getStavke_sas().get(i).getMaterijal().getOpis(),
+				sast.getStavke_sas().get(i).getMaterijal().getTip(),
+				sast.getStavke_sas().get(i).getMaterijal().getKolicina(),
+				sast.getStavke_sas().get(i).getMaterijal().getNabavnaCijena()});
+				}
+	
+	table = new JTable(model);
+
+	scrollPane.setViewportView(table);
+	textField.setText(Double.toString(ukupnaCijena));
+}
 }

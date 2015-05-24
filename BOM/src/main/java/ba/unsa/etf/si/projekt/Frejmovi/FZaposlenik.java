@@ -254,9 +254,9 @@ public class FZaposlenik {
 				if(sastavnica != null)
 				{
 					//otvaranje forme za pregled korisnika sistema
-					FSastavnicaDM s = new FSastavnicaDM();
+					FSastavnicaPB s = new FSastavnicaPB();
 					s.setFrame(frame, "Brisanje", sastavnica);
-					s.postaviKorisnika(trenutniKorisnik);
+				
 				}
 				
 			}

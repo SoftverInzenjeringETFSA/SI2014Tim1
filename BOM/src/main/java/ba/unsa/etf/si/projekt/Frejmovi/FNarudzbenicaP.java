@@ -35,7 +35,7 @@ public class FNarudzbenicaP {
 	private JTextField serijskiBroj;
 	private JScrollPane scrollPane;
 	public DefaultTableModel model;
-	public Double ukupnaCijena = (double) 0;;
+	public Double ukupnaCijena = (double) 0;
 	public Double ukupnoTrajanje = (double) 0;
 
 	/**
