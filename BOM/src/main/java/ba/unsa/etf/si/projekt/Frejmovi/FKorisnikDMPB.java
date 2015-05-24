@@ -374,7 +374,7 @@ public class FKorisnikDMPB {
 					
 					frame.setVisible(false);
 					frame.dispose();
-			    	//parentFrame.setVisible(true);
+			    	parentFrame.setVisible(true);
 			    	parentFrame.setEnabled(true);
 			    	
 				}
