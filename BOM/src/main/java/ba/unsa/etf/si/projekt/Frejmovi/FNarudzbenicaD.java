@@ -292,6 +292,7 @@ public class FNarudzbenicaD {
 	//	MessageBox.infoBox(frame, kf.pretragaSastavnica(table.getValueAt(i, 1).toString()).getNaziv(), "title");
 			stav_nar.add(sn);
 				}
+				
 				   Date date = new Date();
 				   Calendar cal = Calendar.getInstance();
 				   Narudzbenica narudzbenica=new Narudzbenica();
