@@ -124,9 +124,10 @@ public class FMaterijalDMPB {
 		akcija = akcijaA;
 		//materijal=mat;
 		 materijali = new ArrayList<Materijal>();
-		 //Materijal m = new Materijal();
-		    SkladisteFacade sf = new SkladisteFacade();
-			materijal=materijali.get(0);
+		 SkladisteFacade sf = new SkladisteFacade();
+	     materijali=sf.returnListaMaterijala();
+		 materijal=materijali.get(0);
+		
 		//za brisanje i pregleda ne trebaju biti editabilini!
 		if(akcija.equals("Brisanje") )
 		{
