@@ -70,7 +70,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 					Menadzer m1 = (Menadzer)iterator1.next(); 
 				    lista.add(m1);
 			    }
-				if(lista.size() == 1) {
+				if(lista.size() > 0) {
 					m = lista.get(0);
 				}
 				t.commit();
@@ -87,7 +87,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 					Klijent m1 = (Klijent)iterator1.next(); 
 				    lista.add(m1);
 			    }
-				if(lista.size() == 1) {
+				if(lista.size() > 0) {
 					m = lista.get(0);
 				}
 				t.commit();
@@ -104,7 +104,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 					Radnik m1 = (Radnik)iterator1.next(); 
 				    lista.add(m1);
 			    }
-				if(lista.size() == 1) {
+				if(lista.size() > 0) {
 					m = lista.get(0);
 				}
 				t.commit();
@@ -269,7 +269,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 						Radnik m2 = (Radnik)iterator1.next(); 
 					    lista.add(m2);
 					   }
-					if(lista.size() == 1) {
+					if(lista.size() > 0) {
 					m = lista.get(0);
 					}
 					t.commit();
@@ -301,7 +301,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 					Menadzer m1 = (Menadzer)iterator1.next(); 
 				    lista.add(m1);
 				   }
-				if(lista.size() == 1) {
+				if(lista.size() > 0) {
 				m = lista.get(0);
 				}
 				t.commit();
