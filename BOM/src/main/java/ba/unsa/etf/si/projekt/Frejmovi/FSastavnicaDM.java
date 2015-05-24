@@ -297,34 +297,33 @@ public class FSastavnicaDM {
 				KompanijaFacade f=new KompanijaFacade();
 				//kreiranje sastavnice....
 				//public Sastavnica(List<StavkaSastavnice> stavke, Menadzer m, String sb, Date dk, double tp, double co, double dt, double uc, String naziv)
-				if (akcija.equals("Kreiranje"))
+				List<StavkaSastavnice> stavke = new ArrayList<StavkaSastavnice>();
+				StavkaSastavnice ss;
+				
+				for(int i=0;i<table.getSelectedRowCount();i++)
 				{
 					
-					List<StavkaSastavnice> stavke = new ArrayList<StavkaSastavnice>();
-					StavkaSastavnice ss;
-					
-					for(int i=0;i<table.getSelectedRowCount();i++)
-					{
-						
-						ss=new StavkaSastavnice();
-					    ss.setMaterijal(sf.pretragaMaterijala(table.getValueAt(i, 0).toString()));
-					    ss.setKolicina(Double.parseDouble(table.getValueAt(i, 3).toString()));
-						stavke.add(ss);
-					}
-					
-				s.setStavke_sas(stavke);
-				s.setSerijskiBroj(textField_2.getText());
-				s.setNaziv(textField.getText());
-				s.setIzdao((Radnik)trenutniKorisnik);
-				double trajanje = (Double)spinner_1.getValue();
-				double cijena = (Double)spinner_2.getValue();
-				double troskovi = (Double)spinner_3.getValue();
-				double otpad = (Double)spinner_4.getValue();
+					ss=new StavkaSastavnice();
+				    ss.setMaterijal(sf.pretragaMaterijala(table.getValueAt(i, 0).toString()));
+				    ss.setKolicina(Double.parseDouble(table.getValueAt(i, 3).toString()));
+					stavke.add(ss);
+				}
 				
-				s.setCijenaObavljenogRada(cijena);
-				s.setDodatniTroskovi(troskovi);
-				s.setTrajanjeProizvodnje(trajanje);
-				s.setOtpad(otpad);
+			s.setStavke_sas(stavke);
+			s.setSerijskiBroj(textField_2.getText());
+			s.setNaziv(textField.getText());
+			s.setIzdao((Radnik)trenutniKorisnik);
+			double trajanje = (Double)spinner_1.getValue();
+			double cijena = (Double)spinner_2.getValue();
+			double troskovi = (Double)spinner_3.getValue();
+			double otpad = (Double)spinner_4.getValue();
+			
+			s.setCijenaObavljenogRada(cijena);
+			s.setDodatniTroskovi(troskovi);
+			s.setTrajanjeProizvodnje(trajanje);
+			s.setOtpad(otpad);
+				if (akcija.equals("Kreiranje"))
+				{
 				
 				if(sf.dodajSastavnicu(s));
 				 MessageBox.infoBox(frame, "Sastavnica je uspješno kreirana","Info");	
@@ -335,8 +334,13 @@ public class FSastavnicaDM {
 				
 				if(akcija.equals("Modifikovanje"))
 				{
+					if(s==null)
+						MessageBox.infoBox(frame, "Sastavnica je uspješno modifikovana","Info");
 				    if(sf.izmijeniSastavnicu(s));
-					 MessageBox.infoBox(frame, "Sastavnica je uspješno modifikovana","Info");	
+					 MessageBox.infoBox(frame, "Sastavnica je uspješno modifikovana","Info");
+					 frame.dispose();
+					 parentFrame.setEnabled(true);
+					 parentFrame.setVisible(true);
 				}
 			}
 		});
@@ -374,19 +378,6 @@ public class FSastavnicaDM {
 		JLabel label = new JLabel("%");
 		label.setBounds(835, 441, 37, 16);
 		panel.add(label);
-		
-		JButton btnPoniti = new JButton("Poništi");
-		btnPoniti.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				spinner.setValue(0);
-				spinner_1.setValue(0);
-				spinner_2.setValue(0);
-				spinner_3.setValue(0);
-				spinner_4.setValue(0);
-			}
-		});
-		btnPoniti.setBounds(598, 533, 124, 25);
-		panel.add(btnPoniti);
 		
 		SpinnerNumberModel m_numberSpinnerModel;
 		m_numberSpinnerModel = new SpinnerNumberModel(0.0, 0, 100000, 0.01);

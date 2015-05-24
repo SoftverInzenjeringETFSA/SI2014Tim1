@@ -406,23 +406,6 @@ public class FZaposlenik {
 		button_3.setBounds(159, 69, 97, 25);
 		panel_14.add(button_3);
 
-		JButton button_4 = new JButton("Obri\u0161i");
-		button_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				dajSelektovaniMaterijal();
-				if(materijal != null)
-				{
-					//otvaranje forme za pregled korisnika sistema
-					FMaterijalDMPB s = new FMaterijalDMPB();
-					s.setFrame(frame, "Brisanje", materijal);
-				}
-				
-			}
-		});
-		button_4.setBounds(12, 69, 97, 25);
-		panel_14.add(button_4);
-
 		JButton btnPregledaj = new JButton("Pregledaj");
 		btnPregledaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
