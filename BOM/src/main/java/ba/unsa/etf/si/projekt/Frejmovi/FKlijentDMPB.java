@@ -266,7 +266,7 @@ public class FKlijentDMPB {
 		panel.add(btnKreiraj);
 		MaskFormatter mf1 = new MaskFormatter();
 		try {
-			mf1 = new MaskFormatter("###-###-###");
+			mf1 = new MaskFormatter("+###########");
 		} catch (Exception e) {
 
 		}

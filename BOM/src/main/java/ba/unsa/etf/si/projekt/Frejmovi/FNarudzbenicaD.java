@@ -283,13 +283,14 @@ public class FNarudzbenicaD {
 		textField_2.setColumns(10);
 
 		JLabel lblH = new JLabel("h");
-		lblH.setBounds(700, 401, 20, 16);
+		lblH.setBounds(707, 401, 20, 16);
 		panel.add(lblH);
 
 		JLabel lblKm = new JLabel("KM");
 		lblKm.setBounds(354, 401, 32, 16);
 		panel.add(lblKm);
 
+		
 		JButton button = new JButton("Kreiraj");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -335,7 +336,7 @@ public class FNarudzbenicaD {
 		panel.add(button);
 		
 		serijskiBroj = new JTextField();
-		serijskiBroj.setBounds(191, 68, 195, 20);
+		serijskiBroj.setBounds(191, 66, 195, 22);
 		panel.add(serijskiBroj);
 		serijskiBroj.setColumns(10);
 		

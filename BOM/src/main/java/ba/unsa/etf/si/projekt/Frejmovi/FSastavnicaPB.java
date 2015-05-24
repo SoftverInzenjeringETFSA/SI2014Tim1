@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 
 import ba.unsa.etf.si.projekt.Klase.Materijal;
 import ba.unsa.etf.si.projekt.Klase.Sastavnica;
+import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
 
 import javax.swing.SpinnerModel;
 
@@ -71,8 +72,6 @@ public class FSastavnicaPB {
 	
 	public void setFrame(JFrame parentF, String akcijaA, Sastavnica s)
 	{
-		//mozda neka provjera da li je akcija validna (moze i enumeracija)
-		//ali i ne mora :D
 		akcija = akcijaA;
 		
 		sast=s;
@@ -94,6 +93,7 @@ public class FSastavnicaPB {
 		}
 		else if(akcija.equals("Brisanje"))
 		{
+			
 			popuniPodatke();
 			textField_7.setText(sast.getSerijskiBroj());
 			textField.setText(sast.getNaziv());
@@ -104,6 +104,8 @@ public class FSastavnicaPB {
 		    spinner_2.setValue(sast.getDodatniTroskovi());
 		    spinner_3.setValue(sast.getOtpad());
 			
+		    
+		    
 			btnObrisiSastavnicu.setText("Obriši");
 		}
 			
@@ -195,6 +197,8 @@ public class FSastavnicaPB {
 		btnObrisiSastavnicu = new JButton("Obriši");
 		btnObrisiSastavnicu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//SkladisteFacade sf = new SkladisteFacade();
+				//sf.obrišiSastavnicu(sast);
 			}
 		});
 		btnObrisiSastavnicu.setBounds(735, 379, 130, 25);

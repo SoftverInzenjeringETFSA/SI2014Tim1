@@ -29,6 +29,7 @@ import ba.unsa.etf.si.projekt.Klase.Menadzer;
 import ba.unsa.etf.si.projekt.Klase.Osoba;
 import ba.unsa.etf.si.projekt.Klase.Radnik;
 import ba.unsa.etf.si.projekt.Klase.TipMaterijala;
+import ba.unsa.etf.si.projekt.Klase.TipOsobe;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
 
 import com.toedter.calendar.JDateChooser;
@@ -125,11 +126,11 @@ public class FMaterijalDMPB {
 	public void setFrame(JFrame parentF, String akcijaA, Materijal mat)
 	{
 		akcija = akcijaA;
-		//materijal=mat;
+		materijal=mat;
 		 materijali = new ArrayList<Materijal>();
 		 SkladisteFacade sf = new SkladisteFacade();
-	     materijali=sf.returnListaMaterijala();
-		 materijal=materijali.get(0);
+	     //materijali=sf.returnListaMaterijala();
+		// materijal=materijali.get(0);
 		
 		//za brisanje i pregleda ne trebaju biti editabilini!
 		if(akcija.equals("Brisanje") )
@@ -141,7 +142,7 @@ public class FMaterijalDMPB {
 		
 		}
 		//tekst button-a
-		if(akcija.equals("Kreiranje"))
+		else if(akcija.equals("Kreiranje"))
 		{
 			btnUnesi.setText("Unesi");
 		}
@@ -241,6 +242,10 @@ public class FMaterijalDMPB {
 		materijali=sf.returnListaMaterijala();
 		for(int i=0; i<materijali.size();i++)
 		{
+			listaSerBr.add("");
+			listaNaziv.add("");
+			listaMJ.add("");
+			
 			listaSerBr.add(materijali.get(i).getSerijskiBroj());
 			listaNaziv.add(materijali.get(i).getOpis());
 			listaMJ.add(materijali.get(i).getMjernaJedinica());
@@ -326,20 +331,15 @@ public class FMaterijalDMPB {
 				}
 				if(akcija.equals("Brisanje"))
 				{
+					
 					//ispisati dialogBox ? (da zelite brisati)
 					//azurirati bazu
 					//vratiti se nazad
-					//SkladisteFacade sf= new SkladisteFacade();
-					materijal.setSerijskiBroj((String)comboBox.getSelectedItem());
-					materijal.setOpis((String)comboBox_1.getSelectedItem());
-					materijal.setKolicina((Double)spinner_3.getValue());
-					materijal.setGranicnaKolicina((Double)spinner.getValue());
-					materijal.setNabavnaCijena((Double)spinner_1.getValue());
-					materijal.setProdajnaCijena((Double)spinner_2.getValue());
-					materijal.setMjernaJedinica((String)comboBox_2.getSelectedItem());
-					if(sf.obrišiMaterijal(materijal,(Menadzer)trenutniKorisnik))
-						MessageBox.infoBox(frame, "Uspješno ste obrisali materijal.", "Info");
-					
+					SkladisteFacade sf1= new SkladisteFacade();
+						if(sf1.obrišiMaterijal(materijal,(Menadzer)trenutniKorisnik))
+							MessageBox.infoBox(frame, "Uspješno ste obrisali materijal.", "Info");
+						
+				
 				}
 				if(akcija.equals("Pregled"))
 				{

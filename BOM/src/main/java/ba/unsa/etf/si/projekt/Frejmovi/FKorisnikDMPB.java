@@ -393,7 +393,7 @@ public class FKorisnikDMPB {
 		
 		MaskFormatter mf1 = new MaskFormatter();
 		try{
-			mf1 = new MaskFormatter("###-###-###");
+			mf1 = new MaskFormatter("+###########");
 		}
 		catch( Exception e)
 		{

@@ -624,28 +624,6 @@ public class FMenadzer {
 		label_1.setBounds(12, 37, 109, 16);
 		panel_12.add(label_1);
 		
-		JPanel panel_13 = new JPanel();
-		panel_13.setLayout(null);
-		panel_13.setBorder(BorderFactory.createTitledBorder("Novi materijal/poluproizvod"));
-		panel_13.setBounds(398, 13, 268, 83);
-		panel_1.add(panel_13);
-		
-		JButton btnUnesi = new JButton("Unesi");
-		btnUnesi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				//otvaranje forme za unos, pregled, modif. i brisnaje korisnika sis.
-				FMaterijalDMPB m = new FMaterijalDMPB();
-				m.setFrame(frame, "Kreiranje", null);
-				m.postaviKorisnika(trenutniKorisnik);
-				
-				
-				
-			}
-		});
-		btnUnesi.setBounds(159, 45, 97, 25);
-		panel_13.add(btnUnesi);
-		
 		JPanel panel_14 = new JPanel();
 		panel_14.setLayout(null);
 		panel_14.setBorder(BorderFactory.createTitledBorder("Postojeći materijal/poluproizvod"));
