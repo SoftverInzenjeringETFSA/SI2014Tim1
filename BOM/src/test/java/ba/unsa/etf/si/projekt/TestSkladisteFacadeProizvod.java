@@ -1,14 +1,11 @@
 package ba.unsa.etf.si.projekt;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 
 import junit.framework.TestCase;
 
 import org.junit.Test;
 
-import ba.unsa.etf.si.projekt.Klase.Materijal;
 import ba.unsa.etf.si.projekt.Klase.Proizvod;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
 

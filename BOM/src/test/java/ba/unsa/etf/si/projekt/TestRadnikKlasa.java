@@ -1,13 +1,13 @@
 package ba.unsa.etf.si.projekt;
 
-import static org.junit.Assert.*;
+import junit.framework.TestCase;
 
 import org.junit.Test;
 
 import ba.unsa.etf.si.projekt.Klase.Ovlasti;
 import ba.unsa.etf.si.projekt.Klase.Radnik;
 
-public class TestRadnik {
+public class TestRadnikKlasa extends TestCase {
 
 	@Test
 	public void testRadnik() {

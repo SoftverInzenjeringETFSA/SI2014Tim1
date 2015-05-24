@@ -1,7 +1,5 @@
 package ba.unsa.etf.si.projekt;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +11,6 @@ import ba.unsa.etf.si.projekt.Klase.Materijal;
 import ba.unsa.etf.si.projekt.Klase.Menadzer;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.KompanijaFacade;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
-import ba.unsa.etf.si.projekt.Util.HibernateUtil;
 
 public class TestSkladisteFacadeMaterijal extends TestCase {
 
