@@ -1,0 +1,130 @@
+package ba.unsa.etf.si.projekt;
+
+import static org.junit.Assert.*;
+
+import java.util.List;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import ba.unsa.etf.si.projekt.Klase.*;
+import ba.unsa.etf.si.projekt.ServisnaImplementacija.KompanijaFacade;
+
+public class KompanijaFacadeTest {
+	
+	private static KompanijaFacade kf;
+	
+	// initialize
+	@BeforeClass public static void initialize() {
+		kf = new KompanijaFacade();
+		kf.dodajMenadzera("ime", "prezime", "broj", "adresa", "email", "poz", Ovlasti.brisanjeMaterijala, "moze", "ne moze", "jmbg");
+		kf.dodajKlijenta("test", "test", "0995234", "Adresa 12", "F", null);
+		kf.dodajRadnika("testni", "testni", "225", "adresa", "a@b.c", "b", Ovlasti.unosMaterijala, "a", "b", "42342");
+		
+		kf.dodajMenadzera("rese", "rve", "broj", "adresa", "email", "poz", Ovlasti.brisanjeMaterijala, "moze", "ne moze", "jmbg");
+		kf.dodajKlijenta("rezervni", "r", "0995234", "Adresa 12", "F", null);
+		kf.dodajRadnika("za", "brisat", "225", "adresa", "a@b.c", "b", Ovlasti.unosMaterijala, "a", "b", "42342");
+	}
+	
+	// tests
+	@Test
+	public final void testListaOsoba() {
+		List<Osoba> listaOsoba = kf.listaOsoba(TipOsobe.menadzer);		
+		assertNotNull(listaOsoba);		
+	}
+	
+	@Test
+	public final void testListaOsobaNotEmpty() {
+		KompanijaFacade kf = new KompanijaFacade();
+		
+		List<Osoba> listaOsoba = kf.listaOsoba(TipOsobe.menadzer);
+		
+		assertTrue(listaOsoba.size() > 0);
+	}
+	
+	
+	@Test
+	public final void testReturnMenadzerById() {
+		Menadzer m = (Menadzer)kf.returnById(1, TipOsobe.menadzer);
+		
+		assertNotNull(m);
+	}
+
+	@Test
+	public final void testReturnMenadzerByImePrezime() {
+		Menadzer m = (Menadzer)kf.returnByImePrezime("ime", "prezime", TipOsobe.menadzer);
+		
+		assertNotNull(m);
+	}
+
+	@Test
+	public final void testDodajKlijenta() {
+		Boolean result = kf.dodajKlijenta("Meho", "Mehic", "0995234", "Adresa 12", "F", null);
+		
+		assertTrue(result);
+	}
+
+	@Test
+	public final void testDodajRadnika() {
+		Boolean result = kf.dodajRadnika("a", "b", "225", "adresa", "a@b.c", "b", Ovlasti.unosMaterijala, "a", "b", "42342");
+		assertTrue(result);
+	}
+
+	@Test
+	public final void testDodajMenadzera() {
+		Boolean result = kf.dodajMenadzera("ime", "prezime", "broj", "adresa", "email", "poz", Ovlasti.brisanjeMaterijala, "moze", "ne moze", "jmbg");
+		assertTrue(result);
+	}
+
+	@Test
+	public final void testMijenjajKlijenta() {
+		Klijent k = (Klijent)kf.returnById(1, TipOsobe.klijent);
+		k.setIme("nestonovo");
+		kf.mijenjajKlijenta(k);
+		Klijent nk = (Klijent)kf.returnById(1, TipOsobe.klijent);
+		assertEquals(nk.getIme(), "nestonovo");
+	}
+
+	@Test
+	public final void testMijenjajRadnika() {
+		Radnik r = (Radnik)kf.returnById(1, TipOsobe.radnik);
+		r.setIme("nestonovo");
+		kf.mijenjajRadnika(r);
+		Radnik nr = (Radnik)kf.returnById(1, TipOsobe.radnik);
+		assertEquals(nr.getIme(), "nestonovo");
+	}
+
+	@Test
+	public final void testMijenjajMenadzera() {
+		Menadzer m = (Menadzer)kf.returnById(1, TipOsobe.menadzer);
+		m.setIme("nestonovo");
+		kf.mijenjajMenadzera(m);
+		Menadzer nm = (Menadzer)kf.returnById(1, TipOsobe.menadzer);
+		assertEquals(nm.getIme(), "nestonovo");
+	}
+
+	@Test
+	public final void testObrisiOsobu() {
+		Osoba o = kf.returnById(2, TipOsobe.menadzer);
+		Boolean result = kf.obrisiOsobu(o);
+	}
+
+	@Test
+	public final void testReturnByUsernamePassword() {
+		kf.dodajRadnika("za", "passworda", "225", "adresa", "a@b.c", "b", Ovlasti.unosMaterijala, "novi", "pass", "42342");
+		Osoba o = kf.returnByUsernamePassword("novi", "pass");
+		
+		assertNotNull(o);
+	}
+
+	@Test
+	public final void testDajMenadzeraUsernamePassword() {
+		kf.dodajMenadzera("rese", "rve", "broj", "adresa", "email", "poz", Ovlasti.brisanjeMaterijala, "men", "password", "jmbg");
+		Osoba o = kf.dajMenadzeraUsernamePassword("men", "password");
+		
+		assertNotNull(o);
+	}
+
+}

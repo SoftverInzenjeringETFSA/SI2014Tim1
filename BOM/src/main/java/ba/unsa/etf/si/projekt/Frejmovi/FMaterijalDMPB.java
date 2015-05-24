@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.JComboBox;
 import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
@@ -40,10 +39,10 @@ import java.util.List;
 public class FMaterijalDMPB {
 
 	private JFrame frame;
-	private JComboBox comboBox;
-	private JComboBox comboBox_1;
-	private JComboBox comboBox_2;
-	private JComboBox comboBox_3;
+	private Java2sAutoComboBox comboBox;
+	private Java2sAutoComboBox comboBox_1;
+	private Java2sAutoComboBox comboBox_2;
+	private Java2sAutoComboBox comboBox_3;
 	private JDateChooser dateChooser;
 	private JSpinner spinner;
 	private JSpinner spinner_1;
@@ -53,6 +52,13 @@ public class FMaterijalDMPB {
 	private JFrame parentFrame;
 	private JButton btnUnesi;
 	private JPanel panel;
+	public Materijal materijal;
+	List<Materijal> materijali;
+	List <String> listaSerBr;
+	List <String> listaNaziv;
+	List <String> listaMJ;
+	List <String> listaTip;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -116,19 +122,15 @@ public class FMaterijalDMPB {
 	public void setFrame(JFrame parentF, String akcijaA, Materijal mat)
 	{
 		akcija = akcijaA;
-		
-		 SkladisteFacade sf = new SkladisteFacade();
-		 List<Materijal> materijali = new ArrayList<Materijal>();
-		 Materijal m = new Materijal();
-		 materijali=sf.returnListaMaterijala();
-		 m=materijali.get(0);
-		 //kreiranje, modifikovanje, brisanje, pregled
-		//po defaultu je sve editabilno
-		
+		//materijal=mat;
+		 materijali = new ArrayList<Materijal>();
+		 //Materijal m = new Materijal();
+		    SkladisteFacade sf = new SkladisteFacade();
+			materijal=materijali.get(0);
 		//za brisanje i pregleda ne trebaju biti editabilini!
 		if(akcija.equals("Brisanje") )
 		{
-			IspisiVrijednosti(m);
+			IspisiVrijednosti(materijal);
 			OnemoguciKontrole();
 			
 			btnUnesi.setText("Obriši");
@@ -141,14 +143,14 @@ public class FMaterijalDMPB {
 		}
 		else if(akcija.equals("Modifikovanje"))
 		{
-			IspisiVrijednosti(m);
+			IspisiVrijednosti(materijal);
 			btnUnesi.setText("Modifikuj");
 		}
 		
 		else if(akcija.equals("Pregled"))
 		{
 			
-			IspisiVrijednosti(m);
+			IspisiVrijednosti(materijal);
 			OnemoguciKontrole();
 			btnUnesi.hide();
 		}
@@ -183,6 +185,7 @@ public class FMaterijalDMPB {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		materijal= new Materijal();
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 512, 407);
@@ -225,22 +228,37 @@ public class FMaterijalDMPB {
 		lblProdajnaCijena.setBounds(83, 191, 103, 16);
 		panel.add(lblProdajnaCijena);
 		
-		comboBox = new JComboBox();
+		listaSerBr = new ArrayList<String>();
+		listaNaziv = new ArrayList<String>();
+		listaMJ = new ArrayList<String>();
+		//listaTip = new ArrayList<String>();
+
+	    SkladisteFacade sf = new SkladisteFacade();
+		materijali=sf.returnListaMaterijala();
+		for(int i=0; i<materijali.size();i++)
+		{
+			listaSerBr.add(materijali.get(i).getSerijskiBroj());
+			listaNaziv.add(materijali.get(i).getOpis());
+			listaMJ.add(materijali.get(i).getMjernaJedinica());
+			//listaTip.add(materijali.get(i).getTip());
+		}
+		
+		comboBox = new Java2sAutoComboBox(listaSerBr);
 		comboBox.setEditable(true);
 		comboBox.setBounds(198, 43, 216, 22);
 		panel.add(comboBox);
 		
-		comboBox_1 = new JComboBox();
+		comboBox_1 = new Java2sAutoComboBox(listaNaziv);
 		comboBox_1.setEditable(true);
 		comboBox_1.setBounds(198, 72, 216, 22);
 		panel.add(comboBox_1);
 		
-		comboBox_2 = new JComboBox();
+		comboBox_2 = new Java2sAutoComboBox(listaMJ);
 		comboBox_2.setEditable(true);
 		comboBox_2.setBounds(326, 101, 88, 22);
 		panel.add(comboBox_2);
 		
-		comboBox_3 = new JComboBox();
+		comboBox_3 = new Java2sAutoComboBox(listaSerBr);
 		comboBox_3.setEditable(true);
 		comboBox_3.setBounds(198, 130, 116, 22);
 		panel.add(comboBox_3);
@@ -269,10 +287,10 @@ public class FMaterijalDMPB {
 			public void actionPerformed(ActionEvent e) {
 				//akcija za klik na dugme koje moze imati razlicite f-je
 				//brisanje, kreiranje, modifikovanje, pregled
-				
+				SkladisteFacade sf= new SkladisteFacade();
 				if(akcija.equals("Kreiranje"))
 				{
-					SkladisteFacade sf= new SkladisteFacade();
+					
 					double kolicina=(Double)spinner_3.getValue();
 					double granKolicina=(Double)spinner.getValue();
 					double nabCijena = (Double)spinner_1.getValue();
@@ -288,17 +306,15 @@ public class FMaterijalDMPB {
 				}
 				if( akcija.equals("Modifikovanje"))
 				{
-					SkladisteFacade sf= new SkladisteFacade();
-					double kolicina=(Double)spinner_3.getValue();
-					double granKolicina=(Double)spinner.getValue();
-					double nabCijena = (Double)spinner_1.getValue();
-					double prodCijena = (Double)spinner_2.getValue();
-					Date datum = (Date)dateChooser.getDate();
-					String serBroj= (String)comboBox.getSelectedItem();
-					String opis= (String)comboBox_1.getSelectedItem();
-					String mjed=(String)comboBox_2.getSelectedItem();
-					Materijal m = new Materijal(serBroj, opis, kolicina, granKolicina, TipMaterijala.proizvod, nabCijena, datum,null,prodCijena,null, null, mjed);
-					if(sf.izmijeniMaterijal(m))
+					//SkladisteFacade sf= new SkladisteFacade();
+					materijal.setSerijskiBroj((String)comboBox.getSelectedItem());
+					materijal.setOpis((String)comboBox_1.getSelectedItem());
+					materijal.setKolicina((Double)spinner_3.getValue());
+					materijal.setGranicnaKolicina((Double)spinner.getValue());
+					materijal.setNabavnaCijena((Double)spinner_1.getValue());
+					materijal.setProdajnaCijena((Double)spinner_2.getValue());
+					materijal.setMjernaJedinica((String)comboBox_2.getSelectedItem());
+					if(sf.izmijeniMaterijal(materijal))
 						MessageBox.infoBox(frame, "Uspješno ste modifikovali materijal.", "Info");
 				
 				}
@@ -307,17 +323,15 @@ public class FMaterijalDMPB {
 					//ispisati dialogBox ? (da zelite brisati)
 					//azurirati bazu
 					//vratiti se nazad
-					SkladisteFacade sf= new SkladisteFacade();
-					double kolicina=(Double)spinner_3.getValue();
-					double granKolicina=(Double)spinner.getValue();
-					double nabCijena = (Double)spinner_1.getValue();
-					double prodCijena = (Double)spinner_2.getValue();
-					Date datum = (Date)dateChooser.getDate();
-					String serBroj= String.valueOf(comboBox.getSelectedItem());
-					String opis= (String)comboBox_1.getSelectedItem();
-					String mjed=(String)comboBox_2.getSelectedItem();
-					Materijal m = new Materijal(serBroj, opis, kolicina, granKolicina, TipMaterijala.proizvod, nabCijena, datum,null,prodCijena,null, null, mjed);
-					if(sf.obrišiMaterijal(m))
+					//SkladisteFacade sf= new SkladisteFacade();
+					materijal.setSerijskiBroj((String)comboBox.getSelectedItem());
+					materijal.setOpis((String)comboBox_1.getSelectedItem());
+					materijal.setKolicina((Double)spinner_3.getValue());
+					materijal.setGranicnaKolicina((Double)spinner.getValue());
+					materijal.setNabavnaCijena((Double)spinner_1.getValue());
+					materijal.setProdajnaCijena((Double)spinner_2.getValue());
+					materijal.setMjernaJedinica((String)comboBox_2.getSelectedItem());
+					if(sf.obrišiMaterijal(materijal))
 						MessageBox.infoBox(frame, "Uspješno ste obrisali materijal.", "Info");
 					
 				}

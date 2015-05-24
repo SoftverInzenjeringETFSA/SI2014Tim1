@@ -27,6 +27,11 @@ import javax.swing.UIManager;
 
 
 
+
+
+
+
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -45,11 +50,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import java.awt.ComponentOrientation;
+import java.util.List;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JToggleButton;
 
-public class Menadzer {
+import ba.unsa.etf.si.projekt.Klase.Klijent;
+import ba.unsa.etf.si.projekt.Klase.Materijal;
+import ba.unsa.etf.si.projekt.Klase.Narudzbenica;
+import ba.unsa.etf.si.projekt.Klase.Osoba;
+import ba.unsa.etf.si.projekt.Klase.Sastavnica;
+
+public class FMenadzer {
 
 	private JFrame frame;
 	
@@ -71,6 +83,15 @@ public class Menadzer {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JLabel lblNisteOdabraliNiti;
+	private JLabel lblNisteOdabraliNiti_2;
+	private JLabel lblNisteOdabraliNiti_3;
+	private JLabel lblNisteOdabraliNiti_1;
+	private Narudzbenica narudbenica;
+	private Klijent klijent;
+	private Materijal materijal;
+	private Sastavnica sastavnica;
+	private Osoba trenutniKorisnik;
 
 	/**
 	 * Launch the application.
@@ -88,7 +109,7 @@ public class Menadzer {
 				
 				
 				try {
-					Menadzer window = new Menadzer();
+					FMenadzer window = new FMenadzer();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -106,16 +127,9 @@ public class Menadzer {
 	/**
 	 * Create the application.
 	 */
-	public Menadzer() {
+	public FMenadzer() {
 		
 		initialize();
-		
-		popuniTabeluKlijent(null,null,null);
-		popuniTabeluNarudzbenica(null,null,null);
-		popuniTabeluSkladiste(null,null,null);
-		popuniTabeluSastavnica(null,null,null);
-		
-		
 		
 		//postavlanje akcije za izlaz iz frejma
 				frame.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -233,6 +247,7 @@ public class Menadzer {
 				FNarudzbenicaD n = new FNarudzbenicaD();
 				//sada akcija moze biti samo kreiranje
 				n.setFrame(frame, null, null);
+				n.postaviKorisnika(trenutniKorisnik);
 				
 			}
 		});
@@ -249,16 +264,20 @@ public class Menadzer {
 		button_10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				FNarudzbenicaP n = new FNarudzbenicaP();
-				//sada akcija moze biti samo pregled
-				n.setFrame(frame, null, null);
+				dajSelektovanuNarudzbenicu();
+				if(narudbenica != null)
+				{
+					//otvaranje forme za pregled korisnika sistema
+					FNarudzbenicaP n = new FNarudzbenicaP();
+					n.setFrame(frame, null, narudbenica);
+				}
 				
 			}
 		});
 		button_10.setBounds(159, 69, 97, 25);
 		panel_15.add(button_10);
 		
-		JLabel lblNisteOdabraliNiti_2 = new JLabel("Niste odabrali niti jednu narud\u017Ebenicu.");
+		lblNisteOdabraliNiti_2 = new JLabel("");
 		lblNisteOdabraliNiti_2.setBounds(22, 510, 644, 16);
 		panel_3.add(lblNisteOdabraliNiti_2);
 		
@@ -345,9 +364,13 @@ public class Menadzer {
 		btnModifikuj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//modifikovanje klijenta
-				FKlijentDMPB k = new FKlijentDMPB();
-				k.setFrame(frame, "Modifikovanje", null);
+				dajSelektovanogKlijenta();
+				if(klijent != null)
+				{
+					//pregled klijenta
+					FKlijentDMPB k = new FKlijentDMPB();
+					k.setFrame(frame, "Modifikovanje", klijent);
+				}
 				
 			}
 		});
@@ -358,9 +381,13 @@ public class Menadzer {
 		btnObrii.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//pregled klijenta
-				FKlijentDMPB k = new FKlijentDMPB();
-				k.setFrame(frame, "Brisanje", null);//sada null treba biti klasa
+				dajSelektovanogKlijenta();
+				if(klijent != null)
+				{
+					//pregled klijenta
+					FKlijentDMPB k = new FKlijentDMPB();
+					k.setFrame(frame, "Brisanje", klijent);
+				}
 				
 			}
 		});
@@ -371,16 +398,19 @@ public class Menadzer {
 		btnPregledaj_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//pregled klijenta
-				FKlijentDMPB k = new FKlijentDMPB();
-				k.setFrame(frame, "Pregled", null);//sada null treba biti klasa
-				
+				dajSelektovanogKlijenta();
+				if(klijent != null)
+				{
+					//pregled klijenta
+					FKlijentDMPB k = new FKlijentDMPB();
+					k.setFrame(frame, "Pregled", klijent);
+				}
 			}
 		});
 		btnPregledaj_1.setBounds(159, 31, 97, 25);
 		panel_5.add(btnPregledaj_1);
 		
-		JLabel lblNisteOdabraliNiti = new JLabel("Niste odabrali niti jednog klijenta.");
+		lblNisteOdabraliNiti = new JLabel("");
 		lblNisteOdabraliNiti.setBounds(22, 510, 644, 16);
 		panel_2.add(lblNisteOdabraliNiti);
 		
@@ -471,7 +501,7 @@ public class Menadzer {
 		scrollPane_2.setBounds(12, 26, 630, 229);
 		panel_19.add(scrollPane_2);
 		
-		JLabel lblNisteOdabraliNiti_3 = new JLabel("Niste odabrali niti jednu sastavnicu.");
+		lblNisteOdabraliNiti_3 = new JLabel("");
 		lblNisteOdabraliNiti_3.setBounds(22, 510, 644, 16);
 		panel.add(lblNisteOdabraliNiti_3);
 		JButton btnPretrai = new JButton("Pretra\u017Ei");
@@ -493,7 +523,7 @@ public class Menadzer {
 		scrollPane_3.setBounds(12, 26, 630, 229);
 		panel_11.add(scrollPane_3);
 		
-		JLabel lblNisteOdabraliNiti_1 = new JLabel("Niste odabrali niti jedan materijal/poluproizvod");
+		lblNisteOdabraliNiti_1 = new JLabel("");
 		lblNisteOdabraliNiti_1.setBounds(22, 510, 644, 16);
 		panel_1.add(lblNisteOdabraliNiti_1);
 		
@@ -654,5 +684,73 @@ public class Menadzer {
 		dataGMaterijal=new DataGrid("Materijal");
 		table_3 = dataGMaterijal.getTable(name, value, sort);
 		scrollPane_3.setViewportView(table_3);
+	}
+	public void dajSelektovanogKlijenta()
+	{
+		klijent = null;
+		int sel = table.getSelectedRow();
+		if(sel < 0)
+		{
+			lblNisteOdabraliNiti.setText("Niste odabrali niti jednog klijenta.");
+		}
+		else
+		{
+			table.getSelectionModel().clearSelection();
+			lblNisteOdabraliNiti.setText("");
+			if(dataGKlijent.klijenti.size()>0)
+				klijent = dataGKlijent.klijenti.get(sel);
+		}
+	}
+	public void dajSelektovanuNarudzbenicu()
+	{
+		narudbenica = null;
+		int sel = table_1.getSelectedRow();
+		if(sel < 0)
+		{
+			lblNisteOdabraliNiti_2.setText("Niste odabrali niti jednu narudzbenicu.");
+		}
+		else
+		{
+			table_1.getSelectionModel().clearSelection();
+			lblNisteOdabraliNiti_2.setText("");
+			if(dataGNarudzbenica.narudzbenice.size()>0)
+				narudbenica = dataGNarudzbenica.narudzbenice.get(sel);
+		}
+	}
+	public void dajSelektovanuSastavnicu()
+	{
+		sastavnica = null;
+		int sel = table_2.getSelectedRow();
+		if(sel < 0)
+		{
+			lblNisteOdabraliNiti_3.setText("Niste odabrali niti jednu sastavnicu.");
+		}
+		else
+		{
+			table_2.getSelectionModel().clearSelection();
+			lblNisteOdabraliNiti_3.setText("");
+			if(dataGSastavnica.sastavnice.size()>0)
+				sastavnica = dataGSastavnica.sastavnice.get(sel);
+		}
+	}
+	public void dajSelektovaniMaterijal()
+	{
+		materijal = null;
+		int sel = table_3.getSelectedRow();
+		if(sel < 0)
+		{
+			lblNisteOdabraliNiti_1.setText("Niste odabrali niti jedan materijal/poluproizvod.");
+		}
+		else
+		{
+			table_3.getSelectionModel().clearSelection();
+			lblNisteOdabraliNiti_1.setText("");
+			if(dataGMaterijal.materijali.size()>0)
+				materijal = dataGMaterijal.materijali.get(sel);
+		}
+	}
+	public void postaviKorisnika(Osoba os)
+	{
+		trenutniKorisnik = os;
 	}
 }

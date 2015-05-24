@@ -102,14 +102,15 @@ public class Login {
 				{
 					if(o.getTipOsobe()  == TipOsobe.menadzer)
 					{
-						Menadzer m = new Menadzer();
+						FMenadzer m = new FMenadzer();
 						m.setFrame(null, null, null);
+						m.postaviKorisnika(o);
 						frame.setVisible(false);//skrivanje frejma login
 						frame.dispose();//unistavanje frejma login
 					}
 					else if(o.getTipOsobe()  == TipOsobe.radnik)
 					{
-						Zaposlenik z = new Zaposlenik();
+						FZaposlenik z = new FZaposlenik();
 						z.setFrame(null, null, null);
 						frame.setVisible(false);//skrivanje frejma login
 						frame.dispose();//unistavanje frejma login

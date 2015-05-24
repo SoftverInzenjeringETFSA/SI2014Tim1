@@ -17,6 +17,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 
+import ba.unsa.etf.si.projekt.Klase.Klijent;
+import ba.unsa.etf.si.projekt.Klase.Osoba;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -28,6 +31,9 @@ public class FKorisnik {
 	private JTable table;
 	private DataGrid dataGrid;
 	private JScrollPane scrollPane;
+	private JLabel lblNisteOdabraliNiti;
+	private int SelektovanMenadzer;
+	private Osoba osoba;
 	
 
 	/**
@@ -159,7 +165,7 @@ public class FKorisnik {
 				
 				//otvaranje forme za kreiranje korisnika sistema
 				FKorisnikDMPB k = new FKorisnikDMPB();
-				k.setFrame(frame, "Kreiranje", null);
+				k.setFrame(frame, "Kreiranje", null, -1);
 				
 			}
 		});
@@ -178,7 +184,7 @@ public class FKorisnik {
 				
 				//otvaranje forme za modifikovanje korisnika sistema
 				FKorisnikDMPB k = new FKorisnikDMPB();
-				k.setFrame(frame, "Modifikovanje", null);//sada null treba biti klasa
+				//k.setFrame(frame, "Modifikovanje", osoba, SelektovanMenadzer);//sada null treba biti klasa
 			}
 		});
 		button_3.setBounds(159, 69, 97, 25);
@@ -188,9 +194,13 @@ public class FKorisnik {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//otvaranje forme za brisanje korisnika sistema
-				FKorisnikDMPB k = new FKorisnikDMPB();
-				k.setFrame(frame, "Brisanje", null);//sada null treba biti klasa
+				dajSelektovanogKorisnika();
+				if(osoba != null)
+				{
+					//otvaranje forme za pregled korisnika sistema
+					FKorisnikDMPB k = new FKorisnikDMPB();
+					k.setFrame(frame, "Brisanje", osoba, SelektovanMenadzer);
+				}
 			}
 		});
 		button_4.setBounds(12, 69, 97, 25);
@@ -200,9 +210,14 @@ public class FKorisnik {
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//otvaranje forme za pregled korisnika sistema
-				FKorisnikDMPB k = new FKorisnikDMPB();
-				k.setFrame(frame, "Pregled", null);//sada null treba biti klasa
+				dajSelektovanogKorisnika();
+				if(osoba != null)
+				{
+					//otvaranje forme za pregled korisnika sistema
+					FKorisnikDMPB k = new FKorisnikDMPB();
+					k.setFrame(frame, "Pregled", osoba, SelektovanMenadzer);//sada null treba biti klasa
+				}
+				
 			}
 		});
 		button_5.setBounds(159, 31, 97, 25);
@@ -218,19 +233,7 @@ public class FKorisnik {
 		scrollPane.setBounds(12, 26, 630, 214);
 		panel_3.add(scrollPane);
 		
-		Object rowK[][] = { { "", "", "", "", ""},
-                { "", "", "", "", ""},{ "", "", "", "", ""},
-                { "", "", "", "", ""},{ "", "", "", "", ""},
-                { "", "", "", "", ""},{ "", "", "", "", ""},
-                { "", "", "", "", ""},{ "", "", "", "", ""},
-                { "", "", "", "", ""},{ "", "", "", "", ""},
-                { "", "", "", "", ""} };
-		Object columnK[] = { "ID", "Ime i prezime", "Telefon", "Korisničko ime", "Kreiran"};
-		
-		table = new JTable(rowK, columnK);
-		scrollPane.setViewportView(table);
-		
-		JLabel lblNisteOdabraliNiti = new JLabel("Niste odabrali niti jednog korisnika.");
+		lblNisteOdabraliNiti = new JLabel("");
 		lblNisteOdabraliNiti.setBounds(22, 489, 644, 16);
 		frame.getContentPane().add(lblNisteOdabraliNiti);
 	}
@@ -239,5 +242,27 @@ public class FKorisnik {
 		DataGrid g = new DataGrid("Korisnik");
 		table = g.getTable(name, value, sort);
 		scrollPane.setViewportView(table);
+	}
+	public void dajSelektovanogKorisnika()
+	{
+		osoba = null;
+		int sel = table.getSelectedRow();
+		if(sel < 0)
+		{
+			lblNisteOdabraliNiti.setText("Niste odabrali niti jednog korisnika.");
+		}
+		else
+		{
+			table.getSelectionModel().clearSelection();
+			lblNisteOdabraliNiti.setText("");
+			if(sel<dataGrid.menadzeri.size())
+			{
+				osoba = (Osoba)dataGrid.menadzeri.get(sel);
+				SelektovanMenadzer = 1;
+			}else{
+				osoba = (Osoba)dataGrid.radnici.get(sel-dataGrid.menadzeri.size());
+				SelektovanMenadzer = 0;
+			}
+		}
 	}
 }
