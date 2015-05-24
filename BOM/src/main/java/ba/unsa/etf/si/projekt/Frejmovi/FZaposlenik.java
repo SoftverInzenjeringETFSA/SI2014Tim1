@@ -50,7 +50,7 @@ import java.awt.ComponentOrientation;
 import javax.swing.JFormattedTextField;
 import javax.swing.JToggleButton;
 
-public class Zaposlenik {
+public class FZaposlenik {
 
 	private JFrame frame;
 	private JTable table_3;
@@ -80,7 +80,7 @@ public class Zaposlenik {
 				}
 
 				try {
-					Zaposlenik window = new Zaposlenik();
+					FZaposlenik window = new FZaposlenik();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -98,7 +98,7 @@ public class Zaposlenik {
 	 * Create the application.
 	 */
 	
-	public Zaposlenik() {
+	public FZaposlenik() {
 		initialize();
 		popuniTabeluSastavnice(null,null,null);
 		popuniTabeluSkladiste(null,null,null);

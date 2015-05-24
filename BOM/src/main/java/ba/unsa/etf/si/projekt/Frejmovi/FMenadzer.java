@@ -49,7 +49,7 @@ import java.awt.ComponentOrientation;
 import javax.swing.JFormattedTextField;
 import javax.swing.JToggleButton;
 
-public class Menadzer {
+public class FMenadzer {
 
 	private JFrame frame;
 	
@@ -88,7 +88,7 @@ public class Menadzer {
 				
 				
 				try {
-					Menadzer window = new Menadzer();
+					FMenadzer window = new FMenadzer();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -106,16 +106,9 @@ public class Menadzer {
 	/**
 	 * Create the application.
 	 */
-	public Menadzer() {
+	public FMenadzer() {
 		
 		initialize();
-		
-		popuniTabeluKlijent(null,null,null);
-		popuniTabeluNarudzbenica(null,null,null);
-		popuniTabeluSkladiste(null,null,null);
-		popuniTabeluSastavnica(null,null,null);
-		
-		
 		
 		//postavlanje akcije za izlaz iz frejma
 				frame.addWindowListener(new java.awt.event.WindowAdapter() {

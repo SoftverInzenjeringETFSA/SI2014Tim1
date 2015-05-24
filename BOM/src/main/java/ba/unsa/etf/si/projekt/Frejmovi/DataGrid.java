@@ -9,6 +9,7 @@ import ba.unsa.etf.si.projekt.Klase.Narudzbenica;
 import ba.unsa.etf.si.projekt.Klase.Osoba;
 import ba.unsa.etf.si.projekt.Klase.Ovlasti;
 import ba.unsa.etf.si.projekt.Klase.Radnik;
+import ba.unsa.etf.si.projekt.Klase.Menadzer;
 import ba.unsa.etf.si.projekt.Klase.Sastavnica;
 import ba.unsa.etf.si.projekt.Klase.TipOsobe;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.KompanijaFacade;
@@ -24,11 +25,11 @@ public class DataGrid {
 	
 	private final String tipTabele;
 	private JTable table;
-	public List<Klijent> klijenti1;
+	public List<Klijent> klijenti;
 	public 	 List<Materijal> materijali;
 	public List<Sastavnica> sastavnice;
-	public List<Osoba> osobe;
-	public List<Radnik> korisnici;
+	public static List<Radnik> radnici;
+	public static List<Menadzer> menadzeri;
 	public  List<Narudzbenica> narudzbenice;
 
 	
@@ -42,47 +43,44 @@ public class DataGrid {
 		
 		if(tipTabele.equals("Korisnik"))
 		{
-			korisnici = new ArrayList<Radnik>();
 			KompanijaFacade k = new KompanijaFacade();
-			if(name != null && value != null)
-			{
+			radnici = k.sortirajRadnika(name, value, sort);
+			menadzeri = k.sortirajMenadzera(name, value, sort);
+			
+			
+				Object columnsName[] = { "Ime", "Prezime", "Telefon", "Korisnicko ime", "Email", "Pozicija"};
+				Object rows[][] = new Object[radnici.size() + menadzeri.size()][6];
 				
-			}
-			else
-			{
-				
-			      osobe = k.listaOsoba(TipOsobe.menadzer);
-			      List<Osoba> osobeRdnici;
-			      osobeRdnici = k.listaOsoba(TipOsobe.radnik);
-			      
-			      for(int i=0; i<osobeRdnici.size(); i++)
-			    	  osobe.add(osobeRdnici.get(i));
-			      
-			      
-			}
-				Object columnsName[] = { "ID", "Ime i prezime", "Telefon", "Korisnicko ime", "Email"};
-				Object rows[][] = new Object[osobe.size()][5];
-				
-				for(int i=0; i<osobe.size(); i++)
+				int i = 0;
+				for(Menadzer m : menadzeri)
 				{
-					rows[i][0] = i;
-					rows[i][1] = osobe.get(i).getIme() + ' ' + osobe.get(i).getPrezime();
-					rows[i][2] = osobe.get(i).getBrojTelefona();
-					rows[i][3] = "Korisnicko ime";
-					rows[i][4] = osobe.get(i).getEmail();
+					rows[i][0] = m.getIme();
+					rows[i][1] = m.getPrezime();
+					rows[i][2] = m.getBrojTelefona();
+					rows[i][3] = m.getUsername();
+					rows[i][4] = m.getEmail();
+					rows[i][5] = "Menadzer";
+					i++;
+				}
+				for(Radnik r : radnici)
+				{
+					rows[i][0] = r.getIme();
+					rows[i][1] = r.getPrezime();
+					rows[i][2] = r.getBrojTelefona();
+					rows[i][3] = r.getUsername();
+					rows[i][4] = r.getEmail();
+					rows[i][5] = "Zaposlenik";
+					i++;
 				}
 				
 				table = new JTable(rows, columnsName);
 				
-			
-			
-			
 		}
 		else if(tipTabele.equals("Klijent"))
 		{
 			KompanijaFacade kf=new KompanijaFacade();
-			List<Osoba> klijenti = new ArrayList<Osoba>();
-			klijenti1 = new ArrayList<Klijent>();
+			List<Osoba> osobeK = new ArrayList<Osoba>();
+			klijenti = new ArrayList<Klijent>();
 			if(name != null && value != null)
 			{
 				
@@ -90,21 +88,21 @@ public class DataGrid {
 			else
 			{
 		
-				klijenti = kf.listaOsoba(TipOsobe.klijent);
-				for(int i=0;i<klijenti.size();i++)
-					klijenti1.add((Klijent)klijenti.get(i));
+				osobeK = kf.listaOsoba(TipOsobe.klijent);
+				for(int i=0;i<osobeK.size();i++)
+					klijenti.add((Klijent)osobeK.get(i));
 		
 			}
 			Object columnsName[] = { "ID", "Ime i prezime", "Telefon", " Adresa","Email"};
-			Object rows[][] = new Object[klijenti1.size()][5];
+			Object rows[][] = new Object[klijenti.size()][5];
 			
-			for(int i=0; i<klijenti1.size(); i++)
+			for(int i=0; i<klijenti.size(); i++)
 			{
-				rows[i][0] = klijenti1.get(i).getId();
-				rows[i][1] = klijenti1.get(i).getIme()+ " "+klijenti1.get(i).getPrezime();
-				rows[i][2] =  klijenti1.get(i).getBrojTelefona();
-				rows[i][3] =  klijenti1.get(i).getAdresa();
-				rows[i][4] =  klijenti1.get(i).getEmail();
+				rows[i][0] = klijenti.get(i).getId();
+				rows[i][1] = klijenti.get(i).getIme()+ " "+klijenti.get(i).getPrezime();
+				rows[i][2] =  klijenti.get(i).getBrojTelefona();
+				rows[i][3] =  klijenti.get(i).getAdresa();
+				rows[i][4] =  klijenti.get(i).getEmail();
 			}
 			
 			table = new JTable(rows, columnsName);
