@@ -69,7 +69,8 @@ public class FNarudzbenicaP {
 		parentFrame.setEnabled(false);
 		frame.setVisible(true);
 		// narudzbenica=new Narudzbenica();
-		// narudzbenica=n;
+		 narudzbenica=n;
+		 popuniPodatke();
 		// SkladisteFacade sf=new SkladisteFacade();
 		// narudzbenica=sf.pretragaNarudzbenica("xy");
 	}
@@ -80,7 +81,7 @@ public class FNarudzbenicaP {
 	public FNarudzbenicaP() {
 		initialize();
 		kreirajTabelu();
-		popuniPodatke();
+		
 
 		frame.addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
@@ -198,10 +199,9 @@ public class FNarudzbenicaP {
 	}
 
 	public void popuniPodatke() {
-		narudzbenica = new Narudzbenica();
+	
 		SkladisteFacade sf = new SkladisteFacade();
-		narudzbenica = sf.pretragaNarudzbenica("xy");
-		odgLice.setText(narudzbenica.getOdgovornoLice().getIme() + " "
+       odgLice.setText(narudzbenica.getOdgovornoLice().getIme() + " "
 				+ narudzbenica.getOdgovornoLice().getPrezime());
 		klijentTF.setText(narudzbenica.getKlijent().getIme() + " "
 				+ narudzbenica.getKlijent().getPrezime());

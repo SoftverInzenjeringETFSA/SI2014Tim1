@@ -6,6 +6,7 @@ import java.math.*;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -56,9 +57,9 @@ public class FNarudzbenicaD {
 	private JComboBox comboBox;
 	public Integer brojRedova;
 	public DefaultTableModel model;
-	public Double ukupnaCijena = (double) 0;;
+	public Double ukupnaCijena = (double) 0;
 	public Double ukupnoTrajanje = (double) 0;
-	private JTextField serijskiBroj;;
+	private JTextField serijskiBroj;
 	public Osoba trenutniKorisnik;
 
 	/**
@@ -87,10 +88,11 @@ public class FNarudzbenicaD {
 		});
 	}
 
-	public void setFrame(JFrame parentF, String akcijaA, String klasa) {
+	public void setFrame(JFrame parentF, String akcijaA, String nista) {
 		parentFrame = parentF;
 		parentFrame.setEnabled(false);
 		frame.setVisible(true);
+		
 		
 	}
 
@@ -105,6 +107,7 @@ public class FNarudzbenicaD {
 		kreirajTabelu();
 		vratiKlijente();
 		popuniKlijente();
+		
 
 		frame.addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
@@ -299,9 +302,16 @@ public class FNarudzbenicaD {
 				   narudzbenica.setSerijskiBroj(serijskiBroj.getText());
 			      	if(kf.validirajNarudzbenicu(narudzbenica)){
 			            kf.dodajNarudzbenicu(narudzbenica);				  
-				   MessageBox.infoBox(frame, "Narudžbenica je uspješno kreirana","Info");			   
+				   MessageBox.infoBox(frame, "Narudžbenica je uspješno kreirana","Info");	
+				   frame.dispose();
+				   parentFrame.setVisible(true);
+				   
 				}
-				   else MessageBox.infoBox(frame, "Narudžbenica ne može biti kreirana zbog nedostatka materjala","Info");
+		else {
+			MessageBox.infoBox(frame, "Narudžbenica ne može biti kreirana zbog nedostatka materjala","Info");
+			   frame.dispose(); 
+			   parentFrame.setVisible(true);
+		}
 			}
 		});
 		button.setBounds(612, 444, 151, 25);
@@ -359,7 +369,8 @@ public class FNarudzbenicaD {
 
 	}
 	public void postaviKorisnika(Osoba os)
-	{trenutniKorisnik=os;
-	
+	{ 
+		trenutniKorisnik=os;
+		textField.setText(trenutniKorisnik.getIme()+" "+ trenutniKorisnik.getPrezime());
 	}
 }
