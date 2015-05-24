@@ -211,9 +211,9 @@ public class KompanijaFacadeTest {
 	}
 	
 	@Test
-	public final void testSortirajRadnikaParametri() {
+	public final void testSortirajMenadzerParametri() {
 		try {
-			List<Radnik> l = kf.sortirajRadnika(null, "nesto", null);
+			List<Menadzer> l = kf.sortirajMenadzera(null, "nesto", null);
 			assertNull(l);
 		}
 		catch(Exception e) {
