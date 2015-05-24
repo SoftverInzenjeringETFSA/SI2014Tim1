@@ -10,10 +10,12 @@ import org.junit.Test;
 
 import ba.unsa.etf.si.projekt.Klase.Materijal;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
+import ba.unsa.etf.si.projekt.Util.HibernateUtil;
 
 public class TestSkladisteFacadeMaterijal extends TestCase {
 
 	SkladisteFacade sf = new SkladisteFacade();
+	
 	@Test
 	public void testReturnListaMaterijala() {
 		try {
@@ -33,6 +35,7 @@ public class TestSkladisteFacadeMaterijal extends TestCase {
 		}
 	}
 	
+	@Test 
 	public void testDodavanjeMaterijala() {
 		try {
 			int size=sf.returnListaMaterijala().size();
@@ -49,6 +52,20 @@ public class TestSkladisteFacadeMaterijal extends TestCase {
 		}
 	}
 	
+	@Test
+	public void testDodavanjeMaterijala2() {
+		try {
+			Materijal m = new Materijal();
+			m.setSerijskiBroj("M55");
+			Boolean r = sf.dodajMaterijal(m);
+			assertTrue(r);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
 	public void testBrisanjeMaterijala() {
 		try {
 			Materijal m = new Materijal();
@@ -64,6 +81,20 @@ public class TestSkladisteFacadeMaterijal extends TestCase {
 		}
 	}
 	
+	@Test
+	public void testBrisanjeMaterijala2() {
+		try {
+			Materijal m = new Materijal();
+			sf.dodajMaterijal(m);
+			Boolean r = sf.obrišiMaterijal(m);
+			assertTrue(r);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
 	public void testIzmjenaMaterijala() {
 		try {
 			Materijal m = new Materijal();
@@ -72,6 +103,16 @@ public class TestSkladisteFacadeMaterijal extends TestCase {
 			m.setSerijskiBroj("M222");
 			sf.izmijeniMaterijal(m);
 			assertEquals(m.getSerijskiBroj(),"M222");
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testPretragaMaterijalaPoSerijskomBroju() {
+		try {
+			
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
