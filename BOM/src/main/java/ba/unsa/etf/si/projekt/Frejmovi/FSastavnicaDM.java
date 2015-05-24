@@ -55,7 +55,7 @@ public class FSastavnicaDM {
 	private String akcija;
 	private JButton btnKreirajSastavnicu;
 	private JPanel panel;
-	//public Sastavnica sastavnica;
+	private Sastavnica sast;
 	//List<Sastavnica> sastavnice;
 	//List<StavkaSastavnice> stavka;
 	//List <String> listaSerBr;
@@ -93,7 +93,8 @@ public class FSastavnicaDM {
 	{
 		
 		akcija = akcijaA;
-		
+		sast=s;
+		popuniPodatke();
 		if(akcija.equals("Kreiranje"))
 		{
 			
@@ -102,6 +103,12 @@ public class FSastavnicaDM {
 		}
 		else if(akcija.equals("Modifikovanje"))
 		{
+			textField_2.setText(sast.getSerijskiBroj());
+			textField.setText(sast.getNaziv());
+		    spinner_1.setValue(sast.getTrajanjeProizvodnje());
+		    spinner_2.setValue(sast.getCijenaObavljenogRada());
+		    spinner_3.setValue(sast.getDodatniTroskovi());
+		    spinner_4.setValue(sast.getOtpad());
 			
 			btnKreirajSastavnicu.setText("Modifikuj");
 		}
@@ -327,19 +334,6 @@ public class FSastavnicaDM {
 				
 				if(akcija.equals("Modifikovanje"))
 				{
-					s.setSerijskiBroj(textField_2.getText());
-					s.setNaziv(textField.getText());
-					s.setIzdao((Radnik)trenutniKorisnik);
-					double trajanje = (Double)spinner_1.getValue();
-					double cijena = (Double)spinner_2.getValue();
-					double troskovi = (Double)spinner_3.getValue();
-					double otpad = (Double)spinner_4.getValue();
-					
-					s.setCijenaObavljenogRada(cijena);
-					s.setDodatniTroskovi(troskovi);
-					s.setTrajanjeProizvodnje(trajanje);
-					s.setOtpad(otpad);
-				    
 				    if(sf.izmijeniSastavnicu(s));
 					 MessageBox.infoBox(frame, "Sastavnica je uspješno modifikovana","Info");	
 				}
@@ -470,4 +464,25 @@ public class FSastavnicaDM {
 		for (int i = 0; i < listaMaterijala.size(); i++)
 			comboBox_1.addItem(listaMaterijala.get(i).getOpis());
 	}
+	
+	public void popuniPodatke() {
+		
+		for (int i = 0; i < sast.getStavke_sas().size(); i++)
+		{
+			model.addRow(new Object[] 
+					{
+					
+					sast.getStavke_sas().get(i).getMaterijal()
+							.getSerijskiBroj(),
+					sast.getStavke_sas().get(i).getMaterijal().getOpis(),
+					sast.getStavke_sas().get(i).getMaterijal().getTip(),
+					sast.getStavke_sas().get(i).getMaterijal().getKolicina(),
+					sast.getStavke_sas().get(i).getMaterijal().getNabavnaCijena()});
+					}
+		
+		table = new JTable(model);
+
+		scrollPane.setViewportView(table);
+		textField.setText(Double.toString(ukupnaCijena));
+}
 }
