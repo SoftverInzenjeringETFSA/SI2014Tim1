@@ -1,15 +1,13 @@
 package ba.unsa.etf.si.projekt;
 
 import static org.junit.Assert.*;
-
 import java.util.Date;
-
 import org.junit.Test;
-
 import ba.unsa.etf.si.projekt.Klase.Materijal;
 import ba.unsa.etf.si.projekt.Klase.Menadzer;
 import ba.unsa.etf.si.projekt.Klase.ObrisaniMaterijal;
 import java.text.SimpleDateFormat;
+
 public class TestObrisaniMaterijalKlasa {
 
 	@Test
