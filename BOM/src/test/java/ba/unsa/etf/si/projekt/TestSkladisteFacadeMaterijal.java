@@ -3,6 +3,7 @@ package ba.unsa.etf.si.projekt;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import junit.framework.TestCase;
 
@@ -137,10 +138,25 @@ public class TestSkladisteFacadeMaterijal extends TestCase {
 			sf.dodajMaterijal(m);
 			sf.dodajMaterijal(m1);
 			sf.sortirajMaterijale("serijskiBroj", "M11", "materijal_id");
+			long id1 = m.getId();
+			long id2 = m1.getId();
+			assertTrue(id1<id2);
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
-
+	
+	@Test
+	(expected=Exception.class)
+	public void testSortMaterijalaParametri() {
+		try {
+			sf.sortirajMaterijale(null, "nesto", null);		
+			sf.sortirajMaterijale("nesto", null , null);	
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
 }
