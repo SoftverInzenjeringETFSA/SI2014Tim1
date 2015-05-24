@@ -9,6 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import ba.unsa.etf.si.projekt.Klase.Klijent;
 import ba.unsa.etf.si.projekt.Klase.Materijal;
 import ba.unsa.etf.si.projekt.Klase.Menadzer;
 import ba.unsa.etf.si.projekt.Klase.Narudzbenica;
@@ -31,10 +32,24 @@ public class SkladisteFacade implements ISkladisteFacade {
 				Transaction t = session.beginTransaction();
 				List<Materijal> materijali = null;
 				materijali = session.createCriteria(Materijal.class).list();
+				
+				
 				List<ObrisaniMaterijal> obrisani_materijali = session.createCriteria(ObrisaniMaterijal.class).list();
 				
+				List<Long> lista_id = new ArrayList<Long>();
+				
+				for(ObrisaniMaterijal om: obrisani_materijali) {
+					lista_id.add(om.getMaterijal().getId());
+				}
+				List<Materijal> za_vratiti = new ArrayList<Materijal> ();
+				
+				for(Materijal mat: materijali) {
+					if(!lista_id.contains(mat.getId())) {
+						za_vratiti.add(mat);
+					}
+				}
 				t.commit();
-			return materijali;
+			return za_vratiti;
 			}
 			catch (Exception e) {
 				
@@ -64,6 +79,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 		
 		public Boolean obrišiMaterijal(Materijal materijal, Menadzer menadzer)
 		{
+			if(validirajBrisanjeMaterijala(materijal)) {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				Transaction t = session.beginTransaction();
@@ -82,8 +98,33 @@ public class SkladisteFacade implements ISkladisteFacade {
 			finally {
 				session.close();
 			}
+			}
+			else {
+				return false;
+			}
 		}
 		
+		public boolean validirajBrisanjeMaterijala(Materijal materijal) {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			try {
+				Transaction t = session.beginTransaction();
+				List<StavkaSastavnice> ss = session.createCriteria(StavkaSastavnice.class).list();
+				boolean istina = true;
+				for(StavkaSastavnice s : ss) {
+					if(materijal.getId() == s.getMaterijal().getId())
+						istina = false;
+				}
+				t.commit();
+				return istina;
+			}
+			catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+			finally {
+				session.close();
+			}
+		}
+
 		public Boolean izmijeniMaterijal(Materijal materijal)
 		{
 			Session session = HibernateUtil.getSessionFactory().openSession();
