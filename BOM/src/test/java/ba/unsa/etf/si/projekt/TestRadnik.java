@@ -1,18 +1,21 @@
 package ba.unsa.etf.si.projekt;
 
 import static org.junit.Assert.*;
-import junit.framework.TestCase;
 
 import org.junit.Test;
 
-import ba.unsa.etf.si.projekt.Klase.*;
-public class TestTest extends TestCase {
+import ba.unsa.etf.si.projekt.Klase.Ovlasti;
+import ba.unsa.etf.si.projekt.Klase.Radnik;
+
+public class TestRadnik {
 
 	@Test
 	public void testRadnik() {
 		Radnik r = new Radnik();
 		assertNotNull(r);
 	}
+	
+	@Test
 	public void testRadnikPodaci() {
 		Ovlasti o = Ovlasti.modifikacijaMaterijala;
 		try
@@ -22,10 +25,12 @@ public class TestTest extends TestCase {
 			assertEquals(r.getPassword(), "pass");
 			assertEquals(r.getPrezime(), "prezime");
 			assertEquals(r.getNivoOvlasti(), o);
+			assertNotNull(r);
 		}
 		catch (Exception e){
 			System.out.println("Nesto ne valja");
 		}
 	}
+
 
 }

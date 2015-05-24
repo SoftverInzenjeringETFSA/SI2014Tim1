@@ -720,8 +720,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 					t.commit();
 					return listaNarudzbenica;					
 				}
-				else 
-					return new ArrayList<Narudzbenica>();
+				else {
+					List<Narudzbenica> l = null;
+					return l;
+				}
 			
 			}
 			catch (Exception e) {
@@ -804,8 +806,10 @@ public class SkladisteFacade implements ISkladisteFacade {
 					t.commit();
 					return listaSastavnica;					
 				}
-				else 
-					return new ArrayList<Sastavnica>();
+				else {
+					List<Sastavnica> l = null;
+					return l;
+				}
 			}
 			catch (Exception e) {
 				throw new RuntimeException(e);
