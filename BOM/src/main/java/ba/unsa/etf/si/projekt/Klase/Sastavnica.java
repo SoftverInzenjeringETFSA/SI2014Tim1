@@ -24,7 +24,7 @@ public class Sastavnica {
 	@JoinTable(name = "StavkaSastavnice", joinColumns = { @JoinColumn(name = "sastavnica_id") }
 	, inverseJoinColumns = { @JoinColumn(name = "materijal_id") })*/
 	//private List<Materijal> materijali;
-	@OneToMany(mappedBy = "sastavnica", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "sastavnica", fetch = FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<StavkaSastavnice> stavke_sas;
 	
 	public List<StavkaSastavnice> getStavke_sas() {
@@ -33,7 +33,7 @@ public class Sastavnica {
 	public void setStavke_sas(List<StavkaSastavnice> stavke_sas) {
 		this.stavke_sas = stavke_sas;
 	}
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
 	private Menadzer izdao;
 	private String serijskiBroj;
 	private double otpad;
