@@ -3,6 +3,7 @@ package ba.unsa.etf.si.projekt.Frejmovi;
 import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
@@ -10,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
@@ -18,14 +18,21 @@ import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
+import ba.unsa.etf.si.projekt.Klase.Materijal;
 import ba.unsa.etf.si.projekt.Klase.Menadzer;
+import ba.unsa.etf.si.projekt.Klase.Osoba;
 import ba.unsa.etf.si.projekt.Klase.Sastavnica;
+import ba.unsa.etf.si.projekt.Klase.StavkaNarudzbenice;
 import ba.unsa.etf.si.projekt.Klase.StavkaSastavnice;
+import ba.unsa.etf.si.projekt.ServisnaImplementacija.KompanijaFacade;
+import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
 import ba.unsa.etf.si.projekt.Validacija.Validator;
 
 import com.toedter.calendar.JCalendar;
@@ -36,6 +43,7 @@ public class FSastavnicaDM {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_3;
+	private JTextField textField_2;
 	private JSpinner spinner;
 	private JSpinner spinner_1;
 	private JSpinner spinner_2;
@@ -46,7 +54,16 @@ public class FSastavnicaDM {
 	private String akcija;
 	private JButton btnKreirajSastavnicu;
 	private JPanel panel;
-
+	//public Sastavnica sastavnica;
+	//List<Sastavnica> sastavnice;
+	//List<StavkaSastavnice> stavka;
+	//List <String> listaSerBr;
+	public Osoba trenutniKorisnik;
+	public DefaultTableModel model;
+	private JScrollPane scrollPane;
+	private List<Materijal> listaMaterijala;
+	private JComboBox comboBox_1;
+	public Double ukupnaCijena = (double) 0;
 	/**
 	 * Launch the application.
 	 */
@@ -73,19 +90,18 @@ public class FSastavnicaDM {
 	
 	public void setFrame(JFrame parentF, String akcijaA, Sastavnica s)
 	{
-		//mozda neka provjera da li je akcija validna (moze i enumeracija)
-		//ali i ne mora :D
+		
 		akcija = akcijaA;
 		
-		
-		//kreiranje, modifikovanje
-		//tekst button-a
 		if(akcija.equals("Kreiranje"))
 		{
+			
 			btnKreirajSastavnicu.setText("Kreiraj");
+		    	
 		}
 		else if(akcija.equals("Modifikovanje"))
 		{
+			
 			btnKreirajSastavnicu.setText("Modifikuj");
 		}
 			
@@ -101,7 +117,9 @@ public class FSastavnicaDM {
 	 */
 	public FSastavnicaDM() {
 		initialize();
-		
+		vratiMaterijale();
+		popuniMaterijale();
+		kreirajTabelu();
 		frame.addWindowListener(new java.awt.event.WindowAdapter() {
 		    @Override
 		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -112,6 +130,15 @@ public class FSastavnicaDM {
 		    }
 		});
 		textField.setInputVerifier(new Validator(frame,textField,"Molimo da popunite ovo polje",""));
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(107, 29, 86, 20);
+		panel.add(textField_2);
+		textField_2.setColumns(10);
+		
+		JLabel lblSerijskiBroj = new JLabel("Serijski broj:");
+		lblSerijskiBroj.setBounds(26, 32, 71, 14);
+		panel.add(lblSerijskiBroj);
 	}
 
 	/**
@@ -132,12 +159,12 @@ public class FSastavnicaDM {
 		
 		JLabel lblNazivProizvoda = new JLabel("Naziv proizvoda:");
 		lblNazivProizvoda.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNazivProizvoda.setBounds(12, 47, 156, 16);
+		lblNazivProizvoda.setBounds(14, 69, 156, 16);
 		panel.add(lblNazivProizvoda);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(180, 44, 342, 22);
+		textField.setBounds(180, 66, 342, 22);
 		panel.add(textField);
 		
 		JLabel lblOdgovornoLice = new JLabel("Odgovorno lice:");
@@ -155,8 +182,8 @@ public class FSastavnicaDM {
 		lblMaterijalpoluproizvod.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblMaterijalpoluproizvod.setBounds(12, 35, 144, 16);
 		panel_1.add(lblMaterijalpoluproizvod);
-		
-		JComboBox comboBox_1 = new JComboBox();
+		 
+		comboBox_1 = new JComboBox();
 		comboBox_1.setEditable(true);
 		comboBox_1.setBounds(168, 32, 341, 22);
 		panel_1.add(comboBox_1);
@@ -167,6 +194,7 @@ public class FSastavnicaDM {
 		panel_1.add(label_3);
 		
 		spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		spinner.setBounds(680, 32, 173, 22);
 		panel_1.add(spinner);
 		if ( spinner.getEditor() instanceof JSpinner.DefaultEditor ) {
@@ -174,28 +202,54 @@ public class FSastavnicaDM {
 			   editor.getTextField().setEditable( false );
 			   editor.getTextField().setBackground(Color.white);
 			}
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 105, 841, 120);
 		panel_1.add(scrollPane);
-		
-		//
-		Object rowDataP[][] = { { "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""},
-		{ "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""},
-		{ "", "", "", "", ""},{ "", "", "", "", ""},{ "", "", "", "", ""}};
-		Object columnNamesP[] = { "Serijski broj", "Naziv", "Tip", "Količina", "Cijena"};
-		
-		table = new JTable(rowDataP, columnNamesP);
-		scrollPane.setViewportView(table);
 		
 		JButton btnDodajStavku = new JButton("Dodaj stavku");
 		btnDodajStavku.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				Integer i = comboBox_1.getSelectedIndex();
+				Double x = listaMaterijala.get(i).getNabavnaCijena();
+				Double y = Double.parseDouble(spinner.getValue().toString());
+				ukupnaCijena = ukupnaCijena + (x * y) + (Double)spinner_2.getValue()*(Double)spinner_1.getValue()+(Double)spinner_3.getValue();
+				textField_1.setText(Double.toString(ukupnaCijena));
+
+				model.addRow(new Object[] { 
+						listaMaterijala.get(i).getSerijskiBroj(),
+						listaMaterijala.get(i).getOpis(),
+						listaMaterijala.get(i).getTip(),
+						spinner.getValue(),
+						listaMaterijala.get(i).getNabavnaCijena()
+						 });
+				table = new JTable(model);
+				scrollPane.setViewportView(table);
 			}
 		});
 		btnDodajStavku.setBounds(680, 67, 173, 25);
 		panel_1.add(btnDodajStavku);
 		
 		JButton btnIzbaciStavku = new JButton("Izbaci stavku");
+		btnIzbaciStavku.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (table.getSelectedRowCount() != 1) {
+					MessageBox.infoBox(frame, "Morate označiti jedan red",
+							"Info");
+				} else {
+					
+					Double x = Double.parseDouble(table.getValueAt(
+							table.getSelectedRow(), 3).toString());
+					Double y = Double.parseDouble(table.getValueAt(
+							table.getSelectedRow(), 4).toString());
+					model.removeRow(table.getSelectedRow());
+					table = new JTable(model);
+					scrollPane.setViewportView(table);
+					ukupnaCijena = ukupnaCijena - (x * y) - (Double)spinner_2.getValue()*(Double)spinner_1.getValue() - (Double)spinner_3.getValue();
+
+					textField_1.setText(Double.toString(ukupnaCijena));
+				}
+			}
+		});
 		btnIzbaciStavku.setBounds(680, 239, 173, 25);
 		panel_1.add(btnIzbaciStavku);
 		
@@ -223,14 +277,62 @@ public class FSastavnicaDM {
 		label_7.setBounds(387, 495, 56, 16);
 		panel.add(label_7);
 		
+		
+		
 		btnKreirajSastavnicu = new JButton("Kreiraj");
 		btnKreirajSastavnicu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				Sastavnica s = new Sastavnica ();
+				SkladisteFacade sf= new SkladisteFacade();
+				KompanijaFacade f=new KompanijaFacade();
 				//kreiranje sastavnice....
 				//public Sastavnica(List<StavkaSastavnice> stavke, Menadzer m, String sb, Date dk, double tp, double co, double dt, double uc, String naziv)
-				//Sastavnica s = new Sastavnica ();
+				if (akcija.equals("Kreiranje"))
+				{
+					List<StavkaSastavnice> stavke = new ArrayList<StavkaSastavnice>();
+					StavkaSastavnice ss;
+					
+					for(int i=0;i<table.getSelectedRowCount();i++)
+					{
+						
+						//ss=new StavkaSastavnice(sf.pretragaSastavnica(table.getValueAt(i, 1).toString()), Double.parseDouble(table.getValueAt(i, 4).toString()));
+						//stav_nar.add(sn);
+					}
+					
+				//s.setStavke_sas(stavka);
+				s.setSerijskiBroj(textField_2.getText());
+				s.setNaziv(textField.getText());
+				s.setIzdao((Menadzer)trenutniKorisnik);
+				double trajanje = (Double)spinner_1.getValue();
+				double cijena = (Double)spinner_2.getValue();
+				double troskovi = (Double)spinner_3.getValue();
+				double otpad = (Double)spinner_4.getValue();
 				
+				s.setCijenaObavljenogRada(cijena);
+				s.setDodatniTroskovi(troskovi);
+				s.setTrajanjeProizvodnje(trajanje);
+				s.setOtpad(otpad);
+				
+				sf.dodajSastavnicu(s);
+				}
+				
+				if(akcija.equals("Modifikovanje"))
+				{
+					s.setSerijskiBroj(textField_2.getText());
+					s.setNaziv(textField.getText());
+					s.setIzdao((Menadzer)trenutniKorisnik);
+					double trajanje = (Double)spinner_1.getValue();
+					double cijena = (Double)spinner_2.getValue();
+					double troskovi = (Double)spinner_3.getValue();
+					double otpad = (Double)spinner_4.getValue();
+					
+					s.setCijenaObavljenogRada(cijena);
+					s.setDodatniTroskovi(troskovi);
+					s.setTrajanjeProizvodnje(trajanje);
+					s.setOtpad(otpad);
+				    sf.izmijeniSastavnicu(s);
+				}
 			}
 		});
 		btnKreirajSastavnicu.setBounds(745, 533, 117, 25);
@@ -289,8 +391,11 @@ public class FSastavnicaDM {
 		
 		SpinnerNumberModel m_numberSpinnerModel_2;
 		m_numberSpinnerModel_2 = new SpinnerNumberModel(0.0, 0, 100000, 0.01);
+
+		SpinnerNumberModel m_numberSpinnerModel_3;
+		m_numberSpinnerModel_3 = new SpinnerNumberModel(0.0, 0, 100000, 0.1);
 		
-		spinner_1 = new JSpinner();
+		spinner_1 = new JSpinner(new SpinnerNumberModel(1.0, 1.0, 100000.0, 0.0));
 		spinner_1.setBounds(245, 393, 130, 20);
 		panel.add(spinner_1);
 		
@@ -299,7 +404,7 @@ public class FSastavnicaDM {
 			   editor.getTextField().setEditable( false );
 			   editor.getTextField().setBackground(Color.white);
 			}
-		spinner_2 = new JSpinner(m_numberSpinnerModel);
+		spinner_2 = new JSpinner(new SpinnerNumberModel(1.0, 1.0, 100000.0, 0.0));
 		spinner_2.setBounds(245, 439, 130, 20);
 		panel.add(spinner_2);
 		if ( spinner_2.getEditor() instanceof JSpinner.DefaultEditor ) {
@@ -323,5 +428,35 @@ public class FSastavnicaDM {
 			   editor.getTextField().setEditable( false );
 			   editor.getTextField().setBackground(Color.white);
 			}
+	}
+	public void postaviKorisnika(Osoba os)
+	{ 
+		trenutniKorisnik=os;
+		textField_3.setText(trenutniKorisnik.getIme()+" "+ trenutniKorisnik.getPrezime());
+	}
+	
+	public void kreirajTabelu() {
+		
+		model = new DefaultTableModel();
+		
+		model.addColumn("Serijski broj");
+		model.addColumn("Naziv");
+		model.addColumn("Tip");
+		model.addColumn("Količina");
+		model.addColumn("Cijena");
+		table = new JTable(model);
+		scrollPane.setViewportView(table);
+
+	}
+	
+	public void vratiMaterijale() {
+		listaMaterijala = new ArrayList<Materijal>();
+		SkladisteFacade sf = new SkladisteFacade();
+		listaMaterijala = sf.returnListaMaterijala();
+	}
+
+	public void popuniMaterijale() {
+		for (int i = 0; i < listaMaterijala.size(); i++)
+			comboBox_1.addItem(listaMaterijala.get(i).getOpis());
 	}
 }
