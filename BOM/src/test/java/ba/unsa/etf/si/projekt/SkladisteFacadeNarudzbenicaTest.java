@@ -107,9 +107,9 @@ public class SkladisteFacadeNarudzbenicaTest {
 
 	@Test
 	public final void testObrišiNarudzbenicu() {
-		narudzbenica.setSerijskiBroj("test123");
+		narudzbenica.setSerijskiBroj("fs");
 		sf.dodajNarudzbenicu(narudzbenica);;
-		Narudzbenica n = sf.pretragaNarudzbenica("test123");
+		Narudzbenica n = sf.pretragaNarudzbenica("fs");
 		
 		Boolean result = sf.obrišiNarudzbenicu(n);
 		assertTrue(result);

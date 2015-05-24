@@ -291,17 +291,20 @@ public class FSastavnicaDM {
 				//public Sastavnica(List<StavkaSastavnice> stavke, Menadzer m, String sb, Date dk, double tp, double co, double dt, double uc, String naziv)
 				if (akcija.equals("Kreiranje"))
 				{
+					
 					List<StavkaSastavnice> stavke = new ArrayList<StavkaSastavnice>();
 					StavkaSastavnice ss;
 					
 					for(int i=0;i<table.getSelectedRowCount();i++)
 					{
 						
-						//ss=new StavkaSastavnice(sf.pretragaSastavnica(table.getValueAt(i, 1).toString()), Double.parseDouble(table.getValueAt(i, 4).toString()));
-						//stav_nar.add(sn);
+						ss=new StavkaSastavnice();
+					    ss.setMaterijal(sf.pretragaMaterijala(table.getValueAt(i, 0).toString()));
+					    ss.setKolicina(Double.parseDouble(table.getValueAt(i, 3).toString()));
+						stavke.add(ss);
 					}
 					
-				//s.setStavke_sas(stavka);
+				s.setStavke_sas(stavke);
 				s.setSerijskiBroj(textField_2.getText());
 				s.setNaziv(textField.getText());
 				s.setIzdao((Radnik)trenutniKorisnik);
@@ -315,7 +318,11 @@ public class FSastavnicaDM {
 				s.setTrajanjeProizvodnje(trajanje);
 				s.setOtpad(otpad);
 				
-				sf.dodajSastavnicu(s);
+				if(sf.dodajSastavnicu(s));
+				 MessageBox.infoBox(frame, "Sastavnica je uspješno kreirana","Info");	
+				frame.dispose();
+			    parentFrame.setEnabled(true);
+			    parentFrame.setVisible(true);
 				}
 				
 				if(akcija.equals("Modifikovanje"))
@@ -332,7 +339,9 @@ public class FSastavnicaDM {
 					s.setDodatniTroskovi(troskovi);
 					s.setTrajanjeProizvodnje(trajanje);
 					s.setOtpad(otpad);
-				    sf.izmijeniSastavnicu(s);
+				    
+				    if(sf.izmijeniSastavnicu(s));
+					 MessageBox.infoBox(frame, "Sastavnica je uspješno modifikovana","Info");	
 				}
 			}
 		});
@@ -396,7 +405,7 @@ public class FSastavnicaDM {
 		SpinnerNumberModel m_numberSpinnerModel_3;
 		m_numberSpinnerModel_3 = new SpinnerNumberModel(0.0, 0, 100000, 0.1);
 		
-		spinner_1 = new JSpinner(new SpinnerNumberModel(1.0, 1.0, 100000.0, 0.0));
+		spinner_1 = new JSpinner(new SpinnerNumberModel(1.0, 1.0, 100000.0, 1.0));
 		spinner_1.setBounds(245, 393, 130, 20);
 		panel.add(spinner_1);
 		
@@ -405,7 +414,7 @@ public class FSastavnicaDM {
 			   editor.getTextField().setEditable( false );
 			   editor.getTextField().setBackground(Color.white);
 			}
-		spinner_2 = new JSpinner(new SpinnerNumberModel(1.0, 1.0, 100000.0, 0.0));
+		spinner_2 = new JSpinner(new SpinnerNumberModel(1.0, 1.0, 100000.0, 0.01));
 		spinner_2.setBounds(245, 439, 130, 20);
 		panel.add(spinner_2);
 		if ( spinner_2.getEditor() instanceof JSpinner.DefaultEditor ) {
@@ -434,6 +443,7 @@ public class FSastavnicaDM {
 	{ 
 		trenutniKorisnik=os;
 		textField_3.setText(trenutniKorisnik.getIme()+" "+ trenutniKorisnik.getPrezime());
+		textField_3.setEnabled(false);
 	}
 	
 	public void kreirajTabelu() {

@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import ba.unsa.etf.si.projekt.Klase.Sastavnica;
 
@@ -36,6 +37,9 @@ public class FSastavnicaPB {
 	private JFrame parentFrame;
 	private JPanel panel;
 	private JButton btnObrisiSastavnicu;
+	private JScrollPane scrollPane;
+
+	public DefaultTableModel model;
 	
 	/**
 	 * Launch the application.
@@ -243,4 +247,18 @@ public class FSastavnicaPB {
 		textField_6.setBounds(692, 300, 130, 22);
 		panel.add(textField_6);
 	}
+public void kreirajTabelu() {
+		
+		model = new DefaultTableModel();
+		
+		model.addColumn("Serijski broj");
+		model.addColumn("Naziv");
+		model.addColumn("Tip");
+		model.addColumn("Količina");
+		model.addColumn("Cijena");
+		table = new JTable(model);
+		scrollPane.setViewportView(table);
+
+	}
+	
 }

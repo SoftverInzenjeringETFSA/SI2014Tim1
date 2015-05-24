@@ -1,8 +1,7 @@
 package ba.unsa.etf.si.projekt.Baza;
 import java.util.List;
 
-import ba.unsa.etf.si.projekt.Klase.Materijal;
-import ba.unsa.etf.si.projekt.Klase.Menadzer;
+import ba.unsa.etf.si.projekt.Klase.Sastavnica;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.KompanijaFacade;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
 
@@ -10,7 +9,12 @@ public class ProbnaKlasaZlatan {
 	public static void main (String[] args) {
 		KompanijaFacade kf = new KompanijaFacade();
 		SkladisteFacade sf = new SkladisteFacade();
-		List<Materijal> lm = sf.returnListaMaterijala();
+		List<Sastavnica> ls = sf.returnListaSastavnica();
+		if(ls != null) {
+			System.out.println(ls.size());
+		}
+		//kggh
+		/*List<Materijal> lm = sf.returnListaMaterijala();
 		if(lm != null) {
 			Materijal m = lm.get(0);
 			if(m != null) {
