@@ -303,7 +303,7 @@ public class FSastavnicaDM {
 				//s.setStavke_sas(stavka);
 				s.setSerijskiBroj(textField_2.getText());
 				s.setNaziv(textField.getText());
-				s.setIzdao((Menadzer)trenutniKorisnik);
+				s.setIzdao((Radnik)trenutniKorisnik);
 				double trajanje = (Double)spinner_1.getValue();
 				double cijena = (Double)spinner_2.getValue();
 				double troskovi = (Double)spinner_3.getValue();
@@ -321,7 +321,7 @@ public class FSastavnicaDM {
 				{
 					s.setSerijskiBroj(textField_2.getText());
 					s.setNaziv(textField.getText());
-					s.setIzdao((Menadzer)trenutniKorisnik);
+					s.setIzdao((Radnik)trenutniKorisnik);
 					double trajanje = (Double)spinner_1.getValue();
 					double cijena = (Double)spinner_2.getValue();
 					double troskovi = (Double)spinner_3.getValue();

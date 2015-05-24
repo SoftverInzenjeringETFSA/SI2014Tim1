@@ -34,7 +34,7 @@ public class Sastavnica {
 		this.stavke_sas = stavke_sas;
 	}
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
-	private Menadzer izdao;
+	private Radnik izdao;
 	private String serijskiBroj;
 	private double otpad;
 	private Date datumKreiranja;
@@ -51,10 +51,10 @@ public class Sastavnica {
 		this.stavke_sas = new ArrayList<StavkaSastavnice>();
 	}
 	
-	public Sastavnica(List<StavkaSastavnice> stavke, Menadzer m, String sb, Date dk, double tp, double co, double dt, double uc, String naziv)
+	public Sastavnica(List<StavkaSastavnice> stavke, Radnik r, String sb, Date dk, double tp, double co, double dt, double uc, String naziv)
 	{
 		this.stavke_sas = stavke;
-		this.izdao = m;
+		this.izdao = r;
 		this.serijskiBroj = sb;
 		this.datumKreiranja = dk;
 		this.trajanjeProizvodnje = tp;
@@ -84,10 +84,10 @@ public class Sastavnica {
 	public void setMaterijali(List<Materijal> materijali) {
 		this.materijali = materijali;
 	}*/
-	public Menadzer getIzdao() {
+	public Radnik getIzdao() {
 		return izdao;
 	}
-	public void setIzdao(Menadzer izdao) {
+	public void setIzdao(Radnik izdao) {
 		this.izdao = izdao;
 	}
 	public String getSerijskiBroj() {
