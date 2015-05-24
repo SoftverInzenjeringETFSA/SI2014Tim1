@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 import ba.unsa.etf.si.projekt.Klase.Materijal;
 import ba.unsa.etf.si.projekt.Klase.Menadzer;
 import ba.unsa.etf.si.projekt.Klase.Osoba;
+import ba.unsa.etf.si.projekt.Klase.Radnik;
 import ba.unsa.etf.si.projekt.Klase.Sastavnica;
 import ba.unsa.etf.si.projekt.Klase.StavkaNarudzbenice;
 import ba.unsa.etf.si.projekt.Klase.StavkaSastavnice;
