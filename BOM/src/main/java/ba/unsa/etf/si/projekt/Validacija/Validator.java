@@ -49,7 +49,7 @@ public class Validator extends AbstractValidator{
 	//validirajTelefon
 	public  Boolean ValidirajTelefon(String kontrolaTekst)
 	{
-		if(kontrolaTekst.equals("___-___-___"))
+		if(kontrolaTekst.equals("+___-__-___-___"))
 			return false;
 		return true;
 	}	

@@ -1,12 +1,16 @@
 package ba.unsa.etf.si.projekt.Frejmovi;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Graphics;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.InputVerifier;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -85,19 +89,16 @@ public class FKorisnikDMPB {
 	{
 		if(!imeVal.verify(textField)) return false;
 		if(!prezimeVal.verify(textField_1)) return false;
-		if(!adresaVal.verify(textField_2)) return false;
+		if(!adresaVal.verify(textField_4)) return false;
 		if(!telefonVal.verify(formattedTextField)) return false;
 		if(!JMBGVal.verify(textField_2)) return false;
 		if(!korImeVal.verify(textField_5)) return false;
-		if(!passVal.verify(passwordField)) return false;
+		//if(!passVal.verify(passwordField)) return false;
 		Boolean da = true;
-		String poz= (String)comboBox.getSelectedItem();
-		if(textField.getText().equals("")  || textField_1.getText().equals("") || formattedTextField.getText().equals("___-___-___") || textField_4.getText().equals("") || textField_2.getText().equals("") ||  textField_5.getText().equals("") || passwordField.getText().equals("") || poz.equals(""))
+		if(textField.getText().equals("")  || textField_1.getText().equals("") || formattedTextField.getText().equals("+___-__-___-___") || textField_4.getText().equals("") || textField_2.getText().equals("") ||  textField_5.getText().equals("") )//|| passwordField.getText().equals("") )
 			da = false;
 		return da;
 	}
-	//String klasa je sada stavljen samo beze
-	//umjesto ovoga treba biti odg. klasa
 	
 	
 	public void setFrame(JFrame parentF, String akcijaA, Osoba os, int osobaMenadzer)
@@ -106,15 +107,13 @@ public class FKorisnikDMPB {
 				"");
 		prezimeVal = new Validator(frame, textField_1,
 				"Molimo unesite ispravno prezime", "");
-		adresaVal = new Validator(frame, textField_2,
+		adresaVal = new Validator(frame, textField_4,
 				"Adresa koju ste unijeli nije ispravna", "adresa");
-		emailVal = new Validator(frame, textField_4,
-				"Email adresa mora da sadrži @ te ispravnu domenu", "email");
-		telefonVal = new Validator(frame, formattedTextField, "Molimo unesite telefon",
+		telefonVal = new Validator(frame, formattedTextField, "Molimo unesite ispravan telefon",
 				"telefon");
 		JMBGVal=new Validator(frame,textField_2,"Molimo unesite ispravan JMBG","JMBG");
-		korImeVal=new Validator(frame,textField_4,"Adresa koju ste unijeli nije ispravna","adresa");
-		passVal=new Validator(frame,textField_5,"Molimo unesite ispravno korisničko ime","korIme");
+		korImeVal=new Validator(frame,textField_5,"Molimo unesite ispravno korisničko ime","korIme");
+		//passVal=new Validator(frame,passwordField,"Molimo unesite ispravnu šifru","pass");
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(169, 210, 201, 20);
@@ -129,11 +128,8 @@ public class FKorisnikDMPB {
 			textField_4.setInputVerifier(adresaVal);
 			textField_5.setInputVerifier(korImeVal);
 			formattedTextField.setInputVerifier(telefonVal);
-			passwordField.setInputVerifier(passVal);
+			//passwordField.setInputVerifier(passVal);
 		}
-		
-		
-		
 		
 		
 		if(osobaMenadzer == 1)
@@ -148,8 +144,6 @@ public class FKorisnikDMPB {
 		if(osobaMenadzer != -1)
 			popuniPolja();
 		
-		//mozda neka provjera da li je akcija validna (moze i enumeracija)
-		//ali i ne mora :D
 		akcija = akcijaA;
 		
 		
@@ -296,9 +290,18 @@ public class FKorisnikDMPB {
 		textField_5.setColumns(10);
 		
 		comboBox = new JComboBox();
-		comboBox.setEditable(true);
 		comboBox.setBounds(169, 238, 201, 22);
 		panel.add(comboBox);
+		comboBox.addItem("Menadzer");
+		comboBox.addItem("Zaposlenik");
+		comboBox.setRenderer(new DefaultListCellRenderer() {
+	        @Override
+	        public void paint(Graphics g) {
+	            setBackground(Color.WHITE);
+	        	setForeground(Color.BLACK);
+	            super.paint(g);
+	        }
+	    });
 		
 		btnKreiraj = new JButton("Nazad");
 		btnKreiraj.addActionListener(new ActionListener() {
@@ -314,9 +317,6 @@ public class FKorisnikDMPB {
 				
 				if(akcija.equals("Kreiranje"))
 				{
-					comboBox.addItem("");
-					comboBox.addItem("Menadzer");
-					comboBox.addItem("Zaposlenik");
 					
 					if(validacija())
 					{
@@ -338,14 +338,47 @@ public class FKorisnikDMPB {
 				}
 				if(akcija.equals("Modifikovanje"))
 				{
-					
+					if(validacija())
+					{
+						if(comboBox.getSelectedItem().toString().equals("Menadzer"))
+						{
+							KompanijaFacade kf = new KompanijaFacade();
+							Menadzer m= new Menadzer();
+							m.setIme(textField.getText());
+							m.setPrezime(textField_1.getText());
+							m.setBrojTelefona(formattedTextField.getText());
+							m.setAdresa(textField_4.getText());
+							m.setPozicija(comboBox.getSelectedItem().toString());
+							m.setEmail("");
+							m.setOvlasti(Ovlasti.kreiranjeIzvjestaja);
+							m.setUsername(textField_5.getText());
+							m.setPassword(passwordField.getText());
+							m.setJMBG(textField_2.getText());
+							if(kf.mijenjajMenadzera(m));
+								MessageBox.infoBox(frame, "Korisnik je uspješno modifikovan", "Info");
+						}
+						else if(comboBox.getSelectedItem().toString().equals("Zaposlenik"))
+						{
+							KompanijaFacade kf1 = new KompanijaFacade(); 
+							Radnik m= new Radnik();
+							m.setIme(textField.getText());
+							m.setPrezime(textField_1.getText());
+							m.setBrojTelefona(formattedTextField.getText());
+							m.setAdresa(textField_4.getText());
+							m.setPozicija(comboBox.getSelectedItem().toString());
+							m.setEmail("");
+							m.setNivoOvlasti(Ovlasti.pretragaMaterijala);
+							m.setUsername(textField_5.getText());
+							m.setPassword(passwordField.getText());
+							m.setJMBG(textField_2.getText());
+							if(kf1.mijenjajRadnika(m))
+								MessageBox.infoBox(frame, "Korisnik je uspješno modifikovan", "Info");
+						}
+					}
+					else MessageBox.infoBox(frame, "Molimo unesite sve podatke.", "Greska");
 				}
 				if(akcija.equals("Brisanje"))
 				{
-					//ispisati dialogBox ? (da zelite brisati)
-					//azurirati bazu
-					//vratiti se nazad
-					
 					KompanijaFacade f = new KompanijaFacade();
 					boolean obrisano = true;;
 					if(menadzer != null)
@@ -368,9 +401,9 @@ public class FKorisnikDMPB {
 						}
 					}
 					if(obrisano)
-						MessageBox.infoBox(null, "Korisnik je obrisan.", "Info");
+						MessageBox.infoBox(null, "Korisnik je uspješno obrisan", "Info");
 					else
-						MessageBox.infoBox(null, "Ovog korisnika nije moguce obrisati!", "Info");
+						MessageBox.infoBox(null, "Ovog korisnika nije moguce obrisati!", "Greška");
 					
 					frame.setVisible(false);
 					frame.dispose();
@@ -393,7 +426,7 @@ public class FKorisnikDMPB {
 		
 		MaskFormatter mf1 = new MaskFormatter();
 		try{
-			mf1 = new MaskFormatter("+###########");
+			mf1 = new MaskFormatter("+###-##-###-###");
 		}
 		catch( Exception e)
 		{
@@ -403,6 +436,10 @@ public class FKorisnikDMPB {
 		formattedTextField = new JFormattedTextField(mf1);
 		formattedTextField.setBounds(169, 123, 201, 20);
 		panel.add(formattedTextField);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(169, 210, 201, 20);
+		panel.add(passwordField);
 	}
 	private void popuniPolja()
 	{

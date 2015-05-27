@@ -604,8 +604,8 @@ public class FMenadzer {
 		
 		JComboBox comboBox_2 = new JComboBox();
 		comboBox_2.setBounds(133, 34, 200, 22);
-		comboBox_2.addItem("ime");
-		comboBox_2.addItem("prezime");
+		comboBox_2.addItem("nazivu");
+		comboBox_2.addItem("kolicini");
 		panel_12.add(comboBox_2);
 		
 		textField_1 = new JTextField();
@@ -615,8 +615,8 @@ public class FMenadzer {
 		
 		JComboBox comboBox_3 = new JComboBox();
 		comboBox_3.setBounds(133, 69, 200, 22);
-		comboBox_3.addItem("ime");
-		comboBox_3.addItem("prezime");
+		comboBox_3.addItem("nazivu");
+		comboBox_3.addItem("kolicini");
 		panel_12.add(comboBox_3);
 		
 		JLabel label_1 = new JLabel("Sortiraj po:");

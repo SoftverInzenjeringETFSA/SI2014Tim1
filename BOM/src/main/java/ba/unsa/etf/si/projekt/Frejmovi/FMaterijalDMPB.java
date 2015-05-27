@@ -157,7 +157,7 @@ public class FMaterijalDMPB {
 			
 			IspisiVrijednosti(materijal);
 			OnemoguciKontrole();
-			btnUnesi.hide();
+			btnUnesi.setText("Nazad");
 		}
 			
 		String pom = akcija;
@@ -242,9 +242,6 @@ public class FMaterijalDMPB {
 		materijali=sf.returnListaMaterijala();
 		for(int i=0; i<materijali.size();i++)
 		{
-			listaSerBr.add("");
-			listaNaziv.add("");
-			listaMJ.add("");
 			
 			listaSerBr.add(materijali.get(i).getSerijskiBroj());
 			listaNaziv.add(materijali.get(i).getOpis());
@@ -343,7 +340,10 @@ public class FMaterijalDMPB {
 				}
 				if(akcija.equals("Pregled"))
 				{
-					//vratiti se nazad
+					frame.setVisible(false);
+					frame.dispose();
+					parentFrame.setEnabled(true);
+			    	parentFrame.setVisible(true);
 				}
 				
 			}

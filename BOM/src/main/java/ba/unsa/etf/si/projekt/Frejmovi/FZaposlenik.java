@@ -114,7 +114,7 @@ public class FZaposlenik {
 	
 	public FZaposlenik() {
 		initialize();
-		popuniTabeluSastavnice(null,null,null);
+		//popuniTabeluSastavnice(null,null,null);
 		popuniTabeluSkladiste(null,null,null);
 		//postavlanje akcije za izlaz iz frejma
 		frame.addWindowListener(new java.awt.event.WindowAdapter() {

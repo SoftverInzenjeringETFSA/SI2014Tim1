@@ -182,9 +182,13 @@ public class FKorisnik {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				//otvaranje forme za modifikovanje korisnika sistema
-				FKorisnikDMPB k = new FKorisnikDMPB();
-				//k.setFrame(frame, "Modifikovanje", osoba, SelektovanMenadzer);//sada null treba biti klasa
+				dajSelektovanogKorisnika();
+				if(osoba != null)
+				{
+					FKorisnikDMPB k = new FKorisnikDMPB();
+					k.setFrame(frame, "Modifikovanje", osoba, SelektovanMenadzer);
+				}
+				
 			}
 		});
 		button_3.setBounds(159, 69, 97, 25);
