@@ -1,7 +1,11 @@
 package ba.unsa.etf.si.projekt.Baza;
 import java.util.List;
 
+import ba.unsa.etf.si.projekt.Klase.Materijal;
+import ba.unsa.etf.si.projekt.Klase.Menadzer;
+import ba.unsa.etf.si.projekt.Klase.Osoba;
 import ba.unsa.etf.si.projekt.Klase.Sastavnica;
+import ba.unsa.etf.si.projekt.Klase.TipOsobe;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.KompanijaFacade;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
 
@@ -9,16 +13,18 @@ public class ProbnaKlasaZlatan {
 	public static void main (String[] args) {
 		KompanijaFacade kf = new KompanijaFacade();
 		SkladisteFacade sf = new SkladisteFacade();
-		List<Sastavnica> ls = sf.returnListaSastavnica();
+		List<Osoba> ls = kf.listaOsoba(TipOsobe.menadzer);
 		if(ls != null) {
 			System.out.println(ls.size());
 		}
+		Menadzer mgr = (Menadzer) ls.get(0);
 		//kggh
-		/*List<Materijal> lm = sf.returnListaMaterijala();
+		List<Materijal> lm = sf.returnListaMaterijala();
 		if(lm != null) {
-			Materijal m = lm.get(0);
+			Materijal m = lm.get(1);
 			if(m != null) {
-				System.out.println(sf.obrišiMaterijal(m, new Menadzer()));
+				System.out.println(sf.obrišiMaterijal(m, mgr));
+				//System.out.println(m.getId());
 			}
 		}
 		/*List<Materijal> lm = sf.returnListaMaterijala();
@@ -26,7 +32,7 @@ public class ProbnaKlasaZlatan {
 			for(Materijal m: lm) {
 				System.out.println(m.getId());
 			}
-		}*/
+		}
 		//ArrayList<Narudzbenica>
 		/*Menadzer m = (Menadzer) kf.returnById(2, TipOsobe.menadzer);
 		if(m != null) {

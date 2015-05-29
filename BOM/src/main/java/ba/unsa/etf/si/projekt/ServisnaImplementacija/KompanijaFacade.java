@@ -134,7 +134,8 @@ public class KompanijaFacade implements IKompanijaFacade {
 				return true;
 			}
 			catch(Exception e) {
-				throw new RuntimeException(e);
+				//throw new RuntimeException(e);
+				return false;
 			}
 			finally {
 				session.close();
@@ -153,7 +154,8 @@ public class KompanijaFacade implements IKompanijaFacade {
 				return true;
 			}
 			catch(Exception e) {
-				throw new RuntimeException(e);
+				//throw new RuntimeException(e);
+				return false;
 			}
 			finally {
 				session.close();
@@ -172,7 +174,8 @@ public class KompanijaFacade implements IKompanijaFacade {
 				return true;
 			}
 			catch(Exception e) {
-				throw new RuntimeException(e);
+				//throw new RuntimeException(e);
+				return false;
 			}
 			finally {
 				session.close();

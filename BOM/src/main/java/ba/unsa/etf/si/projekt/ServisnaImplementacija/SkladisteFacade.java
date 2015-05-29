@@ -285,7 +285,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			try {
 				Transaction t = session.beginTransaction();
 				List<Narudzbenica> narudzbenice = null;
-				narudzbenice = session.createCriteria(Narudzbenica.class).list();
+				narudzbenice = session.createCriteria(Narudzbenica.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 				t.commit();
 			return narudzbenice;
 			}
