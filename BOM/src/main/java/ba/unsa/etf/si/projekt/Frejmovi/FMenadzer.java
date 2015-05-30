@@ -640,6 +640,7 @@ public class FMenadzer {
 					//otvaranje forme za pregled korisnika sistema
 					FMaterijalDMPB m = new FMaterijalDMPB();
 					m.setFrame(frame, "Modifikovanje", materijal);
+					m.postaviKorisnika(trenutniKorisnik);
 				}
 				
 			}
@@ -657,6 +658,7 @@ public class FMenadzer {
 					//otvaranje forme za pregled korisnika sistema
 					FMaterijalDMPB m = new FMaterijalDMPB();
 					m.setFrame(frame, "Brisanje", materijal);
+					m.postaviKorisnika(trenutniKorisnik);
 				}
 				
 			}
@@ -674,6 +676,7 @@ public class FMenadzer {
 					//otvaranje forme za pregled korisnika sistema
 					FMaterijalDMPB m = new FMaterijalDMPB();
 					m.setFrame(frame, "Pregled", materijal);
+					m.postaviKorisnika(trenutniKorisnik);
 				}
 				
 			}

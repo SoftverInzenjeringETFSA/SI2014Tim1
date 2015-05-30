@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
+import javax.swing.InputVerifier;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,6 +32,7 @@ import ba.unsa.etf.si.projekt.Klase.Radnik;
 import ba.unsa.etf.si.projekt.Klase.TipMaterijala;
 import ba.unsa.etf.si.projekt.Klase.TipOsobe;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
+import ba.unsa.etf.si.projekt.Validacija.Validator;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -62,6 +64,10 @@ public class FMaterijalDMPB {
 	List <String> listaMJ;
 	List <String> listaTip;
 	public Osoba trenutniKorisnik;
+	private JTextField textField;
+	private JTextField textField_1;
+	InputVerifier naziv;
+	InputVerifier sB;
 	
 	/**
 	 * Launch the application.
@@ -131,8 +137,9 @@ public class FMaterijalDMPB {
 		 SkladisteFacade sf = new SkladisteFacade();
 	     //materijali=sf.returnListaMaterijala();
 		// materijal=materijali.get(0);
-		
-		//za brisanje i pregleda ne trebaju biti editabilini!
+		 naziv = new Validator(frame, textField, "Molimo unesite ispravan naziv","");
+		 sB = new Validator(frame, textField_1, "Molimo unesite ispravan serijski broj","adresa");
+		 //za brisanje i pregleda ne trebaju biti editabilini!
 		if(akcija.equals("Brisanje") )
 		{
 			IspisiVrijednosti(materijal);
@@ -145,6 +152,10 @@ public class FMaterijalDMPB {
 		else if(akcija.equals("Kreiranje"))
 		{
 			btnUnesi.setText("Unesi");
+			comboBox.setVisible(false);
+			comboBox_1.setVisible(false);
+			textField.setVisible(true);
+			textField_1.setVisible(true);
 		}
 		else if(akcija.equals("Modifikovanje"))
 		{
@@ -236,8 +247,13 @@ public class FMaterijalDMPB {
 		listaSerBr = new ArrayList<String>();
 		listaNaziv = new ArrayList<String>();
 		listaMJ = new ArrayList<String>();
-		//listaTip = new ArrayList<String>();
-
+		listaMJ.add("kg");
+		listaMJ.add("l");
+		listaMJ.add("m");
+		listaMJ.add("m^2");
+		listaTip = new ArrayList<String>();
+		listaTip.add("proizvod");
+		listaTip.add("poluproizvod");
 	    SkladisteFacade sf = new SkladisteFacade();
 		materijali=sf.returnListaMaterijala();
 		for(int i=0; i<materijali.size();i++)
@@ -245,8 +261,7 @@ public class FMaterijalDMPB {
 			
 			listaSerBr.add(materijali.get(i).getSerijskiBroj());
 			listaNaziv.add(materijali.get(i).getOpis());
-			listaMJ.add(materijali.get(i).getMjernaJedinica());
-			//listaTip.add(materijali.get(i).getTip());
+						
 		}
 		
 		comboBox = new Java2sAutoComboBox(listaSerBr);
@@ -264,7 +279,7 @@ public class FMaterijalDMPB {
 		comboBox_2.setBounds(326, 101, 88, 22);
 		panel.add(comboBox_2);
 		
-		comboBox_3 = new Java2sAutoComboBox(listaSerBr);
+		comboBox_3 = new Java2sAutoComboBox(listaTip);
 		comboBox_3.setEditable(true);
 		comboBox_3.setBounds(198, 130, 116, 22);
 		panel.add(comboBox_3);
@@ -308,12 +323,18 @@ public class FMaterijalDMPB {
 					Radnik kreirao = (Radnik)trenutniKorisnik;
 					Materijal m = new Materijal(serBroj, opis, kolicina, granKolicina, TipMaterijala.proizvod, nabCijena, null,null,prodCijena,null, kreirao, mjed);
 					if(sf.dodajMaterijal(m))
-						MessageBox.infoBox(frame, "Uspješno ste dodali materijal.", "Info");
+						{
+						 MessageBox.infoBox(frame, "Uspješno ste dodali materijal.", "Info");
+						 frame.setVisible(false);
+						 frame.dispose();
+						 parentFrame.setEnabled(true);
+					     parentFrame.setVisible(true);
+						}
+					else MessageBox.infoBox(frame, "Materijal sa unesenim serijskim brojem već postoji!", "Greška");
 					
 				}
 				if( akcija.equals("Modifikovanje"))
 				{
-					//SkladisteFacade sf= new SkladisteFacade();
 					materijal.setSerijskiBroj((String)comboBox.getSelectedItem());
 					materijal.setOpis((String)comboBox_1.getSelectedItem());
 					materijal.setKolicina((Double)spinner_3.getValue());
@@ -321,21 +342,29 @@ public class FMaterijalDMPB {
 					materijal.setNabavnaCijena((Double)spinner_1.getValue());
 					materijal.setProdajnaCijena((Double)spinner_2.getValue());
 					materijal.setMjernaJedinica((String)comboBox_2.getSelectedItem());
-					materijal.setKreirao((Radnik)trenutniKorisnik);
 					if(sf.izmijeniMaterijal(materijal))
+						{
 						MessageBox.infoBox(frame, "Uspješno ste modifikovali materijal.", "Info");
-				
+						frame.setVisible(false);
+						frame.dispose();
+						parentFrame.setEnabled(true);
+				    	parentFrame.setVisible(true);
+						}
 				}
 				if(akcija.equals("Brisanje"))
 				{
 					
-					//ispisati dialogBox ? (da zelite brisati)
-					//azurirati bazu
-					//vratiti se nazad
 					SkladisteFacade sf1= new SkladisteFacade();
 						if(sf1.obrišiMaterijal(materijal,(Menadzer)trenutniKorisnik))
+							{
 							MessageBox.infoBox(frame, "Uspješno ste obrisali materijal.", "Info");
-						
+							frame.setVisible(false);
+							frame.dispose();
+							parentFrame.setEnabled(true);
+					    	parentFrame.setVisible(true);
+							}
+							
+						else MessageBox.infoBox(frame, "Nije moguće obrisati materijal!Materijal se koristi na postojećoj sastavnici!", "Greška");
 				
 				}
 				if(akcija.equals("Pregled"))
@@ -397,6 +426,22 @@ public class FMaterijalDMPB {
 		spinner = new JSpinner(m_numberSpinnerModel_3);
 		spinner.setBounds(198, 247, 116, 20);
 		panel.add(spinner);
+		
+		JLabel lblGraninaKoliina = new JLabel("Granična količina:");
+		lblGraninaKoliina.setBounds(103, 250, 83, 14);
+		panel.add(lblGraninaKoliina);
+		
+		textField = new JTextField();
+		textField.setBounds(198, 43, 216, 22);
+		panel.add(textField);
+		textField.setColumns(10);
+		textField.setVisible(false);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(198, 72, 216, 22);
+		panel.add(textField_1);
+		textField_1.setColumns(10);
+		textField_1.setVisible(false);
 		if ( spinner.getEditor() instanceof JSpinner.DefaultEditor ) {
 			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner.getEditor();
 			   editor.getTextField().setEditable( false );
