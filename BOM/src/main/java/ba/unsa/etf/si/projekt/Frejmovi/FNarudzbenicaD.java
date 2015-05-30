@@ -225,6 +225,7 @@ public class FNarudzbenicaD {
 						listaSastavnica.get(i).getTrajanjeProizvodnje(),
 						spinner.getValue() });
 				table = new JTable(model);
+				 table.setRowSelectionAllowed(true);
 				scrollPane.setViewportView(table);
 				
 			}
@@ -248,6 +249,7 @@ public class FNarudzbenicaD {
 							table.getSelectedRow(), 3).toString());
 					model.removeRow(table.getSelectedRow());
 					table = new JTable(model);
+					 table.setRowSelectionAllowed(true);
 					scrollPane.setViewportView(table);
 					ukupnaCijena = ukupnaCijena - (x * kolicina);
 					ukupnoTrajanje = ukupnoTrajanje - y * kolicina;
@@ -303,6 +305,8 @@ public class FNarudzbenicaD {
 				StavkaNarudzbenice sn;
 				SkladisteFacade kf=new SkladisteFacade();
 				KompanijaFacade f=new KompanijaFacade();
+				if(table.getRowCount()==0)  MessageBox.infoBox(frame, "Morate unijeti barem jedan proizvod","Info");
+				else{
 				for(int i=0;i<table.getRowCount();i++)
 				{
 			sn=new StavkaNarudzbenice(kf.pretragaSastavnica(table.getValueAt(i, 1).toString()), Double.parseDouble(table.getValueAt(i, 4).toString()));
@@ -324,12 +328,14 @@ public class FNarudzbenicaD {
 					parentFrame.setVisible(true);
 				   
 				}
+				
 		else {
 			MessageBox.infoBox(frame, "Narudžbenica ne može biti kreirana zbog nedostatka materjala","Info");
 			   frame.dispose(); 
 			   parentFrame.setVisible(true);
 		}
 			}
+				}
 			}
 		});
 		button.setBounds(612, 444, 151, 25);
@@ -377,13 +383,35 @@ public class FNarudzbenicaD {
 	public void kreirajTabelu() {
 		textField_1.setText(Double.toString(ukupnaCijena));
 		textField_2.setText(Double.toString(ukupnoTrajanje));
-		model = new DefaultTableModel();
+		
+		Object[][] data = {};
+	        String[] columnNames = {"Naziv", "Serijski broj","Cijena","Trajanje proizvodnje","Količina"};
+		model = new DefaultTableModel(data, columnNames) {
+
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            public Class<?> getColumnClass(int column) {
+                return getValueAt(0, column).getClass();
+            }
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+		
+		
+		
+		
+		/*model = new DefaultTableModel();
 		model.addColumn("Naziv");
 		model.addColumn("Serijski broj");
 		model.addColumn("Cijena");
 		model.addColumn("Trajanje proizvodnje");
-		model.addColumn("Količina");
+		model.addColumn("Količina");*/
 		table = new JTable(model);
+		table.setRowSelectionAllowed(true);
 		scrollPane.setViewportView(table);
 
 	}
