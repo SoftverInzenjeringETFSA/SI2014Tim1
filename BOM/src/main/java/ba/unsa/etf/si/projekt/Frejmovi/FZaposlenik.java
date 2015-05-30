@@ -61,6 +61,7 @@ import ba.unsa.etf.si.projekt.Klase.Sastavnica;
 public class FZaposlenik {
 
 	private JFrame frame;
+	private JFrame parentFrame;
 	private JTable table_3;
 	private JTextField textField_1;
 	private JTextField textField_3;	
@@ -106,6 +107,7 @@ public class FZaposlenik {
 	public void setFrame(JFrame parentF, String akcijaA, String klasa)
 	{
 		frame.setVisible(true);
+		parentFrame = parentF;
 	}
 
 	/**
@@ -128,13 +130,12 @@ public class FZaposlenik {
 		    @Override
 		    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
 		    	
-		    	//parentFrame.setEnabled(true);
-		    	//parentFrame.setVisible(true);
+		    	parentFrame.setVisible(true);
+		    	parentFrame.setEnabled(true);
 		    }
 		    @Override
 		    public void windowActivated(java.awt.event.WindowEvent windowEvent) {
 		    	
-
 				popuniTabeluSastavnice(null,null,null);
 				popuniTabeluSkladiste(null,null,null);
 		    }

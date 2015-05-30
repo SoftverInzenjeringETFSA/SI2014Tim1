@@ -19,19 +19,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.UIManager;
-
-//import net.miginfocom.swing.MigLayout;
-
-
-
-
-
-
-
-
-
-
-
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -64,6 +51,7 @@ import ba.unsa.etf.si.projekt.Klase.Sastavnica;
 public class FMenadzer {
 
 	private JFrame frame;
+	private JFrame parentFrame;
 	
 	private JTable table;
 	private JTable table_1;
@@ -122,6 +110,7 @@ public class FMenadzer {
 	public void setFrame(JFrame parentF, String akcijaA, String klasa)
 	{
 		frame.setVisible(true);
+		parentFrame = parentF;
 	}
 
 	/**
@@ -144,9 +133,8 @@ public class FMenadzer {
 				    @Override
 				    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
 				    	
-				    	//parentFrame.setEnabled(true);
-				    	
-				    	//parentFrame.setVisible(true);
+				    	parentFrame.setVisible(true);
+				    	parentFrame.setEnabled(true);
 				    }
 				    
 				    @Override

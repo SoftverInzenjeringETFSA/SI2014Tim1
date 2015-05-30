@@ -24,7 +24,6 @@ public class Login {
 	private JTextField tfKorisnickoIme;
 	private JButton btnNewButton;
 	private JPasswordField passwordField;
-	private String username;
 
 	/**
 	 * Launch the application.
@@ -59,6 +58,17 @@ public class Login {
 	 */
 	public Login() {
 		initialize();
+		
+		frame.addWindowListener(new java.awt.event.WindowAdapter() {
+		    
+		    @Override
+		    public void windowActivated(java.awt.event.WindowEvent windowEvent) {
+		    	
+		    	tfKorisnickoIme.setText("");
+		    	tfKorisnickoIme.requestFocusInWindow();
+				passwordField.setText("");
+		    }
+		});
 	}
 
 	/**
@@ -68,8 +78,6 @@ public class Login {
 		frame = new JFrame("Prijava");
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 450, 260);
-		//EXIT_ON_CLOSE, DISPOSE_ON_CLOSE, HIDE_ON_CLOSE, DO_NOTHING_ON_CLOSE
-		//konstante koje postoje
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -103,26 +111,22 @@ public class Login {
 					if(o.getTipOsobe()  == TipOsobe.menadzer)
 					{
 						FMenadzer m = new FMenadzer();
-						m.setFrame(null, null, null);
+						m.setFrame(frame, null, null);
 						m.postaviKorisnika(o);
-						frame.setVisible(false);//skrivanje frejma login
-						frame.dispose();//unistavanje frejma login
+						frame.setVisible(false);
 					}
 					else if(o.getTipOsobe()  == TipOsobe.radnik)
 					{
 						FZaposlenik z = new FZaposlenik();
-						z.setFrame(null, null, null);
+						z.setFrame(frame, null, null);
 						z.postaviKorisnika(o);
-						frame.setVisible(false);//skrivanje frejma login
-						frame.dispose();//unistavanje frejma login
+						frame.setVisible(false);
 					}
 				}
 				else
 				{
 					MessageBox.infoBox(frame, "Pogrešni podaci za prijavu!", "Info");
 				}
-				
-				username=user;
 			}
 		});
 		btnNewButton.setBounds(239, 164, 129, 22);
