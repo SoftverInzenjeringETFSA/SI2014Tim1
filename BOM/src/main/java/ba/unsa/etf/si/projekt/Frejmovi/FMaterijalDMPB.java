@@ -127,7 +127,17 @@ public class FMaterijalDMPB {
 		spinner_2.setValue(m.getProdajnaCijena());
 		dateChooser.setDate(m.getDatumNabavke());
 	}
-	
+	public boolean validacija() 
+	{
+		
+		if(!sB.verify(textField)) return false;
+		if(!naziv.verify(textField_1)) return false;
+		String datum = ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText();
+		if(textField.getText().equals("") || textField_1.getText().equals("") || datum.equals(""))
+			return false;
+		
+		return true;
+	}
 	//public void 
 	public void setFrame(JFrame parentF, String akcijaA, Materijal mat)
 	{
@@ -135,10 +145,9 @@ public class FMaterijalDMPB {
 		materijal=mat;
 		 materijali = new ArrayList<Materijal>();
 		 SkladisteFacade sf = new SkladisteFacade();
-	     //materijali=sf.returnListaMaterijala();
-		// materijal=materijali.get(0);
-		 naziv = new Validator(frame, textField, "Molimo unesite ispravan naziv","");
-		 sB = new Validator(frame, textField_1, "Molimo unesite ispravan serijski broj","adresa");
+		 naziv = new Validator(frame, textField_1, "Molimo unesite naziv.","");
+		 sB = new Validator(frame, textField, "Molimo unesite ispravan serijski broj.","adresa");
+		
 		 //za brisanje i pregleda ne trebaju biti editabilini!
 		if(akcija.equals("Brisanje") )
 		{
@@ -311,14 +320,14 @@ public class FMaterijalDMPB {
 				SkladisteFacade sf= new SkladisteFacade();
 				if(akcija.equals("Kreiranje"))
 				{
-					
-					double kolicina=(Double)spinner_3.getValue();
+					if(validacija())
+					{double kolicina=(Double)spinner_3.getValue();
 					double granKolicina=(Double)spinner.getValue();
 					double nabCijena = (Double)spinner_1.getValue();
 					double prodCijena = (Double)spinner_2.getValue();
 					Date datum = (Date)dateChooser.getDate();
-					String serBroj= (String)comboBox.getSelectedItem();
-					String opis= (String)comboBox_1.getSelectedItem();
+					String serBroj= textField.getText();
+					String opis= textField_1.getText();
 					String mjed=(String)comboBox_2.getSelectedItem();
 					Radnik kreirao = (Radnik)trenutniKorisnik;
 					Materijal m = new Materijal(serBroj, opis, kolicina, granKolicina, TipMaterijala.proizvod, nabCijena, null,null,prodCijena,null, kreirao, mjed);
@@ -331,7 +340,8 @@ public class FMaterijalDMPB {
 					     parentFrame.setVisible(true);
 						}
 					else MessageBox.infoBox(frame, "Materijal sa unesenim serijskim brojem već postoji!", "Greška");
-					
+					}
+					else MessageBox.infoBox(frame, "Molimo unesite sve podatke!", "Greška");
 				}
 				if( akcija.equals("Modifikovanje"))
 				{
@@ -385,16 +395,16 @@ public class FMaterijalDMPB {
 		panel.add(dateChooser);
 		
 		SpinnerNumberModel m_numberSpinnerModel;
-		m_numberSpinnerModel = new SpinnerNumberModel(0.0, 0, 100000, 0.01);
+		m_numberSpinnerModel = new SpinnerNumberModel(0.1, 0, 100000, 0.01);
 		
 		SpinnerNumberModel m_numberSpinnerModel_1;
-		m_numberSpinnerModel_1 = new SpinnerNumberModel(0.0, 0, 100000, 0.01);
+		m_numberSpinnerModel_1 = new SpinnerNumberModel(0.1, 0, 100000, 0.01);
 		
 		SpinnerNumberModel m_numberSpinnerModel_2;
-		m_numberSpinnerModel_2 = new SpinnerNumberModel(0.0, 0, 100000, 0.1);
+		m_numberSpinnerModel_2 = new SpinnerNumberModel(0.1, 0, 100000, 0.1);
 		
 		SpinnerNumberModel m_numberSpinnerModel_3;
-		m_numberSpinnerModel_3 = new SpinnerNumberModel(0.0, 0, 100000, 0.1);
+		m_numberSpinnerModel_3 = new SpinnerNumberModel(0.1, 0, 100000, 0.1);
 		
 		spinner_1 = new JSpinner(m_numberSpinnerModel);
 		spinner_1.setBounds(196, 160, 118, 20);

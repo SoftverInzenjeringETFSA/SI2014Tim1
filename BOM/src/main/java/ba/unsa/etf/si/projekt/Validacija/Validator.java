@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
+import com.toedter.calendar.JDateChooser;
+
 public class Validator extends AbstractValidator{
 	  public Validator(JFrame parent, JTextField c, String message) {
 	        super(parent, c, message);
@@ -30,13 +32,14 @@ public class Validator extends AbstractValidator{
 		  super(parent, c, message,tip);
 	  }
 	  public boolean validationCriteria(JComponent c, String tip) {
-			if(tip.equals("email")) return ValidirajEmail( ((JTextField)c).getText());
+		    if(tip.equals("email")) return ValidirajEmail( ((JTextField)c).getText());
 			else if(tip.equals("JMBG")) return ValidirajJMBG( ((JTextField)c).getText());
 			else if(tip.equals("adresa")) return ValidirajAdresu( ((JTextField)c).getText());
 			else if(tip.equals("korIme")) return ValidirajKorisnickoIme( ((JTextField)c).getText());
 			else if(tip.equals("pass")) return ValidirajSifru( ((JPasswordField)c).getText());
 			else if(tip.equals("telefon")) return ValidirajTelefon(((JFormattedTextField)c).getText());
 			else if(tip.equals(""))return ValidirajTekst( ((JTextField)c).getText());
+			else if(tip.equals("prazno"))return ValidirajJeLiPrazno( ((JTextField)c).getText());
 			return true;
 		    
 		}
