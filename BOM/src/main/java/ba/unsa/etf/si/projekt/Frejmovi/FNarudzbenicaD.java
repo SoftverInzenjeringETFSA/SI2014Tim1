@@ -115,7 +115,7 @@ public class FNarudzbenicaD {
 
 				parentFrame.setEnabled(true);
 				parentFrame.setVisible(true);
-
+				
 			}
 		});
 	}
@@ -333,6 +333,7 @@ public class FNarudzbenicaD {
 			MessageBox.infoBox(frame, "Narudžbenica ne može biti kreirana zbog nedostatka materjala","Info");
 			   frame.dispose(); 
 			   parentFrame.setVisible(true);
+			   parentFrame.setEnabled(true);
 		}
 			}
 				}
