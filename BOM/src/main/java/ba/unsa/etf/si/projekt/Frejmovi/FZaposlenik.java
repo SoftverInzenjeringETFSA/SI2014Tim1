@@ -32,6 +32,7 @@ import javax.swing.UIManager;
 
 
 
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -70,6 +71,7 @@ public class FZaposlenik {
 	private DataGrid dataGSastavnica;
 	private JScrollPane scrollPane_3;
 	private DataGrid dataGSkladiste;
+	private JButton btnMZaliha;
 	private Sastavnica sastavnica;
 	private Materijal materijal;
 	private JLabel lblNisteOdabraliNiti_3;
@@ -108,6 +110,8 @@ public class FZaposlenik {
 	{
 		frame.setVisible(true);
 		parentFrame = parentF;
+		
+		
 	}
 
 	/**
@@ -116,9 +120,7 @@ public class FZaposlenik {
 	
 	public FZaposlenik() {
 		initialize();
-		//popuniTabeluSastavnice(null,null,null);
-		popuniTabeluSkladiste(null,null,null);
-		//postavlanje akcije za izlaz iz frejma
+		
 		frame.addWindowListener(new java.awt.event.WindowAdapter() {
 		    @Override
 		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -138,6 +140,10 @@ public class FZaposlenik {
 		    	
 				popuniTabeluSastavnice(null,null,null);
 				popuniTabeluSkladiste(null,null,null);
+				
+				btnMZaliha.setVisible(false);
+				if(dataGSkladiste.postojiManjakMaterijala())
+					btnMZaliha.setVisible(true);
 		    }
 		});
 		
@@ -439,6 +445,21 @@ public class FZaposlenik {
 		});
 		btnOdjava.setBounds(598, 15, 97, 25);
 		frame.getContentPane().add(btnOdjava);
+		
+		btnMZaliha = new JButton("Manjak materijala!");
+		btnMZaliha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				MessageBox.infoBox(frame, "Postoji manjak materijala na skladištu!\n"
+						                + "Otvorite tab 'Skladište' kako vidjeli te materijale.\n"
+						                + "Oznaceni su crvenim poljima u posljednjoj koloni!", "Info");
+			}
+		});
+		btnMZaliha.setForeground(Color.RED);
+		btnMZaliha.setBackground(Color.RED);
+		btnMZaliha.setBounds(414, 15, 172, 25);
+		btnMZaliha.setVisible(false);
+		frame.getContentPane().add(btnMZaliha);
 	}
 	
 	public void popuniTabeluSastavnice(String name, String value, String sort)
