@@ -582,14 +582,29 @@ public class SkladisteFacade implements ISkladisteFacade {
 						Materijal m1 = (Materijal)iterator1.next(); 
 					    listaMaterijala.add(m1);
 				    }			
+					List<ObrisaniMaterijal> obrisani_materijali = session.createCriteria(ObrisaniMaterijal.class).list();
+					
+					List<Long> lista_id = new ArrayList<Long>();
+					
+					for(ObrisaniMaterijal om: obrisani_materijali) {
+						lista_id.add(om.getMaterijal().getId());
+					}
+					List<Materijal> za_vratiti = new ArrayList<Materijal> ();
+					
+					for(Materijal mat: listaMaterijala) {
+						if(!lista_id.contains(mat.getId())) {
+							za_vratiti.add(mat);
+						}
+					}
 					t.commit();
-					return listaMaterijala;
+				return za_vratiti;
+					
 				}
 				//sort null, ostali razliciti od null
 				else if(name != null && name != " " && value != null && value != " " && (sort == null || sort.equals(" ")))
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Materijal  WHERE " + name + " LIKE '" + value + "' ORDER BY "+ name;
+					String hql = "FROM Materijal  WHERE " + name + " LIKE '%" + value + "%' ORDER BY "+ name;
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Materijal> listaMaterijala = new ArrayList<Materijal> ();
@@ -598,15 +613,28 @@ public class SkladisteFacade implements ISkladisteFacade {
 						Materijal m1 = (Materijal)iterator1.next(); 
 					    listaMaterijala.add(m1);
 				    }			
+					List<ObrisaniMaterijal> obrisani_materijali = session.createCriteria(ObrisaniMaterijal.class).list();
 					
+					List<Long> lista_id = new ArrayList<Long>();
+					
+					for(ObrisaniMaterijal om: obrisani_materijali) {
+						lista_id.add(om.getMaterijal().getId());
+					}
+					List<Materijal> za_vratiti = new ArrayList<Materijal> ();
+					
+					for(Materijal mat: listaMaterijala) {
+						if(!lista_id.contains(mat.getId())) {
+							za_vratiti.add(mat);
+						}
+					}
 					t.commit();
-					return listaMaterijala;	
+				return za_vratiti;
 				}
 				//svi razliciti od null
 				else if(name != null && name != " " && value != null && value != " " && sort != null && sort != " ")
 				{
 					Transaction t = session.beginTransaction();
-					String hql = "FROM Materijal  WHERE " +name + " LIKE '" + value + "' ORDER BY " + sort;
+					String hql = "FROM Materijal  WHERE " +name + " LIKE '%" + value + "%' ORDER BY " + sort;
 					Query query = session.createQuery(hql);//.setParameter("kolona", name).setParameter("vrijednost", value);
 					List rezultati = query.list();
 					ArrayList<Materijal> listaMaterijala = new ArrayList<Materijal> ();
@@ -614,10 +642,23 @@ public class SkladisteFacade implements ISkladisteFacade {
 					{
 						Materijal m1 = (Materijal)iterator1.next(); 
 					    listaMaterijala.add(m1);
-				    }			
-					t.commit();
-					return listaMaterijala;					
+				    }	
+					List<ObrisaniMaterijal> obrisani_materijali = session.createCriteria(ObrisaniMaterijal.class).list();
 					
+					List<Long> lista_id = new ArrayList<Long>();
+					
+					for(ObrisaniMaterijal om: obrisani_materijali) {
+						lista_id.add(om.getMaterijal().getId());
+					}
+					List<Materijal> za_vratiti = new ArrayList<Materijal> ();
+					
+					for(Materijal mat: listaMaterijala) {
+						if(!lista_id.contains(mat.getId())) {
+							za_vratiti.add(mat);
+						}
+					}
+					t.commit();
+				return za_vratiti;	
 				}
 				//sort razlicit od null, ostali null
 				else if((name == null || name.equals(" ")) && (value == null || value.equals(" ")) && (sort != null))
@@ -632,8 +673,23 @@ public class SkladisteFacade implements ISkladisteFacade {
 						Materijal m1 = (Materijal)iterator1.next(); 
 					    listaMaterijala.add(m1);
 				    }			
+					List<ObrisaniMaterijal> obrisani_materijali = session.createCriteria(ObrisaniMaterijal.class).list();
+					
+					List<Long> lista_id = new ArrayList<Long>();
+					
+					for(ObrisaniMaterijal om: obrisani_materijali) {
+						lista_id.add(om.getMaterijal().getId());
+					}
+					List<Materijal> za_vratiti = new ArrayList<Materijal> ();
+					
+					for(Materijal mat: listaMaterijala) {
+						if(!lista_id.contains(mat.getId())) {
+							za_vratiti.add(mat);
+						}
+					}
 					t.commit();
-					return listaMaterijala;					
+				return za_vratiti;	
+							
 				}
 				else {
 					List<Materijal> l =null;
@@ -642,8 +698,8 @@ public class SkladisteFacade implements ISkladisteFacade {
 			
 			}
 			catch (Exception e) {
-				
-				throw new RuntimeException(e);
+			//System.out.println("Nema te kolone");
+				throw new RuntimeException(e.getMessage());
 			}
 			finally {
 				session.close();
