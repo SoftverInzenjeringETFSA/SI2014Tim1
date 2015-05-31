@@ -205,8 +205,10 @@ public class FKlijentDMPB {
 
 				if (akcija.equals("Kreiranje")) {
 
-					String ime = ((JTextField) txtFdsfd).getText();
-					String prezime = ((JTextField) textField_1).getText();
+					String ime = ((JTextField) txtFdsfd).getText().toLowerCase();
+					ime= ime.substring(0, 1).toUpperCase() + ime.substring(1);
+					String prezime = ((JTextField) textField_1).getText().toLowerCase();
+					prezime= prezime.substring(0, 1).toUpperCase() + prezime.substring(1);
 					String adresa = ((JTextField) textField_3).getText();
 					String email = ((JTextField) textField_4).getText();
 					String brojTelefona = ((JFormattedTextField) telefon)
