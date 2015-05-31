@@ -274,6 +274,7 @@ public class FKlijentDMPB {
 		{
 			
 		}
+		
 		mf1.setPlaceholderCharacter('_');
 		telefon = new JFormattedTextField(mf1);
 		telefon.setBounds(133, 106, 187, 20);
