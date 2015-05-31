@@ -267,10 +267,12 @@ public class FKlijentDMPB {
 		btnKreiraj.setBounds(244, 204, 76, 22);
 		panel.add(btnKreiraj);
 		MaskFormatter mf1 = new MaskFormatter();
-		try {
-			mf1 = new MaskFormatter("+###########");
-		} catch (Exception e) {
-
+		try{
+			mf1 = new MaskFormatter("+###-##-###-###");
+		}
+		catch( Exception e)
+		{
+			
 		}
 		mf1.setPlaceholderCharacter('_');
 		telefon = new JFormattedTextField(mf1);
