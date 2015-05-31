@@ -444,7 +444,7 @@ public class FZaposlenik {
 				{
 					//otvaranje forme za pregled korisnika sistema
 					FMaterijalDMPB s = new FMaterijalDMPB();
-					s.setFrame(frame, "Modifikuj", materijal);
+					s.setFrame(frame, "Modifikovanje", materijal);
 					s.postaviKorisnika(trenutniKorisnik);
 				}
 				

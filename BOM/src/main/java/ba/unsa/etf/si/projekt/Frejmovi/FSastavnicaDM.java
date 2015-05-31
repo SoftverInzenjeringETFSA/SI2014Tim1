@@ -145,6 +145,11 @@ public class FSastavnicaDM {
 		    	parentFrame.setVisible(true);
 		    	
 		    }
+		    @Override
+		    public void windowActivated(java.awt.event.WindowEvent windowEvent) {
+		    	
+		    	textField.requestFocusInWindow();
+		    }
 		});
 		textField.setInputVerifier(new Validator(frame,textField,"Naziv proizvoda ne smije biti prazan!",""));
 		
@@ -308,15 +313,41 @@ public class FSastavnicaDM {
 				
 				if(akcija.equals("Kreiranje"))
 				{
-					//provjera validacija
-					popuniSastavnicu();
-					SkladisteFacade sf = new SkladisteFacade();
-					sf.dodajSastavnicu(sastavnica);
+					if(stavkeSastavnice.size()>0)
+					{
+						popuniSastavnicu();
+						SkladisteFacade sf = new SkladisteFacade();
+						sf.dodajSastavnicu(sastavnica);
+						MessageBox.infoBox(frame, "Uspješno ste kreirali sastavnicu.", "Info");
+						
+						frame.dispose(); 
+						parentFrame.setVisible(true);
+						parentFrame.setEnabled(true);
+					}
+					else
+					{
+						MessageBox.infoBox(frame, "Sastavnica mora sadržavati barem jednu stavku.", "Info");
+					}
 					
 				}
 				else if(akcija.equals("Modifikovanje"))
 				{
 					
+					if(stavkeSastavnice.size()>0)
+					{
+						popuniSastavnicu();
+						SkladisteFacade sf = new SkladisteFacade();
+						sf.izmijeniSastavnicu(sastavnica);
+						MessageBox.infoBox(frame, "Uspješno ste modifikovali sastavnicu.", "Info");
+						
+						frame.dispose(); 
+						parentFrame.setVisible(true);
+						parentFrame.setEnabled(true);
+					}
+					else
+					{
+						MessageBox.infoBox(frame, "Sastavnica mora sadržavati barem jednu stavku.", "Info");
+					}
 				}
 			}
 		});
