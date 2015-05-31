@@ -99,26 +99,25 @@ public class ComboItems {
 	}
 	public static String[] getKorisnikCBItems(String name, String value, String sort)
 	{
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		
 		String[] niz =  {null, value, null};
 		
 		if(sort != null)
 		{
-			if(sort.equals("cijeni"))
-				niz[2] = "prodajnaCijena";
-			else if(sort.equals("nazivu"))
-				niz[2] = "opis";
+			if(sort.equals("imenu"))
+				niz[2] = "ime";
+			else if(sort.equals("prezimenu"))
+				niz[2] = "prezime";
+			else if(sort.equals("kor. imenu"))
+				niz[2] = "username";
 		}
 		if(name != null && value != null)
 		{
-			if(name.equals("ser. broju"))
-				niz[0] = "serijskiBroj";
-			else if(sort.equals("nazivu"))
-				niz[0] = "opis";
+			if(name.equals("imenu"))
+				niz[0] = "ime";
+			else if(name.equals("prezimenu"))
+				niz[0] = "prezime";
+			else if(name.equals("kor. imenu"))
+				niz[0] = "username";
 		}
 		if(niz[0] == null)
 			niz[1]=null;

@@ -33,6 +33,8 @@ import javax.swing.UIManager;
 
 
 
+
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -67,11 +69,16 @@ public class FZaposlenik {
 	private JTextField textField_1;
 	private JTextField textField_3;	
 	private JTable table_2;
+	private JComboBox comboBox_4;
+	private JComboBox comboBox_5;
+	
 	private JScrollPane scrollPane_2;
 	private DataGrid dataGSastavnica;
 	private JScrollPane scrollPane_3;
 	private DataGrid dataGSkladiste;
 	private JButton btnMZaliha;
+	private JComboBox comboBox_2;
+	private JComboBox comboBox_3;
 	private Sastavnica sastavnica;
 	private Materijal materijal;
 	private JLabel lblNisteOdabraliNiti_3;
@@ -175,11 +182,26 @@ public class FZaposlenik {
 		panel_16.setBounds(12, 13, 374, 203);
 		panel.add(panel_16);
 
-		JButton button_11 = new JButton("Pretra\u017Ei");
-		button_11.setBounds(242, 165, 91, 25);
-		panel_16.add(button_11);
+		JButton btnPrikai = new JButton("Prikaži");
+		btnPrikai.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//pretraga i sort sastavnica
+				String[] niz = ComboItems.getSastavnicaCBItems(comboBox_5.getSelectedItem().toString(), textField_3.getText(), comboBox_4.getSelectedItem().toString());
+				popuniTabeluSastavnice(niz[0], niz[1], niz[2]);
+				textField_3.setText("");
+				comboBox_5.setSelectedIndex(0);
+				comboBox_4.setSelectedIndex(0);	
+			}
+		});
+		btnPrikai.setBounds(242, 165, 91, 25);
+		panel_16.add(btnPrikai);
 
 		JButton button_12 = new JButton("Prika\u017Ei sve");
+		button_12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				popuniTabeluSastavnice(null, null, null);
+			}
+		});
 		button_12.setBounds(133, 165, 97, 25);
 		panel_16.add(button_12);
 
@@ -188,10 +210,11 @@ public class FZaposlenik {
 		label_4.setBounds(12, 72, 109, 16);
 		panel_16.add(label_4);
 
-		JComboBox comboBox_4 = new JComboBox();
+		comboBox_4 = new JComboBox();
 		comboBox_4.setBounds(133, 34, 200, 22);
+		comboBox_4.addItem("");
 		comboBox_4.addItem("nazivu");
-		comboBox_4.addItem("datumu kreiranja");
+		comboBox_4.addItem("datumu");
 		panel_16.add(comboBox_4);
 
 		textField_3 = new JTextField();
@@ -199,10 +222,11 @@ public class FZaposlenik {
 		textField_3.setBounds(133, 104, 200, 22);
 		panel_16.add(textField_3);
 
-		JComboBox comboBox_5 = new JComboBox();
+		comboBox_5 = new JComboBox();
 		comboBox_5.setBounds(133, 69, 200, 22);
+		comboBox_5.addItem("");
 		comboBox_5.addItem("nazivu");
-		comboBox_5.addItem("datumu kreiranja");
+		comboBox_5.addItem("id-u");
 		panel_16.add(comboBox_5);
 
 		JLabel label_5 = new JLabel("Sortiraj po:");
@@ -333,11 +357,25 @@ public class FZaposlenik {
 		panel_12.setBounds(12, 13, 374, 203);
 		panel_1.add(panel_12);
 
-		JButton button = new JButton("Pretra\u017Ei");
-		button.setBounds(242, 165, 91, 25);
-		panel_12.add(button);
+		JButton btnPrikai_1 = new JButton("Prikaži");
+		btnPrikai_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String[] niz = ComboItems.getMaterijalCBItems(comboBox_3.getSelectedItem().toString(), textField_1.getText(), comboBox_2.getSelectedItem().toString());
+				popuniTabeluSkladiste(niz[0], niz[1], niz[2]);
+				textField_1.setText("");
+				comboBox_3.setSelectedIndex(0);
+				comboBox_2.setSelectedIndex(0);
+			}
+		});
+		btnPrikai_1.setBounds(242, 165, 91, 25);
+		panel_12.add(btnPrikai_1);
 
 		JButton button_1 = new JButton("Prika\u017Ei sve");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				popuniTabeluSkladiste(null, null, null);
+			}
+		});
 		button_1.setBounds(133, 165, 97, 25);
 		panel_12.add(button_1);
 
@@ -346,10 +384,11 @@ public class FZaposlenik {
 		label.setBounds(12, 72, 109, 16);
 		panel_12.add(label);
 
-		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2 = new JComboBox();
 		comboBox_2.setBounds(133, 34, 200, 22);
+		comboBox_2.addItem("");
 		comboBox_2.addItem("nazivu");
-		comboBox_2.addItem("datumu nabavke");
+		comboBox_2.addItem("cijeni");
 		panel_12.add(comboBox_2);
 
 		textField_1 = new JTextField();
@@ -357,10 +396,11 @@ public class FZaposlenik {
 		textField_1.setBounds(133, 102, 200, 22);
 		panel_12.add(textField_1);
 
-		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3 = new JComboBox();
 		comboBox_3.setBounds(133, 69, 200, 22);
+		comboBox_3.addItem("");
 		comboBox_3.addItem("nazivu");
-		comboBox_3.addItem("datumu nabavke");
+		comboBox_3.addItem("ser. broju");
 		panel_12.add(comboBox_3);
 
 		JLabel label_1 = new JLabel("Sortiraj po:");
@@ -451,8 +491,8 @@ public class FZaposlenik {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				MessageBox.infoBox(frame, "Postoji manjak materijala na skladištu!\n"
-						                + "Otvorite tab 'Skladište' kako vidjeli te materijale.\n"
-						                + "Oznaceni su crvenim poljima u posljednjoj koloni!", "Info");
+						                + "Otvorite tab 'Skladište' kako biste vidjeli te materijale.\n"
+						                + "Označeni su sa 'Manjak!' u posljednjoj koloni!", "Info");
 			}
 		});
 		btnMZaliha.setForeground(Color.RED);

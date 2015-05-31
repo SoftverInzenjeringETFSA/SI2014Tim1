@@ -34,6 +34,8 @@ public class FKorisnik {
 	private JLabel lblNisteOdabraliNiti;
 	private int SelektovanMenadzer;
 	private Osoba osoba;
+	private JComboBox comboBox;
+	private JComboBox comboBox_1;
 	
 
 	/**
@@ -118,11 +120,25 @@ public class FKorisnik {
 		panel.setBounds(12, 13, 374, 203);
 		frame.getContentPane().add(panel);
 		
-		JButton button = new JButton("Pretra\u017Ei");
-		button.setBounds(242, 165, 91, 25);
-		panel.add(button);
+		JButton btnPrikai = new JButton("Prikaži");
+		btnPrikai.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String[] niz = ComboItems.getKorisnikCBItems(comboBox_1.getSelectedItem().toString(), textField.getText(), comboBox.getSelectedItem().toString());
+				popuniTabelu(niz[0], niz[1], niz[2]);
+				textField.setText("");
+				comboBox.setSelectedIndex(0);
+				comboBox_1.setSelectedIndex(0);
+			}
+		});
+		btnPrikai.setBounds(242, 165, 91, 25);
+		panel.add(btnPrikai);
 		
 		JButton button_1 = new JButton("Prika\u017Ei sve");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				popuniTabelu(null, null, null);
+			}
+		});
 		button_1.setBounds(133, 165, 97, 25);
 		panel.add(button_1);
 		
@@ -131,10 +147,12 @@ public class FKorisnik {
 		label.setBounds(12, 72, 109, 16);
 		panel.add(label);
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setBounds(133, 34, 200, 22);
-		comboBox.addItem("nazivu");
-		comboBox.addItem("datumu kreiranja");
+		comboBox.addItem("");
+		comboBox.addItem("imenu");
+		comboBox.addItem("prezimenu");
+		comboBox.addItem("kor. imenu");
 		panel.add(comboBox);
 		
 		textField = new JTextField();
@@ -142,10 +160,12 @@ public class FKorisnik {
 		textField.setBounds(133, 104, 200, 22);
 		panel.add(textField);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(133, 69, 200, 22);
-		comboBox_1.addItem("nazivu");
-		comboBox_1.addItem("datumu kreiranja");
+		comboBox_1.addItem("");
+		comboBox_1.addItem("imenu");
+		comboBox_1.addItem("prezimenu");
+		comboBox_1.addItem("kor. imenu");
 		panel.add(comboBox_1);
 		
 		JLabel label_1 = new JLabel("Sortiraj po:");
