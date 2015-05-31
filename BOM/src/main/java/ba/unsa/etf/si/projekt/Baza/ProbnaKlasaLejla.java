@@ -81,6 +81,29 @@ public class ProbnaKlasaLejla {
 			System.out.println(_k.get(i).getPrezime()+ " " + _k.get(i).getIme());
 		}
 		*/
+	/*	List<Osoba> ls = kf.listaOsoba(TipOsobe.menadzer);
+		if(ls != null) {
+			System.out.println(ls.size());
+		}
+		Menadzer mgr = (Menadzer) ls.get(1);
+		List<Materijal> lm = sf.returnListaMaterijala();
+		if(lm != null) {
+			Materijal mat = lm.get(19);
+			System.out.println(mat.getId());
+			if(mat != null) {
+				System.out.println(sf.obrišiMaterijal(mat, mgr));
+				//System.out.println(m.getId());
+			}
+		}
+		*/
+		/*List<Materijal> _materijali = sf.sortirajMaterijale(" ", " ", "opis");
+		if(!(_materijali.isEmpty()))
+		for(int i=0; i<_materijali.size(); i++) {
+			
+			System.out.println(_materijali.get(i).getOpis());
+			
+		}
+		else System.out.println("prazno");*/
 	}
 	
 
