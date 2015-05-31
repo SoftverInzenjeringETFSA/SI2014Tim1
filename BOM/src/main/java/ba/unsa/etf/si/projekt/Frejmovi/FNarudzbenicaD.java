@@ -314,19 +314,15 @@ public class FNarudzbenicaD {
 				{
 			sn=new StavkaNarudzbenice(kf.pretragaSastavnica(table.getValueAt(i, 1).toString()), Double.parseDouble(table.getValueAt(i, 4).toString()));
 			stav_nar.add(sn);
-			// MessageBox.infoBox(frame, "ubaciStavku"+kf.pretragaSastavnica(table.getValueAt(i, 1).toString()).getSerijskiBroj(),"Info");
 				}
-				//MessageBox.infoBox(frame, Integer.toString(stav_nar.size()), "infor");
 				   Date date = new Date();
 				   Calendar cal = Calendar.getInstance();
 				   Narudzbenica narudzbenica=new Narudzbenica(stav_nar,listaKlijenata.get(comboBox.getSelectedIndex()),cal.getTime(), (Menadzer)trenutniKorisnik, serijskiBroj.getText());
-						if (kf.validirajNarudzbenicu(narudzbenica)) {
+				   for (int i=0;i<stav_nar.size();i++)
+			    	   narudzbenica.getStav_nar().get(i).setNarudzbenica(narudzbenica);
+				   if (kf.validirajNarudzbenicu(narudzbenica)) {
 			            kf.dodajNarudzbenicu(narudzbenica);	
-			       
-			     //  MessageBox.infoBox(frame, Integer.toString(narudzbenica.getStav_nar().size()), "infor");
 				   MessageBox.infoBox(frame, "Narudžbenica je uspješno kreirana","Info");
-				 //  MessageBox.infoBox(frame, Integer.toString( kf.pretragaNarudzbenica(serijskiBroj.getText()).getStav_nar().size()), "infor");
-				  
 				   frame.dispose();
 					parentFrame.setEnabled(true);
 					parentFrame.setVisible(true);
