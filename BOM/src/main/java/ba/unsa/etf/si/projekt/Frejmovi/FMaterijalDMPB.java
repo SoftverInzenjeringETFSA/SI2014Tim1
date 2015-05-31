@@ -365,7 +365,12 @@ public class FMaterijalDMPB {
 				{
 					
 					SkladisteFacade sf1= new SkladisteFacade();
-						if(sf1.obrišiMaterijal(materijal,(Menadzer)trenutniKorisnik))
+					boolean obrisana = true;
+					try{
+						obrisana = sf1.obrišiMaterijal(materijal,(Menadzer)trenutniKorisnik);
+					}catch(Exception ee){obrisana = false;}	
+					
+					if(obrisana)
 							{
 							MessageBox.infoBox(frame, "Uspješno ste obrisali materijal.", "Info");
 							frame.setVisible(false);
