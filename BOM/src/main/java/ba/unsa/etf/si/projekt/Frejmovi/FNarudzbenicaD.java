@@ -296,38 +296,43 @@ public class FNarudzbenicaD {
 		JButton button = new JButton("Kreiraj");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				SkladisteFacade kf=new SkladisteFacade();
 				if(serijskiBroj.getText().isEmpty() || serijskiBroj.getText().contains(" "))
 				{
 					MessageBox.infoBox(frame, "Unesite serijski broj.", "Info");
-				}
-				else{
+				}			
+				else if(kf.pretragaNarudzbenica(serijskiBroj.getText())!=null)
+						{
+					MessageBox.infoBox(frame, "Narudžbenica sa ovim serijskim brojem je već kreirana.Izmjenu možete izvršiti preko prethodnog prozora.","Info");
+						}
+						 else{
 				List<StavkaNarudzbenice> stav_nar=new ArrayList<StavkaNarudzbenice>();
-				StavkaNarudzbenice sn;
-				SkladisteFacade kf=new SkladisteFacade();
-				KompanijaFacade f=new KompanijaFacade();
+				StavkaNarudzbenice sn;		
 				if(table.getRowCount()==0)  MessageBox.infoBox(frame, "Morate unijeti barem jedan proizvod","Info");
 				else{
 				for(int i=0;i<table.getRowCount();i++)
 				{
 			sn=new StavkaNarudzbenice(kf.pretragaSastavnica(table.getValueAt(i, 1).toString()), Double.parseDouble(table.getValueAt(i, 4).toString()));
 			stav_nar.add(sn);
+			// MessageBox.infoBox(frame, "ubaciStavku"+kf.pretragaSastavnica(table.getValueAt(i, 1).toString()).getSerijskiBroj(),"Info");
 				}
+				//MessageBox.infoBox(frame, Integer.toString(stav_nar.size()), "infor");
 				   Date date = new Date();
 				   Calendar cal = Calendar.getInstance();
-				   Narudzbenica narudzbenica=new Narudzbenica();
-				   narudzbenica.setStav_nar(stav_nar);
-				   narudzbenica.setKlijent(listaKlijenata.get(comboBox.getSelectedIndex()));
-				   narudzbenica.setDatumKreiranja(cal.getTime());
-				   narudzbenica.setOdgovornoLice((Menadzer)trenutniKorisnik);
-				   narudzbenica.setSerijskiBroj(serijskiBroj.getText());
-			      	if(kf.validirajNarudzbenicu(narudzbenica)){
-			            kf.dodajNarudzbenicu(narudzbenica);				  
-				   MessageBox.infoBox(frame, "Narudžbenica je uspješno kreirana","Info");	
+				   Narudzbenica narudzbenica=new Narudzbenica(stav_nar,listaKlijenata.get(comboBox.getSelectedIndex()),cal.getTime(), (Menadzer)trenutniKorisnik, serijskiBroj.getText());
+						if (kf.validirajNarudzbenicu(narudzbenica)) {
+			            kf.dodajNarudzbenicu(narudzbenica);	
+			       
+			     //  MessageBox.infoBox(frame, Integer.toString(narudzbenica.getStav_nar().size()), "infor");
+				   MessageBox.infoBox(frame, "Narudžbenica je uspješno kreirana","Info");
+				 //  MessageBox.infoBox(frame, Integer.toString( kf.pretragaNarudzbenica(serijskiBroj.getText()).getStav_nar().size()), "infor");
+				  
 				   frame.dispose();
 					parentFrame.setEnabled(true);
 					parentFrame.setVisible(true);
 				   
 				}
+				
 				
 		else {
 			MessageBox.infoBox(frame, "Narudžbenica ne može biti kreirana zbog nedostatka materjala","Info");
@@ -336,7 +341,8 @@ public class FNarudzbenicaD {
 			   parentFrame.setEnabled(true);
 		}
 			}
-				}
+                   }	
+				
 			}
 		});
 		button.setBounds(612, 444, 151, 25);

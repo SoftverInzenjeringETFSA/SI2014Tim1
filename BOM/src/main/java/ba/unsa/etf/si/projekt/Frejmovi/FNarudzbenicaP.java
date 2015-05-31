@@ -69,8 +69,8 @@ public class FNarudzbenicaP {
 		parentFrame.setEnabled(false);
 		frame.setVisible(true);
 		// narudzbenica=new Narudzbenica();
-		 narudzbenica=n;
-		 popuniPodatke();
+		narudzbenica = n;
+		popuniPodatke();
 		// SkladisteFacade sf=new SkladisteFacade();
 		// narudzbenica=sf.pretragaNarudzbenica("xy");
 	}
@@ -81,7 +81,6 @@ public class FNarudzbenicaP {
 	public FNarudzbenicaP() {
 		initialize();
 		kreirajTabelu();
-		
 
 		frame.addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
@@ -174,7 +173,7 @@ public class FNarudzbenicaP {
 				frame.dispose();
 				parentFrame.setEnabled(true);
 				parentFrame.setVisible(true);
-				
+
 			}
 		});
 		btnKreirajNarudbenicu.setBounds(612, 332, 151, 25);
@@ -199,14 +198,15 @@ public class FNarudzbenicaP {
 	}
 
 	public void popuniPodatke() {
-	
+
 		SkladisteFacade sf = new SkladisteFacade();
-       odgLice.setText(narudzbenica.getOdgovornoLice().getIme() + " "
+		odgLice.setText(narudzbenica.getOdgovornoLice().getIme() + " "
 				+ narudzbenica.getOdgovornoLice().getPrezime());
 		klijentTF.setText(narudzbenica.getKlijent().getIme() + " "
 				+ narudzbenica.getKlijent().getPrezime());
 		serijskiBroj.setText(narudzbenica.getSerijskiBroj());
 		for (int i = 0; i < narudzbenica.getStav_nar().size(); i++) {
+
 			model.addRow(new Object[] {
 					narudzbenica.getStav_nar().get(i).getProizvod().getNaziv(),
 					narudzbenica.getStav_nar().get(i).getProizvod()
@@ -225,6 +225,7 @@ public class FNarudzbenicaP {
 			ukupnoTrajanje = ukupnoTrajanje + y * z;
 		}
 		table = new JTable(model);
+		table.setEnabled(false);
 		scrollPane.setViewportView(table);
 		tfCijena.setText(Double.toString(ukupnaCijena));
 		tfTrajanje.setText(Double.toString(ukupnoTrajanje));
@@ -241,6 +242,7 @@ public class FNarudzbenicaP {
 		model.addColumn("Trajanje proizvodnje");
 		model.addColumn("Količina");
 		table = new JTable(model);
+		table.setEnabled(false);
 		scrollPane.setViewportView(table);
 
 	}

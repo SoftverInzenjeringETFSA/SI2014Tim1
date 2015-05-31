@@ -205,26 +205,37 @@ public class FKlijentDMPB {
 
 				if (akcija.equals("Kreiranje")) {
 
-					String ime = ((JTextField) txtFdsfd).getText().toLowerCase();
-					ime= ime.substring(0, 1).toUpperCase() + ime.substring(1);
-					String prezime = ((JTextField) textField_1).getText().toLowerCase();
-					prezime= prezime.substring(0, 1).toUpperCase() + prezime.substring(1);
-					String adresa = ((JTextField) textField_3).getText();
-					String email = ((JTextField) textField_4).getText();
-					String brojTelefona = ((JFormattedTextField) telefon)
-							.getText();
-					List<Narudzbenica> narudzbe = new ArrayList<Narudzbenica>();
-					if (validacijaOnClick()) {
-						if (kf.dodajKlijenta(ime, prezime, brojTelefona,
-								adresa, email, narudzbe))
+					String ime = ((JTextField) txtFdsfd).getText()
+							.toLowerCase();
+					ime = ime.substring(0, 1).toUpperCase() + ime.substring(1);
+					String prezime = ((JTextField) textField_1).getText()
+							.toLowerCase();
+					prezime = prezime.substring(0, 1).toUpperCase()
+							+ prezime.substring(1);
+					if (kf.returnByImePrezime(ime, prezime, TipOsobe.klijent) != null) {
+						MessageBox
+								.infoBox(
+										frame,
+										"Klijent sa ovim imenom i prezimenom je već kreirana.Izmjenu možete izvršiti preko prethodnog prozora.",
+										"Info");
+					} else {
+						String adresa = ((JTextField) textField_3).getText();
+						String email = ((JTextField) textField_4).getText();
+						String brojTelefona = ((JFormattedTextField) telefon)
+								.getText();
+						List<Narudzbenica> narudzbe = new ArrayList<Narudzbenica>();
+						if (validacijaOnClick()) {
+							if (kf.dodajKlijenta(ime, prezime, brojTelefona,
+									adresa, email, narudzbe))
+								MessageBox.infoBox(frame,
+										"Klijent je uspješno kreiran.", "Info");
+							frame.dispose();
+							parentFrame.setEnabled(true);
+							parentFrame.setVisible(true);
+						} else
 							MessageBox.infoBox(frame,
-									"Klijent je uspješno kreiran.", "Info");
-						frame.dispose();
-						parentFrame.setEnabled(true);
-						parentFrame.setVisible(true);
-					} else
-						MessageBox.infoBox(frame,
-								"Molimo unesite sve podatke.", "Greska");
+									"Molimo unesite sve podatke.", "Greska");
+					}
 				}
 				if (akcija.equals("Modifikovanje")) {
 
@@ -247,14 +258,14 @@ public class FKlijentDMPB {
 								"Molimo unesite sve podatke.", "Greska");
 				}
 
-				if (akcija.equals("Brisanje")) {				
-						kf.obrisiOsobu(klijent);
-						MessageBox.infoBox(frame,
-								"Klijent je uspješno obrisan", "Info");
-						frame.dispose();
-						parentFrame.setEnabled(true);
-						parentFrame.setVisible(true);
-					
+				if (akcija.equals("Brisanje")) {
+					kf.obrisiOsobu(klijent);
+					MessageBox.infoBox(frame, "Klijent je uspješno obrisan",
+							"Info");
+					frame.dispose();
+					parentFrame.setEnabled(true);
+					parentFrame.setVisible(true);
+
 				}
 				if (akcija.equals("Pregled")) {
 					frame.dispose();
@@ -267,14 +278,12 @@ public class FKlijentDMPB {
 		btnKreiraj.setBounds(244, 204, 76, 22);
 		panel.add(btnKreiraj);
 		MaskFormatter mf1 = new MaskFormatter();
-		try{
+		try {
 			mf1 = new MaskFormatter("+###-##-###-###");
+		} catch (Exception e) {
+
 		}
-		catch( Exception e)
-		{
-			
-		}
-		
+
 		mf1.setPlaceholderCharacter('_');
 		telefon = new JFormattedTextField(mf1);
 		telefon.setBounds(133, 106, 187, 20);
