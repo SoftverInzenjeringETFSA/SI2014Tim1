@@ -319,7 +319,7 @@ public class FKorisnikDMPB {
 								 parentFrame.setEnabled(true);
 							     parentFrame.setVisible(true);
 								}
-							else MessageBox.infoBox(frame, "Korisnik sa unesenim podacima već postoji!", "Greška");
+							else MessageBox.infoBox(frame, "Korisnik sa unesenim podacima već postoji!JMBG ili korisničko ime su već uneseni.", "Greška");
 						}
 						else if(comboBox.getSelectedItem().toString().equals("Zaposlenik"))
 						{
@@ -332,7 +332,7 @@ public class FKorisnikDMPB {
 								 parentFrame.setEnabled(true);
 							     parentFrame.setVisible(true);
 								}
-							else MessageBox.infoBox(frame, "Korisnik sa unesenim podacima već postoji!", "Greška");
+							else MessageBox.infoBox(frame, "Korisnik sa unesenim podacima već postoji!JMBG ili korisničko ime su već uneseni.", "Greška");
 						}
 					}
 					else MessageBox.infoBox(frame, "Molimo unesite sve podatke.", "Greska");
@@ -414,7 +414,7 @@ public class FKorisnikDMPB {
 					if(obrisano)
 						MessageBox.infoBox(null, "Korisnik je uspješno obrisan", "Info");
 					else
-						MessageBox.infoBox(null, "Ovog korisnika nije moguce obrisati!", "Greška");
+						MessageBox.infoBox(null, "Korisnika nije moguce obrisati! Postoji narudzbenica ili sastavnica za koju se on vezuje.", "Greška");
 					
 					frame.setVisible(false);
 					frame.dispose();
@@ -453,7 +453,8 @@ public class FKorisnikDMPB {
 		panel.add(passwordField);
 		
 		JLabel lblEmail = new JLabel("Email:");
-		lblEmail.setBounds(129, 185, 28, 14);
+		lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblEmail.setBounds(12, 185, 145, 14);
 		panel.add(lblEmail);
 		
 		textField_3 = new JTextField();
