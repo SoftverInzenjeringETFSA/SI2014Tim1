@@ -275,7 +275,7 @@ public class FKlijentDMPB {
 
 			}
 		});
-		btnKreiraj.setBounds(244, 204, 76, 22);
+		btnKreiraj.setBounds(190, 204, 130, 22);
 		panel.add(btnKreiraj);
 		MaskFormatter mf1 = new MaskFormatter();
 		try {

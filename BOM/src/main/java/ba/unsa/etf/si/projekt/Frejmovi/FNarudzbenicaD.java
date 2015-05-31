@@ -143,6 +143,7 @@ public class FNarudzbenicaD {
 		panel.add(lblOdgovornoLice);
 
 		textField = new JTextField();
+		textField.setEditable(false);
 		textField.setBounds(191, 25, 195, 22);
 		panel.add(textField);
 		textField.setColumns(10);
@@ -156,7 +157,6 @@ public class FNarudzbenicaD {
 		// List<Materijal> materijali = sf.returnListaMaterijala();
 
 		comboBox = new JComboBox();
-		comboBox.setEditable(true);
 		comboBox.setBounds(474, 25, 283, 22);
 		panel.add(comboBox);
 
@@ -172,7 +172,6 @@ public class FNarudzbenicaD {
 		panel_1.add(lblProizvod);
 
 		comboBox_1 = new JComboBox();
-		comboBox_1.setEditable(true);
 		comboBox_1.setBounds(134, 32, 315, 22);
 		panel_1.add(comboBox_1);
 
@@ -275,17 +274,17 @@ public class FNarudzbenicaD {
 
 		JLabel lblTrajanjeProizvodnje = new JLabel("Trajanje proizvodnje:");
 		lblTrajanjeProizvodnje.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTrajanjeProizvodnje.setBounds(407, 401, 151, 16);
+		lblTrajanjeProizvodnje.setBounds(396, 401, 204, 16);
 		panel.add(lblTrajanjeProizvodnje);
 
 		textField_2 = new JTextField();
 		textField_2.setEditable(false);
-		textField_2.setBounds(567, 398, 133, 22);
+		textField_2.setBounds(612, 398, 133, 22);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 
 		JLabel lblH = new JLabel("h");
-		lblH.setBounds(707, 401, 20, 16);
+		lblH.setBounds(757, 401, 20, 16);
 		panel.add(lblH);
 
 		JLabel lblKm = new JLabel("KM");
