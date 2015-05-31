@@ -72,11 +72,11 @@ public class KompanijaFacadeTest {
 		assertTrue(result);
 	}
 
-	@Test
+	/*@Test
 	public final void testDodajMenadzera() {
 		Boolean result = kf.dodajMenadzera("ime", "prezime", "broj", "adresa", "email", "poz", Ovlasti.brisanjeMaterijala, "moze", "ne moze", "jmbg");
 		assertTrue(result);
-	}
+	}*/
 
 	@Test
 	public final void testMijenjajKlijenta() {
@@ -105,12 +105,12 @@ public class KompanijaFacadeTest {
 		assertEquals(nm.getIme(), "nestonovo");
 	}
 
-	@Test
+	/*@Test
 	public final void testObrisiOsobu() {
 		kf.dodajMenadzera("novi", "novi", "broj", "adresa", "email", "poz", Ovlasti.brisanjeMaterijala, "men", "password", "jmbg");
 		Osoba o = kf.returnByImePrezime("novi", "novi", TipOsobe.menadzer);
 		Boolean result = kf.obrisiOsobu(o);
-	}
+	}*/
 
 	@Test
 	public final void testReturnByUsernamePassword() {
@@ -120,13 +120,13 @@ public class KompanijaFacadeTest {
 		assertNotNull(o);
 	}
 
-	@Test
+	/*@Test
 	public final void testDajMenadzeraUsernamePassword() {
 		kf.dodajMenadzera("rese", "rve", "broj", "adresa", "email", "poz", Ovlasti.brisanjeMaterijala, "men", "password", "jmbg");
 		Osoba o = kf.dajMenadzeraUsernamePassword("men", "password");
 		
 		assertNotNull(o);
-	}
+	}*/
 	
 	@Test
 	public final void testSortirajKlijentaParametri() {

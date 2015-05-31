@@ -73,7 +73,7 @@ public class Validator extends AbstractValidator{
 		}
 		
 	//validacija adrese	
-		public static final Pattern VALID_ADRESA_REGEX = Pattern.compile("[A-Za-z0-9'\\.\\-\\s\\,]", Pattern.CASE_INSENSITIVE);
+		public static final Pattern VALID_ADRESA_REGEX = Pattern.compile("^[a-zA-Z\\s]+[0-9\\s]*$", Pattern.CASE_INSENSITIVE);
 		public  Boolean ValidirajAdresu(String kontrolaTekst)
 		{
 			Matcher matcher = VALID_ADRESA_REGEX .matcher(kontrolaTekst);
