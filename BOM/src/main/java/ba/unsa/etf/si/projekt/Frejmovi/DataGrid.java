@@ -197,6 +197,10 @@ public class DataGrid {
 						{
 							rows[i][4] = "Manjak!";
 						}
+						else
+						{
+							rows[i][4] = "--- OK ---";
+						}
 						i++;
 					}
 				}
