@@ -154,7 +154,8 @@ public class FSastavnicaDM {
 		    	textField.requestFocusInWindow();
 		    }
 		});
-		textField.setInputVerifier(new Validator(frame,textField,"Naziv proizvoda ne smije biti prazan!",""));
+		
+		textField.setInputVerifier(new Validator(frame,textField,"Naziv proizvoda ne smije biti prazan!","prazno"));
 		
 		textField_2 = new JTextField();
 		textField_2.setBounds(180, 33, 290, 20);
