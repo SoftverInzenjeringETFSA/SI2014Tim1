@@ -29,9 +29,11 @@ import ba.unsa.etf.si.projekt.Klase.Materijal;
 import ba.unsa.etf.si.projekt.Klase.Menadzer;
 import ba.unsa.etf.si.projekt.Klase.Osoba;
 import ba.unsa.etf.si.projekt.Klase.Radnik;
+import ba.unsa.etf.si.projekt.Klase.Sastavnica;
 import ba.unsa.etf.si.projekt.Klase.TipMaterijala;
 import ba.unsa.etf.si.projekt.Klase.TipOsobe;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
+import ba.unsa.etf.si.projekt.Util.CijenaKalkulator;
 import ba.unsa.etf.si.projekt.Validacija.Validator;
 
 import com.toedter.calendar.JDateChooser;
@@ -333,7 +335,7 @@ public class FMaterijalDMPB {
 					String opis= textField_1.getText();
 					String mjed=(String)comboBox_2.getSelectedItem();
 					Radnik kreirao = (Radnik)trenutniKorisnik;
-					Materijal m = new Materijal(serBroj, opis, kolicina, granKolicina, TipMaterijala.proizvod, nabCijena, null,null,prodCijena,null, kreirao, mjed);
+					Materijal m = new Materijal(serBroj, opis, kolicina, granKolicina, TipMaterijala.proizvod, nabCijena, new Date(),Kategorija.metal,prodCijena,new Date(), kreirao, mjed);
 					if(sf.dodajMaterijal(m))
 						{
 						 MessageBox.infoBox(frame, "Uspješno ste dodali materijal.", "Info");
@@ -357,6 +359,19 @@ public class FMaterijalDMPB {
 					materijal.setMjernaJedinica((String)comboBox_2.getSelectedItem());
 					if(sf.izmijeniMaterijal(materijal))
 						{
+						//rekalkulacija cijena sastavnica (ako se promjenila cijena materijala onda se
+						//treba promjeniti i cijena sastavnica, ali ne i NARUDZBENICA)
+						//rekal--
+						SkladisteFacade ss = new SkladisteFacade();
+						List<Sastavnica> listaSastavnica = ss.returnListaSastavnica();
+						for(Sastavnica sas : listaSastavnica)
+						{
+							sas.setUkupnaCijena(CijenaKalkulator.RekalkulisiCijenuSastavnice(sas));
+							ss.izmijeniSastavnicu(sas);
+						}
+						
+						
+						
 						MessageBox.infoBox(frame, "Uspješno ste modifikovali materijal.", "Info");
 						frame.setVisible(false);
 						frame.dispose();
