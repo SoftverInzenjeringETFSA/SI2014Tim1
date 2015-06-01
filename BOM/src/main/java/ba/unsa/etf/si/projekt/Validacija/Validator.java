@@ -31,6 +31,7 @@ public class Validator extends AbstractValidator{
 	  {
 		  super(parent, c, message,tip);
 	  }
+	  @Override
 	  public boolean validationCriteria(JComponent c, String tip) {
 		    if(tip.equals("email")) return ValidirajEmail( ((JTextField)c).getText());
 			else if(tip.equals("JMBG")) return ValidirajJMBG( ((JTextField)c).getText());
@@ -43,6 +44,7 @@ public class Validator extends AbstractValidator{
 			return true;
 		    
 		}
+	  @Override
 	public  Boolean ValidirajJeLiPrazno(String kontrolaTekst)
 	{
 		if(kontrolaTekst.equals(""))
@@ -50,6 +52,7 @@ public class Validator extends AbstractValidator{
 		return true;
 	}	
 	//validirajTelefon
+	  @Override
 	public  Boolean ValidirajTelefon(String kontrolaTekst)
 	{
 		if(kontrolaTekst.equals("+___-__-___-___"))
@@ -58,6 +61,7 @@ public class Validator extends AbstractValidator{
 	}	
 	
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+	@Override
 	public Boolean ValidirajEmail(String mail)
 	{
 		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(mail);
@@ -66,7 +70,8 @@ public class Validator extends AbstractValidator{
 	
 	//validira tekstualna polja
 	public static final Pattern VALID_TEKST_REGEX = Pattern.compile("^[a-zA-Z\u0161\u0111\u010D\u0107\u017E]+$",  Pattern.CASE_INSENSITIVE);
-		public  Boolean ValidirajTekst(String kontrolaTekst)
+	@Override	
+	public  Boolean ValidirajTekst(String kontrolaTekst)
 		{
 			Matcher matcher = VALID_TEKST_REGEX .matcher(kontrolaTekst);
 	        return matcher.find();
@@ -74,6 +79,7 @@ public class Validator extends AbstractValidator{
 		
 	//validacija adrese	
 		public static final Pattern VALID_ADRESA_REGEX = Pattern.compile("^[a-zA-Z\u0161\u0111\u010D\u0107\u017E\\s]+[0-9\\s]*$", Pattern.CASE_INSENSITIVE);
+		@Override
 		public  Boolean ValidirajAdresu(String kontrolaTekst)
 		{
 			Matcher matcher = VALID_ADRESA_REGEX .matcher(kontrolaTekst);
@@ -81,13 +87,14 @@ public class Validator extends AbstractValidator{
 		}
 	
 	//validacija korisnickog imena i sifre	
+		@Override
 		public  Boolean ValidirajKorisnickoIme(String kontrolaTekst)
 		{
 			if(kontrolaTekst.length()<4)
 				return false;
 			return true;
 		}
-		
+		@Override
 		public  Boolean ValidirajSifru(String kontrolaTekst)
 		{
 			if(kontrolaTekst.length()<4)

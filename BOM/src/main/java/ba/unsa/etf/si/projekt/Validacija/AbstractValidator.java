@@ -74,7 +74,11 @@ public abstract class AbstractValidator extends InputVerifier implements KeyList
      protected abstract Boolean ValidirajJeLiPrazno(String kontrolaTekst);
      protected abstract Boolean ValidirajEmail(String mail);
      protected abstract Boolean ValidirajJMBG(String JMBG);
-	
+     protected abstract Boolean ValidirajSifru(String sifra);
+     protected abstract Boolean ValidirajKorisnickoIme(String korIme);
+     protected abstract Boolean ValidirajAdresu(String adresa);
+     protected abstract Boolean ValidirajTelefon(String telefon);
+     protected abstract Boolean ValidirajTekst(String tekst);
   
     public boolean verify(JComponent c) {		
         if (!validationCriteria(c,tip)) {
