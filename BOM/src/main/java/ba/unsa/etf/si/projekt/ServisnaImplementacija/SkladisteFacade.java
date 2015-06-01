@@ -440,15 +440,43 @@ public class SkladisteFacade implements ISkladisteFacade {
 		
 		public Boolean obrišiSastavnicu(Sastavnica sastavnica)
 		{
+			if(!validirajBrisanjeSastavnice(sastavnica)) {
+				return false;
+			}
+			else {
+				Session session = HibernateUtil.getSessionFactory().openSession();
+				try {
+					Transaction t = session.beginTransaction();
+					session.delete(sastavnica);
+					t.commit();
+					return true;
+				}
+				catch (Exception e) {
+					throw new RuntimeException(e);
+				}
+				finally {
+					session.close();
+				}
+			}
+			
+		}
+		
+		public Boolean validirajBrisanjeSastavnice(Sastavnica sastavnica) {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				Transaction t = session.beginTransaction();
-				session.delete(sastavnica);
+				List<StavkaNarudzbenice> stavke = null;
+				stavke = session.createCriteria(StavkaNarudzbenice.class).list();
 				t.commit();
-				return true;
+				Boolean istina = true;
+				for(StavkaNarudzbenice s : stavke) {
+					if(s.getProizvod().getId() == sastavnica.getId())
+						istina = false;
+				}
+				return istina;
 			}
 			catch (Exception e) {
-				throw new RuntimeException(e);
+				throw new RuntimeException(e);				
 			}
 			finally {
 				session.close();
