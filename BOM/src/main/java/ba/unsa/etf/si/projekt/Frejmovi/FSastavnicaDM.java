@@ -389,7 +389,7 @@ public class FSastavnicaDM {
 		label.setBounds(854, 451, 37, 16);
 		panel.add(label);
 		
-		spinner_1 = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 100000.0, 0.1));
+		spinner_1 = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 1000.0, 0.01));
 		spinner_1.addChangeListener(new ChangeListener() {
 
 	        public void stateChanged(ChangeEvent e) {
@@ -398,13 +398,7 @@ public class FSastavnicaDM {
 	    });
 		spinner_1.setBounds(247, 416, 130, 20);
 		panel.add(spinner_1);
-		
-		if ( spinner_1.getEditor() instanceof JSpinner.DefaultEditor ) {
-			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner_1.getEditor();
-			   editor.getTextField().setEditable( false );
-			   editor.getTextField().setBackground(Color.white);
-			}
-		spinner_2 = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 100000.0, 0.1));
+		spinner_2 = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 50.0, 0.0001));
 		spinner_2.addChangeListener(new ChangeListener() {
 
 	        public void stateChanged(ChangeEvent e) {
@@ -413,12 +407,7 @@ public class FSastavnicaDM {
 	    });
 		spinner_2.setBounds(247, 449, 130, 20);
 		panel.add(spinner_2);
-		if ( spinner_2.getEditor() instanceof JSpinner.DefaultEditor ) {
-			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner_2.getEditor();
-			   editor.getTextField().setEditable( false );
-			   editor.getTextField().setBackground(Color.white);
-			}
-		spinner_3 = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 100000.0, 1.0));
+		spinner_3 = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 100000.0, 0.0001));
 		spinner_3.addChangeListener(new ChangeListener() {
 
 	        public void stateChanged(ChangeEvent e) {
@@ -427,12 +416,7 @@ public class FSastavnicaDM {
 	    });
 		spinner_3.setBounds(706, 416, 136, 20);
 		panel.add(spinner_3);
-		if ( spinner_3.getEditor() instanceof JSpinner.DefaultEditor ) {
-			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner_3.getEditor();
-			   editor.getTextField().setEditable( false );
-			   editor.getTextField().setBackground(Color.white);
-			}
-		spinner_4 = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 100000.0, 0.5));
+		spinner_4 = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 20.0, 0.1));
 		spinner_4.addChangeListener(new ChangeListener() {
 
 	        public void stateChanged(ChangeEvent e) {
@@ -441,11 +425,6 @@ public class FSastavnicaDM {
 	    });
 		spinner_4.setBounds(706, 449, 136, 20);
 		panel.add(spinner_4);
-		if ( spinner_4.getEditor() instanceof JSpinner.DefaultEditor ) {
-			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner_4.getEditor();
-			   editor.getTextField().setEditable( false );
-			   editor.getTextField().setBackground(Color.white);
-			}
 	}
 	public void postaviKorisnika(Osoba os)
 	{ 
