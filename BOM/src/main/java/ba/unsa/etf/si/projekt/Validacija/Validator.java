@@ -41,6 +41,7 @@ public class Validator extends AbstractValidator{
 			else if(tip.equals("telefon")) return ValidirajTelefon(((JFormattedTextField)c).getText());
 			else if(tip.equals(""))return ValidirajTekst( ((JTextField)c).getText());
 			else if(tip.equals("prazno"))return ValidirajJeLiPrazno( ((JTextField)c).getText());
+			else if(tip.equals("serija"))return ValidirajSeriju( ((JTextField)c).getText());
 			return true;
 		    
 		}
@@ -85,6 +86,14 @@ public class Validator extends AbstractValidator{
 			Matcher matcher = VALID_ADRESA_REGEX .matcher(kontrolaTekst);
 	        return matcher.find();
 		}
+		//validacija serijskog broja
+				public static final Pattern VALID_SERIJA_REGEX = Pattern.compile("^[a-zA-Z\\s]+[0-9\\s]*$", Pattern.CASE_INSENSITIVE);
+				@Override
+				public  Boolean ValidirajSeriju(String kontrolaTekst)
+				{
+					Matcher matcher = VALID_SERIJA_REGEX .matcher(kontrolaTekst);
+			        return matcher.find();
+				}
 	
 	//validacija korisnickog imena i sifre	
 		@Override

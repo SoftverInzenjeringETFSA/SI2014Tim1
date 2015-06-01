@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.math.*;
 
 import javax.swing.BorderFactory;
+import javax.swing.InputVerifier;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -28,6 +29,7 @@ import ba.unsa.etf.si.projekt.Klase.StavkaNarudzbenice;
 import ba.unsa.etf.si.projekt.Klase.TipOsobe;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.KompanijaFacade;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
+import ba.unsa.etf.si.projekt.Validacija.Validator;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -98,7 +100,7 @@ public class FNarudzbenicaD {
 		
 		
 	}
-
+	InputVerifier serijaVal;
 	/**
 	 * Create the application.
 	 */
@@ -121,8 +123,11 @@ public class FNarudzbenicaD {
 				
 			}
 		});
+		serijaVal = new Validator(frame,serijskiBroj , "Serijski broj može sadržavati samo slova i brojeve engleske abecede",
+				"serija");
+		serijskiBroj.setInputVerifier(serijaVal);
 	}
-
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -302,7 +307,11 @@ public class FNarudzbenicaD {
 				if(serijskiBroj.getText().isEmpty() || serijskiBroj.getText().contains(" "))
 				{
 					MessageBox.infoBox(frame, "Unesite serijski broj.", "Info");
-				}			
+				}
+				else if (!serijaVal.verify(serijskiBroj))					
+				{
+					MessageBox.infoBox(frame, "Unesite ispravan serijski broj.", "Info");
+				}
 				else if(kf.pretragaNarudzbenica(serijskiBroj.getText())!=null)
 						{
 					MessageBox.infoBox(frame, "Narudžbenica sa ovim serijskim brojem je već kreirana.Izmjenu možete izvršiti preko prethodnog prozora.","Info");
