@@ -115,18 +115,18 @@ public class FNarudzbenicaP {
 
 		JLabel lblOdgovornoLice = new JLabel("Odgovorno lice:");
 		lblOdgovornoLice.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblOdgovornoLice.setBounds(12, 47, 113, 16);
+		lblOdgovornoLice.setBounds(12, 47, 206, 16);
 		panel.add(lblOdgovornoLice);
 
 		odgLice = new JTextField();
 		odgLice.setEditable(false);
-		odgLice.setBounds(128, 44, 158, 22);
+		odgLice.setBounds(228, 44, 185, 22);
 		panel.add(odgLice);
 		odgLice.setColumns(10);
 
 		JLabel lblKlijent = new JLabel("Klijent:");
 		lblKlijent.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblKlijent.setBounds(311, 47, 73, 16);
+		lblKlijent.setBounds(432, 47, 154, 16);
 		panel.add(lblKlijent);
 
 		JPanel panel_1 = new JPanel();
@@ -184,18 +184,19 @@ public class FNarudzbenicaP {
 
 		klijentTF = new JTextField();
 		klijentTF.setEditable(false);
-		klijentTF.setBounds(386, 45, 123, 20);
+		klijentTF.setBounds(596, 45, 178, 20);
 		panel.add(klijentTF);
 		klijentTF.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Serijski broj:");
-		lblNewLabel.setBounds(527, 48, 73, 14);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel.setBounds(22, 74, 206, 14);
 		panel.add(lblNewLabel);
 
 		serijskiBroj = new JTextField();
 		serijskiBroj.setEditable(false);
 		serijskiBroj.setText("");
-		serijskiBroj.setBounds(602, 45, 102, 20);
+		serijskiBroj.setBounds(228, 71, 185, 20);
 		panel.add(serijskiBroj);
 		serijskiBroj.setColumns(10);
 	}
