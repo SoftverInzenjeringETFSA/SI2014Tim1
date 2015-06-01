@@ -9,11 +9,15 @@ import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.SwingConstants;
+
+import org.apache.log4j.Logger;
 
 public class CustomDialog {
 
 	private JFrame frame;
+	final static Logger logger = Logger.getLogger(CustomDialog.class);
 	private JFrame parentFrame;
 	JLabel labelaPitanje;
 
@@ -28,14 +32,14 @@ public class CustomDialog {
 				try { 
 				    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
-				    e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 				
 				try {
 					CustomDialog window = new CustomDialog();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 			}
 		});

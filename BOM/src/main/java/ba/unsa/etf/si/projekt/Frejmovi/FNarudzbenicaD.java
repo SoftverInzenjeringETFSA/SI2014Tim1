@@ -41,9 +41,12 @@ import java.util.List;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 
+import org.apache.log4j.Logger;
+
 public class FNarudzbenicaD {
 
 	private JFrame frame;
+	final static Logger logger = Logger.getLogger(FNarudzbenicaD.class);
 	private JTextField textField;
 	private JTable table;
 	private JTextField textField_1;
@@ -75,14 +78,14 @@ public class FNarudzbenicaD {
 					UIManager.setLookAndFeel(UIManager
 							.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 
 				try {
 					FNarudzbenicaD window = new FNarudzbenicaD();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 			}
 		});

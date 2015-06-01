@@ -19,6 +19,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.UIManager;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -42,6 +43,8 @@ import java.util.List;
 import javax.swing.JFormattedTextField;
 import javax.swing.JToggleButton;
 
+import org.apache.log4j.Logger;
+
 import ba.unsa.etf.si.projekt.Klase.Klijent;
 import ba.unsa.etf.si.projekt.Klase.Materijal;
 import ba.unsa.etf.si.projekt.Klase.Narudzbenica;
@@ -52,7 +55,7 @@ public class FMenadzer {
 
 	private JFrame frame;
 	private JFrame parentFrame;
-	
+	final static Logger logger = Logger.getLogger(FMenadzer.class);
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
@@ -102,7 +105,7 @@ public class FMenadzer {
 				try { 
 				    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
-				    e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 				
 				
@@ -110,7 +113,7 @@ public class FMenadzer {
 					FMenadzer window = new FMenadzer();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 			}
 		});

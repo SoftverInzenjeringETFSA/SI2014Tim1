@@ -35,9 +35,12 @@ import ba.unsa.etf.si.projekt.Validacija.Validator;
 
 import javax.swing.JPasswordField;
 
+import org.apache.log4j.Logger;
+
 public class FKorisnikDMPB {
 
 	private JFrame frame;
+	final static Logger logger = Logger.getLogger(FKorisnikDMPB.class);
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -74,14 +77,14 @@ public class FKorisnikDMPB {
 				try { 
 				    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
-				    e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 				
 				try {
 					FKorisnikDMPB window = new FKorisnikDMPB();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 			}
 		});
@@ -441,7 +444,7 @@ public class FKorisnikDMPB {
 		}
 		catch( Exception e)
 		{
-			
+			logger.error("Greska: ", e);
 		}
 		mf1.setPlaceholderCharacter('_');
 		formattedTextField = new JFormattedTextField(mf1);

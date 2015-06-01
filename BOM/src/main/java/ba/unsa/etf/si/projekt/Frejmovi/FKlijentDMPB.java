@@ -21,6 +21,8 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.text.MaskFormatter;
 
+import org.apache.log4j.Logger;
+
 import ba.unsa.etf.si.projekt.Klase.Narudzbenica;
 import ba.unsa.etf.si.projekt.Klase.Osoba;
 import ba.unsa.etf.si.projekt.Klase.TipOsobe;
@@ -31,6 +33,7 @@ import ba.unsa.etf.si.projekt.Klase.Klijent;
 public class FKlijentDMPB {
 
 	private JFrame frame;
+	final static Logger logger = Logger.getLogger(FKlijentDMPB.class);
 	private JTextField txtFdsfd;
 	private JTextField textField_1;
 	private JTextField textField_3;
@@ -56,14 +59,14 @@ public class FKlijentDMPB {
 					UIManager.setLookAndFeel(UIManager
 							.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 
 				try {
 					FKlijentDMPB window = new FKlijentDMPB();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 			}
 		});
@@ -281,7 +284,7 @@ public class FKlijentDMPB {
 		try {
 			mf1 = new MaskFormatter("+###-##-###-###");
 		} catch (Exception e) {
-
+			logger.error("Greska: ", e);
 		}
 
 		mf1.setPlaceholderCharacter('_');

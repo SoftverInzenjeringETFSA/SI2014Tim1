@@ -39,11 +39,14 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
+import org.apache.log4j.Logger;
+
 import java.util.List;
 
 public class FMaterijalDMPB {
 
 	private JFrame frame;
+	final static Logger logger = Logger.getLogger(FMaterijalDMPB.class);
 	private Java2sAutoComboBox comboBox;
 	private Java2sAutoComboBox comboBox_1;
 	private Java2sAutoComboBox comboBox_2;
@@ -80,14 +83,14 @@ public class FMaterijalDMPB {
 				try { 
 				    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
-				    e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 				
 				try {
 					FMaterijalDMPB window = new FMaterijalDMPB();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 			}
 		});
@@ -406,7 +409,7 @@ public class FMaterijalDMPB {
 		m_numberSpinnerModel_1 = new SpinnerNumberModel(0.1, 0, 100000, 0.01);
 		
 		SpinnerNumberModel m_numberSpinnerModel_2;
-		m_numberSpinnerModel_2 = new SpinnerNumberModel(0.1, 0, 100000, 0.1);
+		m_numberSpinnerModel_2 = new SpinnerNumberModel(0.1, 0, 100000, 0.5);
 		
 		SpinnerNumberModel m_numberSpinnerModel_3;
 		m_numberSpinnerModel_3 = new SpinnerNumberModel(0.1, 0, 100000, 0.1);
@@ -443,7 +446,8 @@ public class FMaterijalDMPB {
 		panel.add(spinner);
 		
 		JLabel lblGraninaKoliina = new JLabel("Granična količina:");
-		lblGraninaKoliina.setBounds(103, 250, 83, 14);
+		lblGraninaKoliina.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblGraninaKoliina.setBounds(77, 250, 109, 14);
 		panel.add(lblGraninaKoliina);
 		
 		textField = new JTextField();

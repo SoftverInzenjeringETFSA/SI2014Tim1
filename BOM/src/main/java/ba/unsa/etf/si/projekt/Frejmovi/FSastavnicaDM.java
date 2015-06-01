@@ -28,6 +28,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 
+import org.apache.log4j.Logger;
+
 import ba.unsa.etf.si.projekt.Klase.Materijal;
 import ba.unsa.etf.si.projekt.Klase.Menadzer;
 import ba.unsa.etf.si.projekt.Klase.Osoba;
@@ -47,6 +49,7 @@ import java.awt.event.MouseEvent;
 public class FSastavnicaDM {
 
 	private JFrame frame;
+	final static Logger logger = Logger.getLogger(FSastavnicaDM.class);
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_3;
@@ -80,14 +83,14 @@ public class FSastavnicaDM {
 				try { 
 				    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
-				    e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 				
 				try {
 					FSastavnicaDM window = new FSastavnicaDM();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 			}
 		});

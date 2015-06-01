@@ -27,9 +27,12 @@ import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
 
 import javax.swing.SpinnerModel;
 
+import org.apache.log4j.Logger;
+
 public class FSastavnicaPB {
 
 	private JFrame frame;
+	final static Logger logger = Logger.getLogger(FSastavnicaPB.class);
 	private JTextField textField;
 	private JTextField textField_3;
 	private JTable table;
@@ -58,14 +61,14 @@ public class FSastavnicaPB {
 				try { 
 				    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
-				    e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 				
 				try {
 					FSastavnicaPB window = new FSastavnicaPB();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 			}
 		});

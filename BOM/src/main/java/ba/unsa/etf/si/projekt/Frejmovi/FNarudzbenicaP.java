@@ -16,6 +16,8 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
+import org.apache.log4j.Logger;
+
 import ba.unsa.etf.si.projekt.Klase.Narudzbenica;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.SkladisteFacade;
 
@@ -25,6 +27,7 @@ import java.awt.event.ActionEvent;
 public class FNarudzbenicaP {
 
 	private JFrame frame;
+	final static Logger logger = Logger.getLogger(FNarudzbenicaP.class);
 	private JTextField odgLice;
 	private JTable table;
 	private JTextField tfCijena;
@@ -51,14 +54,14 @@ public class FNarudzbenicaP {
 					UIManager.setLookAndFeel(UIManager
 							.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 
 				try {
 					FNarudzbenicaP window = new FNarudzbenicaP();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 			}
 		});

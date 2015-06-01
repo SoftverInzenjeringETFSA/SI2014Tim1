@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JPasswordField;
 
+import org.apache.log4j.Logger;
+
 import ba.unsa.etf.si.projekt.Klase.Osoba;
 import ba.unsa.etf.si.projekt.Klase.TipOsobe;
 import ba.unsa.etf.si.projekt.ServisnaImplementacija.KompanijaFacade;
@@ -21,6 +23,7 @@ import ba.unsa.etf.si.projekt.ServisnaImplementacija.KompanijaFacade;
 public class Login {
 
 	private JFrame frame;
+	final static Logger logger = Logger.getLogger(Login.class);
 	private JTextField tfKorisnickoIme;
 	private JButton btnNewButton;
 	private JPasswordField passwordField;
@@ -36,14 +39,14 @@ public class Login {
 				try { 
 				    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
-				    e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 				
 				try {
 					Login window = new Login();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 			}
 		});

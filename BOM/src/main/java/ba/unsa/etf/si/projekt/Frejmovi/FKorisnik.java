@@ -17,6 +17,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 
+import org.apache.log4j.Logger;
+
 import ba.unsa.etf.si.projekt.Klase.Klijent;
 import ba.unsa.etf.si.projekt.Klase.Osoba;
 
@@ -27,6 +29,7 @@ public class FKorisnik {
 	
 	private JFrame frame;
 	private JFrame parentFrame = null;
+	final static Logger logger = Logger.getLogger(FKorisnik.class);
 	private JTextField textField;
 	private JTable table;
 	private DataGrid dataGrid;
@@ -49,14 +52,14 @@ public class FKorisnik {
 				try { 
 				    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				} catch (Exception e) {
-				    e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 				
 				try {
 					FKorisnik window = new FKorisnik();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error("Greska: ", e);
 				}
 			}
 		});
