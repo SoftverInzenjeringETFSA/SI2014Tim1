@@ -123,7 +123,7 @@ public class FNarudzbenicaD {
 				
 			}
 		});
-		serijaVal = new Validator(frame,serijskiBroj , "Serijski broj može sadržavati samo slova i brojeve engleske abecede",
+		serijaVal = new Validator(frame,serijskiBroj , "Serijski broj može sadržavati samo slova i brojeve engleske abecede te treba početi sa slovom",
 				"serija");
 		serijskiBroj.setInputVerifier(serijaVal);
 	}
