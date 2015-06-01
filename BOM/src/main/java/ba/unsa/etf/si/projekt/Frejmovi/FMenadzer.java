@@ -145,6 +145,7 @@ public class FMenadzer {
 				    @Override
 				    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
 				    	
+				    	MessageBox.infoBox(null, "Uspješno ste odjavljeni!", "Info");
 				    	parentFrame.setVisible(true);
 				    	parentFrame.setEnabled(true);
 				    }
