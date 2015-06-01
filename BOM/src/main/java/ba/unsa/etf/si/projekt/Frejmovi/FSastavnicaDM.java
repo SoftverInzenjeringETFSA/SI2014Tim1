@@ -223,11 +223,6 @@ public class FSastavnicaDM {
 		spinner.setModel(new SpinnerNumberModel(1, 1, 1000000, 1));
 		spinner.setBounds(680, 32, 173, 22);
 		panel_1.add(spinner);
-		if ( spinner.getEditor() instanceof JSpinner.DefaultEditor ) {
-			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner.getEditor();
-			   editor.getTextField().setEditable( false );
-			   editor.getTextField().setBackground(Color.white);
-			}
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 105, 841, 120);
 		panel_1.add(scrollPane);

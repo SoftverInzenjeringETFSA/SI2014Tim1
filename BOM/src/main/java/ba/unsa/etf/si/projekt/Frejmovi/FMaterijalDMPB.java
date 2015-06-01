@@ -418,29 +418,12 @@ public class FMaterijalDMPB {
 		spinner_1.setBounds(196, 160, 118, 20);
 		panel.add(spinner_1);
 		
-		if ( spinner_1.getEditor() instanceof JSpinner.DefaultEditor ) {
-			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner_1.getEditor();
-			   editor.getTextField().setEditable( false );
-			   editor.getTextField().setBackground(Color.white);
-			}
-		
 		spinner_2 = new JSpinner(m_numberSpinnerModel_1);
 		spinner_2.setBounds(196, 189, 118, 20);
 		panel.add(spinner_2);
-		
-		if ( spinner_2.getEditor() instanceof JSpinner.DefaultEditor ) {
-			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner_2.getEditor();
-			   editor.getTextField().setEditable( false );
-			   editor.getTextField().setBackground(Color.white);
-			}
 		spinner_3 = new JSpinner(m_numberSpinnerModel_2);
 		spinner_3.setBounds(196, 102, 120, 20);
 		panel.add(spinner_3);
-		if ( spinner_3.getEditor() instanceof JSpinner.DefaultEditor ) {
-			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner_3.getEditor();
-			   editor.getTextField().setEditable( false );
-			   editor.getTextField().setBackground(Color.white);
-			}
 		spinner = new JSpinner(m_numberSpinnerModel_3);
 		spinner.setBounds(198, 247, 116, 20);
 		panel.add(spinner);
@@ -461,11 +444,6 @@ public class FMaterijalDMPB {
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		textField_1.setVisible(false);
-		if ( spinner.getEditor() instanceof JSpinner.DefaultEditor ) {
-			   JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) spinner.getEditor();
-			   editor.getTextField().setEditable( false );
-			   editor.getTextField().setBackground(Color.white);
-			}
 	}
 	
 	public void postaviKorisnika(Osoba os)
