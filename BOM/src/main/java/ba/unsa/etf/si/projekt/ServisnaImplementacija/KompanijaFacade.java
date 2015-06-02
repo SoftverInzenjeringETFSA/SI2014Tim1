@@ -148,6 +148,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 		
 		public Boolean dodajRadnika(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti, String username, String password, String JMBG)
 		{
+			Logger log = Logger.getLogger(" ");
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				Transaction t = session.beginTransaction();
@@ -158,6 +159,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 				return true;
 			}
 			catch(Exception e) {
+				log.log(Level.SEVERE, "Uncaught exception", e);
 				//throw new RuntimeException(e);
 				return false;
 			}
@@ -168,6 +170,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 		
 		public Boolean dodajMenadzera(String ime, String prezime, String brojTelefona, String adresa, String email, String pozicija, Ovlasti nivoOvlasti, String username, String password, String JMBG)
 		{
+			Logger log = Logger.getLogger(" ");
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			try {
 				Transaction t = session.beginTransaction();
@@ -178,6 +181,7 @@ public class KompanijaFacade implements IKompanijaFacade {
 				return true;
 			}
 			catch(Exception e) {
+				log.log(Level.SEVERE, "Uncaught exception", e);
 				//throw new RuntimeException(e);
 				return false;
 			}
