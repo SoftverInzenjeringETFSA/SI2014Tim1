@@ -103,7 +103,7 @@ public class ProbnaKlasaLejla {
 			System.out.println(_materijali.get(i).getOpis());
 			
 		}
-		else System.out.println("prazno");*/
+		else System.out.println("prazno"); */
 	}
 	
 

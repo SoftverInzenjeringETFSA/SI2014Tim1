@@ -727,7 +727,7 @@ public class SkladisteFacade implements ISkladisteFacade {
 			}
 			catch (Exception e) {
 			//System.out.println("Nema te kolone");
-				throw new RuntimeException(e.getMessage());
+				throw new RuntimeException(e);
 			}
 			finally {
 				session.close();
